@@ -22,8 +22,8 @@
         <DrawingBrush Drawing="{StaticResource GetSheetNamesIcon}" Stretch="Uniform"></DrawingBrush>
     </sap:ActivityDesigner.Icon>
 
-    <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}" Width="300">
-        <StackPanel>
+    <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
+        <StackPanel Width="300">
             <controls:WorkbookScopeControl/>
             <Label Content="Result (Output)" Grid.Column="2"/>
             <sapv:ExpressionTextBox
