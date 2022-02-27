@@ -1,5 +1,5 @@
-﻿using Autossential.Workbook.Core;
-using Autossential.Workbook.Activities.Properties;
+﻿using Autossential.Workbook.Activities.Properties;
+using Autossential.Workbook.Core;
 using System;
 using System.Activities;
 

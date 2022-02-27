@@ -7,5 +7,11 @@
         {
             InitializeComponent();
         }
+
+        protected override void OnModelItemChanged(object newItem)
+        {
+            base.OnModelItemChanged(newItem);
+            WorkbookScopeControl.ToggleScope(ModelItem);
+        }
     }
 }

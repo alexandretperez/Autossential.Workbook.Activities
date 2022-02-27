@@ -13,29 +13,33 @@
                 <ResourceDictionary Source="../Themes/Default.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
-            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" Collapse="True" Reverse="True" />
+            <converters:BooleanToVisibilityConverter x:Key="IsFalse" Collapse="True" Reverse="True" />
+            <converters:BooleanToVisibilityConverter x:Key="IsTrue" Collapse="True" Reverse="False" />
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <StackPanel Visibility="{Binding ModelItem.UseScope, Converter={StaticResource BooleanToVisibilityConverter}}">
-        <Label Content="WorkbookPath" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="23"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <sapv:ExpressionTextBox
-                    Grid.Column="0"
-                    ExpressionType="{Binding ModelItem.Properties[WorkbookPath].PropertyType.GenericTypeArguments[0]}"
-                    OwnerActivity="{Binding ModelItem}"
-                    UseLocationExpression="False"
-                    Expression="{Binding ModelItem.WorkbookPath, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
-                />
-            <c:FilePickerControl 
-                Grid.Column="1"
-                ModelItem="{Binding ModelItem}"
-                PropertyName="WorkbookPath"/>
-        </Grid>
+    <StackPanel>
+        <StackPanel Visibility="{Binding ModelItem.UseScope, Converter={StaticResource IsFalse}}">
+            <Label Content="WorkbookPath" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="23"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <sapv:ExpressionTextBox
+                Grid.Column="0"
+                ExpressionType="{Binding ModelItem.Properties[WorkbookPath].PropertyType.GenericTypeArguments[0]}"
+                OwnerActivity="{Binding ModelItem}"
+                UseLocationExpression="False"
+                Expression="{Binding ModelItem.WorkbookPath, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
+            />
+                <c:FilePickerControl 
+            Grid.Column="1"
+            ModelItem="{Binding ModelItem}"
+            PropertyName="WorkbookPath"/>
+            </Grid>
+        </StackPanel>
+        <Label Content="WorkbookPath provided by scope" FontStyle="Italic" Foreground="Gray" Visibility="{Binding ModelItem.UseScope, Converter={StaticResource IsTrue}}" />
     </StackPanel>
 
 </UserControl>

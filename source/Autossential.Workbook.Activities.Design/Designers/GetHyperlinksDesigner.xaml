@@ -24,7 +24,7 @@
 
     <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
         <StackPanel Width="300">
-            <controls:WorkbookScopeControl />
+            <controls:WorkbookScopeControl x:Name="WorkbookScopeControl" />
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>

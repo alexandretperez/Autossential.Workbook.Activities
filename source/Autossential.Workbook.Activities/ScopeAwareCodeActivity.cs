@@ -2,6 +2,7 @@
 using Autossential.Workbook.Activities.Properties;
 using System.Activities;
 using System.Activities.Validation;
+using System.ComponentModel;
 
 namespace Autossential.Workbook.Activities
 {
@@ -10,6 +11,7 @@ namespace Autossential.Workbook.Activities
         private bool _useScope;
         private readonly Constraint _constraint;
 
+        [Browsable(false)]
         public bool UseScope
         {
             get => _useScope; set
