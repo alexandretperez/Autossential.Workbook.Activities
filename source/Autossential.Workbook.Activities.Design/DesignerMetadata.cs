@@ -10,10 +10,12 @@ namespace Autossential.Workbook.Activities.Design
     {
         public const string MAIN_CATEGORY = "Autossential";
         public const string WORKBOOK = MAIN_CATEGORY + ".Workbook";
+        public const string HYPERLINKS = WORKBOOK + ".Hyperlinks";
 
         public void Register()
         {
             var workbook = new CategoryAttribute(WORKBOOK);
+            var hyperlinks = new CategoryAttribute(HYPERLINKS);
 
             ActivitiesAttributesBuilder.Build(Resources.ResourceManager, builder =>
             {
@@ -23,12 +25,13 @@ namespace Autossential.Workbook.Activities.Design
                     Resources.InputOutput_Category,
                     Resources.Options_Category);
 
-                builder.Register<GetSheetName, GetSheetNameDesigner>(workbook)
-                       .Register<GetSheetNames, GetSheetNamesDesigner>(workbook)
-                       .Register<GetHyperlinks, GetHyperlinksDesigner>(workbook)
-                       .Register<InsertHyperlink, InsertHyperlinkDesigner>(workbook)
-                       .Register<RemoveHyperlinks, RemoveHyperlinksDesigner>(workbook)
+                builder.Register<GetSheetNames, GetSheetNamesDesigner>(workbook)
+                       .Register<ReadRange, ReadRangeDesigner>(workbook)
                        .Register<WorkbookScope, WorkbookScopeDesigner>(workbook);
+
+                builder.Register<GetHyperlinks, GetHyperlinksDesigner>(hyperlinks)
+                       .Register<InsertHyperlink, InsertHyperlinkDesigner>(hyperlinks)
+                       .Register<RemoveHyperlinks, RemoveHyperlinksDesigner>(hyperlinks);
 
                 builder.RegisterToMember(
                     new DescriptionAttribute(Resources.ScopeAwareCodeActivity_UseScope),

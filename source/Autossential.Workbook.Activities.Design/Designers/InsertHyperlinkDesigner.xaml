@@ -24,42 +24,39 @@
 
     <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
         <StackPanel Width="300">
-            <controls:WorkbookScopeControl x:Name="WorkbookScopeControl" />
+            <controls:WorkbookScopeControl ModelItem="{Binding ModelItem}" />
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="5"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Content="SheetName" Grid.Column="0"/>
-                <sapv:ExpressionTextBox
-                    Grid.Row="1"
-                    Grid.Column="0"
-                ExpressionType="{Binding ModelItem.Properties[SheetName].PropertyType.GenericTypeArguments[0]}"
-                OwnerActivity="{Binding ModelItem}"
-                UseLocationExpression="False"
-                Expression="{Binding ModelItem.SheetName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
-                <Label Content="Cell" Grid.Column="2"/>
-                <sapv:ExpressionTextBox
-                    Grid.Row="1"
-                    Grid.Column="2"
-                ExpressionType="{Binding ModelItem.Properties[Cell].PropertyType.GenericTypeArguments[0]}"
-                OwnerActivity="{Binding ModelItem}"
-                UseLocationExpression="False"
-                Expression="{Binding ModelItem.Cell, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+
+                <sapv:ExpressionTextBox Grid.Column="0"
+                    ExpressionType="{Binding ModelItem.Properties[SheetName].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Sheet Name"
+                    Expression="{Binding ModelItem.SheetName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+
+                <sapv:ExpressionTextBox Grid.Column="2"
+                    ExpressionType="{Binding ModelItem.Properties[Cell].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Cell"
+                    Expression="{Binding ModelItem.Cell, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+
             </Grid>
-            <Label Content="Link" Grid.Column="2"/>
             <sapv:ExpressionTextBox
-                    Grid.Row="1"
-                    Grid.Column="2"
-                ExpressionType="{Binding ModelItem.Properties[Link].PropertyType.GenericTypeArguments[0]}"
-                OwnerActivity="{Binding ModelItem}"
-                UseLocationExpression="False"
-                Expression="{Binding ModelItem.Link, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                    ExpressionType="{Binding ModelItem.Properties[Link].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Link"
+                    Margin="0 4 0 0"
+                    Expression="{Binding ModelItem.Link, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
         </StackPanel>
 
     </c:ActivityDecoratorControl>

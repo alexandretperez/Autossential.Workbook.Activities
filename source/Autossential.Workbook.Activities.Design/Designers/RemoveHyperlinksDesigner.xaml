@@ -24,10 +24,9 @@
 
     <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
         <StackPanel Width="300">
-            <controls:WorkbookScopeControl x:Name="WorkbookScopeControl" />
+            <controls:WorkbookScopeControl ModelItem="{Binding ModelItem}" />
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -35,23 +34,20 @@
                     <ColumnDefinition Width="5"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Content="SheetName" Grid.Column="0"/>
-                <sapv:ExpressionTextBox
-                    Grid.Row="1"
-                    Grid.Column="0"
-                ExpressionType="{Binding ModelItem.Properties[SheetName].PropertyType.GenericTypeArguments[0]}"
-                OwnerActivity="{Binding ModelItem}"
-                UseLocationExpression="False"
-                Expression="{Binding ModelItem.SheetName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                
+                <sapv:ExpressionTextBox Grid.Column="0"
+                    ExpressionType="{Binding ModelItem.Properties[SheetName].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Sheet Name"
+                    Expression="{Binding ModelItem.SheetName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
 
-                <Label Content="CellRange" Grid.Column="2"/>
-                <sapv:ExpressionTextBox
-                    Grid.Row="1"
-                    Grid.Column="2"
-                ExpressionType="{Binding ModelItem.Properties[CellRange].PropertyType.GenericTypeArguments[0]}"
-                OwnerActivity="{Binding ModelItem}"
-                UseLocationExpression="False"
-                Expression="{Binding ModelItem.CellRange, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+                <sapv:ExpressionTextBox Grid.Column="2"
+                    ExpressionType="{Binding ModelItem.Properties[Range].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Range"
+                    Expression="{Binding ModelItem.Range, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
             </Grid>
         </StackPanel>
 

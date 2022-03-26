@@ -32,8 +32,9 @@ namespace Autossential.Workbook.Tests
                 { nameof(GetSheetNames.WorkbookPath), path }
             };
 
-            var result = WorkflowTester.Invoke(new GetSheetNames(), args);
-            CollectionAssert.AreEqual(new[] { "Sheet1", "Sheet2", "Sheet3", "Sheet4" }, result);
+            var result = WorkflowTester.Run(new GetSheetNames(), args);
+            var values = result.Get(p => p.Result) as string[];
+            CollectionAssert.AreEqual(new[] { "Sheet1", "Sheet2", "Sheet3", "Sheet4" }, values);
         }
 
         [TestMethod("GetSheetNames")]
@@ -46,8 +47,9 @@ namespace Autossential.Workbook.Tests
                 { nameof(GetSheetNames.WorkbookPath), path }
             };
 
-            var result = WorkflowTester.Invoke(new GetSheetNames(), args);
-            CollectionAssert.AreEqual(new[] { "Sheet1", "Sheet2", "Sheet3", "Sheet4" }, result);
+            var result = WorkflowTester.Run(new GetSheetNames(), args);
+            var values = result.Get(p => p.Result) as string[];
+            CollectionAssert.AreEqual(new[] { "Sheet1", "Sheet2", "Sheet3", "Sheet4" }, values);
         }
     }
 }

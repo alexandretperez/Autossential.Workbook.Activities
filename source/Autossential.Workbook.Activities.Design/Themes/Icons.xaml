@@ -2,13 +2,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <DrawingGroup x:Key="GetSheetNameIcon">
+    <DrawingGroup x:Key="ReadRangeIcon">
         <DrawingGroup.ClipGeometry>
             <RectangleGeometry Rect="0,0,24,24" />
         </DrawingGroup.ClipGeometry>
         <GeometryDrawing Brush="#ff55cc3d">
             <GeometryDrawing.Geometry>
-                <PathGeometry FillRule="Nonzero" Figures="M19,11V9H11V5H9V9H5V11H9V19H11V11H19M19,3C19.5,3 20,3.2 20.39,3.61C20.8,4 21,4.5 21,5V19C21,19.5 20.8,20 20.39,20.39C20,20.8 19.5,21 19,21H5C4.5,21 4,20.8 3.61,20.39C3.2,20 3,19.5 3,19V5C3,4.5 3.2,4 3.61,3.61C4,3.2 4.5,3 5,3H19Z" />
+                <PathGeometry FillRule="Nonzero" Figures="M4,3H20A2,2 0 0,1 22,5V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V5A2,2 0 0,1 4,3M4,7V10H8V7H4M10,7V10H14V7H10M20,10V7H16V10H20M4,12V15H8V12H4M4,20H8V17H4V20M10,12V15H14V12H10M10,20H14V17H10V20M20,20V17H16V20H20M20,12H16V15H20V12Z" />
             </GeometryDrawing.Geometry>
         </GeometryDrawing>
     </DrawingGroup>

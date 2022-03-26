@@ -1,69 +1,29 @@
 ﻿using Autossential.Workbook.Activities.Properties;
-using Autossential.Workbook.Core;
+using Autossential.Workbook.Core.Adapters;
 using System;
 using System.Activities;
-using System.IO;
-using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Autossential.Workbook.Activities
 {
-    public sealed class GetHyperlinks : ScopeAwareCodeActivity<string[], WorkbookScope>
+    public sealed class GetHyperlinks : WorkbookActivity<string[]>
     {
-        public InArgument<string> WorkbookPath { get; set; }
-        public InArgument<string> SheetName { get; set; }
-        public InArgument<string> CellRange { get; set; }
+        public InArgument<string> SheetName { get; set; } = "Sheet1";
+        public InArgument<string> Range { get; set; } = "A1:A2";
 
         protected override void CacheMetadata(CodeActivityMetadata metadata)
         {
             base.CacheMetadata(metadata);
-            if (WorkbookPath == null && !UseScope) metadata.AddValidationError(Resources.Validation_ValueErrorFormat(nameof(WorkbookPath)));
             if (SheetName == null) metadata.AddValidationError(Resources.Validation_ValueErrorFormat(nameof(SheetName)));
         }
 
-        protected override string[] Execute(CodeActivityContext context)
-        {
-            if (UseScope)
-                return ExecuteWithScope(context);
-
-            var path = WorkbookPath.Get(context);
-            if (!File.Exists(path))
-                throw new FileNotFoundException(path);
-
-            IWorkbookAdapter workbook = null;
-            try
-            {
-                workbook = WorkbookAdapterFactory.Create(path);
-                return Execute(context, workbook);
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Trace.WriteLine(e.Message);
-                throw;
-            }
-            finally
-            {
-                workbook?.Dispose();
-            }
-        }
-
-        private string[] Execute(ActivityContext context, IWorkbookAdapter adapter)
+        public override async Task<Action<AsyncCodeActivityContext>> ExecuteAsync(AsyncCodeActivityContext context, IWorkbookAdapter adapter, CancellationToken token)
         {
             var sheetName = SheetName.Get(context);
-            var range = CellRange.Get(context);
-            return adapter.GetHyperlinks(sheetName, range).ToArray();
-        }
-
-        protected override string[] ExecuteWithScope(ActivityContext context)
-        {
-            try
-            {
-                return Execute(context, WorkbookScope.GetWorkbookInstance(context));
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Trace.WriteLine(e.Message);
-                throw;
-            }
+            var range = Range.Get(context);
+            var hyperlinks = await adapter.GetHyperlinksAsync(sheetName, range);
+            return ctx => Result.Set(ctx, hyperlinks);
         }
     }
 }

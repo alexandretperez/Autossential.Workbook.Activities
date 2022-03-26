@@ -1,10 +1,12 @@
 ﻿<Project>
 	<ItemGroup>
 		<PackageReference Update="NPOI" Version="2.4.1" />
+		<PackageReference Update="ExcelDataReader" Version="3.6.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-		<PackageReference Update="ClosedXML" Version="0.95.4" />
+		<PackageReference Update="ClosedXML" Version="0.87.1" />
+		<PackageReference Update="System.Text.Encoding.CodePages" Version="6.0.0"/>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' != 'net461' ">

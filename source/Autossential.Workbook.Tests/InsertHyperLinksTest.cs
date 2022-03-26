@@ -16,7 +16,7 @@ namespace Autossential.Workbook.Tests
         {
             IOSamples.ClearFolder();
             _openXmlFile = IOSamples.ExportSample("book.xlsx");
-            _ole2file = IOSamples.ExportSample("book.xlsx");
+            _ole2file = IOSamples.ExportSample("book.xls");
         }
 
         [ClassCleanup]
@@ -40,8 +40,9 @@ namespace Autossential.Workbook.Tests
         {
             var args = CreateInsertHyperlinkArgs(_openXmlFile, cell, link, label);
             var workflow = new InsertHyperlink { UseScope = false };
-            var result = WorkflowTester.Invoke(workflow, args);
-            Assert.IsTrue(result);
+            var result = WorkflowTester.Run(workflow, args);
+            var value = result.Get(p => p.Result);
+            Assert.AreEqual(value, true);
         }
 
         [TestMethod]
@@ -59,8 +60,8 @@ namespace Autossential.Workbook.Tests
         {
             var args = CreateInsertHyperlinkArgs(_ole2file, cell, link, label);
             var workflow = new InsertHyperlink { UseScope = false };
-            var result = WorkflowTester.Invoke(workflow, args);
-            Assert.IsTrue(result);
+            var result = WorkflowTester.Run(workflow, args);
+            Assert.AreEqual(result.Get(p => p.Result), true);
         }
 
         private static Dictionary<string, object> CreateInsertHyperlinkArgs(string file, string cell, string link, string label)

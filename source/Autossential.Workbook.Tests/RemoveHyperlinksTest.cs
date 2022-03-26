@@ -1,10 +1,12 @@
 ﻿using Autossential.Shared.Tests;
 using Autossential.Workbook.Activities;
 using Autossential.Workbook.Core;
+using Autossential.Workbook.Core.Adapters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Autossential.Workbook.Tests
 {
@@ -36,18 +38,17 @@ namespace Autossential.Workbook.Tests
         [DataRow(5, "A1:E5")]
         [DataRow(5, "")]
 
-        public void OLE2(int expectedRemovedLinks, string cellRange)
+        public async Task OLE2(int expectedRemovedLinks, string cellRange)
         {
             InsertHyperlinks(_ole2file);
             var args = CreateRemoveHyperlinksArgs(_ole2file, cellRange);
             var workflow = new RemoveHyperlinks { UseScope = false };
-            var result = WorkflowTester.Invoke(workflow, args);
-            Assert.AreEqual(expectedRemovedLinks, result);
-            using (var adapter = new OLE2WorkbookAdapter())
+            var result = WorkflowTester.Run(workflow, args);
+            Assert.AreEqual(expectedRemovedLinks, result.Get(p => p.Result));
+            using (var adapter = new OLE2WorkbookAdapter(_ole2file))
             {
-                adapter.Open(_ole2file);
-                var links = adapter.GetHyperlinks("Sheet1", "");
-                Assert.AreEqual(5 - expectedRemovedLinks, links.Count(), "remaining links differ");
+                var links = await adapter.GetHyperlinksAsync("Sheet1", "");
+                Assert.AreEqual(5 - expectedRemovedLinks, links.Length, "remaining links differ");
             }
         }
 
@@ -64,9 +65,9 @@ namespace Autossential.Workbook.Tests
             InsertHyperlinks(_openXmlFile);
             var args = CreateRemoveHyperlinksArgs(_openXmlFile, cellRange);
             var workflow = new RemoveHyperlinks { UseScope = false };
-            var result = WorkflowTester.Invoke(workflow, args);
+            var result = WorkflowTester.Run(workflow, args);
 
-            Assert.AreEqual(expectedResult, result);
+            Assert.AreEqual(expectedResult, result.Get(p => p.Result));
         }
 
         private void InsertHyperlinks(string file)
@@ -101,7 +102,7 @@ namespace Autossential.Workbook.Tests
             {
                 { nameof(RemoveHyperlinks.WorkbookPath), file },
                 { nameof(RemoveHyperlinks.SheetName), "Sheet1" },
-                { nameof(RemoveHyperlinks.CellRange), cellRange}
+                { nameof(RemoveHyperlinks.Range), cellRange}
             };
         }
     }

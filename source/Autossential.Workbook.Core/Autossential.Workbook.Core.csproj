@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net461;net5.0</TargetFrameworks>
@@ -7,6 +7,17 @@
 	<ItemGroup>
 		<PackageReference Include="NPOI" />
 		<PackageReference Include="ClosedXML" />
+		<PackageReference Include="ExcelDataReader" />
 	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+		<PackageReference Include="System.Text.Encoding.CodePages" />
+	</ItemGroup>
+
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+		<Reference Include="Microsoft.CSharp" />
+	</ItemGroup>
+
 
 </Project>

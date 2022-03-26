@@ -24,14 +24,12 @@
 
     <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
         <StackPanel Width="300">
-            <controls:WorkbookScopeControl x:Name="WorkbookScopeControl" />
-            <Label Content="Result (Output)" Grid.Column="2"/>
+            <controls:WorkbookScopeControl ModelItem="{Binding ModelItem}" />
             <sapv:ExpressionTextBox
-                    Grid.Row="1"
-                    Grid.Column="2"
                 ExpressionType="{Binding ModelItem.Properties[Result].PropertyType.GenericTypeArguments[0]}"
                 OwnerActivity="{Binding ModelItem}"
                 UseLocationExpression="True"
+                HintText="Result (Output)"
                 Expression="{Binding ModelItem.Result, ConverterParameter=Out, Converter={StaticResource ArgumentToExpressionConverter}}" />
 
         </StackPanel>

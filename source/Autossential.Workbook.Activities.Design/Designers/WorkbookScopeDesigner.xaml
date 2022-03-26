@@ -5,7 +5,7 @@
     xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation" 
     xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
     xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
-    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls">
+    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls" xmlns:controls="clr-namespace:Autossential.Workbook.Activities.Design.Controls">
 
     <sap:ActivityDesigner.Resources>
         <ResourceDictionary>
@@ -23,24 +23,7 @@
     <Border Padding="4,0">
         <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
             <StackPanel MinWidth="300">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="23"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <sapv:ExpressionTextBox
-                    Grid.Column="0"
-                    ExpressionType="{Binding ModelItem.Properties[WorkbookPath].PropertyType.GenericTypeArguments[0]}"
-                    OwnerActivity="{Binding ModelItem}"
-                    HintText="Provide the WorkbookPath"
-                    UseLocationExpression="False"
-                    Expression="{Binding ModelItem.WorkbookPath, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}"
-                />
-                    <c:FilePickerControl 
-                Grid.Column="1"
-                ModelItem="{Binding ModelItem}"
-                PropertyName="WorkbookPath"/>
-                </Grid>
+                <controls:WorkbookScopeControl />
                 <sap:WorkflowItemPresenter
                     AutomationProperties.AutomationId="Activity"
                     Margin="0"
