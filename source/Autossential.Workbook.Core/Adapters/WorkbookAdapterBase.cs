@@ -2,7 +2,6 @@
 using ExcelDataReader;
 using System;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +23,15 @@ namespace Autossential.Workbook.Core.Adapters
         private void OpenFile()
         {
             if (!File.Exists(FilePath))
+            {
                 CreateNew();
+                IsNewWorkbook = true;
+            }
 
             WorkbookFileStream = new FileStream(FilePath, FileMode.Open);
         }
+
+        protected bool IsNewWorkbook { get; private set; }
 
         protected string FilePath { get; private set; }
         protected Stream WorkbookFileStream { get; private set; }
@@ -57,7 +61,7 @@ namespace Autossential.Workbook.Core.Adapters
         {
             return await Task.Run(() =>
             {
-                var reader = GetExcelReader(null, true);
+                var reader = GetExcelReader();
                 var sheetNames = new string[reader.ResultsCount];
                 var i = 0;
                 do
@@ -68,11 +72,11 @@ namespace Autossential.Workbook.Core.Adapters
             });
         }
 
-        public virtual async Task<DataTable> ReadRangeAsync(string sheetName, string range, bool addHeaders, string password)
+        public virtual async Task<DataTable> ReadRangeAsync(string sheetName, string range, bool addHeaders)
         {
             return await Task.Run(() =>
             {
-                var reader = GetExcelReader(password, true);
+                var reader = GetExcelReader();
 
                 var dt = new DataTable();
                 var addr = new RangeAddress(range);
@@ -104,18 +108,17 @@ namespace Autossential.Workbook.Core.Adapters
             _requiresSave = true;
         }
 
-        public virtual async Task SaveAsync()
+        public virtual void Save()
         {
             if (_requiresSave)
-                await Task.Run(GetSaveHandler());
+                GetSaveHandler().Invoke();
         }
-        protected IExcelDataReader GetExcelReader(string password, bool leaveOpen)
+        protected IExcelDataReader GetExcelReader()
         {
             if (_reader == null)
             {
                 _reader = ExcelReaderFactory.CreateReader(WorkbookFileStream, new ExcelReaderConfiguration
                 {
-                    Password = password,
                     LeaveOpen = true
                 });
             }
@@ -261,5 +264,9 @@ namespace Autossential.Workbook.Core.Adapters
 
             return headers;
         }
+
+        public abstract Task WriteRangeAsync(string sheetName, string cellAddress, DataTable value, bool addHeaders);
+
+        public abstract Task WriteCellAsync(string sheetName, string cellAddress, object value);
     }
 }

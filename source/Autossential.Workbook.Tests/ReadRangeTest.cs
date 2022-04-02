@@ -19,7 +19,7 @@ namespace Autossential.Workbook.Tests
         {
             var path = file; //IOSamples.GetSamplePath("book.xlsx");
             var adapter = WorkbookAdapterFactory.Create(path);
-            var dt = adapter.ReadRangeAsync("sheet1", address, true, "");
+            var dt = adapter.ReadRangeAsync("sheet1", address, true);
             Assert.IsNotNull(dt);
         }
     }

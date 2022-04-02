@@ -18,8 +18,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <StackPanel Margin="0 0 0 4">        
-        <Grid Visibility="{Binding UseScope, Mode=OneWay, ElementName=root,  Converter={StaticResource IsFalse}}">
+    <StackPanel Margin="0">
+        <Grid Margin="0,0,0,4" Visibility="{Binding UseScope, Mode=OneWay, ElementName=root,  Converter={StaticResource IsFalse}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="23"></ColumnDefinition>
@@ -37,7 +37,7 @@
                 ModelItem="{Binding ModelItem}"
                 PropertyName="WorkbookPath" Loaded="FilePickerControl_Loaded"/>
         </Grid>
-        <Label Content="WorkbookPath provided by scope" FontStyle="Italic" Foreground="Gray" Visibility="{Binding UseScope, Mode=OneWay, ElementName=root, Converter={StaticResource IsTrue}}" />
+        <Label Margin="0,-8,0,0" Content="WorkbookPath provided by WorkbookScope" FontSize="10" Foreground="#77000000" Visibility="{Binding UseScope, Mode=OneWay, ElementName=root, Converter={StaticResource IsTrue}}" />
     </StackPanel>
 
 </UserControl>

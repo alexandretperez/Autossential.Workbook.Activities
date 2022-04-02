@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,10 +41,7 @@ namespace Autossential.Workbook.Core.Adapters
             RequiresSave();
             return await Task.Run(() =>
             {
-                if (!GetWorkbook().TryGetWorksheet(sheetName, out var sheet))
-                    sheet = GetWorkbook().AddWorksheet(sheetName);
-                
-                var cell = sheet.Cell(cellAddress);
+                var cell = GetOrCreateSheet(sheetName).Cell(cellAddress);
                 cell.Hyperlink = new XLHyperlink(address, tooltip);
                 if (string.IsNullOrEmpty(label))
                     label = address;
@@ -98,10 +96,7 @@ namespace Autossential.Workbook.Core.Adapters
             }
         }
 
-        public override Action GetSaveHandler()
-        {
-            return GetWorkbook().Save;
-        }
+        public override Action GetSaveHandler() => GetWorkbook().Save;
 
         public override void CreateNew()
         {
@@ -110,6 +105,68 @@ namespace Autossential.Workbook.Core.Adapters
                 workbook.AddWorksheet("Sheet1");
                 workbook.SaveAs(FilePath);
             }
+        }
+
+        public override async Task WriteRangeAsync(string sheetName, string cellAddress, DataTable value, bool addHeaders)
+        {
+            if (value.Rows.Count == 0)
+                return;
+
+            RequiresSave();
+
+            await Task.Run(() =>
+            {
+                var sheet = GetOrCreateSheet(sheetName);
+                var cell = sheet.Cell(cellAddress);
+                var rowIndex = cell.Address.RowNumber;
+                var colIndex = cell.Address.ColumnNumber;
+
+                if (addHeaders)
+                {
+                    foreach (DataColumn col in value.Columns)
+                        sheet.Cell(rowIndex, colIndex++).SetValue(col.ColumnName);
+
+                    colIndex = cell.Address.ColumnNumber;
+                    rowIndex++;
+                }
+
+                foreach (DataRow dr in value.Rows)
+                {
+                    for (int i = 0; i < dr.ItemArray.Length; i++)
+                        sheet.Cell(rowIndex, colIndex + i).SetValue(dr[i]);
+                    
+                    rowIndex++;
+                }
+            });
+        }
+
+        public override async Task WriteCellAsync(string sheetName, string cellAddress, object value)
+        {
+            RequiresSave();
+            await Task.Run(() =>
+            {
+                var cell = GetOrCreateSheet(sheetName).Cell(cellAddress);
+                cell.Value = value;
+            });
+        }
+
+        private IXLWorksheet GetOrCreateSheet(string sheetName)
+        {
+            var wb = GetWorkbook();
+            if (!wb.TryGetWorksheet(sheetName, out var sheet))
+            {
+                if (IsNewWorkbook)
+                {
+                    sheet = wb.Worksheet(1);
+                    sheet.Name = sheetName;
+                }
+                else
+                {
+                    sheet = wb.AddWorksheet(sheetName);
+                }
+            }
+
+            return sheet;
         }
     }
 }

@@ -3,6 +3,7 @@ using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -20,7 +21,7 @@ namespace Autossential.Workbook.Core.Adapters
         private HSSFWorkbook GetWorkbook()
         {
             if (_workbook == null)
-                _workbook = new HSSFWorkbook(File.OpenRead(FilePath));
+                _workbook = new HSSFWorkbook(WorkbookFileStream);
 
             return _workbook;
         }
@@ -31,10 +32,7 @@ namespace Autossential.Workbook.Core.Adapters
 
             return await Task.Run(() =>
             {
-                var sheet = GetWorkbook().GetSheet(sheetName);
-                var cellRef = new CellReference(cellAddress);
-                var row = sheet.GetRow(cellRef.Row) ?? sheet.CreateRow(cellRef.Row);
-                var cell = row.GetCell(cellRef.Col) ?? row.CreateCell(cellRef.Col);
+                var cell = GetOrCreateCell(GetOrCreateSheet(sheetName), cellAddress);
 
                 var linkType = HyperlinkType.Document;
 
@@ -158,7 +156,109 @@ namespace Autossential.Workbook.Core.Adapters
 
         public override void CreateNew()
         {
-            throw new NotImplementedException();
+            using (FileStream fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write))
+            {
+                var workbook = new HSSFWorkbook();
+                workbook.CreateSheet("Sheet1");
+                workbook.Write(fs);
+            }
+        }
+
+        public override async Task WriteRangeAsync(string sheetName, string cellAddress, DataTable value, bool addHeaders)
+        {
+            if (value.Rows.Count == 0)
+                return;
+
+            RequiresSave();
+
+            await Task.Run(() =>
+            {
+                var sheet = GetOrCreateSheet(sheetName);
+                var cellRef = new CellReference(cellAddress);
+                var rowIndex = cellRef.Row;
+                var colIndex = cellRef.Col;
+
+                if (addHeaders)
+                {
+                    var row = sheet.GetRow(rowIndex) ?? sheet.CreateRow(rowIndex);
+                    foreach (DataColumn col in value.Columns)
+                    {
+                        var cell = row.GetCell(colIndex) ?? row.CreateCell(colIndex);
+                        cell.SetCellValue(col.ColumnName);
+                        colIndex++;
+                    }
+
+                    colIndex = cellRef.Col;
+                    rowIndex++;
+                }
+
+                foreach (DataRow dr in value.Rows)
+                {
+                    var row = sheet.GetRow(rowIndex) ?? sheet.CreateRow(rowIndex);
+                    for (int i = 0; i < dr.ItemArray.Length; i++)
+                    {
+                        var cell = row.GetCell(colIndex + i) ?? row.CreateCell(colIndex + i);
+                        SetCellValue(cell, dr[i]);
+                    }
+                    rowIndex++;
+                }
+            });
+        }
+
+        private void SetCellValue(ICell cell, object value)
+        {
+            if (value == null)
+                return;
+
+            if (value is int || value is decimal)
+                value = double.Parse(value.ToString());
+
+            if (value is double dblValue)
+                cell.SetCellValue(dblValue);
+            else if (value is DateTime dateV)
+                cell.SetCellValue(dateV);
+            else if (value is string strV)
+                cell.SetCellValue(strV);
+            else
+                cell.SetCellValue(value?.ToString());
+        }
+
+        public override async Task WriteCellAsync(string sheetName, string cellAddress, object value)
+        {
+            RequiresSave();
+            await Task.Run(() =>
+            {
+                var cell = GetOrCreateCell(GetOrCreateSheet(sheetName), cellAddress);
+                SetCellValue(cell, value);
+            });
+        }
+
+        private ICell GetOrCreateCell(ISheet sheet, string cellAddress)
+        {
+            var cellRef = new CellReference(cellAddress);
+            var row = sheet.GetRow(cellRef.Row) ?? sheet.CreateRow(cellRef.Row);
+            return row.GetCell(cellRef.Col) ?? row.CreateCell(cellRef.Col);
+        }
+
+        private ISheet GetOrCreateSheet(string sheetName)
+        {
+            var wb = GetWorkbook();
+            var sheet = wb.GetSheet(sheetName);
+
+            if (sheet == null)
+            {
+                if (IsNewWorkbook)
+                {
+                    wb.SetSheetName(0, sheetName);
+                    sheet = wb.GetSheetAt(0);
+                }
+                else
+                {
+                    sheet = GetWorkbook().CreateSheet(sheetName);
+                }
+            }
+
+            return sheet;
         }
     }
 }

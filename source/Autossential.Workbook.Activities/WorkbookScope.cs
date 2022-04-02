@@ -5,7 +5,6 @@ using Autossential.Workbook.Core.Adapters;
 using System;
 using System.Activities;
 using System.Activities.Statements;
-using System.IO;
 
 namespace Autossential.Workbook.Activities
 {
@@ -32,7 +31,7 @@ namespace Autossential.Workbook.Activities
             if (_adapter == null)
                 return;
 
-            _adapter.SaveAsync();
+            _adapter.Save();
             _adapter.Dispose();
         }
 

@@ -27,7 +27,10 @@ namespace Autossential.Workbook.Activities.Design
 
                 builder.Register<GetSheetNames, GetSheetNamesDesigner>(workbook)
                        .Register<ReadRange, ReadRangeDesigner>(workbook)
-                       .Register<WorkbookScope, WorkbookScopeDesigner>(workbook);
+                       .Register<WorkbookScope, WorkbookScopeDesigner>(workbook)
+                       .Register<WriteRange, WriteRangeDesigner>(workbook)
+                       .Register<WriteCell, WriteCellDesigner>(workbook);
+
 
                 builder.Register<GetHyperlinks, GetHyperlinksDesigner>(hyperlinks)
                        .Register<InsertHyperlink, InsertHyperlinkDesigner>(hyperlinks)

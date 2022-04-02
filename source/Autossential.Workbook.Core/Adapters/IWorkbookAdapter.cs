@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace Autossential.Workbook.Core.Adapters
@@ -15,9 +14,13 @@ namespace Autossential.Workbook.Core.Adapters
 
         Task<string[]> GetHyperlinksAsync(string sheetName, string range);
 
-        Task<DataTable> ReadRangeAsync(string sheetName, string range, bool addHeaders, string password);
+        Task<DataTable> ReadRangeAsync(string sheetName, string range, bool addHeaders);
 
-        Task SaveAsync();
+        Task WriteCellAsync(string sheetName, string cellAddress, object value);
+
+        Task WriteRangeAsync(string sheetName, string cellAddress, DataTable value, bool addHeaders);
+
+        void Save();
 
         void CreateNew();
 

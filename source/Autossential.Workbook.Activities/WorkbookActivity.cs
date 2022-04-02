@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace Autossential.Workbook.Activities
 {
-    public abstract class WorkbookActivity<T> : ScopeAwareCodeActivityAsync<T, WorkbookScope>
+    public abstract class WorkbookActivity : ScopeAwareCodeActivityAsync<WorkbookScope>
     {
         public InArgument<string> WorkbookPath { get; set; }
 
         protected virtual bool CheckWorkbookPath => true;
-
-        public OutArgument<T> Result { get; set; }
 
         protected override void CacheMetadata(CodeActivityMetadata metadata)
         {
@@ -36,11 +34,16 @@ namespace Autossential.Workbook.Activities
             using (var adapter = WorkbookAdapterFactory.Create(path))
             {
                 var result = await ExecuteAsync(context, adapter, token);
-                await adapter.SaveAsync();
+                adapter.Save();
                 return result;
             }
         }
 
         public abstract Task<Action<AsyncCodeActivityContext>> ExecuteAsync(AsyncCodeActivityContext context, IWorkbookAdapter adapter, CancellationToken token);
+    }
+
+    public abstract class WorkbookActivity<T> : WorkbookActivity
+    {
+        public OutArgument<T> Result { get; set; }
     }
 }
