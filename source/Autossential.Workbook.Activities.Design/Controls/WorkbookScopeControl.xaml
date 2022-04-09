@@ -37,7 +37,7 @@
                 ModelItem="{Binding ModelItem}"
                 PropertyName="WorkbookPath" Loaded="FilePickerControl_Loaded"/>
         </Grid>
-        <Label Margin="0,-8,0,0" Content="WorkbookPath provided by WorkbookScope" FontSize="10" Foreground="#77000000" Visibility="{Binding UseScope, Mode=OneWay, ElementName=root, Converter={StaticResource IsTrue}}" />
+        <Label Margin="0,-8,0,0" Content="WorkbookPath provided by WorkbookScope" FontSize="10" Foreground="#CC8CBF1C" Visibility="{Binding UseScope, Mode=OneWay, ElementName=root, Converter={StaticResource IsTrue}}" />
     </StackPanel>
 
 </UserControl>
