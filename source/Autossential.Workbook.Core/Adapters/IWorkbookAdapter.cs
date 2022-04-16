@@ -26,5 +26,7 @@ namespace Autossential.Workbook.Core.Adapters
         void WriteCell(string sheetName, string cell, object value);
 
         void WriteRange(string sheetName, string cell, DataTable dataTable, bool addHeaders);
+
+        void AppendRange(string sheetName, DataTable dataTable);
     }
 }

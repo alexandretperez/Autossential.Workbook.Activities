@@ -266,5 +266,7 @@ namespace Autossential.Workbook.Core.Adapters
 
             WorkbookFileStream = new FileStream(FilePath, FileMode.Open);
         }
+
+        public abstract void AppendRange(string sheetName, DataTable dataTable);
     }
 }

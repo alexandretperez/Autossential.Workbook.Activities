@@ -77,6 +77,17 @@ namespace Autossential.Workbook.Core.Adapters
             RequiresSave();
         }
 
+        public override void AppendRange(string sheetName, DataTable dataTable)
+        {
+            var sheet = GetOrCreateSheet(sheetName);
+            var cell = "A1";
+            var rangeUsed = sheet.RangeUsed();
+            if (rangeUsed != null)
+                cell = rangeUsed.LastRow().RowBelow(1).RangeAddress.FirstAddress.ToString();
+
+            WriteRange(sheetName, cell, dataTable, false);
+        }
+
         public override void WriteRange(string sheetName, string cell, DataTable dataTable, bool addHeaders)
         {
             if (dataTable.Rows.Count == 0)

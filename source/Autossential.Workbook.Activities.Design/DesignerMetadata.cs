@@ -29,6 +29,7 @@ namespace Autossential.Workbook.Activities.Design
                        .Register<ReadRange, ReadRangeDesigner>(workbook)
                        .Register<WorkbookScope, WorkbookScopeDesigner>(workbook)
                        .Register<WriteRange, WriteRangeDesigner>(workbook)
+                       .Register<AppendRange, AppendRangeDesigner>(workbook)
                        .Register<WriteCell, WriteCellDesigner>(workbook)
                        .Register<FreezeUnfreezePanes, FreezeUnfreezePanesDesigner>(workbook);
 

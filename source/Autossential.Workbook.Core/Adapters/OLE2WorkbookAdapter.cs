@@ -48,6 +48,18 @@ namespace Autossential.Workbook.Core.Adapters
             RequiresSave();
         }
 
+        public override void AppendRange(string sheetName, DataTable dataTable)
+        {
+            var sheet = GetOrCreateSheet(sheetName);
+
+            var cell = "A1";
+            var row = sheet.GetRow(sheet.LastRowNum);
+            if (row != null)
+                cell = new CellReference(row.RowNum + 1, row.FirstCellNum).FormatAsString();
+
+            WriteRange(sheetName, cell, dataTable, false);
+        }
+
         public override void CreateNew()
         {
             using (FileStream fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write))
@@ -75,12 +87,12 @@ namespace Autossential.Workbook.Core.Adapters
             => EnumerateLinks(sheetName, range).ToArray();
 
         public override Action GetSaveHandler() => () =>
-              {
-                  using (FileStream fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write))
-                  {
-                      GetWorkbook().Write(fs);
-                  }
-              };
+                {
+                    using (FileStream fs = new FileStream(FilePath, FileMode.Create, FileAccess.Write))
+                    {
+                        GetWorkbook().Write(fs);
+                    }
+                };
 
         public override int RemoveHyperLinks(string sheetName, string range)
         {
@@ -175,6 +187,8 @@ namespace Autossential.Workbook.Core.Adapters
                 if (++rowIndex == MAX_ROWS)
                     break;
             }
+
+            RequiresSave();
         }
 
         private static ICell GetOrCreateCell(ISheet sheet, string cellAddress)
