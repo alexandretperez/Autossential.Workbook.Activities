@@ -1,7 +1,9 @@
-﻿using ClosedXML.Excel;
+﻿using Autossential.Workbook.Core.Enums;
+using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 
 namespace Autossential.Workbook.Core.Adapters
@@ -55,7 +57,7 @@ namespace Autossential.Workbook.Core.Adapters
         public override int RemoveHyperLinks(string sheetName, string range)
         {
             var count = 0;
-            foreach (var cell in GetCells(sheetName, range))
+            foreach (var cell in GetUsedCells(sheetName, range))
             {
                 if (cell.HasHyperlink)
                 {
@@ -115,12 +117,15 @@ namespace Autossential.Workbook.Core.Adapters
                 rowIndex++;
             }
 
+            for (int i = sheetCell.Address.ColumnNumber; i <= dataTable.Columns.Count; i++)
+                sheet.Column(i).AdjustToContents();
+
             RequiresSave();
         }
 
         private IEnumerable<string> EnumerateHyperlinks(string sheetName, string range)
         {
-            foreach (var cell in GetCells(sheetName, range))
+            foreach (var cell in GetUsedCells(sheetName, range))
             {
                 if (cell.HasHyperlink)
                 {
@@ -135,7 +140,7 @@ namespace Autossential.Workbook.Core.Adapters
             }
         }
 
-        private IXLCells GetCells(string sheetName, string range)
+        private IXLCells GetUsedCells(string sheetName, string range)
         {
             var sheet = GetWorkbook().Worksheet(sheetName);
             return string.IsNullOrEmpty(range) ? sheet.CellsUsed() : sheet.Range(range).CellsUsed();
@@ -166,6 +171,125 @@ namespace Autossential.Workbook.Core.Adapters
                 _workbook = new XLWorkbook(WorkbookFileStream, XLEventTracking.Disabled);
 
             return _workbook;
+        }
+
+        public override void DrawBorder(string sheetName, string range, Border border, BorderStyle style, Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void FillColor(string sheetName, string range, Color[] colors, FillOrientation orientation)
+        {
+            var cells = GetOrCreateSheet(sheetName).Cells(range);
+            var len = colors.Length;
+
+            if (!cells.Any() || len == 0)
+                return;
+
+            var index = 0;
+
+            if (orientation == FillOrientation.Chess)
+            {
+                foreach (var cell in cells)
+                {
+                    cell.Style.Fill.BackgroundColor = XLColor.FromColor(colors[index]);
+                    if (++index == len)
+                        index = 0;
+                }
+            }
+            else
+            {
+                var firstCellAddr = cells.First().Address;
+                int currentCol, currentRow, firstCol;
+
+                switch (orientation)
+                {
+                    case FillOrientation.Horizontal:
+
+                        currentRow = firstCellAddr.RowNumber;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentRow != cell.Address.RowNumber)
+                            {
+                                currentRow = cell.Address.RowNumber;
+                                if (++index == len)
+                                    index = 0;
+                            }
+
+                            cell.Style.Fill.BackgroundColor = XLColor.FromColor(colors[index]);
+                        }
+
+                        break;
+
+                    case FillOrientation.Vertical:
+
+                        firstCol = firstCellAddr.ColumnNumber;
+                        currentCol = firstCol;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentCol != cell.Address.ColumnNumber)
+                            {
+                                currentCol = cell.Address.ColumnNumber;
+                                if (++index == len || currentCol == firstCol)
+                                    index = 0;
+                            }
+
+                            cell.Style.Fill.BackgroundColor = XLColor.FromColor(colors[index]);
+                        }
+
+                        break;
+
+                    case FillOrientation.DiagonalLeft:
+
+                        currentCol = firstCellAddr.ColumnNumber;
+                        currentRow = firstCellAddr.RowNumber;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentRow != cell.Address.RowNumber)
+                            {
+                                currentCol++;
+                                currentRow = cell.Address.RowNumber;
+                            }
+
+                            if (currentCol == cell.Address.ColumnNumber)
+                            {
+                                cell.Style.Fill.BackgroundColor = XLColor.FromColor(colors[index]);
+                                if (++index == len)
+                                    index = 0;
+                            }
+                        }
+
+                        break;
+
+                    case FillOrientation.DiagonalRight:
+
+                        currentCol = cells.Last().Address.ColumnNumber;
+                        currentRow = firstCellAddr.RowNumber;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentRow != cell.Address.RowNumber)
+                            {
+                                currentCol--;
+                                currentRow = cell.Address.RowNumber;
+                            }
+
+                            if (currentCol == cell.Address.ColumnNumber)
+                            {
+                                cell.Style.Fill.BackgroundColor = XLColor.FromColor(colors[index]);
+                                if (++index == len)
+                                    index = 0;
+                            }
+                        }
+
+                        break;
+                }
+            }
+
+            RequiresSave();
         }
     }
 }

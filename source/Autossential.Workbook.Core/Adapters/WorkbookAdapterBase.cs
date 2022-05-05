@@ -1,7 +1,9 @@
-﻿using Autossential.Workbook.Core.Internals;
+﻿using Autossential.Workbook.Core.Enums;
+using Autossential.Workbook.Core.Internals;
 using ExcelDataReader;
 using System;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Text;
 
@@ -268,5 +270,7 @@ namespace Autossential.Workbook.Core.Adapters
         }
 
         public abstract void AppendRange(string sheetName, DataTable dataTable);
+        public abstract void DrawBorder(string sheetName, string range, Border border, BorderStyle style, Color color);
+        public abstract void FillColor(string sheetName, string range, Color[] colors, FillOrientation orientation);
     }
 }

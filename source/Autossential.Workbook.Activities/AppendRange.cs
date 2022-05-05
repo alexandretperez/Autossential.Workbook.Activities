@@ -13,7 +13,7 @@ namespace Autossential.Workbook.Activities
 {
     public class AppendRange : WorkbookActivity
     {
-        public InArgument<string> SheetName { get; set; }
+        public InArgument<string> SheetName { get; set; } = "Sheet1";
         public InArgument<DataTable> InputDataTable { get; set; }
         protected override bool CheckWorkbookPath => false;
 

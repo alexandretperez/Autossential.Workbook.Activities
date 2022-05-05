@@ -55,4 +55,6 @@
 	</ItemGroup>
 
 	<Import Project="..\..\shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems" Label="Shared" />
+
+	<Import Project="..\..\shared\Autossential.Shared\Autossential.Shared.projitems" Label="Shared" />
 </Project>

@@ -1,9 +1,12 @@
-﻿using NPOI.HSSF.UserModel;
+﻿using Autossential.Workbook.Core.Enums;
+using Autossential.Workbook.Core.Internals;
+using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -97,7 +100,7 @@ namespace Autossential.Workbook.Core.Adapters
         public override int RemoveHyperLinks(string sheetName, string range)
         {
             int count = 0;
-            foreach (var cell in GetCells(sheetName, range))
+            foreach (var cell in GetUsedCells(sheetName, range))
             {
                 if (cell.Hyperlink == null)
                     continue;
@@ -188,6 +191,9 @@ namespace Autossential.Workbook.Core.Adapters
                     break;
             }
 
+            foreach (DataColumn col in dataTable.Columns)
+                sheet.AutoSizeColumn(col.Ordinal);
+
             RequiresSave();
         }
 
@@ -220,14 +226,14 @@ namespace Autossential.Workbook.Core.Adapters
 
         private IEnumerable<string> EnumerateLinks(string sheetName, string range)
         {
-            foreach (var cell in GetCells(sheetName, range))
+            foreach (var cell in GetUsedCells(sheetName, range))
             {
                 if (cell.Hyperlink != null)
                     yield return cell.Hyperlink.Address;
             }
         }
 
-        private IEnumerable<ICell> GetCells(string sheetName, string cellRange)
+        private IEnumerable<ICell> GetUsedCells(string sheetName, string cellRange)
         {
             var sheet = GetWorkbook().GetSheet(sheetName);
 
@@ -270,6 +276,25 @@ namespace Autossential.Workbook.Core.Adapters
             }
         }
 
+        private IEnumerable<ICell> GetCells(string sheetName, string cellRange)
+        {
+            var sheet = GetWorkbook().GetSheet(sheetName);
+            var range = CellRangeAddress.ValueOf(cellRange);
+
+            var firstRow = range.FirstRow == -1 ? sheet.FirstRowNum : range.FirstRow;
+            var lastRow = range.LastRow == -1 ? sheet.LastRowNum : range.LastRow;
+
+            for (int i = firstRow; i <= lastRow; i++)
+            {
+                var row = sheet.GetRow(i) ?? sheet.CreateRow(i);
+                for (int j = range.FirstColumn; j <= range.LastColumn; j++)
+                {
+                    var cell = row.GetCell(j) ?? row.CreateCell(j);
+                    yield return cell;
+                }
+            }
+        }
+
         private ISheet GetOrCreateSheet(string sheetName)
         {
             var wb = GetWorkbook();
@@ -297,6 +322,150 @@ namespace Autossential.Workbook.Core.Adapters
                 _workbook = new HSSFWorkbook(WorkbookFileStream);
 
             return _workbook;
+        }
+
+
+        private NPOI.HSSF.Util.HSSFColor GetDarkerColor(NPOI.HSSF.Util.HSSFColor xlsColor, HSSFPalette palette)
+        {
+            var rgb = xlsColor.RGB;
+            while (rgb[0] + rgb[1] + rgb[2] > 0)
+            {
+                if (rgb[0] > 0) rgb[0]--;
+                if (rgb[1] > 0) rgb[1]--;
+                if (rgb[2] > 0) rgb[2]--;
+
+                var dark = palette.FindSimilarColor(rgb[0], rgb[1], rgb[2]);
+                if (!dark.RGB.SequenceEqual(xlsColor.RGB))
+                    return dark;
+            }
+            return xlsColor;
+        }
+
+        public override void DrawBorder(string sheetName, string range, Border border, Enums.BorderStyle style, Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void FillColor(string sheetName, string range, Color[] colors, FillOrientation orientation)
+        {
+            var wb = GetWorkbook();
+            var sheet = GetOrCreateSheet(sheetName);
+            var palette = wb.GetCustomPalette();
+            var len = colors.Length;
+            var cells = GetCells(sheetName, range);
+
+            if (!cells.Any() || len == 0)
+                return;
+
+            var index = 0;
+
+            var styles = colors.Select(c =>
+            {
+                var style = wb.CreateCellStyle();
+                style.FillForegroundColor = palette.FindSimilarColor(c.R, c.G, c.B).Indexed;
+                style.FillPattern = FillPattern.SolidForeground;
+                return style;
+            }).ToArray();
+
+            if (orientation == FillOrientation.Chess)
+            {
+                foreach (var cell in cells)
+                {
+                    cell.CellStyle = styles[index];
+                    if (++index == len)
+                        index = 0;
+                }
+            }
+            else
+            {
+                var firstCell = cells.First();
+                int currentCol, currentRow, firstCol;
+
+                switch (orientation)
+                {
+                    case FillOrientation.Horizontal:
+
+                        currentRow = firstCell.RowIndex;
+                        foreach (var cell in cells)
+                        {
+                            if (currentRow != cell.RowIndex)
+                            {
+                                currentRow = cell.RowIndex;
+                                if (++index == len)
+                                    index = 0;
+                            }
+
+                            cell.CellStyle = styles[index];
+                        }
+
+                        break;
+
+                    case FillOrientation.Vertical:
+
+                        firstCol = firstCell.ColumnIndex;
+                        currentCol = firstCol;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentCol != cell.ColumnIndex)
+                            {
+                                currentCol = cell.ColumnIndex;
+                                if (++index == len || currentCol == firstCol)
+                                    index = 0;
+                            }
+
+                            cell.CellStyle = styles[index];
+                        }
+
+                        break;
+                    case FillOrientation.DiagonalLeft:
+
+                        currentCol = firstCell.ColumnIndex;
+                        currentRow = firstCell.RowIndex;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentRow != cell.RowIndex)
+                            {
+                                currentCol++;
+                                currentRow = cell.RowIndex;
+                            }
+
+                            if (currentCol == cell.ColumnIndex)
+                            {
+                                cell.CellStyle = styles[index];
+                                if (++index == len)
+                                    index = 0;
+                            }
+                        }
+
+                        break;
+                    case FillOrientation.DiagonalRight:
+
+                        currentCol = cells.Last().ColumnIndex;
+                        currentRow = firstCell.RowIndex;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentRow != cell.RowIndex)
+                            {
+                                currentCol--;
+                                currentRow = cell.RowIndex;
+                            }
+
+                            if (currentCol == cell.ColumnIndex)
+                            {
+                                cell.CellStyle = styles[index];
+                                if (++index == len)
+                                    index = 0;
+                            }
+                        }
+
+                        break;
+                }
+            }
+
+            RequiresSave();
         }
     }
 }

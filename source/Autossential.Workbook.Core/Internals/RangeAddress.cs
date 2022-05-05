@@ -2,19 +2,19 @@
 {
     internal class RangeAddress
     {
-        public RangeAddress(string range)
+        public RangeAddress(string range, bool zeroBasedIndex = false)
         {
             if (string.IsNullOrEmpty(range))
             {
-                First = CellAddress.UseDefault("A1");
-                Last = CellAddress.UseDefault("B2");
+                First = CellAddress.UseDefault("A1", zeroBasedIndex);
+                Last = CellAddress.UseDefault("B2", zeroBasedIndex);
                 return;
             }
 
             var addresses = range.Split(':');
 
-            First = new CellAddress(addresses[0]);
-            Last = new CellAddress(addresses.Length == 2 ? addresses[1] : null);
+            First = new CellAddress(addresses[0], zeroBasedIndex);
+            Last = new CellAddress(addresses.Length == 2 ? addresses[1] : null, zeroBasedIndex);
         }
 
         public CellAddress First { get; set; }

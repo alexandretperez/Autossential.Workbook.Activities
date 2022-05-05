@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Autossential.Workbook.Core.Enums;
+using System;
 using System.Data;
+using System.Drawing;
 
 namespace Autossential.Workbook.Core.Adapters
 {
@@ -28,5 +30,9 @@ namespace Autossential.Workbook.Core.Adapters
         void WriteRange(string sheetName, string cell, DataTable dataTable, bool addHeaders);
 
         void AppendRange(string sheetName, DataTable dataTable);
+
+        void FillColor(string sheetName, string range, Color[] colors, FillOrientation orientation);
+
+        void DrawBorder(string sheetName, string range, Border border, BorderStyle style, Color color);
     }
 }

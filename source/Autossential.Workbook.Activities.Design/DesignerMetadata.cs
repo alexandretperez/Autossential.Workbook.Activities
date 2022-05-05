@@ -31,6 +31,7 @@ namespace Autossential.Workbook.Activities.Design
                        .Register<WriteRange, WriteRangeDesigner>(workbook)
                        .Register<AppendRange, AppendRangeDesigner>(workbook)
                        .Register<WriteCell, WriteCellDesigner>(workbook)
+                       .Register<FillColor, FillColorDesigner>(workbook)
                        .Register<FreezeUnfreezePanes, FreezeUnfreezePanesDesigner>(workbook);
 
                 builder.Register<GetHyperlinks, GetHyperlinksDesigner>(hyperlinks)

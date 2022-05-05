@@ -4,45 +4,62 @@ namespace Autossential.Workbook.Core.Internals
 {
     internal class CellAddress
     {
-        public CellAddress(string address)
+        public CellAddress(string address, bool zeroBasedIndex)
         {
-            if (address == null)
-                return;
+            IsZeroBased = zeroBasedIndex;
 
-            const int offset = 'A' - 1;
-
-            int i = -1;
-            int len = address.Length;
-            while (++i < len)
+            if (address != null)
             {
-                char c = address[i];
-                if (c >= 'A' && c <= 'Z')
+                const int offset = 'A' - 1;
+
+                int i = -1;
+                int len = address.Length;
+                while (++i < len)
                 {
-                    Col *= 26;
-                    Col += c - offset;
-                    continue;
+                    char c = address[i];
+                    if (c >= 'A' && c <= 'Z')
+                    {
+                        Col *= 26;
+                        Col += c - offset;
+                        continue;
+                    }
+                    else if (c == '$' && (i == 0 || char.IsDigit(address[Math.Min(i + 1, len - 1)])))
+                    {
+                        continue;
+                    }
+                    break;
                 }
-                else if (c == '$' && (i == 0 || char.IsDigit(address[Math.Min(i + 1, len - 1)])))
+
+                if (Col == 0 || !int.TryParse(address.Substring(i), out int row))
                 {
-                    continue;
+                    Row = 0;
+                    Col = 0;
+                    if (zeroBasedIndex)
+                    {
+                        Row--;
+                        Col--;
+                    }
+                    return;
                 }
-                break;
+
+                Row = row;
             }
 
-            if (Col == 0 || !int.TryParse(address.Substring(i), out int row))
+            if (zeroBasedIndex)
             {
-                Row = 0;
-                Col = 0;
-                return;
+                Row--;
+                Col--;
             }
-
-            Row = row;
         }
 
+        public bool IsZeroBased { get; }
         public int Row { get; private set; }
         public int Col { get; private set; }
-        public bool IsValid => Row * Col > 0;
+        public bool IsValid => IsZeroBased ? Math.Min(Row, Col) > -1 : Row * Col > 0;
         public override string ToString() => $"Col: {Col}; Row: {Row}; IsValid: {IsValid}";
+
+        public int RowOrDefault(int @default) => IsValid ? Row : @default;
+        public int ColOrDefault(int @default) => IsValid ? Col : @default;
 
         public void SetDefault(int col, int row)
         {
@@ -58,9 +75,9 @@ namespace Autossential.Workbook.Core.Internals
             Row = row;
         }
 
-        public static CellAddress UseDefault(string address)
+        public static CellAddress UseDefault(string address, bool zeroBasedIndex)
         {
-            return new CellAddress(address) { IsDefault = true };
+            return new CellAddress(address, zeroBasedIndex) { IsDefault = true };
         }
 
         public bool IsDefault { get; private set; }

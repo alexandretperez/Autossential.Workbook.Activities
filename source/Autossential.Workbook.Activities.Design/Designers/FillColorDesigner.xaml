@@ -1,0 +1,63 @@
+﻿<sap:ActivityDesigner x:Class="Autossential.Workbook.Activities.Design.Designers.FillColorDesigner"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation" 
+    xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
+    xmlns:c="clr-namespace:Autossential.Shared.Activities.Design.Controls"
+    xmlns:converters="clr-namespace:Autossential.Shared.Activities.Design.Converters" xmlns:controls="clr-namespace:Autossential.Workbook.Activities.Design.Controls">
+
+
+    <sap:ActivityDesigner.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Default.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" Collapse="True" Reverse="True" />
+        </ResourceDictionary>
+    </sap:ActivityDesigner.Resources>
+
+    <sap:ActivityDesigner.Icon>
+        <DrawingBrush Drawing="{StaticResource FillColorIcon}" Stretch="Uniform"></DrawingBrush>
+    </sap:ActivityDesigner.Icon>
+
+    <c:ActivityDecoratorControl Style="{StaticResource ActivityDecoratorStyle}">
+        <StackPanel Width="300">
+            <controls:WorkbookScopeControl ModelItem="{Binding ModelItem}" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <sapv:ExpressionTextBox Grid.Column="0"
+                    ExpressionType="{Binding ModelItem.Properties[SheetName].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Sheet Name"
+                    Expression="{Binding ModelItem.SheetName, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+
+                <sapv:ExpressionTextBox Grid.Column="2"
+                    ExpressionType="{Binding ModelItem.Properties[Range].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Range"
+                    Expression="{Binding ModelItem.Range, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+
+            </Grid>
+
+            <sapv:ExpressionTextBox Margin="0,2,0,0"
+                    ExpressionType="{Binding ModelItem.Properties[Color].PropertyType.GenericTypeArguments[0]}"
+                    OwnerActivity="{Binding ModelItem}"
+                    UseLocationExpression="False"
+                    HintText="Color or Colors"
+                    Expression="{Binding ModelItem.Color, ConverterParameter=In, Converter={StaticResource ArgumentToExpressionConverter}}" />
+
+        </StackPanel>
+    </c:ActivityDecoratorControl>
+</sap:ActivityDesigner>

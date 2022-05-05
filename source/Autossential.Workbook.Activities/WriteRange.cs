@@ -10,7 +10,7 @@ namespace Autossential.Workbook.Activities
 {
     public class WriteRange : WorkbookActivity
     {
-        public InArgument<string> SheetName { get; set; }
+        public InArgument<string> SheetName { get; set; } = "Sheet1";
         public InArgument<string> StartingCell { get; set; }
         public InArgument<DataTable> InputDataTable { get; set; }
         public bool AddHeaders { get; set; }
