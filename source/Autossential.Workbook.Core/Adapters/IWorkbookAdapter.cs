@@ -38,5 +38,9 @@ namespace Autossential.Workbook.Core.Adapters
         void RenameSheet(int sheetIndex, string newName);
 
         void DeleteSheet(string sheetName);
+
+        void MergeRange(string sheetName, string range);
+
+        void MoveSheet(string sheetName, int index, bool makeACopy = false, string copySheetName = null);
     }
 }

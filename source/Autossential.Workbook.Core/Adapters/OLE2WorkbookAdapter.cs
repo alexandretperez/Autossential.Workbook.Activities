@@ -1,5 +1,6 @@
-﻿using Autossential.Workbook.Core.Enums;
+﻿using Autossential.Workbook.Core.Internals;
 using NPOI.HSSF.UserModel;
+using NPOI.HSSF.Util;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using System;
@@ -20,7 +21,7 @@ namespace Autossential.Workbook.Core.Adapters
 
         public override int MaxRows => 65_536;
 
-        public override bool IsOpenXml => true;
+        public override bool IsOpenXml => false;
 
         private HSSFWorkbook _workbook;
 
@@ -30,8 +31,7 @@ namespace Autossential.Workbook.Core.Adapters
             {
                 try
                 {
-                    WorkbookFileStream.Seek(0, SeekOrigin.Begin);
-                    _workbook = new HSSFWorkbook(WorkbookFileStream);
+                    _workbook = new HSSFWorkbook(WorkbookFileStream.Reset());
                 }
                 catch (Exception e)
                 {
@@ -142,193 +142,31 @@ namespace Autossential.Workbook.Core.Adapters
             return _palette.FindSimilarColor(color.R, color.G, color.B);
         }
 
-        public override void DrawBorder(string sheetName, string range, Border border, Enums.BorderStyle style, Color color)
+        protected override ICellStyle CreateBorderStyle(IWorkbook workbook, string anchors, NPOI.SS.UserModel.BorderStyle borderStyle, IColor borderColor)
         {
-            var wb = GetWorkbook();
-            var cellStyle = wb.CreateCellStyle();
-
-            _ = GetOrCreateSheet(sheetName);
-            var cells = GetCells(sheetName, range);
-
-            var borderStyle = ConvertBorderStyle(style);
-            var borderColor = ConvertColor(color).Indexed;
-
-            switch (border)
+            var style = (HSSFCellStyle)workbook.CreateCellStyle();
+            var color = (HSSFColor)borderColor;
+            if (anchors.Contains('T'))
             {
-                case Border.None:
-                case Border.All:
-
-                    cellStyle.BorderLeft = borderStyle;
-                    cellStyle.BorderTop = borderStyle;
-                    cellStyle.BorderRight = borderStyle;
-                    cellStyle.BorderBottom = borderStyle;
-
-                    cellStyle.LeftBorderColor = borderColor;
-                    cellStyle.TopBorderColor = borderColor;
-                    cellStyle.RightBorderColor = borderColor;
-                    cellStyle.BottomBorderColor = borderColor;
-
-                    foreach (var cell in cells)
-                        cell.CellStyle = cellStyle;
-
-                    break;
-                case Border.Outside:
-                    break;
-                case Border.Inside:
-                    break;
-                case Border.Top:
-                    cellStyle.BorderTop = borderStyle;
-                    break;
-                case Border.Bottom:
-                    cellStyle.BorderBottom = borderStyle;
-                    break;
-                case Border.Left:
-                    cellStyle.BorderLeft = borderStyle;
-                    break;
-                case Border.Right:
-                    cellStyle.BorderRight = borderStyle;
-                    break;
+                style.BorderTop = borderStyle;
+                style.TopBorderColor = color.Indexed;
             }
-
-            RequiresSave();
+            if (anchors.Contains('B'))
+            {
+                style.BorderBottom = borderStyle;
+                style.BottomBorderColor = color.Indexed;
+            }
+            if (anchors.Contains('L'))
+            {
+                style.BorderLeft = borderStyle;
+                style.LeftBorderColor = color.Indexed;
+            }
+            if (anchors.Contains('R'))
+            {
+                style.BorderRight = borderStyle;
+                style.RightBorderColor = color.Indexed;
+            }
+            return style;
         }
     }
-
-
-    //    private NPOI.HSSF.Util.HSSFColor GetDarkerColor(NPOI.HSSF.Util.HSSFColor xlsColor, HSSFPalette palette)
-    //    {
-    //        var rgb = xlsColor.RGB;
-    //        while (rgb[0] + rgb[1] + rgb[2] > 0)
-    //        {
-    //            if (rgb[0] > 0) rgb[0]--;
-    //            if (rgb[1] > 0) rgb[1]--;
-    //            if (rgb[2] > 0) rgb[2]--;
-
-    //            var dark = palette.FindSimilarColor(rgb[0], rgb[1], rgb[2]);
-    //            if (!dark.RGB.SequenceEqual(xlsColor.RGB))
-    //                return dark;
-    //        }
-    //        return xlsColor;
-    //    }
-
-    //    public override void DrawBorder(string sheetName, string range, Border border, Enums.BorderStyle style, Color color)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void FillColor(string sheetName, string range, Color[] colors, FillOrientation orientation)
-    //    {
-    //        var wb = (HSSFWorkbook)GetWorkbook();
-    //        var sheet = GetOrCreateSheet(sheetName);
-    //        var palette = wb.GetCustomPalette();
-    //        var len = colors.Length;
-    //        var cells = GetCells(sheetName, range);
-
-    //        if (!cells.Any() || len == 0)
-    //            return;
-
-    //        var index = 0;
-
-
-    //        if (orientation == FillOrientation.Chess)
-    //        {
-    //            foreach (var cell in cells)
-    //            {
-    //                cell.CellStyle = styles[index];
-    //                if (++index == len)
-    //                    index = 0;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            var firstCell = cells.First();
-    //            int currentCol, currentRow, firstCol;
-
-    //            switch (orientation)
-    //            {
-    //                case FillOrientation.Horizontal:
-
-    //                    currentRow = firstCell.RowIndex;
-    //                    foreach (var cell in cells)
-    //                    {
-    //                        if (currentRow != cell.RowIndex)
-    //                        {
-    //                            currentRow = cell.RowIndex;
-    //                            if (++index == len)
-    //                                index = 0;
-    //                        }
-
-    //                        cell.CellStyle = styles[index];
-    //                    }
-
-    //                    break;
-
-    //                case FillOrientation.Vertical:
-
-    //                    firstCol = firstCell.ColumnIndex;
-    //                    currentCol = firstCol;
-
-    //                    foreach (var cell in cells)
-    //                    {
-    //                        if (currentCol != cell.ColumnIndex)
-    //                        {
-    //                            currentCol = cell.ColumnIndex;
-    //                            if (++index == len || currentCol == firstCol)
-    //                                index = 0;
-    //                        }
-
-    //                        cell.CellStyle = styles[index];
-    //                    }
-
-    //                    break;
-    //                case FillOrientation.DiagonalLeft:
-
-    //                    currentCol = firstCell.ColumnIndex;
-    //                    currentRow = firstCell.RowIndex;
-
-    //                    foreach (var cell in cells)
-    //                    {
-    //                        if (currentRow != cell.RowIndex)
-    //                        {
-    //                            currentCol++;
-    //                            currentRow = cell.RowIndex;
-    //                        }
-
-    //                        if (currentCol == cell.ColumnIndex)
-    //                        {
-    //                            cell.CellStyle = styles[index];
-    //                            if (++index == len)
-    //                                index = 0;
-    //                        }
-    //                    }
-
-    //                    break;
-    //                case FillOrientation.DiagonalRight:
-
-    //                    currentCol = cells.Last().ColumnIndex;
-    //                    currentRow = firstCell.RowIndex;
-
-    //                    foreach (var cell in cells)
-    //                    {
-    //                        if (currentRow != cell.RowIndex)
-    //                        {
-    //                            currentCol--;
-    //                            currentRow = cell.RowIndex;
-    //                        }
-
-    //                        if (currentCol == cell.ColumnIndex)
-    //                        {
-    //                            cell.CellStyle = styles[index];
-    //                            if (++index == len)
-    //                                index = 0;
-    //                        }
-    //                    }
-
-    //                    break;
-    //            }
-    //        }
-
-    //        RequiresSave();
-    //    }
-    //}
 }

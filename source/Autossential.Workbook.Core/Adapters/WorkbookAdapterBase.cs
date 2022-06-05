@@ -1,6 +1,7 @@
 ﻿using Autossential.Workbook.Core.Enums;
 using Autossential.Workbook.Core.Internals;
 using ExcelDataReader;
+using NPOI.HSSF.Util;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
@@ -89,10 +90,7 @@ namespace Autossential.Workbook.Core.Adapters
                 _reader?.Dispose();
 
                 if (WorkbookFileStream != null)
-                {
-                    WorkbookFileStream.Close();
                     WorkbookFileStream.Dispose();
-                }
             }
             catch (Exception e)
             {
@@ -105,7 +103,94 @@ namespace Autossential.Workbook.Core.Adapters
             return (NPOI.SS.UserModel.BorderStyle)Enum.Parse(typeof(NPOI.SS.UserModel.BorderStyle), style.ToString());
         }
 
-        public abstract void DrawBorder(string sheetName, string range, Border border, Enums.BorderStyle style, Color color);
+        public void DrawBorder(string sheetName, string range, Border border, Enums.BorderStyle style, Color color)
+        {
+            var wb = GetWorkbook();
+            var sheet = GetOrCreateSheet(sheetName);
+            var borderStyle = ConvertBorderStyle(style);
+            var borderColor = ConvertColor(color);
+
+            if (border == Border.Outside)
+            {
+                var addr = new Internals.RangeAddress(range, true);
+                var row = sheet.Row(addr.First.Row);
+                row.Cell(addr.First.Col).CellStyle = CreateBorderStyle(wb, "TL", borderStyle, borderColor);
+                row.Cell(addr.Last.Col).CellStyle = CreateBorderStyle(wb, "TR", borderStyle, borderColor);
+
+                row = sheet.Row(addr.Last.Row);
+                row.Cell(addr.First.Col).CellStyle = CreateBorderStyle(wb, "BL", borderStyle, borderColor);
+                row.Cell(addr.Last.Col).CellStyle = CreateBorderStyle(wb, "BR", borderStyle, borderColor);
+
+                var left = CreateBorderStyle(wb, "L", borderStyle, borderColor);
+                var right = CreateBorderStyle(wb, "R", borderStyle, borderColor);
+                for (int i = addr.First.Row + 1; i < addr.Last.Row; i++)
+                {
+                    row = sheet.Row(i);
+                    row.Cell(addr.First.Col).CellStyle = left;
+                    row.Cell(addr.Last.Col).CellStyle = right;
+                }
+
+                var top = CreateBorderStyle(wb, "T", borderStyle, borderColor);
+                var bottom = CreateBorderStyle(wb, "B", borderStyle, borderColor);
+
+                var rowTop = sheet.Row(addr.First.Row);
+                var rowBottom = sheet.Row(addr.Last.Row);
+                for (int i = addr.First.Col + 1; i < addr.Last.Col; i++)
+                {
+                    rowTop.Cell(i).CellStyle = top;
+                    rowBottom.Cell(i).CellStyle = bottom;
+                }
+            }
+            else if (border == Border.Inside)
+            {
+                var addr = new Internals.RangeAddress(range, true);
+                var br = CreateBorderStyle(wb, "BR", borderStyle, borderColor);
+                var b = CreateBorderStyle(wb, "B", borderStyle, borderColor);
+                var r = CreateBorderStyle(wb, "R", borderStyle, borderColor);
+
+                foreach (var cell in GetOrCreateCells(sheetName, range))
+                {
+                    if (cell.RowIndex == addr.Last.Row && cell.ColumnIndex == addr.Last.Col)
+                        break;
+
+                    cell.CellStyle = cell.RowIndex == addr.Last.Row
+                        ? r
+                        : cell.ColumnIndex == addr.Last.Col
+                            ? b
+                            : br;
+                }
+            }
+            else
+            {
+                ICellStyle cellStyle = null;
+                switch (border)
+                {
+                    case Border.None:
+                    case Border.All:
+                        cellStyle = CreateBorderStyle(wb, "TBLR", borderStyle, borderColor);
+                        break;
+                    case Border.Top:
+                        cellStyle = CreateBorderStyle(wb, "T", borderStyle, borderColor);
+                        break;
+                    case Border.Bottom:
+                        cellStyle = CreateBorderStyle(wb, "B", borderStyle, borderColor);
+                        break;
+                    case Border.Left:
+                        cellStyle = CreateBorderStyle(wb, "L", borderStyle, borderColor);
+                        break;
+                    case Border.Right:
+                        cellStyle = CreateBorderStyle(wb, "R", borderStyle, borderColor);
+                        break;
+                }
+
+                foreach (var cell in GetOrCreateCells(sheetName, range))
+                    cell.CellStyle = cellStyle;
+            }
+
+            RequiresSave();
+        }
+
+        protected abstract ICellStyle CreateBorderStyle(IWorkbook workbook, string anchors, NPOI.SS.UserModel.BorderStyle borderStyle, IColor borderColor);
 
         protected abstract IColor ConvertColor(Color color);
 
@@ -114,21 +199,35 @@ namespace Autossential.Workbook.Core.Adapters
             var wb = GetWorkbook();
             _ = GetOrCreateSheet(sheetName);
             var len = colors.Length;
-            var cells = GetCells(sheetName, range);
+            var cells = GetOrCreateCells(sheetName, range);
 
             if (!cells.Any() || len == 0)
                 return;
 
             var index = 0;
 
-            var styles = colors.Select(c =>
+            ICellStyle[] styles = null;
+            if (IsOpenXml)
             {
-                var style = wb.CreateCellStyle();
-                style.FillForegroundColor = ConvertColor(c).Indexed;
-                style.FillPattern = FillPattern.SolidForeground;
-                return style;
-            }).ToArray();
-
+                styles = colors.Select(c =>
+                {
+                    var style = (XSSFCellStyle)wb.CreateCellStyle();
+                    var color = (XSSFColor)ConvertColor(c);
+                    style.SetFillForegroundColor(color);
+                    style.FillPattern = FillPattern.SolidForeground;
+                    return style;
+                }).ToArray();
+            }
+            else
+            {
+                styles = colors.Select(c =>
+                {
+                    var style = wb.CreateCellStyle();
+                    style.FillForegroundColor = ((HSSFColor)ConvertColor(c)).Indexed;
+                    style.FillPattern = FillPattern.SolidForeground;
+                    return style;
+                }).ToArray();
+            }
 
             if (orientation == FillOrientation.Chess)
             {
@@ -196,7 +295,7 @@ namespace Autossential.Workbook.Core.Adapters
                         }
 
                         break;
-                    case FillOrientation.DiagonalLeft:
+                    case FillOrientation.DiagonalForward:
 
                         currentCol = firstCell.ColumnIndex;
                         currentRow = firstCell.RowIndex;
@@ -218,7 +317,7 @@ namespace Autossential.Workbook.Core.Adapters
                         }
 
                         break;
-                    case FillOrientation.DiagonalRight:
+                    case FillOrientation.DiagonalBackward:
 
                         currentCol = cells.Last().ColumnIndex;
                         currentRow = firstCell.RowIndex;
@@ -274,7 +373,7 @@ namespace Autossential.Workbook.Core.Adapters
         {
             var reader = GetReader();
             var dt = new DataTable();
-            var addr = new RangeAddress(range);
+            var addr = new Internals.RangeAddress(range);
 
             if (!addr.First.IsValid)
                 throw new ArgumentException("The range is not valid " + range, nameof(range));
@@ -390,7 +489,7 @@ namespace Autossential.Workbook.Core.Adapters
 
                     // workaround for XSSFWorkbook, the SetDefaultColumnStyle it is not working
                     // The issue was mentioned on POI project: https://bz.apache.org/bugzilla/show_bug.cgi?id=51037
-                    if (IsOpenXml) 
+                    if (IsOpenXml)
                         sheetCell.CellStyle = sheet.GetColumnStyle(colIndex + i);
 
                     SetCellValue(sheetCell, dr[i]);
@@ -426,7 +525,7 @@ namespace Autossential.Workbook.Core.Adapters
                 cell.SetCellValue(value?.ToString());
         }
 
-        protected IEnumerable<ICell> GetCells(string sheetName, string cellRange)
+        protected IEnumerable<ICell> GetOrCreateCells(string sheetName, string cellRange)
         {
             var sheet = GetWorkbook().GetSheet(sheetName);
             var range = CellRangeAddress.ValueOf(cellRange);
@@ -548,7 +647,7 @@ namespace Autossential.Workbook.Core.Adapters
             return value;
         }
 
-        private static object[][] GetDataValues(IExcelDataReader reader, RangeAddress ra, out Type[] types)
+        private static object[][] GetDataValues(IExcelDataReader reader, Internals.RangeAddress ra, out Type[] types)
         {
             types = new Type[ra.ColsUsed()];
             var values = new object[ra.RowsUsed()][];
@@ -589,7 +688,7 @@ namespace Autossential.Workbook.Core.Adapters
             return values;
         }
 
-        private static string[] GetHeaderValues(IExcelDataReader reader, bool addHeaders, RangeAddress ra)
+        private static string[] GetHeaderValues(IExcelDataReader reader, bool addHeaders, Internals.RangeAddress ra)
         {
             var headers = new string[ra.ColsUsed()];
             if (addHeaders)
@@ -670,7 +769,7 @@ namespace Autossential.Workbook.Core.Adapters
         {
             if (_reader == null)
             {
-                _reader = ExcelReaderFactory.CreateReader(WorkbookFileStream, new ExcelReaderConfiguration { LeaveOpen = true });
+                _reader = ExcelReaderFactory.CreateReader(WorkbookFileStream.Reset(), new ExcelReaderConfiguration { LeaveOpen = true });
             }
             else
             {
@@ -697,12 +796,42 @@ namespace Autossential.Workbook.Core.Adapters
 
         public void DeleteSheet(string sheetName)
         {
-            var index = Array.IndexOf(GetSheetNames(), sheetName);
-            if (index > -1)
+            var wb = GetWorkbook();
+            var sheet = wb.GetSheet(sheetName);
+            if (sheet == null)
+                return;
+
+            wb.RemoveSheetAt(wb.GetSheetIndex(sheet));
+            RequiresSave();
+        }
+
+        public void MergeRange(string sheetName, string range)
+        {
+            GetOrCreateSheet(sheetName).AddMergedRegion(CellRangeAddress.ValueOf(range));
+            RequiresSave();
+        }
+
+        public void MoveSheet(string sheetName, int index, bool makeACopy = false, string copySheetName = null)
+        {
+            var wb = GetWorkbook();
+            var sheet = GetOrCreateSheet(sheetName);
+
+            if (makeACopy)
             {
-                GetWorkbook().RemoveSheetAt(index);
-                RequiresSave();
+                sheet.CopyTo(wb, copySheetName, true, true);
+                if (index > -1)
+                    MoveSheet(copySheetName, index);
             }
+            else
+            {
+                if (index < 0)
+                    index = wb.NumberOfSheets + index;
+
+                if (wb.GetSheetIndex(sheet) != index)
+                    wb.SetSheetOrder(sheetName, index);
+            }
+
+            RequiresSave();
         }
     }
 }

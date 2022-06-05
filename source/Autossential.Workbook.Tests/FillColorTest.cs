@@ -14,15 +14,8 @@ namespace Autossential.Workbook.Tests
         {
             IOSamples.ClearFolder();
 
-            var xlsx = WorkbookAdapterFactory.Create(IOSamples.ExportSample("empty.xlsx", "colors.xlsx"));
-            xlsx.RenameSheet(0, "Horizontal");
-            xlsx.Save();
-            xlsx.Dispose();
-
-            var xls = WorkbookAdapterFactory.Create(IOSamples.ExportSample("empty.xls", "colors.xls"));
-            xls.RenameSheet(0, "Horizontal");
-            xls.Save();
-            xls.Dispose();
+            IOSamples.ExportSample("empty.xlsx", "colors.xlsx");
+            IOSamples.ExportSample("empty.xls", "colors.xls");
         }
 
         [ClassCleanup]
@@ -32,64 +25,38 @@ namespace Autossential.Workbook.Tests
             IOSamples.CopyToDownloadsFolder(IOSamples.GetTestPath("colors.xls"));
         }
 
+
         [TestMethod]
-        [DataRow("colors.xlsx")]
-        [DataRow("colors.xls")]
-        public void HorizontalFill(string fileName)
+        [DataRow(FillOrientation.Horizontal, "colors.xlsx", "B2:D7")]
+        [DataRow(FillOrientation.Vertical, "colors.xlsx", "F2:H7")]
+        [DataRow(FillOrientation.DiagonalBackward, "colors.xlsx", "J2:L7")]
+        [DataRow(FillOrientation.DiagonalForward, "colors.xlsx", "N2:P7")]
+        [DataRow(FillOrientation.Chess, "colors.xlsx", "R2:T7")]
+
+        public void OpenXml(FillOrientation orientation, string fileName, string range)
         {
             var path = IOSamples.GetTestPath(fileName);
             var adapter = WorkbookAdapterFactory.Create(path);
-            adapter.FillColor("Horizontal", "A1:E5", new[] { Color.Teal, Color.Orange }, FillOrientation.Horizontal);
+            adapter.FillColor("Sheet1", range, new[] { Color.Teal, Color.Orange }, orientation);
             adapter.Save();
             adapter.Dispose();
         }
 
         [TestMethod]
-        [DataRow("colors.xlsx")]
-        [DataRow("colors.xls")]
-        public void VerticalFill(string fileName)
+        [DataRow(FillOrientation.Horizontal, "colors.xls", "B2:D7")]
+        [DataRow(FillOrientation.Vertical, "colors.xls", "F2:H7")]
+        [DataRow(FillOrientation.DiagonalBackward, "colors.xls", "J2:L7")]
+        [DataRow(FillOrientation.DiagonalForward, "colors.xls", "N2:P7")]
+        [DataRow(FillOrientation.Chess, "colors.xls", "R2:T7")]
+
+        public void OLE2(FillOrientation orientation, string fileName, string range)
         {
             var path = IOSamples.GetTestPath(fileName);
             var adapter = WorkbookAdapterFactory.Create(path);
-            adapter.FillColor("Vertical", "A1:E5", new[] { Color.Teal, Color.Orange }, FillOrientation.Vertical);
+            adapter.FillColor("Sheet1", range, new[] { Color.Teal, Color.Orange }, orientation);
             adapter.Save();
             adapter.Dispose();
         }
 
-        [TestMethod]
-        [DataRow("colors.xlsx")]
-        [DataRow("colors.xls")]
-        public void ChessFill(string fileName)
-        {
-            var path = IOSamples.GetTestPath(fileName);
-            var adapter = WorkbookAdapterFactory.Create(path);
-            adapter.FillColor("Chess", "A1:E5", new[] { Color.Teal, Color.Orange }, FillOrientation.Chess);
-            adapter.Save();
-            adapter.Dispose();
-        }
-
-        [TestMethod]
-        [DataRow("colors.xlsx")]
-        [DataRow("colors.xls")]
-        public void DiagonalLeft(string fileName)
-        {
-            var path = IOSamples.GetTestPath(fileName);
-            var adapter = WorkbookAdapterFactory.Create(path);
-            adapter.FillColor("DiagonalLeft", "A1:E5", new[] { Color.Teal, Color.Orange }, FillOrientation.DiagonalLeft);
-            adapter.Save();
-            adapter.Dispose();
-        }
-
-        [TestMethod]
-        [DataRow("colors.xlsx")]
-        [DataRow("colors.xls")]
-        public void DiagonalRight(string fileName)
-        {
-            var path = IOSamples.GetTestPath(fileName);
-            var adapter = WorkbookAdapterFactory.Create(path);
-            adapter.FillColor("DiagonalRight", "A1:E5", new[] { Color.Teal, Color.Orange }, FillOrientation.DiagonalRight);
-            adapter.Save();
-            adapter.Dispose();
-        }
     }
 }

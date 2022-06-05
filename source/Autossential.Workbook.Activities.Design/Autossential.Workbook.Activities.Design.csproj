@@ -49,7 +49,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="NPOI" />
-		<PackageReference Include="ClosedXML" />
 		<PackageReference Include="ExcelDataReader" />
 	</ItemGroup>
 

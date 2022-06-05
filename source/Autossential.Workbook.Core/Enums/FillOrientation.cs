@@ -4,8 +4,8 @@
     {
         Horizontal,
         Vertical,
-        DiagonalLeft,
-        DiagonalRight,
+        DiagonalForward,
+        DiagonalBackward,
         Chess
     }
 }

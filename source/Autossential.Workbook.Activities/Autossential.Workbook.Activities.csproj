@@ -8,7 +8,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="NPOI" />
-		<PackageReference Include="ClosedXML" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net461' ">
 		<Reference Include="PresentationCore" />
