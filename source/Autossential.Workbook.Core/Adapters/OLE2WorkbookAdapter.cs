@@ -142,9 +142,9 @@ namespace Autossential.Workbook.Core.Adapters
             return _palette.FindSimilarColor(color.R, color.G, color.B);
         }
 
-        protected override ICellStyle CreateBorderStyle(IWorkbook workbook, string anchors, NPOI.SS.UserModel.BorderStyle borderStyle, IColor borderColor)
+        protected override void ApplyBorderStyle(ICellStyle cellStyle, string anchors, BorderStyle borderStyle, IColor borderColor)
         {
-            var style = (HSSFCellStyle)workbook.CreateCellStyle();
+            var style = (HSSFCellStyle)cellStyle;
             var color = (HSSFColor)borderColor;
             if (anchors.Contains('T'))
             {
@@ -166,7 +166,29 @@ namespace Autossential.Workbook.Core.Adapters
                 style.BorderRight = borderStyle;
                 style.RightBorderColor = color.Indexed;
             }
-            return style;
+        }
+
+        public override void DrawBorder(string sheetName, string range, Enums.Border border, Enums.BorderStyle style, Color color)
+        {
+            base.DrawBorder(sheetName, range, border, style, color);
+            OptimizeStyles();
+        }
+
+        public override void FillColor(string sheetName, string range, Color[] colors, Enums.FillPattern orientation)
+        {
+            base.FillColor(sheetName, range, colors, orientation);
+            OptimizeStyles();
+        }
+
+        private void OptimizeStyles()
+        {
+            HSSFOptimiser.OptimiseCellStyles((HSSFWorkbook)GetWorkbook());
+        }
+
+        protected override void ApplyBackgroundStyle(ICellStyle cellStyle, Color color)
+        {
+            cellStyle.FillForegroundColor = ((HSSFColor)ConvertColor(color)).Indexed;
+            cellStyle.FillPattern = FillPattern.SolidForeground;
         }
     }
 }

@@ -19,6 +19,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ComparisonConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OppositeBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Features\DesignerFeatures.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MembersAttributesBuilder.cs" />

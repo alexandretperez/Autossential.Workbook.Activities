@@ -1,4 +1,6 @@
-﻿namespace Autossential.Workbook.Core.Internals
+﻿using System;
+
+namespace Autossential.Workbook.Core.Internals
 {
     internal class RangeAddress
     {
@@ -14,7 +16,10 @@
             var addresses = range.Split(':');
 
             First = new CellAddress(addresses[0], zeroBasedIndex);
-            Last = new CellAddress(addresses.Length == 2 ? addresses[1] : null, zeroBasedIndex);
+            if (!First.IsValid)
+                throw new ArgumentException("The range is not valid " + range, nameof(range));
+
+            Last = new CellAddress(addresses.Length == 2 ? addresses[1] : addresses[0], zeroBasedIndex);
         }
 
         public CellAddress First { get; set; }

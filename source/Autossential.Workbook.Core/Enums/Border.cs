@@ -2,13 +2,12 @@
 {
     public enum Border
     {
-        None,
         All,
-        Outside,
-        Inside,
-        Top,
         Bottom,
+        Inside,
         Left,
-        Right
+        Outside,
+        Right,
+        Top
     }
 }

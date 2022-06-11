@@ -37,33 +37,6 @@ namespace Autossential.Workbook.Core.Adapters
                 _workbook.Close();
         }
 
-        protected override ICellStyle CreateBorderStyle(IWorkbook workbook, string anchors, NPOI.SS.UserModel.BorderStyle borderStyle, IColor borderColor)
-        {
-            var xssColor = (XSSFColor)borderColor;
-            var style = (XSSFCellStyle)workbook.CreateCellStyle();
-            if (anchors.Contains('T'))
-            {
-                style.BorderTop = borderStyle;
-                style.SetTopBorderColor(xssColor);
-            }
-            if (anchors.Contains('B'))
-            {
-                style.BorderBottom = borderStyle;
-                style.SetBottomBorderColor(xssColor);
-            }
-            if (anchors.Contains('L'))
-            {
-                style.BorderLeft = borderStyle;
-                style.SetLeftBorderColor(xssColor);
-            }
-            if (anchors.Contains('R'))
-            {
-                style.BorderRight = borderStyle;
-                style.SetRightBorderColor(xssColor);
-            }
-            return style;
-        }
-
         protected override IColor ConvertColor(Color color)
         {
             return new XSSFColor(color);
@@ -84,6 +57,39 @@ namespace Autossential.Workbook.Core.Adapters
             }
 
             return _workbook;
+        }
+
+        protected override void ApplyBorderStyle(ICellStyle cellStyle, string anchors, BorderStyle borderStyle, IColor borderColor)
+        {
+            var style = (XSSFCellStyle)cellStyle;
+            var color = (XSSFColor)borderColor;
+            if (anchors.Contains('T'))
+            {
+                style.BorderTop = borderStyle;
+                style.SetTopBorderColor(color);
+            }
+            if (anchors.Contains('B'))
+            {
+                style.BorderBottom = borderStyle;
+                style.SetBottomBorderColor(color);
+            }
+            if (anchors.Contains('L'))
+            {
+                style.BorderLeft = borderStyle;
+                style.SetLeftBorderColor(color);
+            }
+            if (anchors.Contains('R'))
+            {
+                style.BorderRight = borderStyle;
+                style.SetRightBorderColor(color);
+            }
+        }
+
+        protected override void ApplyBackgroundStyle(ICellStyle cellStyle, Color color)
+        {
+            var style = (XSSFCellStyle)cellStyle;
+            style.SetFillForegroundColor((XSSFColor)ConvertColor(color));
+            style.FillPattern = FillPattern.SolidForeground;
         }
     }
 }

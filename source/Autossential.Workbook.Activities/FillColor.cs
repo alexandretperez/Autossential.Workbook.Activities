@@ -16,7 +16,7 @@ namespace Autossential.Workbook.Activities
         public InArgument<string> SheetName { get; set; } = "Sheet1";
         public InArgument<string> Range { get; set; }
         public InArgument Color { get; set; }
-        public FillOrientation Orientation { get; set; }
+        public FillPattern Pattern { get; set; }
         protected override void CacheMetadata(CodeActivityMetadata metadata)
         {
             base.CacheMetadata(metadata);
@@ -27,6 +27,9 @@ namespace Autossential.Workbook.Activities
             {
                 metadata.AddValidationError(Resources.Validation_ValueErrorFormat(nameof(Range)));
             }
+
+            if (Pattern == FillPattern.None)
+                return;
 
             if (Color == null)
             {
@@ -59,7 +62,7 @@ namespace Autossential.Workbook.Activities
 
             var colors = color is Color c ? new[] { c } : (Color[])color;
 
-            await Task.Run(() => adapter.FillColor(sheetName, range, colors, Orientation));
+            await Task.Run(() => adapter.FillColor(sheetName, range, colors, Pattern));
             return null;
         }
     }

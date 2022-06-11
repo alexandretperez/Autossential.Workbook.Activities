@@ -103,153 +103,154 @@ namespace Autossential.Workbook.Core.Adapters
             return (NPOI.SS.UserModel.BorderStyle)Enum.Parse(typeof(NPOI.SS.UserModel.BorderStyle), style.ToString());
         }
 
-        public void DrawBorder(string sheetName, string range, Border border, Enums.BorderStyle style, Color color)
+        public virtual void DrawBorder(string sheetName, string range, Border border, Enums.BorderStyle style, Color color)
         {
             var wb = GetWorkbook();
             var sheet = GetOrCreateSheet(sheetName);
             var borderStyle = ConvertBorderStyle(style);
             var borderColor = ConvertColor(color);
+            var addr = new Internals.RangeAddress(range, true);
+            var cellStyle = wb.CreateCellStyle();
 
-            if (border == Border.Outside)
+            if (border == Border.Inside)
             {
-                var addr = new Internals.RangeAddress(range, true);
-                var row = sheet.Row(addr.First.Row);
-                row.Cell(addr.First.Col).CellStyle = CreateBorderStyle(wb, "TL", borderStyle, borderColor);
-                row.Cell(addr.Last.Col).CellStyle = CreateBorderStyle(wb, "TR", borderStyle, borderColor);
-
-                row = sheet.Row(addr.Last.Row);
-                row.Cell(addr.First.Col).CellStyle = CreateBorderStyle(wb, "BL", borderStyle, borderColor);
-                row.Cell(addr.Last.Col).CellStyle = CreateBorderStyle(wb, "BR", borderStyle, borderColor);
-
-                var left = CreateBorderStyle(wb, "L", borderStyle, borderColor);
-                var right = CreateBorderStyle(wb, "R", borderStyle, borderColor);
-                for (int i = addr.First.Row + 1; i < addr.Last.Row; i++)
-                {
-                    row = sheet.Row(i);
-                    row.Cell(addr.First.Col).CellStyle = left;
-                    row.Cell(addr.Last.Col).CellStyle = right;
-                }
-
-                var top = CreateBorderStyle(wb, "T", borderStyle, borderColor);
-                var bottom = CreateBorderStyle(wb, "B", borderStyle, borderColor);
-
-                var rowTop = sheet.Row(addr.First.Row);
-                var rowBottom = sheet.Row(addr.Last.Row);
-                for (int i = addr.First.Col + 1; i < addr.Last.Col; i++)
-                {
-                    rowTop.Cell(i).CellStyle = top;
-                    rowBottom.Cell(i).CellStyle = bottom;
-                }
-            }
-            else if (border == Border.Inside)
-            {
-                var addr = new Internals.RangeAddress(range, true);
-                var br = CreateBorderStyle(wb, "BR", borderStyle, borderColor);
-                var b = CreateBorderStyle(wb, "B", borderStyle, borderColor);
-                var r = CreateBorderStyle(wb, "R", borderStyle, borderColor);
-
-                foreach (var cell in GetOrCreateCells(sheetName, range))
+                foreach (var cell in GetOrCreateCells(sheet, addr.First.Row, addr.First.Col, addr.Last.Row, addr.Last.Col))
                 {
                     if (cell.RowIndex == addr.Last.Row && cell.ColumnIndex == addr.Last.Col)
                         break;
 
-                    cell.CellStyle = cell.RowIndex == addr.Last.Row
-                        ? r
-                        : cell.ColumnIndex == addr.Last.Col
-                            ? b
-                            : br;
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+
+                    if (cell.RowIndex == addr.Last.Row)
+                    {
+                        ApplyBorderStyle(cellStyle, "R", borderStyle, borderColor);
+                    }
+                    else if (cell.ColumnIndex == addr.Last.Col)
+                    {
+                        ApplyBorderStyle(cellStyle, "B", borderStyle, borderColor);
+                    }
+                    else
+                    {
+                        ApplyBorderStyle(cellStyle, "BR", borderStyle, borderColor);
+                    }
+
+                    cell.CellStyle = cellStyle;
+                }
+            }
+            else if (border == Border.Outside)
+            {
+                foreach (var cell in GetOrCreateCells(sheet, addr.First.Row, addr.First.Col, addr.First.Row, addr.Last.Col))
+                {
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+                    ApplyBorderStyle(cellStyle, "T", borderStyle, borderColor);
+                    cell.CellStyle = cellStyle;
+                }
+                foreach (var cell in GetOrCreateCells(sheet, addr.First.Row, addr.Last.Col, addr.Last.Row, addr.Last.Col))
+                {
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+                    ApplyBorderStyle(cellStyle, "R", borderStyle, borderColor);
+                    cell.CellStyle = cellStyle;
+                }
+                foreach (var cell in GetOrCreateCells(sheet, addr.Last.Row, addr.First.Col, addr.Last.Row, addr.Last.Col))
+                {
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+                    ApplyBorderStyle(cellStyle, "B", borderStyle, borderColor);
+                    cell.CellStyle = cellStyle;
+                }
+                foreach (var cell in GetOrCreateCells(sheet, addr.First.Row, addr.First.Col, addr.Last.Row, addr.First.Col))
+                {
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+                    ApplyBorderStyle(cellStyle, "L", borderStyle, borderColor);
+                    cell.CellStyle = cellStyle;
                 }
             }
             else
             {
-                ICellStyle cellStyle = null;
+                var anchors = "TRBL";
                 switch (border)
                 {
-                    case Border.None:
-                    case Border.All:
-                        cellStyle = CreateBorderStyle(wb, "TBLR", borderStyle, borderColor);
-                        break;
-                    case Border.Top:
-                        cellStyle = CreateBorderStyle(wb, "T", borderStyle, borderColor);
-                        break;
                     case Border.Bottom:
-                        cellStyle = CreateBorderStyle(wb, "B", borderStyle, borderColor);
+                        addr.First.Row = addr.Last.Row;
+                        anchors = "B";
                         break;
+
                     case Border.Left:
-                        cellStyle = CreateBorderStyle(wb, "L", borderStyle, borderColor);
+                        addr.Last.Col = addr.First.Col;
+                        anchors = "L";
                         break;
+
                     case Border.Right:
-                        cellStyle = CreateBorderStyle(wb, "R", borderStyle, borderColor);
+                        addr.First.Col = addr.Last.Col;
+                        anchors = "R";
+                        break;
+
+                    case Border.Top:
+                        addr.Last.Row = addr.First.Row;
+                        anchors = "T";
                         break;
                 }
 
-                foreach (var cell in GetOrCreateCells(sheetName, range))
+                foreach (var cell in GetOrCreateCells(sheet, addr.First.Row, addr.First.Col, addr.Last.Row, addr.Last.Col))
+                {
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+                    ApplyBorderStyle(cellStyle, anchors, borderStyle, borderColor);
                     cell.CellStyle = cellStyle;
+                }
             }
 
             RequiresSave();
         }
 
-        protected abstract ICellStyle CreateBorderStyle(IWorkbook workbook, string anchors, NPOI.SS.UserModel.BorderStyle borderStyle, IColor borderColor);
+        protected abstract void ApplyBorderStyle(ICellStyle cellStyle, string anchors, NPOI.SS.UserModel.BorderStyle borderStyle, IColor borderColor);
+        protected abstract void ApplyBackgroundStyle(ICellStyle cellStyle, Color color);
 
         protected abstract IColor ConvertColor(Color color);
 
-        public void FillColor(string sheetName, string range, Color[] colors, FillOrientation orientation)
+        public virtual void FillColor(string sheetName, string range, Color[] colors, Enums.FillPattern pattern)
         {
             var wb = GetWorkbook();
-            _ = GetOrCreateSheet(sheetName);
+            var sheet = GetOrCreateSheet(sheetName);
+            var addr = new Internals.RangeAddress(range, true);
+            var cellStyle = wb.CreateCellStyle();
             var len = colors.Length;
-            var cells = GetOrCreateCells(sheetName, range);
-
-            if (!cells.Any() || len == 0)
+            if (len == 0)
                 return;
 
-            var index = 0;
+            var colorIndex = 0;
+            var cells = GetOrCreateCells(sheet, addr.First.Row, addr.First.Col, addr.Last.Row, addr.Last.Col);
 
-            ICellStyle[] styles = null;
-            if (IsOpenXml)
+            if (pattern == Enums.FillPattern.None)
             {
-                styles = colors.Select(c =>
+                foreach (var cell in cells)
                 {
-                    var style = (XSSFCellStyle)wb.CreateCellStyle();
-                    var color = (XSSFColor)ConvertColor(c);
-                    style.SetFillForegroundColor(color);
-                    style.FillPattern = FillPattern.SolidForeground;
-                    return style;
-                }).ToArray();
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+                    cellStyle.FillPattern = NPOI.SS.UserModel.FillPattern.NoFill;
+                    cell.CellStyle = cellStyle;
+                }
             }
-            else
+            else if (pattern == Enums.FillPattern.Chess)
             {
-                styles = colors.Select(c =>
-                {
-                    var style = wb.CreateCellStyle();
-                    style.FillForegroundColor = ((HSSFColor)ConvertColor(c)).Indexed;
-                    style.FillPattern = FillPattern.SolidForeground;
-                    return style;
-                }).ToArray();
-            }
-
-            if (orientation == FillOrientation.Chess)
-            {
-                var lastRow = cells.First().RowIndex;
+                var lastProcessedRowIndex = addr.First.Row;
                 var colsCount = 0;
                 foreach (var cell in cells)
                 {
-                    if (lastRow != cell.RowIndex)
+                    if (lastProcessedRowIndex != cell.RowIndex)
                     {
                         if (len == colsCount || colsCount % len == 0)
-                            index--;
+                            colorIndex--;
 
-                        lastRow = cell.RowIndex;
+                        lastProcessedRowIndex = cell.RowIndex;
                         colsCount = 0;
                     }
 
-                    if (index == len)
-                        index = 0;
+                    if (colorIndex == len)
+                        colorIndex = 0;
 
-                    cell.CellStyle = styles[index];
+                    cellStyle.CloneStyleFrom(cell.CellStyle);
+                    ApplyBackgroundStyle(cellStyle, colors[colorIndex]);
+                    cell.CellStyle = cellStyle;
 
-                    index++;
+                    colorIndex++;
                     colsCount++;
                 }
             }
@@ -258,9 +259,9 @@ namespace Autossential.Workbook.Core.Adapters
                 var firstCell = cells.First();
                 int currentCol, currentRow, firstCol;
 
-                switch (orientation)
+                switch (pattern)
                 {
-                    case FillOrientation.Horizontal:
+                    case Enums.FillPattern.Horizontal:
 
                         currentRow = firstCell.RowIndex;
                         foreach (var cell in cells)
@@ -268,16 +269,18 @@ namespace Autossential.Workbook.Core.Adapters
                             if (currentRow != cell.RowIndex)
                             {
                                 currentRow = cell.RowIndex;
-                                if (++index == len)
-                                    index = 0;
+                                if (++colorIndex == len)
+                                    colorIndex = 0;
                             }
 
-                            cell.CellStyle = styles[index];
+                            cellStyle.CloneStyleFrom(cell.CellStyle);
+                            ApplyBackgroundStyle(cellStyle, colors[colorIndex]);
+                            cell.CellStyle = cellStyle;
                         }
 
                         break;
 
-                    case FillOrientation.Vertical:
+                    case Enums.FillPattern.Vertical:
 
                         firstCol = firstCell.ColumnIndex;
                         currentCol = firstCol;
@@ -287,37 +290,17 @@ namespace Autossential.Workbook.Core.Adapters
                             if (currentCol != cell.ColumnIndex)
                             {
                                 currentCol = cell.ColumnIndex;
-                                if (++index == len || currentCol == firstCol)
-                                    index = 0;
+                                if (++colorIndex == len || currentCol == firstCol)
+                                    colorIndex = 0;
                             }
 
-                            cell.CellStyle = styles[index];
+                            cellStyle.CloneStyleFrom(cell.CellStyle);
+                            ApplyBackgroundStyle(cellStyle, colors[colorIndex]);
+                            cell.CellStyle = cellStyle;
                         }
 
                         break;
-                    case FillOrientation.DiagonalForward:
-
-                        currentCol = firstCell.ColumnIndex;
-                        currentRow = firstCell.RowIndex;
-
-                        foreach (var cell in cells)
-                        {
-                            if (currentRow != cell.RowIndex)
-                            {
-                                currentCol++;
-                                currentRow = cell.RowIndex;
-                            }
-
-                            if (currentCol == cell.ColumnIndex)
-                            {
-                                cell.CellStyle = styles[index];
-                                if (++index == len)
-                                    index = 0;
-                            }
-                        }
-
-                        break;
-                    case FillOrientation.DiagonalBackward:
+                    case Enums.FillPattern.DiagonalForward:
 
                         currentCol = cells.Last().ColumnIndex;
                         currentRow = firstCell.RowIndex;
@@ -332,9 +315,37 @@ namespace Autossential.Workbook.Core.Adapters
 
                             if (currentCol == cell.ColumnIndex)
                             {
-                                cell.CellStyle = styles[index];
-                                if (++index == len)
-                                    index = 0;
+                                cellStyle.CloneStyleFrom(cell.CellStyle);
+                                ApplyBackgroundStyle(cellStyle, colors[colorIndex]);
+                                cell.CellStyle = cellStyle;
+
+                                if (++colorIndex == len)
+                                    colorIndex = 0;
+                            }
+                        }
+
+                        break;
+                    case Enums.FillPattern.DiagonalBackward:
+
+                        currentCol = firstCell.ColumnIndex;
+                        currentRow = firstCell.RowIndex;
+
+                        foreach (var cell in cells)
+                        {
+                            if (currentRow != cell.RowIndex)
+                            {
+                                currentCol++;
+                                currentRow = cell.RowIndex;
+                            }
+
+                            if (currentCol == cell.ColumnIndex)
+                            {
+                                cellStyle.CloneStyleFrom(cell.CellStyle);
+                                ApplyBackgroundStyle(cellStyle, colors[colorIndex]);
+                                cell.CellStyle = cellStyle;
+
+                                if (++colorIndex == len)
+                                    colorIndex = 0;
                             }
                         }
 
@@ -374,9 +385,6 @@ namespace Autossential.Workbook.Core.Adapters
             var reader = GetReader();
             var dt = new DataTable();
             var addr = new Internals.RangeAddress(range);
-
-            if (!addr.First.IsValid)
-                throw new ArgumentException("The range is not valid " + range, nameof(range));
 
             do
             {
@@ -525,22 +533,15 @@ namespace Autossential.Workbook.Core.Adapters
                 cell.SetCellValue(value?.ToString());
         }
 
-        protected IEnumerable<ICell> GetOrCreateCells(string sheetName, string cellRange)
+        protected virtual IEnumerable<ICell> GetOrCreateCells(ISheet sheet, int firstRow, int firstCol, int lastRow, int lastCol)
         {
-            var sheet = GetWorkbook().GetSheet(sheetName);
-            var range = CellRangeAddress.ValueOf(cellRange);
-
-            var firstRow = range.FirstRow == -1 ? sheet.FirstRowNum : range.FirstRow;
-            var lastRow = range.LastRow == -1 ? sheet.LastRowNum : range.LastRow;
-
-            for (int i = firstRow; i <= lastRow; i++)
+            while (firstRow <= lastRow)
             {
-                var row = sheet.GetRow(i) ?? sheet.CreateRow(i);
-                for (int j = range.FirstColumn; j <= range.LastColumn; j++)
-                {
-                    var cell = row.GetCell(j) ?? row.CreateCell(j);
-                    yield return cell;
-                }
+                var row = sheet.GetRow(firstRow) ?? sheet.CreateRow(firstRow);
+                for (int col = firstCol; col <= lastCol; col++)
+                    yield return row.GetCell(col) ?? row.CreateCell(col);
+
+                firstRow++;
             }
         }
 
@@ -550,8 +551,13 @@ namespace Autossential.Workbook.Core.Adapters
         protected ICell GetOrCreateCell(ISheet sheet, string cellAddress)
         {
             var cellRef = new CellReference(cellAddress);
-            var row = sheet.GetRow(cellRef.Row) ?? sheet.CreateRow(cellRef.Row);
-            return row.GetCell(cellRef.Col) ?? row.CreateCell(cellRef.Col);
+            return GetOrCreateCell(sheet, cellRef.Row, cellRef.Col);
+        }
+
+        protected ICell GetOrCreateCell(ISheet sheet, int row, int col)
+        {
+            var rowRef = sheet.GetRow(row) ?? sheet.CreateRow(row);
+            return rowRef.GetCell(col) ?? rowRef.CreateCell(col);
         }
 
         protected ISheet GetOrCreateSheet(string sheetName)
@@ -831,6 +837,29 @@ namespace Autossential.Workbook.Core.Adapters
                     wb.SetSheetOrder(sheetName, index);
             }
 
+            RequiresSave();
+        }
+
+        public void ActivateSheet(object sheetNameOrIndex)
+        {
+            var wb = GetWorkbook();
+            var index = -1;
+            if (sheetNameOrIndex is string sheetName)
+            {
+                index = wb.GetSheetIndex(sheetName);
+            }
+            else if (sheetNameOrIndex is int sheetIndex)
+            {
+                index = sheetIndex;
+            }
+
+            if (index > wb.NumberOfSheets)
+                index = -1;
+
+            if (index < 0)
+                index = wb.NumberOfSheets + index;
+
+            wb.SetActiveSheet(index);
             RequiresSave();
         }
     }

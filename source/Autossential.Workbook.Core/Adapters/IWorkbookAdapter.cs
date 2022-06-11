@@ -7,6 +7,8 @@ namespace Autossential.Workbook.Core.Adapters
 {
     public interface IWorkbookAdapter : IDisposable
     {
+        void ActivateSheet(object sheetNameOrIndex);
+
         void AddHyperLink(string sheetName, string cell, string label, string link, string tooltip);
 
         void CreateNew();
@@ -31,7 +33,7 @@ namespace Autossential.Workbook.Core.Adapters
 
         void AppendRange(string sheetName, DataTable dataTable);
 
-        void FillColor(string sheetName, string range, Color[] colors, FillOrientation orientation);
+        void FillColor(string sheetName, string range, Color[] colors, FillPattern pattern);
 
         void DrawBorder(string sheetName, string range, Border border, BorderStyle style, Color color);
 

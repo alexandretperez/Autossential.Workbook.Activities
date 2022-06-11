@@ -1,11 +1,12 @@
 ﻿namespace Autossential.Workbook.Core.Enums
 {
-    public enum FillOrientation
+    public enum FillPattern
     {
-        Horizontal,
-        Vertical,
-        DiagonalForward,
+        Chess,
         DiagonalBackward,
-        Chess
+        DiagonalForward,
+        Horizontal,
+        None,
+        Vertical
     }
 }

@@ -11,11 +11,13 @@ namespace Autossential.Workbook.Activities.Design
         public const string MAIN_CATEGORY = "Autossential";
         public const string WORKBOOK = MAIN_CATEGORY + ".Workbook";
         public const string HYPERLINKS = WORKBOOK + ".Hyperlinks";
+        public const string STYLES = WORKBOOK + ".Styles";
 
         public void Register()
         {
             var workbook = new CategoryAttribute(WORKBOOK);
             var hyperlinks = new CategoryAttribute(HYPERLINKS);
+            var styles = new CategoryAttribute(STYLES);
 
             ActivitiesAttributesBuilder.Build(Resources.ResourceManager, builder =>
             {
@@ -31,12 +33,18 @@ namespace Autossential.Workbook.Activities.Design
                        .Register<WriteRange, WriteRangeDesigner>(workbook)
                        .Register<AppendRange, AppendRangeDesigner>(workbook)
                        .Register<WriteCell, WriteCellDesigner>(workbook)
-                       .Register<FillColor, FillColorDesigner>(workbook)
-                       .Register<FreezeUnfreezePanes, FreezeUnfreezePanesDesigner>(workbook);
+                       .Register<FreezeUnfreezePanes, FreezeUnfreezePanesDesigner>(workbook)
+                       .Register<RenameSheet, RenameSheetDesigner>(workbook)
+                       .Register<DeleteSheet, DeleteSheetDesigner>(workbook)
+                       .Register<MoveSheet, MoveSheetDesigner>(workbook)
+                       .Register<ActivateSheet, ActivateSheetDesigner>(workbook);
 
                 builder.Register<GetHyperlinks, GetHyperlinksDesigner>(hyperlinks)
                        .Register<InsertHyperlink, InsertHyperlinkDesigner>(hyperlinks)
                        .Register<RemoveHyperlinks, RemoveHyperlinksDesigner>(hyperlinks);
+
+                builder.Register<FillColor, FillColorDesigner>(styles)
+                    .Register<DrawBorder, DrawBorderDesigner>(styles);
 
                 builder.RegisterToMember(
                     new DescriptionAttribute(Resources.ScopeAwareCodeActivity_UseScope),
