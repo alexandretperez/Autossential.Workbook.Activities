@@ -1,15 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net461;net5.0-windows</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows</TargetFrameworks>
 		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
 		<SignAssembly>False</SignAssembly>
 		<PackageId>$(AssemblyName).Core</PackageId>
+		<!--<EnableDefaultCompileItems>false</EnableDefaultCompileItems>-->
 	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="NPOI" />
+	  <Compile Remove="ActivateSheet.cs" />
+	  <Compile Remove="AppendRange.cs" />
+	  <Compile Remove="Base\WorkbookActivity.cs" />
+	  <Compile Remove="DeleteSheet.cs" />
+	  <Compile Remove="DrawBorder.cs" />
+	  <Compile Remove="FillColor.cs" />
+	  <Compile Remove="FreezeUnfreezePanes.cs" />
+	  <Compile Remove="Hyperlinks\GetHyperlinks.cs" />
+	  <Compile Remove="Hyperlinks\GetSheetNames.cs" />
+	  <Compile Remove="Hyperlinks\InsertHyperlink.cs" />
+	  <Compile Remove="MoveSheet.cs" />
+	  <Compile Remove="RemoveHyperlinks.cs" />
+	  <Compile Remove="RenameSheet.cs" />
+	  <Compile Remove="WriteCell.cs" />
+	  <Compile Remove="WriteRange.cs" />
 	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Resources\ActivitiesMetadata.json" />
+		<None Remove="Resources\Icons\GetColumnCount.svg" />
+		<None Remove="Resources\Icons\GetRowCount.svg" />
+		<None Remove="Resources\Icons\GetSheetNames.svg" />
+		<None Remove="Resources\Icons\ReadRange.svg" />
+		<None Remove="Resources\Icons\WorkbookScope.svg" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\ActivitiesMetadata.json" />
+		<EmbeddedResource Include="Resources\Icons\ReadRange.svg" />
+		<EmbeddedResource Include="Resources\Icons\GetColumnCount.svg" />
+		<EmbeddedResource Include="Resources\Icons\GetRowCount.svg" />
+		<EmbeddedResource Include="Resources\Icons\GetSheetNames.svg" />
+		<EmbeddedResource Include="Resources\Icons\WorkbookScope.svg" />
+	</ItemGroup>
+	
+	
 	<ItemGroup Condition="'$(TargetFramework)' == 'net461' ">
+		<!--<PackageReference Include="NPOI" />-->
 		<Reference Include="PresentationCore" />
 		<Reference Include="PresentationFramework" />
 		<Reference Include="System.Activities" />
@@ -17,15 +50,17 @@
 		<Reference Include="WindowsBase" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' != 'net461' ">
+		<!--<PackageReference Include="NPOI" />-->
 		<PackageReference Include="System.Activities" />
 		<PackageReference Include="UiPath.Workflow" />
-		<PackageReference Include="System.Activities.Core.Presentation" />
 		<PackageReference Include="System.Activities.Metadata" />
 		<PackageReference Include="UiPath.Activities.Api" />
+		<PackageReference Include="System.Activities.Core.Presentation" />
+		<PackageReference Include="System.Activities.ViewModels" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <ProjectReference Include="..\Autossential.Workbook.Core\Autossential.Workbook.Core.csproj" />
+		<ProjectReference Include="..\Autossential.Workbook.Core\Autossential.Workbook.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -33,27 +68,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Properties\ResourcesGen.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>ResourcesGen.tt</DependentUpon>
-	  </Compile>
+		<Compile Update="Properties\ResourcesGen.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourcesGen.tt</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator></Generator>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator></Generator>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Properties\ResourcesGen.tt">
-	    <Generator>TextTemplatingFileGenerator</Generator>
-	    <LastGenOutput>ResourcesGen.cs</LastGenOutput>
-	  </None>
+		<None Update="Properties\ResourcesGen.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>ResourcesGen.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Hyperlinks\" />
 	</ItemGroup>
 
 	<Import Project="..\..\shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems" Label="Shared" />
-
 	<Import Project="..\..\shared\Autossential.Shared\Autossential.Shared.projitems" Label="Shared" />
+
 </Project>

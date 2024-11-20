@@ -1,0 +1,36 @@
+﻿using System.Activities.DesignViewModels;
+using System.Collections.Generic;
+
+namespace Autossential.Workbook.Activities.ViewModels
+{
+    public class GetColumnCountViewModel : DesignPropertiesViewModel
+    {
+        public DesignInArgument<string> SheetName { get; set; }
+        public DesignInArgument<string> Range { get; set; }
+        public DesignOutArgument<int> Result { get; set; }
+        public GetColumnCountViewModel(IDesignServices services) : base(services)
+        {
+        }
+
+        protected override void InitializeModel()
+        {
+            base.InitializeModel();
+            PersistValuesChangedDuringInit();
+
+            int orderIndex = 0;
+
+            SheetName.IsRequired = true;
+            SheetName.IsPrincipal = true;
+            SheetName.OrderIndex = orderIndex++;
+
+            Range.IsRequired = false;
+            Range.IsPrincipal = true;
+            Range.OrderIndex = orderIndex++;
+
+            Result.IsPrincipal = false;
+            Result.OrderIndex = orderIndex++;
+        }
+    }
+
+
+}

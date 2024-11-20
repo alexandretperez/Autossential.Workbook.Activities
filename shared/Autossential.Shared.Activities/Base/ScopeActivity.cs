@@ -35,7 +35,7 @@ namespace Autossential.Shared.Activities.Base
 
         protected override bool CanInduceIdle => true;
 
-        protected ScopeActivity()
+        public ScopeActivity()
         {
             InitializeBody();
         }

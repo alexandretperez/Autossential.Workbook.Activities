@@ -30,18 +30,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Autossential.Shared.Activit
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Autossential.Shared.Tests", "shared\Autossential.Shared.Tests\Autossential.Shared.Tests.shproj", "{013C5DEC-D237-413A-98D2-861FA32D38BB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autossential.Workbook.Activities.Packaging", "source\Autossential.Workbook.Activities.Packaging\Autossential.Workbook.Activities.Packaging.csproj", "{9DF6F89B-739C-4571-BD40-4A54333CE2D4}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		shared\Autossential.Shared.Tests\Autossential.Shared.Tests.projitems*{013c5dec-d237-413a-98d2-861fa32d38bb}*SharedItemsImports = 13
-		shared\Autossential.Shared.Activities.Design\Autossential.Shared.Activities.Design.projitems*{036c99d1-87b1-46d1-aed3-4e5e6ecdbaea}*SharedItemsImports = 13
-		shared\Autossential.Shared\Autossential.Shared.projitems*{4a817dbb-0c00-4285-a3db-5a0612a2778a}*SharedItemsImports = 13
-		shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems*{56225e2d-84a1-41c6-9d04-c73fb6b11783}*SharedItemsImports = 13
-		shared\Autossential.Shared.Activities.Design\Autossential.Shared.Activities.Design.projitems*{b2180406-32f0-457b-956c-5a83b802013a}*SharedItemsImports = 5
-		shared\Autossential.Shared\Autossential.Shared.projitems*{b2180406-32f0-457b-956c-5a83b802013a}*SharedItemsImports = 5
-		shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems*{b4eef90e-d60e-494f-a077-2d3447e949f0}*SharedItemsImports = 5
-		shared\Autossential.Shared\Autossential.Shared.projitems*{b4eef90e-d60e-494f-a077-2d3447e949f0}*SharedItemsImports = 5
-		shared\Autossential.Shared.Tests\Autossential.Shared.Tests.projitems*{fa1fbb12-90c8-4297-83d5-a91e298ebd52}*SharedItemsImports = 5
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -63,6 +54,10 @@ Global
 		{FA1FBB12-90C8-4297-83D5-A91E298EBD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA1FBB12-90C8-4297-83D5-A91E298EBD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA1FBB12-90C8-4297-83D5-A91E298EBD52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF6F89B-739C-4571-BD40-4A54333CE2D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF6F89B-739C-4571-BD40-4A54333CE2D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF6F89B-739C-4571-BD40-4A54333CE2D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF6F89B-739C-4571-BD40-4A54333CE2D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,5 +70,14 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {964A61BB-33BE-4805-BC59-F4456EA985C4}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		shared\Autossential.Shared.Tests\Autossential.Shared.Tests.projitems*{013c5dec-d237-413a-98d2-861fa32d38bb}*SharedItemsImports = 13
+		shared\Autossential.Shared.Activities.Design\Autossential.Shared.Activities.Design.projitems*{036c99d1-87b1-46d1-aed3-4e5e6ecdbaea}*SharedItemsImports = 13
+		shared\Autossential.Shared\Autossential.Shared.projitems*{4a817dbb-0c00-4285-a3db-5a0612a2778a}*SharedItemsImports = 13
+		shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems*{56225e2d-84a1-41c6-9d04-c73fb6b11783}*SharedItemsImports = 13
+		shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems*{b4eef90e-d60e-494f-a077-2d3447e949f0}*SharedItemsImports = 5
+		shared\Autossential.Shared\Autossential.Shared.projitems*{b4eef90e-d60e-494f-a077-2d3447e949f0}*SharedItemsImports = 5
+		shared\Autossential.Shared.Tests\Autossential.Shared.Tests.projitems*{fa1fbb12-90c8-4297-83d5-a91e298ebd52}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

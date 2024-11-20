@@ -478,7 +478,7 @@ namespace Autossential.Workbook.Core.Adapters
                     }
                     else if (col.DataType == typeof(bool))
                     {
-                        style.Alignment = HorizontalAlignment.Center;
+                        style.Alignment = NPOI.SS.UserModel.HorizontalAlignment.Center;
                     }
 
                     sheet.SetDefaultColumnStyle(col.Ordinal, style);

@@ -1,0 +1,39 @@
+{
+  "activities": [
+    {
+      "fullName": "Autossential.Workbook.Activities.WorkbookScope",
+      "shortName": "WorkbookScope",
+      "categoryKey": "Autossential.Workbook",
+      "iconKey": "WorkbookScope.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.WorkbookScopeViewModel"
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.GetSheetNames",
+      "shortName": "GetSheetNames",
+      "categoryKey": "Autossential.Workbook",
+      "iconKey": "GetSheetNames.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetSheetNamesViewModel"
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.GetRowCount",
+      "shortName": "GetRowCount",
+      "categoryKey": "Autossential.Workbook",
+      "iconKey": "GetRowCount.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetRowCountViewModel"
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.GetColumnCount",
+      "shortName": "GetColumnCount",
+      "categoryKey": "Autossential.Workbook",
+      "iconKey": "GetColumnCount.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetColumnCountViewModel"
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.ReadRange",
+      "shortName": "ReadRange",
+      "categoryKey": "Autossential.Workbook",
+      "iconKey": "ReadRange.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRangeViewModel"
+    }
+  ]
+}

@@ -31,7 +31,7 @@ namespace Autossential.Workbook.Activities
             if (CheckWorkbookPath && !File.Exists(path))
                 throw new FileNotFoundException(path);
 
-            using (var adapter = WorkbookAdapterFactory.Create(path))
+            using (var adapter = WorkbookFactory.Create(path))
             {
                 var result = await ExecuteAsync(context, adapter, token);
                 adapter.Save();

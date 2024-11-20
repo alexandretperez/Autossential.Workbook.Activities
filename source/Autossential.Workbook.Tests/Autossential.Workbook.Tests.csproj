@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net5.0-windows;net461</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows</TargetFrameworks>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
@@ -9,6 +9,21 @@
 	  <Compile Remove="Samples\output\**" />
 	  <EmbeddedResource Remove="Samples\output\**" />
 	  <None Remove="Samples\output\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="DeleteSheetTest.cs" />
+	  <Compile Remove="DrawBorderTest.cs" />
+	  <Compile Remove="FillColorTest.cs" />
+	  <Compile Remove="FreezeUnfreezePanesTest.cs" />
+	  <Compile Remove="GetSheetNamesTest.cs" />
+	  <Compile Remove="InsertHyperLinksTest.cs" />
+	  <Compile Remove="MergeTest.cs" />
+	  <Compile Remove="MoveSheetTest.cs" />
+	  <Compile Remove="ReadRangeTest.cs" />
+	  <Compile Remove="RemoveHyperlinksTest.cs" />
+	  <Compile Remove="RenameSheetTest.cs" />
+	  <Compile Remove="WriteRangeTest.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

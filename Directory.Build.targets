@@ -1,28 +1,26 @@
 ﻿<Project>
 	<ItemGroup>
-		<PackageReference Update="NPOI" Version="2.5.5" />
-		<PackageReference Update="ExcelDataReader" Version="3.6.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-		<PackageReference Update="DocumentFormat.OpenXml" Version="2.5.0" />
+		<PackageReference Update="NPOI" Version="2.5.6" />
+		<PackageReference Update="ExcelDataReader" Version="3.7.0" />
+		<PackageReference Update="ExcelDataReader.DataSet" Version="3.7.0" />
+		<PackageReference Update="DocumentFormat.OpenXml" Version="2.16.0" />
 		<PackageReference Update="System.Text.Encoding.CodePages" Version="6.0.0"/>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' != 'net461' ">
-		<PackageReference Update="System.Activities" Version="5.0.0-20210922-03" PrivateAssets="All"/>
-		<PackageReference Update="UiPath.Workflow" Version="5.0.0-20210922-03" PrivateAssets="All"/>
-		<PackageReference Update="System.Activities.Core.Presentation" Version="1.0.0-alpha004" PrivateAssets="All"/>
-		<PackageReference Update="System.Activities.Metadata" Version="1.0.0-alpha004" PrivateAssets="All"/>
-		<PackageReference Update="DocumentFormat.OpenXml" Version="2.7.2" />
-		<PackageReference Update="UiPath.Activities.Api" Version="21.10.3" PrivateAssets="All" />
-		<PackageReference Update="System.Drawing.Common" Version="5.0.0" />
+		<PackageReference Update="System.Activities" Version="5.0.0-20211103-03" PrivateAssets="All"/>
+		<PackageReference Update="UiPath.Workflow" Version="6.0.0-20231211-03" PrivateAssets="All"/>
+		<PackageReference Update="System.Activities.Core.Presentation" Version="6.0.0-20231204.1" PrivateAssets="All"/>
+		<PackageReference Update="System.Activities.Metadata" Version="6.0.0-20231204.1" PrivateAssets="All"/>
+		<PackageReference Update="UiPath.Activities.Api" Version="23.10.3" PrivateAssets="All" />
+		<PackageReference Update="System.Drawing.Common" Version="6.0.0" />
+		<PackageReference Update="System.Activities.ViewModels" Version="1.0.0-20240905.3"/>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-		<PackageReference Update="MSTest.TestAdapter" Version="2.2.3" />
-		<PackageReference Update="MSTest.TestFramework" Version="2.2.3" />
-		<PackageReference Update="coverlet.collector" Version="3.0.2" />
+		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+		<PackageReference Update="MSTest.TestAdapter" Version="3.6.3" />
+		<PackageReference Update="MSTest.TestFramework" Version="3.6.3" />
+		<PackageReference Update="coverlet.collector" Version="6.0.2" />
 	</ItemGroup>
 </Project>

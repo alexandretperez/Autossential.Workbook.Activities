@@ -39,7 +39,7 @@ namespace Autossential.Workbook.Core.Adapters
 
         protected override IColor ConvertColor(Color color)
         {
-            return new XSSFColor(color);
+            return new XSSFColor(new[] { color.R, color.G, color.B });
         }
 
         protected override IWorkbook GetWorkbook()

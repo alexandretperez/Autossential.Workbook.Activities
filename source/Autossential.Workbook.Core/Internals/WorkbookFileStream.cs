@@ -10,7 +10,7 @@ namespace Autossential.Workbook.Core.Internals
 
         public override void Close()
         {
-            // do not close.
+            base.Close();
         }
 
         public void CloseWorkbook()

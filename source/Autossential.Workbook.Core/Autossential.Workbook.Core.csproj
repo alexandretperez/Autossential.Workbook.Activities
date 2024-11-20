@@ -1,25 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net461;net5.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Processors\IWorkbookAdapter.cs" />
+	  <Compile Remove="Processors\OLE2WorkbookAdapter.cs" />
+	  <Compile Remove="Processors\OpenXmlWorkbookAdapter.cs" />
+	  <Compile Remove="Processors\WorkbookAdapterBase.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="NPOI" />
 		<PackageReference Include="ExcelDataReader" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+		<PackageReference Include="ExcelDataReader.DataSet" />
 		<PackageReference Include="System.Text.Encoding.CodePages" />
-	</ItemGroup>
-	
-	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-		<PackageReference Include="System.Drawing.Common" />
+		<PackageReference Include="DocumentFormat.OpenXml" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
 		<Reference Include="Microsoft.CSharp" />
 	</ItemGroup>
-
+	
+	<ItemGroup Condition="'$(TargetFramework)' != 'net461'">
+		<PackageReference Include="System.Drawing.Common" />
+	</ItemGroup>
 
 </Project>

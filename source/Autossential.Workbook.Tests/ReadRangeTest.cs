@@ -10,8 +10,8 @@ namespace Autossential.Workbook.Tests
     public class ReadRangeTest
     {
         [TestMethod]
-        [DataRow("openxml.xlsx")]
-   //     [DataRow("ole2.xls")]
+   //     [DataRow("openxml.xlsx")]
+        [DataRow("ole2.xls")]
         public void Read(string fileName)
         {
             var readRange = new ReadRange()
@@ -32,7 +32,7 @@ namespace Autossential.Workbook.Tests
             {
                 { nameof(ReadRange.WorkbookPath), filePath },
                 { nameof(ReadRange.SheetName), "Sheet1" },
-                { nameof(ReadRange.Range), "A1" }
+                { nameof(ReadRange.Range), "" }
             };
         }
     }

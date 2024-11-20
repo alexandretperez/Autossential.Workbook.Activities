@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 
-namespace Autossential.Workbook.Core.Adapters
+namespace Autossential.Workbook.Core.Processors
 {
     public interface IWorkbookAdapter : IDisposable
     {
