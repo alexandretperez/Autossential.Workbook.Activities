@@ -8,20 +8,13 @@ namespace Autossential.Workbook.Activities
     {
         public InArgument<string> SheetName { get; set; } = "Sheet1";
         public InArgument<string> Range { get; set; }
+        public bool UseColumnDataType { get; set; } = true;
         public bool HasHeaders { get; set; } = true;
         protected override DataTable Execute(CodeActivityContext context)
         {
             var sheetName = SheetName.Get(context);
             var range = Range.Get(context) ?? "A1";
-            var wb = context.GetWorkbook();
-            try
-            {
-                return wb.ReadRange(sheetName, range, HasHeaders);
-            }
-            finally
-            {
-                wb.Dispose();
-            }
+            return context.GetWorkbook().ReadRange(sheetName, range, HasHeaders, UseColumnDataType);
         }
     }
 }

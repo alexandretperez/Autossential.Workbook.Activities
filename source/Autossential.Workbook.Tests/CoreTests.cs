@@ -1,7 +1,13 @@
 ﻿using Autossential.Shared.Tests;
 using Autossential.Workbook.Core;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows.Documents;
 
 namespace Autossential.Workbook.Tests
 {
@@ -9,6 +15,8 @@ namespace Autossential.Workbook.Tests
     [TestClass]
     public class CoreTests
     {
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
         [DataRow("OXML_data.xlsx", "A1", 11)]
         [DataRow("OXML_data.xlsx", "B5", 7)]
@@ -108,7 +116,7 @@ namespace Autossential.Workbook.Tests
         {
             var path = IOSamples.GetSamplePath(fileName);
             var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
-            var dataTable = workbook.ReadRange("Sheet1", range, hasHeaders);
+            var dataTable = workbook.ReadRange("Sheet1", range, hasHeaders, false);
             workbook.Dispose();
             Assert.AreEqual(expectedRowCount, dataTable.Rows.Count);
             Assert.AreEqual(expectedColumnCount, dataTable.Columns.Count);
@@ -121,7 +129,7 @@ namespace Autossential.Workbook.Tests
         {
             var path = IOSamples.GetSamplePath(fileName);
             var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
-            Assert.ThrowsException<ArgumentException>(() => workbook.ReadRange("DoesNotExist", "A1", false));
+            Assert.ThrowsException<ArgumentException>(() => workbook.ReadRange("DoesNotExist", "A1", false, false));
             workbook.Dispose();
         }
 
@@ -132,7 +140,7 @@ namespace Autossential.Workbook.Tests
         {
             var path = IOSamples.GetSamplePath(fileName);
             var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
-            Assert.ThrowsException<ArgumentException>(() => workbook.ReadRange("", "A1", false));
+            Assert.ThrowsException<ArgumentException>(() => workbook.ReadRange("", "A1", false, false));
             workbook.Dispose();
         }
 
@@ -143,7 +151,7 @@ namespace Autossential.Workbook.Tests
         {
             var path = IOSamples.GetSamplePath(fileName);
             var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
-            Assert.ThrowsException<ArgumentException>(() => workbook.ReadRange("Sheet1", "A", false));
+            Assert.ThrowsException<ArgumentException>(() => workbook.ReadRange("Sheet1", "A", false, false));
             workbook.Dispose();
         }
 
@@ -157,6 +165,50 @@ namespace Autossential.Workbook.Tests
             var sheetNames = workbook.GetSheetNames();
             workbook.Dispose();
             CollectionAssert.AreEquivalent(sheetNames, new[] { "Sheet1", "Sheet2", "Sheet3", "Sheet4" });
+        }
+
+        [TestMethod]
+        [DataRow("OXML_data.xlsx")]
+        //[DataRow("BIFF8_data.xls")]
+        public void RenameSheet_SheetIndexValid_SheetNameChanged(string fileName)
+        {
+            // Arrange
+            var path = IOSamples.GetSamplePath(fileName);
+            const string expectedSheetName = "My Data";
+            const int sheetIndex = 0;
+
+            var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
+
+            // Act
+            workbook.RenameSheet(sheetIndex, expectedSheetName);
+            workbook.Save();
+            workbook.Dispose();
+
+            workbook = WorkbookProcessorFactory.OpenOrCreate(path);
+            var sheetName = workbook.GetSheetNames()[0];
+            Assert.AreEqual(expectedSheetName, sheetName);
+
+            workbook.RenameSheet(0, "Sheet1");
+            workbook.Save();
+            workbook.Dispose();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void RenameSheet_SheetIndexInvalid_ThrowsException()
+        {
+            // Arrange
+            // Arrange
+            var path = IOSamples.GetSamplePath("OXML_data.xlsx");
+            const string expectedSheetName = "NewSheetName";
+            const int invalidSheetIndex = 999; // Assuming this index doesn't exist
+
+            var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
+
+            // Act
+            workbook.RenameSheet(invalidSheetIndex, expectedSheetName);
+            workbook.Save();
+            workbook.Dispose();
         }
     }
 }

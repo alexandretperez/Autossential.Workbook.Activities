@@ -19,7 +19,6 @@
 	  <Compile Remove="Hyperlinks\InsertHyperlink.cs" />
 	  <Compile Remove="MoveSheet.cs" />
 	  <Compile Remove="RemoveHyperlinks.cs" />
-	  <Compile Remove="RenameSheet.cs" />
 	  <Compile Remove="WriteCell.cs" />
 	  <Compile Remove="WriteRange.cs" />
 	</ItemGroup>
@@ -29,14 +28,17 @@
 		<None Remove="Resources\Icons\GetRowCount.svg" />
 		<None Remove="Resources\Icons\GetSheetNames.svg" />
 		<None Remove="Resources\Icons\ReadRange.svg" />
+		<None Remove="Resources\Icons\SaveWorkbook.svg" />
 		<None Remove="Resources\Icons\WorkbookScope.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\ActivitiesMetadata.json" />
-		<EmbeddedResource Include="Resources\Icons\ReadRange.svg" />
 		<EmbeddedResource Include="Resources\Icons\GetColumnCount.svg" />
+		<EmbeddedResource Include="Resources\Icons\ReadRange.svg" />
+		<EmbeddedResource Include="Resources\Icons\RenameSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\GetRowCount.svg" />
 		<EmbeddedResource Include="Resources\Icons\GetSheetNames.svg" />
+		<EmbeddedResource Include="Resources\Icons\SaveWorkbook.svg" />
 		<EmbeddedResource Include="Resources\Icons\WorkbookScope.svg" />
 	</ItemGroup>
 	
@@ -61,10 +63,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Autossential.Workbook.Core\Autossential.Workbook.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -20,16 +20,7 @@ namespace Autossential.Workbook.Activities
         {
             var sheetName = SheetName.Get(context);
             var range = Range.Get(context) ?? "A1";
-
-            var wb = context.GetWorkbook();
-            try
-            {
-                return wb.GetRowCount(sheetName, range);
-            }
-            finally
-            {
-                wb.Dispose();
-            }
+            return context.GetWorkbook().GetRowCount(sheetName, range);
         }
     }
 }

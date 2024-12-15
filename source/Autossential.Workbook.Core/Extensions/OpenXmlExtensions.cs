@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
+using System.Data;
 using System.Linq;
 
 namespace Autossential.Workbook.Core.Extensions
@@ -34,5 +35,20 @@ namespace Autossential.Workbook.Core.Extensions
 
             return (WorksheetPart)workbookPart.GetPartById(sheet.Id);
         }
-    }
+
+
+        public static CellValues GetEquivalentCellDataType(this object value)
+        {
+            if (value is sbyte or byte or short or ushort or int or uint or long or ulong or float or double or decimal)
+                return CellValues.Number;
+
+            if (value is bool)
+                return CellValues.Boolean;
+
+            if (value is DateTime)
+                return CellValues.Date;
+
+            return CellValues.String;
+        }
+   }
 }

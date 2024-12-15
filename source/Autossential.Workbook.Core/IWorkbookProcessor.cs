@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 
 namespace Autossential.Workbook.Core
@@ -9,6 +8,9 @@ namespace Autossential.Workbook.Core
         string[] GetSheetNames();
         int GetRowCount(string sheetName, string range);
         int GetColumnCount(string sheetName, string range);
-        DataTable ReadRange(string sheetName, string range, bool hasHeaders);
+        DataTable ReadRange(string sheetName, string range, bool hasHeaders, bool useColumnDataType);
+        void RenameSheet(int sheetIndex, string newSheetName);
+        void RenameSheet(string fromSheetName, string toSheetName);
+        void Save();
     }
 }

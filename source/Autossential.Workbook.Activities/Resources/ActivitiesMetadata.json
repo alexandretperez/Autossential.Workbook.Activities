@@ -1,39 +1,68 @@
 {
+  "resourceManagerName": "Autossential.Workbook.Activities.Properties.Resources",
   "activities": [
     {
       "fullName": "Autossential.Workbook.Activities.WorkbookScope",
       "shortName": "WorkbookScope",
       "categoryKey": "Autossential.Workbook",
       "iconKey": "WorkbookScope.svg",
-      "viewModelType": "Autossential.Workbook.Activities.ViewModels.WorkbookScopeViewModel"
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.WorkbookScopeViewModel",
+      "displayNameKey": "WorkbookScope_DisplayName",
+      "descriptionKey": "WorkbookScope_Description"
     },
     {
       "fullName": "Autossential.Workbook.Activities.GetSheetNames",
       "shortName": "GetSheetNames",
       "categoryKey": "Autossential.Workbook",
       "iconKey": "GetSheetNames.svg",
-      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetSheetNamesViewModel"
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetSheetNamesViewModel",
+      "displayNameKey": "GetSheetNames_DisplayName",
+      "descriptionKey": "GetSheetNames_Description"
     },
     {
       "fullName": "Autossential.Workbook.Activities.GetRowCount",
       "shortName": "GetRowCount",
       "categoryKey": "Autossential.Workbook",
       "iconKey": "GetRowCount.svg",
-      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetRowCountViewModel"
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetRowCountViewModel",
+      "displayNameKey": "GetRowCount_DisplayName",
+      "descriptionKey": "GetRowCount_Description"
     },
     {
       "fullName": "Autossential.Workbook.Activities.GetColumnCount",
       "shortName": "GetColumnCount",
       "categoryKey": "Autossential.Workbook",
       "iconKey": "GetColumnCount.svg",
-      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetColumnCountViewModel"
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetColumnCountViewModel",
+      "displayNameKey": "GetColumnCount_DisplayName",
+      "descriptionKey": "GetColumnCount_Description"
     },
     {
       "fullName": "Autossential.Workbook.Activities.ReadRange",
       "shortName": "ReadRange",
       "categoryKey": "Autossential.Workbook",
       "iconKey": "ReadRange.svg",
-      "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRangeViewModel"
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRangeViewModel",
+      "displayNameKey": "ReadRange_DisplayName",
+      "descriptionKey": "ReadRange_Description"
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.RenameSheet",
+      "shortName": "RenameSheet",
+      "categoryKey": "Autossential.Workbook",
+      "iconKey": "RenameSheet.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.RenameSheetViewModel",
+      "displayNameKey": "RenameSheet_DisplayName",
+      "descriptionKey": "RenameSheet_Description"
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.SaveWorkbook",
+      "shortName": "SaveWorkbook",
+      "categoryKey": "Autossential.Workbook",
+      "iconKey": "SaveWorkbook.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.SaveWorkbookViewModel",
+      "displayNameKey": "SaveWorkbook_DisplayName",
+      "descriptionKey": "SaveWorkbook_Description"
     }
   ]
 }

@@ -12,7 +12,7 @@ namespace Autossential.Workbook.Core
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
-        public static IWorkbookProcessor OpenOrCreate(string path, bool createIfNotExists = false)
+        public static IWorkbookProcessor OpenOrCreate(string path)
         {
             RegisterProvider();
 
@@ -23,9 +23,9 @@ namespace Autossential.Workbook.Core
                 case ".xltm": // macro enabled template
                 case ".xlsx": // workbook
                 case ".xltx": // template
-                    return new OpenXMLWorkbookProcessor(path, createIfNotExists);
+                    return new OpenXMLWorkbookProcessor(path);
                 case ".xls": // workbook
-                    return new BIFF8WorkbookProcessor(path, createIfNotExists);
+                    return new BIFF8WorkbookProcessor(path);
                 default:
                     throw new InvalidOperationException("The file stream must be a BIFF8 or OOXML stream");
             }

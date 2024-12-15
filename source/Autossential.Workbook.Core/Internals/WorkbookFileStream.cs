@@ -1,10 +1,12 @@
-﻿using System.IO;
+﻿using Microsoft.Win32.SafeHandles;
+using System.Drawing;
+using System.IO;
 
 namespace Autossential.Workbook.Core.Internals
 {
     public sealed class WorkbookFileStream : FileStream
     {
-        public WorkbookFileStream(string path, FileMode mode) : base(path, mode)
+        public WorkbookFileStream(SafeFileHandle handle, FileAccess access) : base(handle, access)
         {
         }
 
@@ -12,11 +14,5 @@ namespace Autossential.Workbook.Core.Internals
         {
             base.Close();
         }
-
-        public void CloseWorkbook()
-        {
-            base.Close();
-        }
     }
-
 }

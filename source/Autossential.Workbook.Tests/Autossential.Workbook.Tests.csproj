@@ -16,7 +16,6 @@
 	  <Compile Remove="DrawBorderTest.cs" />
 	  <Compile Remove="FillColorTest.cs" />
 	  <Compile Remove="FreezeUnfreezePanesTest.cs" />
-	  <Compile Remove="GetSheetNamesTest.cs" />
 	  <Compile Remove="InsertHyperLinksTest.cs" />
 	  <Compile Remove="MergeTest.cs" />
 	  <Compile Remove="MoveSheetTest.cs" />

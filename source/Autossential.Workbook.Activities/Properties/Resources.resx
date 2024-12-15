@@ -117,26 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppendRange_Description" xml:space="preserve">
-    <value>Appends the data from a DataTable in a spreadsheet. If the sheet does not exist a new one is created with the SheetName value.</value>
-    <comment>activity description</comment>
-  </data>
-  <data name="AppendRange_DisplayName" xml:space="preserve">
-    <value>Append Range</value>
-    <comment>activity name</comment>
-  </data>
-  <data name="AppendRange_InputDataTable_Description" xml:space="preserve">
-    <value>The data table object containing the input data.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="AppendRange_SheetName_Description" xml:space="preserve">
-    <value>The name of the sheet from the workbook.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="AppendRange_WorkbookPath_Description" xml:space="preserve">
-    <value>The workbook file path.</value>
-    <comment>property description</comment>
-  </data>
   <data name="Common_Category" xml:space="preserve">
     <value>Common</value>
     <comment>category</comment>
@@ -211,30 +191,6 @@
   </data>
   <data name="GetSheetNames_Result_Description" xml:space="preserve">
     <value>The sheet names from the workbook.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="GetSheetNames_WorkbookPath_Description" xml:space="preserve">
-    <value>The workbook file path.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="GetSheetName_Description" xml:space="preserve">
-    <value>Gets the sheet name from a workbook at the specified index.</value>
-    <comment>activity description</comment>
-  </data>
-  <data name="GetSheetName_DisplayName" xml:space="preserve">
-    <value>Get Sheet Name</value>
-    <comment>activity name</comment>
-  </data>
-  <data name="GetSheetName_Result_Description" xml:space="preserve">
-    <value>The name of the sheet from the workbook.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="GetSheetName_SheetIndex_Description" xml:space="preserve">
-    <value>A zero-based sheet index to search for.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="GetSheetName_WorkbookPath_Description" xml:space="preserve">
-    <value>The workbook file path.</value>
     <comment>property description</comment>
   </data>
   <data name="InputOutput_Category" xml:space="preserve">
@@ -313,10 +269,6 @@
     <value>The name of the sheet from the workbook.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRange_WorkbookPath_Description" xml:space="preserve">
-    <value>The workbook file path.</value>
-    <comment>property description</comment>
-  </data>
   <data name="RemoveHyperlinks_Description" xml:space="preserve">
     <value>Removes the hyperlinks from the specified cell range.</value>
     <comment>activity description</comment>
@@ -373,56 +325,28 @@
     <value>The workbook file path.</value>
     <comment>property description</comment>
   </data>
-  <data name="WriteCell_Cell_Description" xml:space="preserve">
-    <value>The cell address (in range format) where the value will be written. e.g: "A3", "D5", "F9"...</value>
-    <comment>property description</comment>
+  <data name="GetColumnCount_DisplayName" xml:space="preserve">
+    <value>Get Column Count</value>
   </data>
-  <data name="WriteCell_Description" xml:space="preserve">
-    <value>Writes a value in a specific cell of the workbook.</value>
-    <comment>activity description</comment>
+  <data name="GetRowCount_DisplayName" xml:space="preserve">
+    <value>Get Row Count</value>
   </data>
-  <data name="WriteCell_DisplayName_Description" xml:space="preserve">
-    <value>Write Cell</value>
-    <comment>activity name</comment>
+  <data name="GetColumnCount_Description" xml:space="preserve">
+    <value>Returns the number of columns in use in the sheet.</value>
   </data>
-  <data name="WriteCell_SheetName_Description" xml:space="preserve">
-    <value>The name of the sheet from the workbook.</value>
-    <comment>property description</comment>
+  <data name="GetRowCount_Description" xml:space="preserve">
+    <value>Returns the number of rows in use in the sheet.</value>
   </data>
-  <data name="WriteCell_Value_Description" xml:space="preserve">
-    <value>The value to write on the cell.</value>
-    <comment>property description</comment>
+  <data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Rename Sheet</value>
   </data>
-  <data name="WriteCell_WorkbookPath_Description" xml:space="preserve">
-    <value>The workbook file path.</value>
-    <comment>property description</comment>
+  <data name="RenameSheet_Description" xml:space="preserve">
+    <value>Renames a sheet name based on its index (zero-based).</value>
   </data>
-  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
-    <value>Specifies if the first row written should be the column names from the DataTable input.</value>
-    <comment>property description</comment>
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
+    <value>Save Workbook</value>
   </data>
-  <data name="WriteRange_Description" xml:space="preserve">
-    <value>Writes the data from a DataTable in a spreadsheet starting form StartingCell. If StartingCell is not specified, it will start at A1. If the sheet does not exist a new one is created with the SheetName value. All cells within the DataTable range are overwritten.</value>
-    <comment>activity description</comment>
-  </data>
-  <data name="WriteRange_DisplayName" xml:space="preserve">
-    <value>Write Range</value>
-    <comment>activity name</comment>
-  </data>
-  <data name="WriteRange_InputDataTable_Description" xml:space="preserve">
-    <value>The data table object containing the input data.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="WriteRange_SheetName_Description" xml:space="preserve">
-    <value>The name of the sheet from the workbook.</value>
-    <comment>property description</comment>
-  </data>
-  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
-    <value>Specifies the starting cell (in range format) from which the input will be written. e.g: "A1", "C3", "E7"...</value>
-    <comment>property description</comment>
-  </data>
-  <data name="WriteRange_WorkbookPath_Description" xml:space="preserve">
-    <value>The workbook file path.</value>
-    <comment>property description</comment>
+  <data name="SaveWorkbook_Description" xml:space="preserve">
+    <value>Saves the changes to the workbook opened by Workbook Scope.</value>
   </data>
 </root>

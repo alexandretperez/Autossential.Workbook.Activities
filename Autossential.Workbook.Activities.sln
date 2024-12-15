@@ -76,6 +76,8 @@ Global
 		shared\Autossential.Shared.Activities.Design\Autossential.Shared.Activities.Design.projitems*{036c99d1-87b1-46d1-aed3-4e5e6ecdbaea}*SharedItemsImports = 13
 		shared\Autossential.Shared\Autossential.Shared.projitems*{4a817dbb-0c00-4285-a3db-5a0612a2778a}*SharedItemsImports = 13
 		shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems*{56225e2d-84a1-41c6-9d04-c73fb6b11783}*SharedItemsImports = 13
+		shared\Autossential.Shared.Activities.Design\Autossential.Shared.Activities.Design.projitems*{b2180406-32f0-457b-956c-5a83b802013a}*SharedItemsImports = 5
+		shared\Autossential.Shared\Autossential.Shared.projitems*{b2180406-32f0-457b-956c-5a83b802013a}*SharedItemsImports = 5
 		shared\Autossential.Shared.Activities\Autossential.Shared.Activities.projitems*{b4eef90e-d60e-494f-a077-2d3447e949f0}*SharedItemsImports = 5
 		shared\Autossential.Shared\Autossential.Shared.projitems*{b4eef90e-d60e-494f-a077-2d3447e949f0}*SharedItemsImports = 5
 		shared\Autossential.Shared.Tests\Autossential.Shared.Tests.projitems*{fa1fbb12-90c8-4297-83d5-a91e298ebd52}*SharedItemsImports = 5

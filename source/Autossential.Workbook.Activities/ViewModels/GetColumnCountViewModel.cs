@@ -1,5 +1,4 @@
 ﻿using System.Activities.DesignViewModels;
-using System.Collections.Generic;
 
 namespace Autossential.Workbook.Activities.ViewModels
 {
@@ -21,6 +20,8 @@ namespace Autossential.Workbook.Activities.ViewModels
 
             SheetName.IsRequired = true;
             SheetName.IsPrincipal = true;
+            SheetName.DisplayName = "Sheet Name";
+            SheetName.Placeholder = "Enter the sheet name";
             SheetName.OrderIndex = orderIndex++;
 
             Range.IsRequired = false;

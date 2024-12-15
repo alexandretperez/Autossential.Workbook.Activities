@@ -1,6 +1,4 @@
-﻿using Autossential.Shared.Activities.Constraints;
-using Autossential.Workbook.Activities.Extensions;
-using Autossential.Workbook.Activities.Properties;
+﻿using Autossential.Workbook.Activities.Extensions;
 using System.Activities;
 
 namespace Autossential.Workbook.Activities
@@ -10,23 +8,7 @@ namespace Autossential.Workbook.Activities
         protected override string[] Execute(CodeActivityContext context)
         {
             var wb = context.GetWorkbook();
-            try
-            {
-                return wb.GetSheetNames();
-            }
-            finally
-            {
-                wb.Dispose();
-            }
+            return wb.GetSheetNames();
         }
-    }
-
-    public abstract class WorkbookCodeActivity<TResult> : CodeActivity<TResult>
-    {
-        protected WorkbookCodeActivity()
-        {
-            Constraints.Add(ActivityConstraints.CreateConstraint<WorkbookCodeActivity<TResult>, WorkbookScope>(Resources.Validation_ScopeErrorFormat(nameof(WorkbookScope))));
-        }
-        protected abstract override TResult Execute(CodeActivityContext context);
     }
 }

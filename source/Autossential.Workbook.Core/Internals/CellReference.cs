@@ -56,7 +56,8 @@ namespace Autossential.Workbook.Core.Internals
 
             Row = row;
         }
-        public override string ToString() => $"{GetAddress()} (Col: {Col}; Row: {Row}; IsValid: {IsValid})";
+
+        public string Inspect() => $"{ToString()} (Col: {Col}; Row: {Row}; IsValid: {IsValid})";
 
         public string GetColumnName()
         {
@@ -76,7 +77,7 @@ namespace Autossential.Workbook.Core.Internals
             return columnName.ToString();
         }
 
-        public string GetAddress()
+        public override string ToString()
         {
             if (!IsValid) return string.Empty;
             return $"{GetColumnName()}{Row}";

@@ -12,20 +12,24 @@ namespace Autossential.Workbook.Core.Processors
     public abstract class WorkbookProcessorBase : IWorkbookProcessor
     {
         private IExcelDataReader _reader;
-        protected WorkbookProcessorBase(string filePath, bool createIfNotExist = true)
+        protected WorkbookProcessorBase(string filePath)
         {
-            if (createIfNotExist && !File.Exists(filePath))
-            {
-                CreateNew();
-                return;
-            }
+            FilePath = filePath;
 
-            Workbook = new WorkbookFileStream(filePath, FileMode.Open);
+            WorkbookStream = new MemoryStream();
+
+            var bytes = File.ReadAllBytes(FilePath);
+            WorkbookStream.Write(bytes, 0, bytes.Length);
+            WorkbookStream.Reset();
         }
 
-        protected WorkbookFileStream Workbook { get; }
+        protected MemoryStream WorkbookStream { get; }
 
-        public abstract void CreateNew();
+        public string FilePath { get; }
+
+        public abstract void Save();
+
+        protected bool RequiresSave { get; set; }
 
         private bool _disposed;
 
@@ -37,7 +41,7 @@ namespace Autossential.Workbook.Core.Processors
             if (disposing)
             {
                 _reader?.Dispose();
-                Workbook?.Dispose();
+                WorkbookStream?.Dispose();
             }
 
             _disposed = true;
@@ -67,7 +71,7 @@ namespace Autossential.Workbook.Core.Processors
                 throw new ArgumentException("Sheet name cannot be null or empty", nameof(sheetName));
         }
 
-        internal virtual OpenXMLRangeReference ResolveRange(string range)
+        internal virtual RangeReference ResolveRange(string range)
         {
             if (string.IsNullOrEmpty(range))
                 throw new ArgumentException("Range cannot be null or empty", nameof(range));
@@ -133,7 +137,7 @@ namespace Autossential.Workbook.Core.Processors
             return sheetNames;
         }
 
-        public virtual DataTable ReadRange(string sheetName, string range, bool hasHeaders)
+        public virtual DataTable ReadRange(string sheetName, string range, bool hasHeaders, bool useColumnDataType)
         {
             ValidateSheetName(sheetName);
 
@@ -147,7 +151,7 @@ namespace Autossential.Workbook.Core.Processors
             var dataSet = reader.AsDataSet(new ExcelDataSetConfiguration
             {
                 FilterSheet = (_, sheetIndex) => sheetIndex == index,
-                UseColumnDataType = false,
+                UseColumnDataType = useColumnDataType,
                 ConfigureDataTable = (_) => new ExcelDataTableConfiguration
                 {
                     UseHeaderRow = hasHeaders,
@@ -173,13 +177,9 @@ namespace Autossential.Workbook.Core.Processors
             return new DataTable();
         }
 
-        protected IExcelDataReader GetReader()
-        {
-            _reader ??= ExcelReaderFactory.CreateReader(Workbook.Reset(), new ExcelReaderConfiguration { LeaveOpen = true });
-            _reader.Reset();
-            Workbook.Seek(0, SeekOrigin.Begin);
-            return _reader;
-        }
+        protected IExcelDataReader GetReader() =>
+             ExcelReaderFactory.CreateReader(WorkbookStream.Reset(), new ExcelReaderConfiguration { LeaveOpen = true });
+
 
         private static void CountColumns(IExcelDataReader reader, RangeReference rangeRef, HashSet<int> processedColumns)
         {
@@ -249,5 +249,8 @@ namespace Autossential.Workbook.Core.Processors
 
             return count;
         }
+
+        public abstract void RenameSheet(int sheetIndex, string newSheetName);
+        public abstract void RenameSheet(string fromSheetName, string toSheetName);
     }
 }

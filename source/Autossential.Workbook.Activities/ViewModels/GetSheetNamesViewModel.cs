@@ -20,6 +20,4 @@ namespace Autossential.Workbook.Activities.ViewModels
             Result.OrderIndex = orderIndex++;
         }
     }
-
-
 }

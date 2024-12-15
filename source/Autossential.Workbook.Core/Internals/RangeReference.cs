@@ -51,7 +51,7 @@ namespace Autossential.Workbook.Core.Internals
         public string GetRange()
         {
             if (!IsValid) return string.Empty;
-            return $"{Start.GetAddress()}:{End.GetAddress()}";
+            return $"{Start.ToString()}:{End.ToString()}";
         }
 
         public bool IsInRange(uint row, uint col) =>

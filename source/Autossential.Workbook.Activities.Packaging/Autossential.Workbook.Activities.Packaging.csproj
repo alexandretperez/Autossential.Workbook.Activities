@@ -13,8 +13,7 @@
 		<Authors>Alexandre Toledo Perez</Authors>
 		<PackageTags>UiPath;Autossential;Workbook;Activities;Excel;OpenXml</PackageTags>
 		<Product>Autossential.Workbook.Activities.Packaging</Product>
-		<PackageIconUrl>https://download.uipath.com/UI_icon.png?web</PackageIconUrl>
-		<PackageOutputPath>..\..\Output\</PackageOutputPath>
+		<PackageOutputPath>..\..\..\Output\</PackageOutputPath>
 		<TargetsForTfmSpecificBuildOutput>AddDlls</TargetsForTfmSpecificBuildOutput>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<PackageIcon>packageIcon.png</PackageIcon>

@@ -12,7 +12,7 @@ namespace Autossential.Workbook.Activities
     {
         [RequiredArgument]
         public InArgument<string> WorkbookPath { get; set; }
-        //public InArgument<bool> CreateIfNotExists { get; set; }
+        public bool AutoSave { get; set; } = true;
 
         private IWorkbookProcessor _workbook;
 
@@ -25,7 +25,7 @@ namespace Autossential.Workbook.Activities
         protected override void Execute(NativeActivityContext context)
         {
             var path = WorkbookPath.Get(context);
-            _workbook = WorkbookProcessorFactory.OpenOrCreate(path, false);
+            _workbook = WorkbookProcessorFactory.OpenOrCreate(path);
             context.ScheduleAction(Body, _workbook, OnComplete, OnFaulted);
         }
 
@@ -37,6 +37,9 @@ namespace Autossential.Workbook.Activities
         private void OnComplete(NativeActivityContext context, ActivityInstance completedInstance)
         {
             if (_workbook == null) return;
+            if (AutoSave)
+                _workbook.Save();
+
             _workbook?.Dispose();
         }
 

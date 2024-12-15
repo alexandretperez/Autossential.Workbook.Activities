@@ -20,15 +20,7 @@ namespace Autossential.Workbook.Activities
         {
             var sheetName = SheetName.Get(context);
             var range = Range.Get(context) ?? "A1";
-            var wb = context.GetWorkbook();
-            try
-            {
-                return wb.GetColumnCount(sheetName, range);
-            }
-            finally
-            {
-                wb.Dispose();
-            }
+            return context.GetWorkbook().GetColumnCount(sheetName, range);
         }
     }
 }
