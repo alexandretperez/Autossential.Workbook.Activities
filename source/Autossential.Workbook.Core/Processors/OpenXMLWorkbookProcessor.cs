@@ -126,5 +126,17 @@ namespace Autossential.Workbook.Core.Processors
 
             return (-1, null);
         }
+
+        internal override RangeReference ResolveRange(string range)
+        {
+            if (string.IsNullOrEmpty(range))
+                throw new ArgumentException("Range cannot be null or empty", nameof(range));
+
+            var rangeRef = new OpenXMLRangeReference(range);
+            if (!rangeRef.IsValid)
+                throw new ArgumentException("Invalid range format", nameof(range));
+
+            return rangeRef;
+        }
     }
 }

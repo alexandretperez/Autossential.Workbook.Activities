@@ -39,10 +39,17 @@ namespace Autossential.Workbook.Core.Internals
             }
 
             Start = CreateCellReference(parts[0]);
-            End = parts.Length > 1
-                ? CreateCellReference(parts[1])
-                : CreateMaxCellReference();
+            if (parts.Length > 1)
+            {
+                End = CreateCellReference(parts[1]);
+            }
+            else
+            {
+                End = CreateMaxCellReference();
+                IsPartial = true;
+            }
         }
+        public bool IsPartial { get; private set; }
         protected void ValidateConstraints()
         {
             if (Start.Row > End.Row || Start.Col > End.Col)

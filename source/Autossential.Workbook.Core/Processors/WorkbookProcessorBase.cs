@@ -1,4 +1,8 @@
 ﻿using Autossential.Workbook.Core.Internals;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using NPOI.SS.Formula.Functions;
+using NPOI.Util;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 using Sylvan.Data;
 using Sylvan.Data.Excel;
 using System;
@@ -68,17 +72,7 @@ namespace Autossential.Workbook.Core.Processors
                 throw new ArgumentException("Sheet name cannot be null or empty", nameof(sheetName));
         }
 
-        internal virtual RangeReference ResolveRange(string range)
-        {
-            if (string.IsNullOrEmpty(range))
-                throw new ArgumentException("Range cannot be null or empty", nameof(range));
-
-            var rangeRef = new OpenXMLRangeReference(range);
-            if (!rangeRef.IsValid)
-                throw new ArgumentException("Invalid range format", nameof(range));
-
-            return rangeRef;
-        }
+        internal abstract RangeReference ResolveRange(string range);
 
         public virtual int GetColumnCount(string sheetName, string range)
         {
@@ -128,87 +122,174 @@ namespace Autossential.Workbook.Core.Processors
             return 0;
         }
 
-        private ExcelDataReaderOptions GetReaderOptions(bool hasHeaders, bool useColumnDataType)
+        private ExcelDataReaderOptions GetReaderOptions(string sheetName, bool hasHeaders, bool useColumnDataType)
         {
             ExcelDataReaderOptions options = null;
 
             if (useColumnDataType)
             {
-                using var r = GetReader();
-                var analyzer = new SchemaAnalyzer();
-                var result = analyzer.Analyze(r);
-                options = new ExcelDataReaderOptions { Schema = new ExcelSchema(hasHeaders, result.GetSchema().GetColumnSchema()) };
-                r.Close();
-            }
-            else
-            {
-                options = new ExcelDataReaderOptions { Schema = hasHeaders ? ExcelSchema.Dynamic : ExcelSchema.NoHeaders };
+                using var reader = GetReader();
+
+                do
+                {
+                    if (reader.WorksheetName == sheetName)
+                    {
+                        var analyzer = new SchemaAnalyzer();
+                        var result = analyzer.Analyze(reader);
+                        options = new ExcelDataReaderOptions { Schema = new ExcelSchema(hasHeaders, result.GetSchema().GetColumnSchema()) };
+                    }
+
+                } while (reader.NextResult());
+
+                reader.Close();
+
+                if (options != null)
+                    return options;
             }
 
-            return options;
+            return new ExcelDataReaderOptions { Schema = hasHeaders ? ExcelSchema.Default : ExcelSchema.NoHeaders };
         }
 
         public virtual DataTable ReadRange(string sheetName, string range, bool hasHeaders, bool useColumnDataType)
         {
             ValidateSheetName(sheetName);
 
-            var index = Array.IndexOf(GetSheetNames(), sheetName);
-            if (index == -1)
-                throw new ArgumentException("Sheet name not found", nameof(sheetName));
-
             var rangeRef = ResolveRange(range);
 
-            using var reader = GetReader(GetReaderOptions(hasHeaders, useColumnDataType));
+            using var reader = GetReader(GetReaderOptions(sheetName, hasHeaders, useColumnDataType));
+
+            while (reader.WorksheetName != sheetName)
+                reader.NextResult();
+
+            if (reader.WorksheetName != sheetName)
+                throw new ArgumentException("Sheet name not found", nameof(sheetName));
 
             var dt = new DataTable();
 
-            do
-            {
-                if (reader.WorksheetName != sheetName)
-                    continue;
+            if (range == "A1")
+                return ReadByLoadReader(sheetName, range, hasHeaders, useColumnDataType, reader, dt);
 
-                if (range == "A1")
+
+            int maxColumnCount = 1;
+
+            while (reader.Read())
+            {
+                if (!rangeRef.IsRowInRange(reader.RowNumber))
                 {
-                    dt.Load(reader);
-                    return dt;
+                    if (reader.RowNumber > rangeRef.End.Row)
+                        break;
+
+                    continue;
                 }
 
-                do
+                if (dt.Columns.Count == 0)
                 {
-                    if (!rangeRef.IsRowInRange(reader.RowNumber))
-                    {
-                        if (reader.RowNumber > rangeRef.End.Row)
-                            break;
-
+                    AddHeaders(hasHeaders, rangeRef, reader, dt);
+                    if (rangeRef.Start.Row > 1 && hasHeaders)
                         continue;
-                    }
+                }
 
-                    if (dt.Columns.Count == 0)
-                    {
-                        rangeRef.ForEachColumn((col, index) =>
-                        {
-                            var value = reader.RowNumber == 1 ? reader.GetName(col - 1) : reader.GetValue(col - 1);
-                            if (hasHeaders)
-                            {
-                                dt.Columns.Add(value?.ToString());
-                            }
-                            else
-                            {
-                                dt.Columns.Add($"Col{index + 1}");
-                            }
-                        });
+                if (reader.RowNumber == 1)
+                    AddRows(dt, reader, rangeRef, (i) => reader.GetName(i), ref maxColumnCount);
+                else
+                    AddRows(dt, reader, rangeRef, (i) => reader.GetValue(i), ref maxColumnCount);
+            }
 
-                        if (hasHeaders)
-                            continue;
-                    }
+            return rangeRef.IsPartial ? TrimUnusedColumns(dt, maxColumnCount) : dt;
+        }
 
-                    var row = dt.NewRow();
-                    rangeRef.ForEachColumn((col, index) => row[index] = reader.GetValue(col - 1));
-                    dt.Rows.Add(row);
+        public static DataTable TrimUnusedColumns(DataTable dt, int maxColumnCount)
+        {
+            if (dt.Columns.Count == maxColumnCount)
+                return dt;
 
-                } while (reader.Read());
+            int rows = dt.Rows.Count;
 
-            } while (reader.NextResult());
+            object[] data = new object[rows * maxColumnCount];
+
+            for (int i = 0; i < rows; i++)
+            {
+                var rowSpan = data.AsSpan(i * maxColumnCount, maxColumnCount);
+                for (int j = 0; j < maxColumnCount; j++)
+                {
+                    rowSpan[j] = dt.Rows[i][j];
+                }
+            }
+
+            var result = new DataTable();
+            for (int i = 0; i < maxColumnCount; i++)
+                result.Columns.Add(dt.Columns[i].ColumnName, dt.Columns[i].DataType);
+
+            for (int i = 0; i < rows; i++)
+            {
+                var row = result.NewRow();
+                var rowSpan = data.AsSpan(i * maxColumnCount, maxColumnCount);
+                for (int j = 0; j < maxColumnCount; j++)
+                {
+                    row[j] = rowSpan[j];
+                }
+                result.Rows.Add(row);
+            }
+
+            return result;
+        }
+
+        private static void AddRows(DataTable dt, ExcelDataReader reader, RangeReference rangeRef, Func<int, object> readValue, ref int maxColumnCount)
+        {
+            var maxColIndex = 0;
+            var row = dt.NewRow();
+            rangeRef.ForEachColumn((col, index) =>
+            {
+                var value = readValue(col - 1);
+                if (value == DBNull.Value || (value is string valueStr && string.IsNullOrEmpty(valueStr)))
+                    return;
+
+                row[index] = value;
+                maxColIndex = Math.Max(maxColIndex, index);
+            });
+            dt.Rows.Add(row);
+            maxColumnCount = Math.Max(maxColumnCount, maxColIndex + 1);
+        }
+
+        private static void AddHeaders(bool hasHeaders, RangeReference rangeRef, ExcelDataReader reader, DataTable dt)
+        {
+            if (hasHeaders)
+            {
+                if (rangeRef.Start.Row == 1)
+                {
+                    rangeRef.ForEachColumn((col, _) => dt.Columns.Add(reader.GetName(col - 1)));
+                }
+                else
+                {
+                    rangeRef.ForEachColumn((col, _) => dt.Columns.Add(reader.GetString(col - 1)));
+                }
+
+                return;
+            }
+
+            rangeRef.ForEachColumn((_, index) => dt.Columns.Add($"Col{index + 1}"));
+        }
+
+        private DataTable ReadByLoadReader(string sheetName, string range, bool hasHeaders, bool useColumnDataType, ExcelDataReader reader, DataTable dt)
+        {
+            try
+            {
+                dt.Load(reader);
+                if (!hasHeaders)
+                {
+                    for (int i = 0; i < dt.Columns.Count; i++)
+                        dt.Columns[i].ColumnName = $"Col{i + 1}";
+                }
+            }
+            catch (Exception)
+            {
+                reader.Close();
+
+                // retry disabling the data type constraints
+
+                if (useColumnDataType)
+                    return ReadRange(sheetName, range, hasHeaders, false);
+            }
 
             return dt;
         }

@@ -13,10 +13,19 @@
 
 	<ItemGroup>
 		<PackageReference Include="NPOI" />
-		<PackageReference Include="Sylvan.Data.Excel" />
-		<PackageReference Include="Sylvan.Data" />
+		<!--<PackageReference Include="Sylvan.Data.Excel" />-->
+		<!--<PackageReference Include="Sylvan.Data" />-->
 		<PackageReference Include="System.Text.Encoding.CodePages" />
 		<PackageReference Include="DocumentFormat.OpenXml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Sylvan.Data.Excel">
+			<HintPath>D:\Users\alexa\source\repos\NET\Sylvan.Data.Excel\bin\Debug\net6.0\Sylvan.Data.Excel.dll</HintPath>
+		</Reference>
+		<Reference Include="Sylvan.Data">
+			<HintPath>D:\Users\alexa\source\repos\NET\Sylvan\bin\Debug\net6.0\Sylvan.Data.dll</HintPath>
+		</Reference>		
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">

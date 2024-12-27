@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0-windows</TargetFrameworks>
@@ -18,12 +18,25 @@
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<PackageIcon>packageIcon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug' AND '$(DesignTimeBuild)' != 'true'">
 		<PackageVersion>$(Version)-dev.$(VersionBuild)$(VersionRevision)</PackageVersion>
 	</PropertyGroup>
-	
+
+	<ItemGroup>
+	  <None Include="..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\Autossential.Workbook.Activities.Design\packageIcon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Sylvan.Data" />
 		<PackageReference Include="Sylvan.Data.Excel" />
@@ -60,10 +73,14 @@
 	</Target>
 
 	<ItemGroup>
-	  <None Include="..\Autossential.Workbook.Activities.Design\packageIcon.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Update="packageIcon.png">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -71,7 +88,6 @@
 			<PrivateAssets>All</PrivateAssets>
 		</ProjectReference>
 	</ItemGroup>
-
 
 </Project>
 
