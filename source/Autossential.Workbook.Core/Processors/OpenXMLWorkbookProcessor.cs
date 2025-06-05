@@ -1,7 +1,6 @@
 ﻿using Autossential.Workbook.Core.Internals;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using NPOI.SS.UserModel;
 using Sylvan.Data.Excel;
 using System;
 using System.IO;
@@ -91,27 +90,62 @@ namespace Autossential.Workbook.Core.Processors
             ActivateSheet(sheetIndex);
         }
 
+        //public override void ActivateSheet(int sheetIndex)
+        //{
+        //    var document = GetDocument();
+        //    var wbPart = document.WorkbookPart;
+        //    var wb = wbPart.Workbook;
+        //    var sheets = wb.Sheets;
+        //    if (sheetIndex < 0 || sheetIndex >= sheets.Count())
+        //        throw new ArgumentOutOfRangeException(nameof(sheetIndex), sheetIndex, "Sheet index is out of range");
+
+        //    var workbookView = wb.BookViews?.OfType<WorkbookView>().FirstOrDefault();
+        //    if (workbookView == null)
+        //    {
+        //        workbookView = new WorkbookView();
+        //        wb.BookViews ??= new BookViews();
+        //        wb.BookViews.Append(workbookView);
+        //    }
+
+        //    workbookView.ActiveTab = (uint)sheetIndex;
+        //    SaveInMemory();
+        //    RequiresSave = true;
+        //}
+
         public override void ActivateSheet(int sheetIndex)
         {
-            var document = GetDocument();
-            var wbPart = document.WorkbookPart;
-            var wb = wbPart.Workbook;
-            var sheets = wb.Sheets;
-            if (sheetIndex < 0 || sheetIndex >= sheets.Count())
-                throw new ArgumentOutOfRangeException(nameof(sheetIndex), sheetIndex, "Sheet index is out of range");
+            var doc = GetDocument();
+            WorkbookPart workbookPart = doc.WorkbookPart;
+            Sheets sheets = workbookPart.Workbook.Sheets;
+            Sheet sheetToActivate = sheets.Elements<Sheet>().ElementAtOrDefault(sheetIndex);
 
-            var workbookView = wb.BookViews?.OfType<WorkbookView>().FirstOrDefault();
-            if (workbookView == null)
+            if (sheetToActivate != null)
             {
-                workbookView = new WorkbookView();
-                wb.BookViews ??= new BookViews();
-                wb.BookViews.Append(workbookView);
-            }
+                // Define a aba ativa corretamente
+                WorkbookView workbookView = workbookPart.Workbook.BookViews.Elements<WorkbookView>().FirstOrDefault();
+                if (workbookView != null)
+                {
+                    workbookView.ActiveTab = (uint)sheetIndex;
+                }
 
-            workbookView.ActiveTab = (uint)sheetIndex;
-            SaveInMemory();
-            RequiresSave = true;
+                // Percorre todas as planilhas e remove a seleção de qualquer outra aba
+                foreach (Sheet sheet in sheets.Elements<Sheet>())
+                {
+                    WorksheetPart sheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
+                    SheetView sheetView = sheetPart.Worksheet.Elements<SheetViews>().FirstOrDefault()?.Elements<SheetView>().FirstOrDefault();
+
+                    if (sheetView != null)
+                    {
+                        sheetView.TabSelected = (sheet == sheetToActivate); // Apenas a planilha selecionada será marcada
+                    }
+                }
+
+                SaveInMemory();
+                RequiresSave = true;
+            }
         }
+
+
 
         public override (int index, string name) GetActiveSheet()
         {

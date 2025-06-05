@@ -1,5 +1,4 @@
 ﻿using System.Activities.DesignViewModels;
-using System.Collections.Generic;
 
 namespace Autossential.Workbook.Activities.ViewModels
 {

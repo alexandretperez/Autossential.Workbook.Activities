@@ -1,8 +1,4 @@
 ﻿using Autossential.Workbook.Core.Internals;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using NPOI.SS.Formula.Functions;
-using NPOI.Util;
-using Org.BouncyCastle.Bcpg.OpenPgp;
 using Sylvan.Data;
 using Sylvan.Data.Excel;
 using System;
@@ -158,8 +154,12 @@ namespace Autossential.Workbook.Core.Processors
 
             using var reader = GetReader(GetReaderOptions(sheetName, hasHeaders, useColumnDataType));
 
-            while (reader.WorksheetName != sheetName)
-                reader.NextResult();
+            do
+            {
+                if (reader.WorksheetName == sheetName)
+                    break;
+
+            } while (reader.NextResult());
 
             if (reader.WorksheetName != sheetName)
                 throw new ArgumentException("Sheet name not found", nameof(sheetName));

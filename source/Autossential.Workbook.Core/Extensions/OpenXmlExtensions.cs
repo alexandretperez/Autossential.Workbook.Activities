@@ -1,7 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
-using System.Data;
 using System.Linq;
 
 namespace Autossential.Workbook.Core.Extensions
@@ -50,5 +49,5 @@ namespace Autossential.Workbook.Core.Extensions
 
             return CellValues.String;
         }
-   }
+    }
 }

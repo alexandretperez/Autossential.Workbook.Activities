@@ -1,5 +1,4 @@
 ﻿using System.Activities.DesignViewModels;
-using System.Collections.Generic;
 
 namespace Autossential.Workbook.Activities.ViewModels
 {
@@ -26,7 +25,7 @@ namespace Autossential.Workbook.Activities.ViewModels
             SheetName.OrderIndex = orderIndex++;
 
             Range.IsRequired = false;
-            Range.IsPrincipal = true;
+            Range.IsPrincipal = false;
             Range.OrderIndex = orderIndex++;
 
             Result.IsPrincipal = false;

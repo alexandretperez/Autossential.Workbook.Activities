@@ -1,30 +1,47 @@
-﻿using Autossential.Workbook.Activities.Extensions;
+﻿using Autossential.Shared;
+using Autossential.Workbook.Activities.Extensions;
+using Autossential.Workbook.Activities.Properties;
 using System.Activities;
 
 namespace Autossential.Workbook.Activities
 {
     public sealed class RenameSheet : WorkbookCodeActivity
     {
-        public InArgument<int> SheetIndex { get; set; }
+        public InArgument SheetNameOrIndex { get; set; }
 
-        public InArgument<string> FromSheetName { get; set; }
+        public InArgument<string> NewSheetName { get; set; }
 
-        [RequiredArgument]
-        public InArgument<string> ToSheetName { get; set; }
+        protected override void CacheMetadata(CodeActivityMetadata metadata)
+        {
+            base.CacheMetadata(metadata);
 
-        public bool FindByIndex { get; set; } = false;
+            if (SheetNameOrIndex == null)
+            {
+                metadata.AddValidationError(Resources.Validation_ValueErrorFormat(nameof(SheetNameOrIndex)));
+            }
+            else if (SheetNameOrIndex.IsArgumentTypeAnyCompatible<int, string>())
+            {
+                metadata.AddRuntimeArgument(SheetNameOrIndex, SheetNameOrIndex.ArgumentType, nameof(SheetNameOrIndex), true);
+            }
+            else
+            {
+                metadata.AddValidationError(Resources.Validation_TypeErrorFormat("int or string", nameof(SheetNameOrIndex)));
+            }
+        }
 
         protected override void Execute(CodeActivityContext context)
         {
-            var sheetIndex = SheetIndex.Get(context);
-            var fromSheetName = FromSheetName.Get(context);
-            var toSheetName = ToSheetName.Get(context);
+            var sheet = SheetNameOrIndex.Get(context);
+            var newSheetName = NewSheetName.Get(context);
 
-            var workbook = context.GetWorkbook();
-            if (FindByIndex)
-                workbook.RenameSheet(sheetIndex, toSheetName);
-            else
-                workbook.RenameSheet(fromSheetName, toSheetName);
+            if (sheet is string sheetName)
+            {
+                context.GetWorkbook().RenameSheet(sheetName, newSheetName);
+            }
+            else if (sheet is int sheetIndex)
+            {
+                context.GetWorkbook().RenameSheet(sheetIndex, newSheetName);
+            }
         }
     }
 }

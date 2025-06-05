@@ -6,6 +6,38 @@ namespace Autossential.Workbook.Activities.ViewModels
 {
     public class RenameSheetViewModel : DesignPropertiesViewModel
     {
+        public RenameSheetViewModel(IDesignServices services) : base(services)
+        {
+        }
+
+        public DesignInArgument SheetNameOrIndex { get; set; }
+        public DesignInArgument<string> NewSheetName { get; set; }
+
+        protected override void InitializeModel()
+        {
+            base.InitializeModel();
+            PersistValuesChangedDuringInit();
+
+            int orderIndex = 0;
+
+            SheetNameOrIndex.IsRequired = true;
+            SheetNameOrIndex.IsPrincipal = true;
+            SheetNameOrIndex.OrderIndex = orderIndex++;
+            SheetNameOrIndex.Placeholder = "Enter the sheet name or zero-based index";
+            SheetNameOrIndex.DisplayName = "Sheet Name or Index";
+            SheetNameOrIndex.Tooltip = "Enter the sheet name or zero-based index";
+
+            NewSheetName.IsRequired = true;
+            NewSheetName.IsPrincipal = true;
+            NewSheetName.OrderIndex = orderIndex++;
+            NewSheetName.Placeholder = "Enter the new sheet name";
+            NewSheetName.DisplayName = "New Sheet Name";
+            NewSheetName.Tooltip = "Enter the new sheet name";
+        }
+    }
+
+    /*public class RenameSheetViewModel : DesignPropertiesViewModel
+    {
         public DesignInArgument<string> ToSheetName { get; set; }
         public DesignInArgument<int> SheetIndex { get; set; }
         public DesignInArgument<string> FromSheetName { get; set; }
@@ -70,5 +102,5 @@ namespace Autossential.Workbook.Activities.ViewModels
             ToSheetName.Placeholder = "Enter a sheet name";
             ToSheetName.OrderIndex = orderIndex++;
         }
-    }
+    }*/
 }

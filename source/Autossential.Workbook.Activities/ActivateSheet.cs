@@ -7,29 +7,29 @@ namespace Autossential.Workbook.Activities
 {
     public sealed class ActivateSheet : WorkbookCodeActivity
     {
-        public InArgument Sheet { get; set; }
+        public InArgument SheetNameOrIndex { get; set; }
 
         protected override void CacheMetadata(CodeActivityMetadata metadata)
         {
             base.CacheMetadata(metadata);
 
-            if (Sheet == null)
+            if (SheetNameOrIndex == null)
             {
-                metadata.AddValidationError(Resources.Validation_ValueErrorFormat(nameof(Sheet)));
+                metadata.AddValidationError(Resources.Validation_ValueErrorFormat(nameof(SheetNameOrIndex)));
             }
-            else if (Sheet.IsArgumentTypeAnyCompatible<int, string>())
+            else if (SheetNameOrIndex.IsArgumentTypeAnyCompatible<int, string>())
             {
-                metadata.AddRuntimeArgument(Sheet, Sheet.ArgumentType, nameof(Sheet), true);
+                metadata.AddRuntimeArgument(SheetNameOrIndex, SheetNameOrIndex.ArgumentType, nameof(SheetNameOrIndex), true);
             }
             else
             {
-                metadata.AddValidationError(Resources.Validation_TypeErrorFormat("int or string", nameof(Sheet)));
+                metadata.AddValidationError(Resources.Validation_TypeErrorFormat("int or string", nameof(SheetNameOrIndex)));
             }
         }
 
         protected override void Execute(CodeActivityContext context)
         {
-            var sheet = Sheet.Get(context);
+            var sheet = SheetNameOrIndex.Get(context);
             if (sheet is string sheetName)
             {
                 context.GetWorkbook().ActivateSheet(sheetName);

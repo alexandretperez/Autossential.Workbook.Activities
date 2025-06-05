@@ -8,7 +8,7 @@ namespace Autossential.Workbook.Activities.ViewModels
         {
         }
 
-        public DesignInArgument Sheet { get; set; }
+        public DesignInArgument SheetNameOrIndex { get; set; }
 
         protected override void InitializeModel()
         {
@@ -17,12 +17,12 @@ namespace Autossential.Workbook.Activities.ViewModels
 
             int orderIndex = 0;
 
-            Sheet.IsRequired = true;
-            Sheet.IsPrincipal = true;
-            Sheet.OrderIndex = orderIndex++;
-            Sheet.Placeholder = "Enter the sheet name or zero-based index";
-            Sheet.DisplayName = "Sheet Name or Index";
-            Sheet.Tooltip = "Enter the sheet name or zero-based index";
+            SheetNameOrIndex.IsRequired = true;
+            SheetNameOrIndex.IsPrincipal = true;
+            SheetNameOrIndex.OrderIndex = orderIndex++;
+            SheetNameOrIndex.Placeholder = "Enter the sheet name or zero-based index";
+            SheetNameOrIndex.DisplayName = "Sheet Name or Index";
+            SheetNameOrIndex.Tooltip = "Enter the sheet name or zero-based index";
         }
     }
 }

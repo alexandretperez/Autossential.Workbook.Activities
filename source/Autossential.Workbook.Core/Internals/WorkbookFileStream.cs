@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32.SafeHandles;
-using System.Drawing;
 using System.IO;
 
 namespace Autossential.Workbook.Core.Internals

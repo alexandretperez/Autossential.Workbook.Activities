@@ -338,7 +338,7 @@
     <comment>activity description</comment>
   </data>
   <data name="GetRowCount_Description" xml:space="preserve">
-    <value>Returns the number of rows in use in the sheet.</value>
+    <value>Returns the number of rows in use in the worksheet. Note that table headers are also part of the count.</value>
     <comment>activity description</comment>
   </data>
   <data name="RenameSheet_DisplayName" xml:space="preserve">

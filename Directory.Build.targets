@@ -4,7 +4,7 @@
 		<PackageReference Update="ExcelDataReader" Version="3.7.0" />
 		<PackageReference Update="ExcelDataReader.DataSet" Version="3.7.0" />
 		<PackageReference Update="Sylvan.Data" Version="0.2.16" />
-		<PackageReference Update="Sylvan.Data.Excel" Version="0.4.25" />
+		<PackageReference Update="Sylvan.Data.Excel" Version="0.4.26" />
 		<PackageReference Update="DocumentFormat.OpenXml" Version="2.16.0" />
 		<PackageReference Update="System.Text.Encoding.CodePages" Version="6.0.0"/>
 	</ItemGroup>

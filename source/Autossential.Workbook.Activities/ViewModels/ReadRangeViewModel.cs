@@ -1,7 +1,5 @@
-﻿using System;
-using System.Activities.DesignViewModels;
+﻿using System.Activities.DesignViewModels;
 using System.Activities.ViewModels;
-using System.Collections.Generic;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.ViewModels
@@ -32,7 +30,7 @@ namespace Autossential.Workbook.Activities.ViewModels
             SheetName.OrderIndex = orderIndex++;
 
             Range.IsRequired = false;
-            Range.IsPrincipal = true;
+            Range.IsPrincipal = false;
             Range.Category = "Input";
             Range.Placeholder = "Enter the range";
             Range.Tooltip = "Enter the range or leave it blank to read the entire sheet. Ranges can be delimited as A1:E10 or as a start point as just A1.";

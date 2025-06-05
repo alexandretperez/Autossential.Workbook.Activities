@@ -160,17 +160,7 @@ namespace Autossential.Workbook.Tests.Core
             workbook.Dispose();
             var columnTypes = dataTable.Columns.Cast<DataColumn>().Select(p => p.DataType).ToArray();
 
-            // BUG: https://github.com/MarkPflug/Sylvan/issues/267
-            // XLSX and XLS handle boolean columns differently
-
-            if (fileName == "OXML_data.xlsx")
-            {
-                Assert.IsTrue(columnTypes.All(type => type == typeof(bool)));
-            }
-            else
-            {
-                CollectionAssert.AreEqual(new[] { typeof(string), typeof(bool) }, columnTypes);
-            }
+            Assert.IsTrue(columnTypes.All(type => type == typeof(bool)));
         }
     }
 }

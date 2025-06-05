@@ -23,6 +23,7 @@ namespace Autossential.Workbook.Tests.Core
             var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
 
             // Act
+            var originalSheetName = workbook.GetSheetNames()[0];
             workbook.RenameSheet(sheetIndex, expectedSheetName);
             workbook.Save();
             workbook.Dispose();
@@ -31,7 +32,7 @@ namespace Autossential.Workbook.Tests.Core
             var sheetName = workbook.GetSheetNames()[0];
             Assert.AreEqual(expectedSheetName, sheetName);
 
-            workbook.RenameSheet(0, "Sheet1");
+            workbook.RenameSheet(0, originalSheetName);
             workbook.Save();
             workbook.Dispose();
         }

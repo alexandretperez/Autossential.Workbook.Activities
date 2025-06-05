@@ -44,5 +44,14 @@ namespace Autossential.Workbook.Tests.Core
             workbook.ActivateSheet("DoesNotExist");
             workbook.Dispose();
         }
+
+        //[TestMethod]
+        //public void Test()
+        //{
+        //    var path = @"D:\Users\alexa\Downloads\Financial Sample.xlsx";
+        //    var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
+        //    workbook.ActivateSheet("Sheet3");
+        //    workbook.Dispose();
+        //}
     }
 }

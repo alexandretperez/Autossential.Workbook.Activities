@@ -5,7 +5,6 @@ using NPOI.Util;
 using Sylvan.Data.Excel;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace Autossential.Workbook.Core.Processors
 {

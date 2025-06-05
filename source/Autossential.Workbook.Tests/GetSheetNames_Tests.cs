@@ -55,9 +55,8 @@ namespace Autossential.Workbook.Tests
                         {
                             new RenameSheet
                             {
-                                FindByIndex = true,
-                                SheetIndex = 0,
-                                ToSheetName = "New"
+                                SheetNameOrIndex = new InArgument<int>(0),
+                                NewSheetName = "New"
                             },
                             new GetSheetNames
                             {
