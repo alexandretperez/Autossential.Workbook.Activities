@@ -74,10 +74,10 @@ namespace Autossential.Workbook.Core.Internals
 
         public override string ToString() => $"{GetRange()} (Start [row: {Start.Row}, col: {Start.Col}], End [row: {End.Row}, col: {End.Col}])";
 
-        public void ForEachColumn(Action<int, int> action)
-        {
-            for (uint col = Start.Col; col <= End.Col; col++)
-                action((int)col, (int)(col - Start.Col));
-        }
+        //public void ForEachCol(Action<int, int> action)
+        //{
+        //    for (uint col = Start.Col; col <= End.Col; col++)
+        //        action((int)col, (int)(col - Start.Col));
+        //}
     }
 }

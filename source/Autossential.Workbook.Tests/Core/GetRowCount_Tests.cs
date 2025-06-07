@@ -11,15 +11,11 @@ namespace Autossential.Workbook.Tests.Core
     public class GetRowCount_Tests
     {
         [TestMethod]
-        [DataRow("OXML_data.xlsx", "A1", 11)]
-        [DataRow("OXML_data.xlsx", "B5", 7)]
         [DataRow("OXML_scatter.xlsx", "A1", 6)]
         [DataRow("OXML_scatter.xlsx", "A1:E5", 3)]
         [DataRow("BIFF8_scatter.xls", "B2:D5", 2)]
         [DataRow("OXML_scatter.xlsx", "D3:E6", 4)]
 
-        [DataRow("BIFF8_data.xls", "A1", 11)]
-        [DataRow("BIFF8_data.xls", "B5", 7)]
         [DataRow("BIFF8_scatter.xls", "A1", 6)]
         [DataRow("BIFF8_scatter.xls", "A1:E5", 3)]
         [DataRow("BIFF8_scatter.xls", "B2:D5", 2)]

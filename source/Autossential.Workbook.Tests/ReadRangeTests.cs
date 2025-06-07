@@ -16,11 +16,9 @@ namespace Autossential.Workbook.Tests
 
         [TestMethod]
         [DataRow("OXML_data.xlsx", "A1", true, 10, 6)]
-        //[DataRow("OXML_data.xlsx", "A1", false, 11, 6)]
         [DataRow("OXML_data.xlsx", "A1:B5", true, 4, 2)]
 
         [DataRow("BIFF8_data.xls", "A1", true, 10, 6)]
-        //[DataRow("BIFF8_data.xls", "A1", false, 11, 6)]
         [DataRow("BIFF8_data.xls", "A1:B5", true, 4, 2)]
         public void ReadRange(string fileName, string range, bool hasHeaders, int rowCount, int colCount)
         {

@@ -28,7 +28,7 @@ namespace Autossential.Workbook.Tests
                     Argument = new DelegateInArgument<IWorkbookProcessor>(ActivityContextExtensions.WorkbookInstancePropertyName),
                     Handler = new GetRowCount
                     {
-                        SheetName = "Sheet1",
+                        SheetName = "Header",
                         Range = range,
                         Result = new OutArgument<int>(env => dyn.Result.Get(env))
                     }

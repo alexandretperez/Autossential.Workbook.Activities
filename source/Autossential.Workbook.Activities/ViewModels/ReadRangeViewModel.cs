@@ -27,6 +27,7 @@ namespace Autossential.Workbook.Activities.ViewModels
             SheetName.DisplayName = "Sheet Name";
             SheetName.Placeholder = "Enter the sheet name";
             SheetName.Category = "Input";
+            SheetName.Tooltip = "The sheet name to be read";
             SheetName.OrderIndex = orderIndex++;
 
             Range.IsRequired = false;
@@ -40,17 +41,20 @@ namespace Autossential.Workbook.Activities.ViewModels
             HasHeaders.Category = "Options";
             HasHeaders.DisplayName = "Has Headers";
             HasHeaders.Widget = new DefaultWidget { Type = ViewModelWidgetType.NullableBoolean };
+            HasHeaders.Tooltip = "Indicates if the data to be read contains headers.";
             HasHeaders.OrderIndex = orderIndex++;
 
             UseColumnDataType.IsPrincipal = false;
             UseColumnDataType.Category = "Options";
             UseColumnDataType.DisplayName = "Use Column Data Type";
             UseColumnDataType.Widget = new DefaultWidget { Type = ViewModelWidgetType.NullableBoolean };
+            UseColumnDataType.Tooltip = "Analyzes the data and if possible, creates the DataTable with the corresponding data type for each column. Otherwise, all columns are set as System.String.";
             UseColumnDataType.OrderIndex = orderIndex++;
 
             Result.IsPrincipal = false;
             Result.IsRequired = false;
             Result.Category = "Output";
+            Result.Tooltip = "The corresponding DataTable";
             Result.OrderIndex = orderIndex++;
         }
     }

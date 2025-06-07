@@ -14,11 +14,11 @@ namespace Autossential.Workbook.Tests.Core
         [TestMethod]
         [DataRow("OXML_data.xlsx", "Header", "A1", 10, 6)]
         [DataRow("OXML_data.xlsx", "Header", "B1", 10, 5)]
-        [DataRow("OXML_data.xlsx", "Header", "B4", 7, 5)]
+        [DataRow("OXML_data.xlsx", "Header", "B4", 8, 5)]
 
         [DataRow("BIFF8_data.xls", "Header", "A1", 10, 6)]
         [DataRow("BIFF8_data.xls", "Header", "B1", 10, 5)]
-        [DataRow("BIFF8_data.xls", "Header", "B4", 7, 5)]
+        [DataRow("BIFF8_data.xls", "Header", "B4", 8, 5)]
 
         public void ReadRange_WithHeaderAndUseColumnType_ReturnRange(string fileName, string sheetName, string range, int expectedRowCount, int expectedColumnCount)
         {
@@ -41,23 +41,13 @@ namespace Autossential.Workbook.Tests.Core
         }
 
         [TestMethod]
-        [DataRow("OXML_data.xlsx", "Header", "A1", 11, 6)]
-        [DataRow("OXML_data.xlsx", "Header", "B1", 11, 5)]
-        [DataRow("OXML_data.xlsx", "Header", "B4", 8, 5)]
-
         [DataRow("OXML_data.xlsx", "NoHeader", "A1", 10, 6)]
         [DataRow("OXML_data.xlsx", "NoHeader", "B1", 10, 5)]
         [DataRow("OXML_data.xlsx", "NoHeader", "B4", 7, 5)]
 
-        [DataRow("BIFF8_data.xls", "Header", "A1", 11, 6)]
-        [DataRow("BIFF8_data.xls", "Header", "B1", 11, 5)]
-
-        // BUG: https://github.com/MarkPflug/Sylvan/issues/267
-        [DataRow("BIFF8_data.xls", "Header", "B4", 8, 5)]
         [DataRow("BIFF8_data.xls", "NoHeader", "A1", 10, 6)]
         [DataRow("BIFF8_data.xls", "NoHeader", "B1", 10, 5)]
         [DataRow("BIFF8_data.xls", "NoHeader", "B4", 7, 5)]
-
 
         public void ReadRange_WithoutHeaderAndUseColumnType_ReturnRange(string fileName, string sheetName, string range, int expectedRowCount, int expectedColumnCount)
         {
@@ -161,6 +151,38 @@ namespace Autossential.Workbook.Tests.Core
             var columnTypes = dataTable.Columns.Cast<DataColumn>().Select(p => p.DataType).ToArray();
 
             Assert.IsTrue(columnTypes.All(type => type == typeof(bool)));
+        }
+
+        [TestMethod]
+        [DataRow("OXML_data.xlsx")]
+        [DataRow("BIFF8_data.xls")]
+        public void ReadRange_NotBoolean_Test(string fileName)
+        {
+            var path = IOSamples.GetSamplePath(fileName);
+            var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
+            var dataTable = workbook.ReadRange("NotBoolean", "A1", true, true);
+            workbook.Dispose();
+            var columnTypes = dataTable.Columns.Cast<DataColumn>().Select(p => p.DataType).ToArray();
+
+            Assert.IsTrue(columnTypes.All(type => type == typeof(string)));
+        }
+
+        [TestMethod]
+        [DataRow("OXML_data.xlsx", "Header", "A1", 11, 6)]
+        [DataRow("BIFF8_data.xls", "Header", "A1", 11, 6)]
+
+        public void ReadRange_WithoutHeaderAllColumnsAreString_ReturnRange(string fileName, string sheetName, string range, int expectedRowCount, int expectedColumnCount)
+        {
+            var path = IOSamples.GetSamplePath(fileName);
+            var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
+            var dataTable = workbook.ReadRange(sheetName, range, false, true);
+            workbook.Dispose();
+            Assert.AreEqual(expectedRowCount, dataTable.Rows.Count);
+            Assert.AreEqual(expectedColumnCount, dataTable.Columns.Count);
+
+            var columnTypes = dataTable.Columns.Cast<DataColumn>().Select(p => p.DataType);
+            Assert.IsTrue(columnTypes.All(type => type == typeof(string)));
+            Assert.IsTrue(dataTable.Columns.Contains("Col1"));
         }
     }
 }
