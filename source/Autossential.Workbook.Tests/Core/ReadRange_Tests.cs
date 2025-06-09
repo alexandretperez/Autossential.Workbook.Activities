@@ -184,5 +184,13 @@ namespace Autossential.Workbook.Tests.Core
             Assert.IsTrue(columnTypes.All(type => type == typeof(string)));
             Assert.IsTrue(dataTable.Columns.Contains("Col1"));
         }
+
+        [TestMethod]
+        public void Test()
+        {
+            var workbook = WorkbookProcessorFactory.OpenOrCreate(@"D:\Users\<user>\Downloads\Financial Sample.xlsx");
+            var dt = workbook.ReadRange("HeadersOnly", "A1", true, true);
+            Assert.IsTrue(dt.Columns.Count > 0);
+        }
     }
 }

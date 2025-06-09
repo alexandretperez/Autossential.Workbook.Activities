@@ -125,7 +125,7 @@ namespace Autossential.Workbook.Core.Processors
             } while (reader.NextResult());
 
             if (reader.WorksheetName != sheetName)
-                throw new ArgumentException("Sheet name not found", nameof(sheetName));
+                throw new ArgumentException($"Sheet name '{sheetName}' was not found", nameof(sheetName));
         }
 
         private ExcelDataReaderOptions GetReaderOptions(string sheetName, bool hasHeaders, bool useColumnDataType)
@@ -224,6 +224,15 @@ namespace Autossential.Workbook.Core.Processors
                     }
 
                     maxColCount = AddRows(dt, rangeRef, reader, maxColCount);
+                }
+
+                // There are no data, but there are headers
+                if (hasHeaders && dt.Columns.Count == 0 && reader.FieldCount > 0)
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        dt.Columns.Add(reader.GetName(i));
+                    }
                 }
             }
             catch (FormatException)
