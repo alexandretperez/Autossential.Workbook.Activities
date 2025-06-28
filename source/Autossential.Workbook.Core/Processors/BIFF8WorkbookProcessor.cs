@@ -1,4 +1,5 @@
-﻿using Autossential.Workbook.Core.Internals;
+﻿using Autossential.Workbook.Core.Extensions;
+using Autossential.Workbook.Core.Internals;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.Util;
@@ -34,8 +35,9 @@ namespace Autossential.Workbook.Core.Processors
             WorkbookStream.SetLength(0);
             GetWorkbook().Write(WorkbookStream);
 
-            var bytes = WorkbookStream.ToArray();
-            File.WriteAllBytes(FilePath, bytes);
+            WorkbookStream.Position = 0;
+            using var fs = File.Create(FilePath);
+            WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
         }
 
         public override void RenameSheet(int sheetIndex, string newSheetName)

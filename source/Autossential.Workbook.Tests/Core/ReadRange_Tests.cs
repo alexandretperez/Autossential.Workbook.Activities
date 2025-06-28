@@ -214,5 +214,16 @@ namespace Autossential.Workbook.Tests.Core
             Assert.AreEqual(expectedRows, dt.Rows.Count);
             Assert.AreEqual(expectedCols, dt.Columns.Count);
         }
+
+        [TestMethod]
+        [DataRow("OXML_data.xlsx")]
+        public void ReadRange_EmptyColData_ReturnRange(string fileName)
+        {
+            var path = IOSamples.GetSamplePath(fileName);
+            var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
+            var dt = workbook.ReadRange("EmptyColData", "A1", false, false);
+            workbook.Dispose();
+            Assert.AreEqual(5, dt.Columns.Count);
+        }
     }
 }

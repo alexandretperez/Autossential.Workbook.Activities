@@ -244,32 +244,9 @@ namespace Autossential.Workbook.Core.Processors
                 throw;
             }
 
-            return rangeRef.IsPartial ? TrimUnusedColumns(dt, maxColCount) : dt;
-        }
-
-        private DataTable ReadByLoadReader(string sheetName, string range, bool hasHeaders, bool useColumnDataType, ExcelDataReader reader, DataTable dt)
-        {
-            try
-            {
-                dt.Load(reader);
-                if (!hasHeaders)
-                {
-                    for (int i = 0; i < dt.Columns.Count; i++)
-                        dt.Columns[i].ColumnName = $"Col{i + 1}";
-                }
-            }
-            catch (Exception)
-            {
-                reader.Close();
-
-                // retry disabling the data type constraints
-
-                if (useColumnDataType)
-                    return ReadRange(sheetName, range, hasHeaders, false);
-            }
-
             return dt;
         }
+
         private static int AddRows(DataTable dt, int startCol, int endCol, ExcelDataReader reader, int maxColCount)
         {
             var row = dt.NewRow();
@@ -288,41 +265,41 @@ namespace Autossential.Workbook.Core.Processors
             return maxColCount;
         }
 
-        public static DataTable TrimUnusedColumns(DataTable dt, int maxColumnCount)
-        {
-            if (maxColumnCount == 0 || dt.Columns.Count == maxColumnCount)
-                return dt;
+        //public static DataTable TrimUnusedColumns(DataTable dt, int maxColumnCount)
+        //{
+        //    if (maxColumnCount == 0 || dt.Columns.Count == maxColumnCount)
+        //        return dt;
 
-            int rows = dt.Rows.Count;
+        //    int rows = dt.Rows.Count;
 
-            object[] data = new object[rows * maxColumnCount];
+        //    object[] data = new object[rows * maxColumnCount];
 
-            for (int i = 0; i < rows; i++)
-            {
-                var rowSpan = data.AsSpan(i * maxColumnCount, maxColumnCount);
-                for (int j = 0; j < maxColumnCount; j++)
-                {
-                    rowSpan[j] = dt.Rows[i][j];
-                }
-            }
+        //    for (int i = 0; i < rows; i++)
+        //    {
+        //        var rowSpan = data.AsSpan(i * maxColumnCount, maxColumnCount);
+        //        for (int j = 0; j < maxColumnCount; j++)
+        //        {
+        //            rowSpan[j] = dt.Rows[i][j];
+        //        }
+        //    }
 
-            var result = new DataTable();
-            for (int i = 0; i < maxColumnCount; i++)
-                result.Columns.Add(dt.Columns[i].ColumnName, dt.Columns[i].DataType);
+        //    var result = new DataTable();
+        //    for (int i = 0; i < maxColumnCount; i++)
+        //        result.Columns.Add(dt.Columns[i].ColumnName, dt.Columns[i].DataType);
 
-            for (int i = 0; i < rows; i++)
-            {
-                var row = result.NewRow();
-                var rowSpan = data.AsSpan(i * maxColumnCount, maxColumnCount);
-                for (int j = 0; j < maxColumnCount; j++)
-                {
-                    row[j] = rowSpan[j];
-                }
-                result.Rows.Add(row);
-            }
+        //    for (int i = 0; i < rows; i++)
+        //    {
+        //        var row = result.NewRow();
+        //        var rowSpan = data.AsSpan(i * maxColumnCount, maxColumnCount);
+        //        for (int j = 0; j < maxColumnCount; j++)
+        //        {
+        //            row[j] = rowSpan[j];
+        //        }
+        //        result.Rows.Add(row);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         protected abstract ExcelDataReader GetReader(ExcelDataReaderOptions options = null);
 

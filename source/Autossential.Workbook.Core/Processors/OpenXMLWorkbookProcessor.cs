@@ -1,4 +1,5 @@
-﻿using Autossential.Workbook.Core.Internals;
+﻿using Autossential.Workbook.Core.Extensions;
+using Autossential.Workbook.Core.Internals;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Sylvan.Data.Excel;
@@ -21,13 +22,18 @@ namespace Autossential.Workbook.Core.Processors
         {
             var doc = GetDocument();
             var wbPart = doc.WorkbookPart;
-            var sheets = wbPart.Workbook.Descendants<Sheet>();
-            if (sheetIndex < 0 || sheetIndex >= sheets.Count())
+            var sheets = wbPart.Workbook.Descendants<Sheet>().ToArray();
+            if (sheetIndex < 0 || sheetIndex >= sheets.Length)
                 throw new ArgumentOutOfRangeException(nameof(sheetIndex), sheetIndex, "Sheet index is out of range");
 
-            var sheet = sheets.ElementAt(sheetIndex);
-            sheet.Name = newSheetName;
+            var sheet = sheets[sheetIndex];
+            if (sheet.Name == newSheetName)
+                return;
 
+            if (Array.Find(sheets, s => s.Name.Value.Equals(newSheetName, StringComparison.OrdinalIgnoreCase)) != null)
+                throw new InvalidOperationException($"The sheet name '{newSheetName}' already exists in the workbook");
+
+            sheet.Name = newSheetName;
             SaveInMemory();
 
             RequiresSave = true;
@@ -46,8 +52,10 @@ namespace Autossential.Workbook.Core.Processors
             if (!RequiresSave)
                 return;
 
-            var bytes = WorkbookStream.ToArray();
-            File.WriteAllBytes(FilePath, bytes);
+            WorkbookStream.Position = 0;
+
+            using var fs = File.Create(FilePath);
+            WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
         }
 
         public override void Dispose(bool disposing)
@@ -90,28 +98,6 @@ namespace Autossential.Workbook.Core.Processors
             ActivateSheet(sheetIndex);
         }
 
-        //public override void ActivateSheet(int sheetIndex)
-        //{
-        //    var document = GetDocument();
-        //    var wbPart = document.WorkbookPart;
-        //    var wb = wbPart.Workbook;
-        //    var sheets = wb.Sheets;
-        //    if (sheetIndex < 0 || sheetIndex >= sheets.Count())
-        //        throw new ArgumentOutOfRangeException(nameof(sheetIndex), sheetIndex, "Sheet index is out of range");
-
-        //    var workbookView = wb.BookViews?.OfType<WorkbookView>().FirstOrDefault();
-        //    if (workbookView == null)
-        //    {
-        //        workbookView = new WorkbookView();
-        //        wb.BookViews ??= new BookViews();
-        //        wb.BookViews.Append(workbookView);
-        //    }
-
-        //    workbookView.ActiveTab = (uint)sheetIndex;
-        //    SaveInMemory();
-        //    RequiresSave = true;
-        //}
-
         public override void ActivateSheet(int sheetIndex)
         {
             var doc = GetDocument();
@@ -144,8 +130,6 @@ namespace Autossential.Workbook.Core.Processors
                 RequiresSave = true;
             }
         }
-
-
 
         public override (int index, string name) GetActiveSheet()
         {
