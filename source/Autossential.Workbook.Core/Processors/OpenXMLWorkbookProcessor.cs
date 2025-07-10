@@ -2,7 +2,6 @@
 using Autossential.Workbook.Core.Internals;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using Sylvan.Data.Excel;
 using System;
 using System.IO;
 using System.Linq;
@@ -73,9 +72,6 @@ namespace Autossential.Workbook.Core.Processors
             var index = Array.IndexOf(GetSheetNames(), fromSheetName);
             RenameSheet(index, toSheetName);
         }
-
-        protected override ExcelDataReader GetReader(ExcelDataReaderOptions options = null) =>
-            ExcelDataReader.Create(WorkbookStream.Reset(), ExcelWorkbookType.ExcelXml, options);
 
         public override void DeleteSheet(string sheetName)
         {

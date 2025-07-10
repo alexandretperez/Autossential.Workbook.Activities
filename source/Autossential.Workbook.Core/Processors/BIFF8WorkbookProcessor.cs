@@ -3,7 +3,6 @@ using Autossential.Workbook.Core.Internals;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.Util;
-using Sylvan.Data.Excel;
 using System;
 using System.IO;
 
@@ -63,9 +62,6 @@ namespace Autossential.Workbook.Core.Processors
             var index = Array.IndexOf(GetSheetNames(), fromSheetName);
             RenameSheet(index, toSheetName);
         }
-
-        protected override ExcelDataReader GetReader(ExcelDataReaderOptions options = null) =>
-            ExcelDataReader.Create(WorkbookStream.Reset(), ExcelWorkbookType.Excel, options);
 
         public override void DeleteSheet(string sheetName)
         {

@@ -1,12 +1,8 @@
 ﻿using Autossential.Shared.Tests;
 using Autossential.Workbook.Core;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.PowerFx.Core.Public.Values;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NPOI.HPSF;
 using System;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Autossential.Workbook.Tests.Core
@@ -114,9 +110,9 @@ namespace Autossential.Workbook.Tests.Core
             {
                 CollectionAssert.AreEqual(columnTypes, new[]
                 {
-                    typeof(int),
-                    typeof(decimal),
-                    typeof(decimal),
+                    typeof(double),
+                    typeof(double),
+                    typeof(double),
                     typeof(DateTime),
                     typeof(string),
                     typeof(bool)
@@ -124,7 +120,7 @@ namespace Autossential.Workbook.Tests.Core
             }
             else
             {
-                Assert.IsTrue(columnTypes.All(p => p == typeof(string)));
+                Assert.IsTrue(columnTypes.All(p => p == typeof(object)));
             }
         }
 
@@ -149,8 +145,7 @@ namespace Autossential.Workbook.Tests.Core
             var dataTable = workbook.ReadRange("Boolean", "A1", true, true);
             workbook.Dispose();
             var columnTypes = dataTable.Columns.Cast<DataColumn>().Select(p => p.DataType).ToArray();
-
-            Assert.IsTrue(columnTypes.All(type => type == typeof(bool)));
+            CollectionAssert.AreEqual(columnTypes, new[] { typeof(string), typeof(bool) });
         }
 
         [TestMethod]
@@ -171,7 +166,7 @@ namespace Autossential.Workbook.Tests.Core
         [DataRow("OXML_data.xlsx", "Header", "A1", 11, 6)]
         [DataRow("BIFF8_data.xls", "Header", "A1", 11, 6)]
 
-        public void ReadRange_WithoutHeaderAllColumnsAreString_ReturnRange(string fileName, string sheetName, string range, int expectedRowCount, int expectedColumnCount)
+        public void ReadRange_WithoutHeaderAll_ReturnRange(string fileName, string sheetName, string range, int expectedRowCount, int expectedColumnCount)
         {
             var path = IOSamples.GetSamplePath(fileName);
             var workbook = WorkbookProcessorFactory.OpenOrCreate(path);
@@ -181,7 +176,6 @@ namespace Autossential.Workbook.Tests.Core
             Assert.AreEqual(expectedColumnCount, dataTable.Columns.Count);
 
             var columnTypes = dataTable.Columns.Cast<DataColumn>().Select(p => p.DataType);
-            Assert.IsTrue(columnTypes.All(type => type == typeof(string)));
             Assert.IsTrue(dataTable.Columns.Contains("Col1"));
         }
 
@@ -199,12 +193,13 @@ namespace Autossential.Workbook.Tests.Core
             Assert.AreEqual(3, dt.Columns.Count);
         }
 
-
         [TestMethod]
         [DataRow("OXML_data.xlsx", "A1:C4", 3, 3, true, true)]
         [DataRow("OXML_data.xlsx", "E3:I6", 3, 5, true, true)]
         [DataRow("OXML_data.xlsx", "A1:C4", 4, 3, false, false)]
         [DataRow("OXML_data.xlsx", "E3:I6", 4, 5, false, false)]
+        [DataRow("OXML_data.xlsx", "B9:F12", 3, 5, true, false)]
+        [DataRow("OXML_data.xlsx", "B9:F12", 4, 5, false, false)]
         public void ReadRange_Tables_ReturnRange(string fileName, string range, int expectedRows, int expectedCols, bool hasHeaders, bool useColumnDataType)
         {
             var path = IOSamples.GetSamplePath(fileName);
