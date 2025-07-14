@@ -16,5 +16,6 @@ namespace Autossential.Workbook.Core
         void ActivateSheet(int sheetIndex);
         (int index, string name) GetActiveSheet();
         void Save();
+        void WriteRange(DataTable dt, string sheetName, string startCell, bool addHeaders);
     }
 }

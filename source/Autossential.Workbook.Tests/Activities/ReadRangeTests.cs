@@ -8,7 +8,7 @@ using System;
 using System.Activities;
 using System.Data;
 
-namespace Autossential.Workbook.Tests
+namespace Autossential.Workbook.Tests.Activities
 {
     [TestClass]
     public class ReadRange_Tests

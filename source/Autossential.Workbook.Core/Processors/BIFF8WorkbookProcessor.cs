@@ -4,6 +4,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.Util;
 using System;
+using System.Data;
 using System.IO;
 
 namespace Autossential.Workbook.Core.Processors
@@ -111,11 +112,16 @@ namespace Autossential.Workbook.Core.Processors
             if (string.IsNullOrEmpty(range))
                 throw new ArgumentException("Range cannot be null or empty", nameof(range));
 
-            var rangeRef = new BIFF8RangeReference(range);
+            var rangeRef = RangeReference.CreateForBIFF8(range);
             if (!rangeRef.IsValid)
                 throw new ArgumentException("Invalid range format", nameof(range));
 
             return rangeRef;
+        }
+
+        public override void WriteRange(DataTable dt, string sheetName, string startCell, bool addHeaders)
+        {
+            throw new NotImplementedException("Not yet implemented to XLS files.");
         }
     }
 }

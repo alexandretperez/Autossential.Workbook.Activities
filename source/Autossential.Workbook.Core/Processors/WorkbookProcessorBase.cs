@@ -20,9 +20,12 @@ namespace Autossential.Workbook.Core.Processors
 
             WorkbookStream = new MemoryStream();
 
-            var bytes = File.ReadAllBytes(FilePath);
-            WorkbookStream.Write(bytes, 0, bytes.Length);
-            WorkbookStream.Reset();
+            if (File.Exists(filePath))
+            {
+                var bytes = File.ReadAllBytes(FilePath);
+                WorkbookStream.Write(bytes, 0, bytes.Length);
+                WorkbookStream.Reset();
+            }
         }
 
         protected MemoryStream WorkbookStream { get; }
@@ -303,5 +306,6 @@ namespace Autossential.Workbook.Core.Processors
         public abstract void ActivateSheet(string sheetName);
         public abstract void ActivateSheet(int sheetIndex);
         public abstract (int index, string name) GetActiveSheet();
+        public abstract void WriteRange(DataTable dt, string sheetName, string startCell, bool addHeaders);
     }
 }

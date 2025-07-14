@@ -1,53 +1,53 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using System;
 using System.Linq;
 
 namespace Autossential.Workbook.Core.Extensions
 {
-    public static class OpenXmlExtensions
+    internal static class OpenXmlExtensions
     {
-        public static string GetCellValue(this Cell cell, SharedStringTable sharedStringTable)
+        private static uint GenerateSheetId(this Sheets sheets)
         {
-            if (cell.CellValue == null)
-                return null;
-
-            string value = cell.CellValue.Text;
-            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-                return sharedStringTable.ElementAt(int.Parse(value)).InnerText;
-
-            if (cell.StyleIndex != null)
+            uint maxId = 0;
+            foreach (Sheet sheet in sheets.Elements<Sheet>())
             {
-                // TODO: Add specific formatting logic here if needed
-                // Handle formatted numbers, dates, etc.
+                if (sheet.SheetId?.Value > maxId)
+                    maxId = sheet.SheetId.Value;
             }
-
-            return value;
+            return maxId + 1;
         }
-        public static WorksheetPart GetWorksheetPartByName(this WorkbookPart workbookPart, string sheetName)
+
+        public static Sheet CreateSheet(this WorkbookPart workbookPart, string sheetName)
+        {
+            var wsPart = workbookPart.AddNewPart<WorksheetPart>();
+            wsPart.Worksheet = new Worksheet(new SheetData());
+            wsPart.Worksheet.Save();
+
+            Sheets sheets = workbookPart.Workbook.GetFirstChild<Sheets>();
+            var sheet = new Sheet()
+            {
+                Id = workbookPart.GetIdOfPart(wsPart),
+                SheetId = GenerateSheetId(sheets),
+                Name = sheetName
+            };
+            sheets.Append(sheet);
+            return sheet;
+        }
+
+        public static Sheet GetOrCreateSheet(this WorkbookPart workbookPart, string sheetName)
         {
             Sheet sheet = workbookPart.Workbook.Descendants<Sheet>()
-                .FirstOrDefault(s => s.Name.Value.Equals(sheetName, StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(s => s.Name == sheetName);
 
             if (sheet == null)
-                return null;
+                return CreateSheet(workbookPart, sheetName);
 
-            return (WorksheetPart)workbookPart.GetPartById(sheet.Id);
+            return sheet;
         }
 
-
-        public static CellValues GetEquivalentCellDataType(this object value)
+        public static bool IsNewSheet(this WorksheetPart worksheetPart)
         {
-            if (value is sbyte or byte or short or ushort or int or uint or long or ulong or float or double or decimal)
-                return CellValues.Number;
-
-            if (value is bool)
-                return CellValues.Boolean;
-
-            if (value is DateTime)
-                return CellValues.Date;
-
-            return CellValues.String;
+            return !worksheetPart.Worksheet.Elements<SheetData>().Any();
         }
     }
 }

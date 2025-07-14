@@ -5,7 +5,7 @@ using Autossential.Workbook.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Activities;
 
-namespace Autossential.Workbook.Tests
+namespace Autossential.Workbook.Tests.Activities
 {
     [TestClass]
     public class GetRowCountTests

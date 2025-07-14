@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Activities;
 using System.Activities.Statements;
 
-namespace Autossential.Workbook.Tests
+namespace Autossential.Workbook.Tests.Activities
 {
     [TestClass]
     public class GetSheetNames_Tests

@@ -2,82 +2,55 @@
 
 namespace Autossential.Workbook.Core.Internals
 {
-    internal abstract class RangeReference
+    internal struct RangeReference
     {
-        public CellReference Start { get; protected set; }
-        public CellReference End { get; protected set; }
+        public CellReference Start { get; private set; }
+        public CellReference End { get; private set; }
 
-        protected RangeReference(CellReference start, CellReference end)
+        public RangeReference()
+        {
+            Start = new CellReference();
+            End = new CellReference();
+        }
+
+        private RangeReference(CellReference start, CellReference end)
         {
             Start = start;
             End = end;
-            ValidateConstraints();
         }
 
-        protected RangeReference(string range)
-        {
-            ParseRange(range);
-            ValidateConstraints();
-        }
-        public bool IsValid => Start?.IsValid == true && End?.IsValid == true;
-        protected abstract CellReference CreateCellReference(string address);
-        protected abstract CellReference CreateMaxCellReference();
-        protected void ParseRange(string range)
+        private static RangeReference Create(string range, Func<string, CellReference> cellRefFn, Func<CellReference> maxCellRefFn)
         {
             if (string.IsNullOrEmpty(range))
-            {
-                Start = End = null;
-                return;
-            }
+                return new RangeReference();
 
-            string[] parts = range.Split(':');
+            var parts = range.Split(':');
             if (parts.Length > 2)
-            {
-                Start = End = null;
-                return;
-            }
+                return new RangeReference();
 
-            Start = CreateCellReference(parts[0]);
-            if (parts.Length > 1)
-            {
-                End = CreateCellReference(parts[1]);
-            }
-            else
-            {
-                End = CreateMaxCellReference();
-                IsPartial = true;
-            }
+            var start = cellRefFn(parts[0]);
+            var end = parts.Length == 2 ? cellRefFn(parts[1]) : maxCellRefFn();
+            return new RangeReference(start, end);
         }
-        public bool IsPartial { get; private set; }
-        protected void ValidateConstraints()
+
+        public static RangeReference CreateForOpenXml(string range)
+            => Create(range, CellReference.CreateForOpenXml, CellReference.GetMaxForOpenXml);
+
+        public static RangeReference CreateForBIFF8(string range)
+            => Create(range, CellReference.CreateForBIFF8, CellReference.GetMaxForBIFF8);
+
+        public readonly bool IsValid =>
+            Start.IsValid
+            && End.IsValid
+            && Start.Row < End.Row
+            && Start.Col < End.Col;
+
+        public override string ToString()
         {
-            if (Start.Row > End.Row || Start.Col > End.Col)
-                Start = End = null;
+            return $"{Start}:{End}";
         }
 
-        public string GetRange()
-        {
-            if (!IsValid) return string.Empty;
-            return $"{Start.ToString()}:{End.ToString()}";
-        }
-
-        public bool IsInRange(long row, long col) =>
-            IsRowInRange(row) && IsColInRange(col);
-
-        public bool IsRowInRange(long row) =>
-            row >= Start.Row &&
-            row <= End.Row;
-
-        public bool IsColInRange(long col) =>
-            col >= Start.Col &&
-            col <= End.Col;
-
-        public override string ToString() => $"{GetRange()} (Start [row: {Start.Row}, col: {Start.Col}], End [row: {End.Row}, col: {End.Col}])";
-
-        //public void ForEachCol(Action<int, int> action)
-        //{
-        //    for (uint col = Start.Col; col <= End.Col; col++)
-        //        action((int)col, (int)(col - Start.Col));
-        //}
+        public readonly bool IsRowInRange(long row) => row >= Start.Row && row <= End.Row;
+        public readonly bool IsColInRange(long col) => col >= Start.Col && col <= End.Col;
     }
 }
