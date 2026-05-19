@@ -61,7 +61,11 @@ namespace Autossential.Workbook.Activities.Tests
                     var row = sheet.CreateRow(r);
                     for (int c = 0; c < 5; c++)
                     {
-                        row.CreateCell(c).SetCellValue($"{r}_{c}");
+                        var cell = row.CreateCell(c);
+                        if (!((r == 3 && new[] { 0, 2, 3 }.Contains(c)) || (r == 2 && c == 3)))
+                        {
+                            cell.SetCellValue($"{r}_{c}");
+                        }
                     }
 
                     if ((r + 1) % rowsPerRecord == 0)

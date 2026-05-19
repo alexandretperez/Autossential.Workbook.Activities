@@ -190,19 +190,12 @@ namespace Autossential.Workbook.Activities.Core.Processors
                         {
                             while (row.Depth < headerRows)
                             {
-                                var index = 0;
                                 for (int i = 0; i < row.FieldCount; i++)
                                 {
                                     if (!rangeRef.IsColInRange(i + 1))
                                         continue;
 
                                     var cellValue = row.GetValue(i)?.ToString() ?? string.Empty;
-                                    if (string.IsNullOrWhiteSpace(cellValue))
-                                    {
-                                        cellValue = $"Col{index + 1}";
-                                        index++;
-                                    }
-
                                     if (dict.ContainsKey(i))
                                         dict[i] = (dict[i] + " " + cellValue).Trim();
                                     else
@@ -211,6 +204,12 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
                                 if (!row.Read())
                                     break;
+                            }
+
+                            foreach (var item in dict)
+                            {
+                                if (string.IsNullOrEmpty(item.Value))
+                                    dict[item.Key] = $"Col{item.Key + 1}";
                             }
                         }
                         else
