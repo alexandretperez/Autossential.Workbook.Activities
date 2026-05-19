@@ -13,7 +13,7 @@ namespace Autossential.Workbook.Activities.Tests
                     var row = sheet.CreateRow(r);
                     for (int c = 0; c < 10; c++)
                     {
-                        row.CreateCell(c).SetCellValue($"R{r}C{c}");
+                        row.CreateCell(c).SetCellValue($"{r}_{c}");
                     }
                 }
             }
@@ -27,7 +27,7 @@ namespace Autossential.Workbook.Activities.Tests
                     {
                         var cell = row.CreateCell(c);
                         if (r == c)
-                            cell.SetCellValue($"R{r}C{c}");
+                            cell.SetCellValue($"{r}_{c}");
                     }
                 }
             }
@@ -44,7 +44,7 @@ namespace Autossential.Workbook.Activities.Tests
                     {
                         var cell = row.CreateCell(c);
                         if ((c + 1) % 2 == 0)
-                            cell.SetCellValue($"R{r}C{c}");
+                            cell.SetCellValue($"{r}_{c}");
                     }
                 }
             }
@@ -53,19 +53,15 @@ namespace Autossential.Workbook.Activities.Tests
             {
                 var recordIndex = 0;
                 var rowsPerRecord = 3;
-                for (int r = 0; r < 30; r++)
+                for (int r = 0; r <= 30; r++)
                 {
+                    if (r < 2)
+                        continue;
+
                     var row = sheet.CreateRow(r);
                     for (int c = 0; c < 5; c++)
                     {
-                        if (r < 3)
-                        {
-                            // header
-                            row.CreateCell(c).SetCellValue($"H{r}_{c}");
-                            continue;
-                        }
-
-                        row.CreateCell(c).SetCellValue($"R{recordIndex}_{r}_{c}");
+                        row.CreateCell(c).SetCellValue($"{r}_{c}");
                     }
 
                     if ((r + 1) % rowsPerRecord == 0)

@@ -175,20 +175,28 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 ConfigureDataTable = (_) => new ExcelDataTableConfiguration
                 {
                     FilterRow = (row) => rangeRef.IsRowInRange(row.Depth + 1),
-                    ReadHeader = (rder) =>
+                    ReadHeader = (row) =>
                     {
                         var dict = new Dictionary<int, string>();
+                        
+                        while (!rangeRef.IsRowInRange(row.Depth + 1))
+                        {
+                            row.Read();
+                            headerRows++;
+                            continue;
+                        }
+
                         if (hasHeaders)
                         {
-                            while (rder.Depth < headerRows)
+                            while (row.Depth < headerRows)
                             {
                                 var index = 0;
-                                for (int i = 0; i < rder.FieldCount; i++)
+                                for (int i = 0; i < row.FieldCount; i++)
                                 {
                                     if (!rangeRef.IsColInRange(i + 1))
                                         continue;
 
-                                    var cellValue = rder.GetValue(i)?.ToString() ?? string.Empty;
+                                    var cellValue = row.GetValue(i)?.ToString() ?? string.Empty;
                                     if (string.IsNullOrWhiteSpace(cellValue))
                                     {
                                         cellValue = $"Col{index + 1}";
@@ -201,13 +209,13 @@ namespace Autossential.Workbook.Activities.Core.Processors
                                         dict[i] = cellValue.Trim();
                                 }
 
-                                if (!rder.Read())
+                                if (!row.Read())
                                     break;
                             }
                         }
                         else
                         {
-                            for (int i = 0, j = 1; i < rder.FieldCount; i++)
+                            for (int i = 0, j = 1; i < row.FieldCount; i++)
                             {
                                 if (!rangeRef.IsColInRange(i + 1))
                                     continue;

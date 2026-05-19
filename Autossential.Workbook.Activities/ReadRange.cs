@@ -10,7 +10,7 @@ namespace Autossential.Workbook.Activities
         [RequiredArgument]
         public InArgument<string> SheetName { get; set; } = "Sheet1";
         public InArgument<string> Range { get; set; }
-        public bool HasHeaders { get; set; }
+        public bool HasHeaders { get; set; } = true;
         public InArgument<int> HeaderRows { get; set; } = 1;
         public InArgument<int> RowsPerRecord { get; set; } = 1;
 
