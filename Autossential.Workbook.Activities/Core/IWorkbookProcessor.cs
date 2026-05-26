@@ -9,5 +9,7 @@ namespace Autossential.Workbook.Activities.Core
         int GetRowCount(string sheetName, string range);
         int GetColumnCount(string sheetName, string range);
         object ReadCell(string sheetName, string address);
+        object[] ReadRow(string sheetName, string startingCell, int count);
+        object[] ReadColumn(string sheetName, string startingCell, int count);
     }
 }

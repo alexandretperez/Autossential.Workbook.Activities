@@ -162,11 +162,14 @@ namespace Autossential.Workbook.Activities.Core.Processors
             }
             return -1;
         }
+
+        private const string EmptyColumnNamePrefix = "Col";
         public DataTable ReadRange(string sheetName, string range, bool hasHeaders, int headerRows, int rowsPerRecord)
         {
             var rangeRef = ResolveRange(range);
             var sheetIndex = GetSheetIndex(sheetName);
-
+            var lastNonInferredColumnIndex = -1;
+            var columnIndex = 1;
             var reader = GetReader();
             var dataSet = reader.AsDataSet(new ExcelDataSetConfiguration
             {
@@ -178,7 +181,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     ReadHeader = (row) =>
                     {
                         var dict = new Dictionary<int, string>();
-                        
+
                         while (!rangeRef.IsRowInRange(row.Depth + 1))
                         {
                             row.Read();
@@ -209,7 +212,13 @@ namespace Autossential.Workbook.Activities.Core.Processors
                             foreach (var item in dict)
                             {
                                 if (string.IsNullOrEmpty(item.Value))
-                                    dict[item.Key] = $"Col{item.Key + 1}";
+                                {
+                                    dict[item.Key] = $"{EmptyColumnNamePrefix}{columnIndex++}";
+                                }
+                                else
+                                {
+                                    lastNonInferredColumnIndex = item.Key;
+                                }
                             }
                         }
                         else
@@ -219,7 +228,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                                 if (!rangeRef.IsColInRange(i + 1))
                                     continue;
 
-                                dict.Add(i, $"Col{j}");
+                                dict.Add(i, $"{EmptyColumnNamePrefix}{columnIndex++}");
                                 j++;
                             }
                         }
@@ -229,45 +238,59 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             });
 
-            if (dataSet.Tables.Count > 0)
+            if (dataSet.Tables.Count == 0)
+                return new DataTable();
+
+            var table = dataSet.Tables[sheetName];
+            var rowsToRemove = new List<DataRow>();
+            if (rowsPerRecord > 1)
             {
-                var table = dataSet.Tables[sheetName];
-                var rowsToRemove = new List<DataRow>();
-                if (rowsPerRecord > 1)
+                DataRow recordRow = null;
+                var index = 0;
+                foreach (DataRow row in table.Rows)
                 {
-                    DataRow recordRow = null;
-                    var index = 0;
-                    foreach (DataRow row in table.Rows)
+                    if (index++ % rowsPerRecord == 0)
                     {
-                        if (index++ % rowsPerRecord == 0)
-                        {
-                            recordRow = row;
-                            continue;
-                        }
-
-                        for (int i = 0; i < row.ItemArray.Length; i++)
-                        {
-                            var value = (row[i]?.ToString() ?? string.Empty).Trim();
-                            if (!string.IsNullOrWhiteSpace(value))
-                            {
-                                recordRow[i] = $"{recordRow[i]} {value}".Trim();
-                            }
-                        }
-
-                        rowsToRemove.Add(row);
+                        recordRow = row;
+                        continue;
                     }
 
-                    foreach (var row in rowsToRemove)
+                    for (int i = 0; i < row.ItemArray.Length; i++)
                     {
-                        table.Rows.Remove(row);
+                        var value = (row[i]?.ToString() ?? string.Empty).Trim();
+                        if (!string.IsNullOrWhiteSpace(value))
+                        {
+                            recordRow[i] = $"{recordRow[i]} {value}".Trim();
+                        }
                     }
+
+                    rowsToRemove.Add(row);
                 }
 
-                return table;
+                foreach (var row in rowsToRemove)
+                {
+                    table.Rows.Remove(row);
+                }
             }
 
-            return new DataTable();
+            if (rangeRef.Origin == RangeOrigin.Explicit)
+            {
+                var cols = rangeRef.End.Col - (rangeRef.Start.Col - 1);
+                table.AddTrailingColumns(cols, columnIndex, EmptyColumnNamePrefix);
+
+                var rows = rangeRef.End.Row - (rangeRef.Start.Row - 1) - (hasHeaders ? 1 : 0);
+                table.AddTrailingRows(rows);
+                table.RemoveTrailingRows(rows);
+            }
+            else
+            {
+                table.RemoveTrailingRows();
+                table.RemoveTrailingColumns(lastNonInferredColumnIndex);
+            }
+
+            return table;
         }
+
 
         public object ReadCell(string sheetName, string address)
         {
@@ -291,6 +314,67 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             } while (reader.NextResult());
             return null;
+        }
+
+        public object[] ReadRow(string sheetName, string startingCell, int count)
+        {
+            ValidateSheetName(sheetName);
+            var cell = ResolveCell(startingCell);
+            var reader = GetReader();
+
+            var len = count <= 0 ? int.MaxValue : count - (cell.Col);
+
+            do
+            {
+                if (reader.Name == sheetName)
+                {
+                    len = Math.Min(len, reader.FieldCount - (cell.Col));
+                    var values = new object[len];
+
+                    while (reader.Read())
+                    {
+                        if (reader.Depth + 1 < cell.Row) continue;
+                        for (int c = cell.Col - 1, index = 0; c < len; c++)
+                            values[index++] = reader.GetValue(c);
+
+                        return values;
+                    }
+                }
+            } while (reader.NextResult());
+
+            return [];
+        }
+
+        public object[] ReadColumn(string sheetName, string startingCell, int count)
+        {
+            ValidateSheetName(sheetName);
+            var cell = ResolveCell(startingCell);
+            var reader = GetReader();
+            var len = count <= 0 ? int.MaxValue : count - (cell.Row - 1);
+            var col = cell.Col - 1;
+
+            do
+            {
+                if (reader.Name == sheetName)
+                {
+                    if (col >= reader.FieldCount) return [];
+
+                    len = Math.Min(len, reader.RowCount - (cell.Row - 1));
+                    var values = new object[len];
+
+                    var index = 0;
+                    while (reader.Read())
+                    {
+                        if (reader.Depth + 1 < cell.Row) continue;
+                        values[index++] = reader.GetValue(col);
+
+                        if (index == len)
+                            return values;
+                    }
+                }
+            } while (reader.NextResult());
+
+            return [];
         }
     }
 }
