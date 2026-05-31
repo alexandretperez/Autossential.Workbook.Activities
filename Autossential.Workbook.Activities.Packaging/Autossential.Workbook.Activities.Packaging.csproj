@@ -35,6 +35,18 @@
 		</ItemGroup>
 		<ItemGroup>
 			<BuildOutputInPackage Include="$(OutputPath)Autossential.Workbook.Activities.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)de\Autossential.Workbook.Activities.resources.dll" TargetPath="de\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)es\Autossential.Workbook.Activities.resources.dll" TargetPath="es\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)es-MX\Autossential.Workbook.Activities.resources.dll" TargetPath="es-MX\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)fr\Autossential.Workbook.Activities.resources.dll" TargetPath="fr\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)ja\Autossential.Workbook.Activities.resources.dll" TargetPath="ja\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)ko\Autossential.Workbook.Activities.resources.dll" TargetPath="ko\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)pt-BR\Autossential.Workbook.Activities.resources.dll" TargetPath="pt-BR\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)pt\Autossential.Workbook.Activities.resources.dll" TargetPath="pt\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)ru\Autossential.Workbook.Activities.resources.dll" TargetPath="ru\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)tr\Autossential.Workbook.Activities.resources.dll" TargetPath="tr\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)zh-CN\Autossential.Workbook.Activities.resources.dll" TargetPath="zh-CN\Autossential.Workbook.Activities.resources.dll" />
+			<BuildOutputInPackage Include="$(OutputPath)zh-TW\Autossential.Workbook.Activities.resources.dll" TargetPath="zh-TW\Autossential.Workbook.Activities.resources.dll" />
 		</ItemGroup>
 	</Target>
 

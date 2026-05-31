@@ -146,7 +146,7 @@
           "displayNameKey": "ReadColumn_StartingCell_DisplayName",
           "tooltipKey": "ReadColumn_StartingCell_Description",
           "isVisible": true,
-          "isRequired": false,
+          "isRequired": true,
           "category": {
             "name": "Input",
             "displayNameKey": "Categories_Input"
@@ -322,7 +322,7 @@
           "displayNameKey": "ReadRow_StartingCell_DisplayName",
           "tooltipKey": "ReadRow_StartingCell_Description",
           "isVisible": true,
-          "isRequired": false,
+          "isRequired": true,
           "category": {
             "name": "Input",
             "displayNameKey": "Categories_Input"

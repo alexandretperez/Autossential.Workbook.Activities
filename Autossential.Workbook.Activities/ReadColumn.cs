@@ -8,12 +8,13 @@ namespace Autossential.Workbook.Activities
     {
         [RequiredArgument]
         public InArgument<string> SheetName { get; set; }
+        [RequiredArgument]
         public InArgument<string> StartingCell { get; set; }
         public InArgument<int> Limit { get; set; }
         protected override object[] Execute(CodeActivityContext context)
         {
             var sheetName = SheetName.Get(context);
-            var startingCell = StartingCell.Get(context) ?? "A1";
+            var startingCell = StartingCell.Get(context);
             var limit = Limit.Get(context);
 
             return context.GetWorkbookProcessor().ReadColumn(sheetName, startingCell, limit);

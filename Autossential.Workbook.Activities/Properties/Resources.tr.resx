@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="ActivityCategories_Workbook" xml:space="preserve">
+    <value>Autossential.Workbook</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_Input" xml:space="preserve">
+    <value>Giriş</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_InputOutput" xml:space="preserve">
+    <value>Giriş/Çıkış</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_Options" xml:space="preserve">
+    <value>Seçenekler</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_Output" xml:space="preserve">
+    <value>Çıkış</value>
+    <comment>category</comment>
+  </data>
+	<data name="Common_ContinueOnError_Description" xml:space="preserve">
+    <value>Geçerli etkinlik başarısız olsa bile kalan etkinliklerin yürütülmesine devam edilip edilmeyeceğini belirtir. Yalnızca boolean değerlerine izin verilir.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
+    <value>Hatada devam et</value>
+    <comment>property name</comment>
+  </data>
+	<data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
+    <value>Gerekli bir etkinlik bağımsız değişkeni '{0}' için değer sağlanmadı.</value>
+    <comment>error message</comment>
+  </data>
+	<data name="Common_TimeoutSeconds_Description" xml:space="preserve">
+    <value>Bir hata fırlatılmadan önce etkinliğin çalışması için beklenecek süreyi saniye cinsinden belirtir. Varsayılan değer 30sn'dir.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
+    <value>Zaman aşımı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="Common_UsingOutsideOfScope" xml:space="preserve">
+    <value>{0} etkinliği dışında kullanılamaz.</value>
+    <comment>error message</comment>
+  </data>
+	<data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
+    <value>Dosya ara</value>
+    <comment>view model</comment>
+  </data>
+	<data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
+    <value>Klasör ara</value>
+    <comment>view model</comment>
+  </data>
+	<data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
+    <value>Belirtilen aralığa dahil olan kullanımdaki sütun sayısı.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
+    <value>Sütun Sayısı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="GetRangeSize_Description" xml:space="preserve">
+    <value>Belirtilen çalışma kitabı aralığında kullanımdaki satır ve sütun sayısını alır.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="GetRangeSize_DisplayName" xml:space="preserve">
+    <value>Aralık Boyutunu Al</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="GetRangeSize_Range_Description" xml:space="preserve">
+    <value>Okunacak hücre aralığını belirtir. Bu değer belirtilmezse, elektronik tablonun kullanımdaki tüm hücreleri okunur. Değer yalnızca bir hücreden oluşuyorsa, o hücreden başlayarak elektronik tablodaki kullanımdaki tüm satırlar okunur. (Varsayılan: A1)</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
+    <value>Aralık</value>
+    <comment>property name</comment>
+  </data>
+	<data name="GetRangeSize_RowCount_Description" xml:space="preserve">
+    <value>Belirtilen aralığa dahil olan kullanımdaki satır sayısı.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
+    <value>Satır Sayısı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="GetRangeSize_SheetName_Description" xml:space="preserve">
+    <value>Hedef aralığı içeren çalışma sayfasının adı.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
+    <value>Sayfa Adı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadCell_CellAddress_Description" xml:space="preserve">
+    <value>Değerin okunacağı hücre adresi.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Hücre Adresi</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadCell_Description" xml:space="preserve">
+    <value>Belirtilen sayfadaki ve hücre adresindeki bir hücre değerini okur.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadCell_DisplayName" xml:space="preserve">
+    <value>Hücre Oku</value>
+    <comment>activitiy name</comment>
+  </data>
+	<data name="ReadCell_Result_Description" xml:space="preserve">
+    <value>Hücreden okunan değer.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadCell_Result_DisplayName" xml:space="preserve">
+    <value>Değer</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadCell_SheetName_Description" xml:space="preserve">
+    <value>Okuma yapılacak hücreyi içeren sayfa.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
+    <value>Sayfa Adı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_Description" xml:space="preserve">
+    <value>Bir elektronik tablodan bir aralığın değerini DataTable olarak okur. Aralık belirtilmezse, elektronik tablodaki kullanımdaki tüm hücreler okunur. Aralık bir hücre olarak belirtilirse, o hücreden başlayarak kullanımdaki tüm satırlar okunur.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadRange_DisplayName" xml:space="preserve">
+    <value>Aralık Oku</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="ReadRange_HasHeaders_Description" xml:space="preserve">
+    <value>Aralıktaki ilk satırın sütun başlığı tanımları olarak kabul edilip edilmeyeceğini belirtir. False olarak ayarlanırsa, DataTable'daki sütunlar "Col{number}" şablonunu kullanır, örn: Col1, Col2, Col3, vb.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
+    <value>Başlıklar Var</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_HeaderRows_Description" xml:space="preserve">
+    <value>Başlığı oluşturan satır sayısını belirler. Bu satırların değerleri birleştirilir.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
+    <value>Başlık Satırları</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_Range_Description" xml:space="preserve">
+    <value>Okunacak hücre aralığını belirtir. Bu değer belirtilmezse, elektronik tablonun kullanımdaki tüm hücreleri okunur. Değer yalnızca bir hücreden oluşuyorsa, o hücreden başlayarak elektronik tablodaki kullanımdaki tüm satırlar okunur. (Varsayılan: A1)</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_Range_DisplayName" xml:space="preserve">
+    <value>Aralık</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_Result_Description" xml:space="preserve">
+    <value>Okunan verilerin depolandığı çıktı DataTable'ı.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_Result_DisplayName" xml:space="preserve">
+    <value>Veri Tablosu</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
+    <value>Tek bir kaydı oluşturan satır sayısını belirler. Satır değerleri birleştirilir.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
+    <value>Kayıt Başına Satır</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_SheetName_Description" xml:space="preserve">
+    <value>Çalışma kitabındaki sayfanın adı.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
+    <value>Sayfa Adı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRow_Description" xml:space="preserve">
+    <value>Bir çalışma sayfasından bir hücre satırını okur ve değerleri dizi olarak döndürür.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadRow_DisplayName" xml:space="preserve">
+    <value>Satır Oku</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="ReadRow_Limit_DisplayName" xml:space="preserve">
+    <value>Maks. Hücre</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRow_SheetName_Description" xml:space="preserve">
+    <value>Okuma yapılacak çalışma sayfasının adı.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
+    <value>Sayfa Adı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRow_StartingCell_Description" xml:space="preserve">
+    <value>Okumaya başlanacak satırı tanımlayan hücre adresi (aralık formatında, örn: A1).</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
+    <value>Başlangıç Hücresi</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_Description" xml:space="preserve">
+    <value>Bir çalışma kitabını açar ve örneğini alt etkinliklerle paylaşır.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="WorkbookScope_DisplayName" xml:space="preserve">
+    <value>Çalışma Kitabını Kullan</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="WorkbookScope_Password_Description" xml:space="preserve">
+    <value>Parola korumalıysa çalışma kitabını açmak için gereken parola.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
+    <value>Parola</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
+    <value>Çalışma kitabında bulunan sayfa adlarının listesini döndürür.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
+    <value>Sayfa Adları</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
+    <value>Çalışma kitabının yolu.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
+    <value>Çalışma Kitabı Yolu</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
+    <value>Çalışma kitabı yolunu girin</value>
+    <comment>placeholder</comment>
+  </data>
+	<data name="ReadRow_Limit_Description" xml:space="preserve">
+    <value>Satırdan okunacak maksimum hücre sayısı. Boş bırakılır, sıfır veya daha düşük ayarlanırsa, tüm hücreler okunur.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_DisplayName" xml:space="preserve">
+    <value>Sütun Oku</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="ReadColumn_Description" xml:space="preserve">
+    <value>Bir çalışma sayfasından bir hücre sütununu okur ve değerleri dizi olarak döndürür.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
+    <value>Maks. Hücre</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_Limit_Description" xml:space="preserve">
+    <value>Sütundan okunacak maksimum hücre sayısı. Boş bırakılır, sıfır veya daha düşük ayarlanırsa, tüm hücreler okunur.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
+    <value>Sayfa Adı</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_SheetName_Description" xml:space="preserve">
+    <value>Okuma yapılacak çalışma sayfasının adı.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
+    <value>Başlangıç Hücresi</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_StartingCell_Description" xml:space="preserve">
+    <value>Okumaya başlanacak sütunu tanımlayan hücre adresi (aralık formatında, örn: A1).</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_Result_Description" xml:space="preserve">
+    <value>Satırdan okunan değerlerin dizisi.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_Result_DisplayName" xml:space="preserve">
+    <value>Sonuç</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_Result_Description" xml:space="preserve">
+    <value>Sütundan okunan değerlerin dizisi.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_Result_DisplayName" xml:space="preserve">
+    <value>Sonuç</value>
+    <comment>property name</comment>
+  </data>
+</root>

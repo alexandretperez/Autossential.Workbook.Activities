@@ -186,7 +186,7 @@
     <comment>activity name</comment>
   </data>
   <data name="GetRangeSize_Range_Description" xml:space="preserve">
-    <value>The Excel range (e.g., "A1:B10") whose size will be calculated. If empty, the entire sheet is evaluated.</value>
+    <value>Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1)</value>
     <comment>property description</comment>
   </data>
   <data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
@@ -266,7 +266,7 @@
     <comment>property name</comment>
   </data>
   <data name="ReadRange_Range_Description" xml:space="preserve">
-    <value>Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell.</value>
+    <value>Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1)</value>
     <comment>property description</comment>
   </data>
   <data name="ReadRange_Range_DisplayName" xml:space="preserve">
@@ -318,8 +318,7 @@
     <comment>property name</comment>
   </data>
   <data name="ReadRow_StartingCell_Description" xml:space="preserve">
-    <value>Cell address (in range format) that defines the row to start reading.  
-(Default: A1)</value>
+    <value>Cell address (in range format, e.g.: A1) that defines the row to start reading.</value>
     <comment>property description</comment>
   </data>
   <data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
@@ -363,7 +362,7 @@
     <comment>placeholder</comment>
   </data>
   <data name="ReadRow_Limit_Description" xml:space="preserve">
-    <value>Maximum number of cells to read from the row. If set to zero or less, all cells in the row are read.</value>
+    <value>Maximum number of cells to read from the row. If left blank, or set to zero or less, all cells are read.</value>
     <comment>property description</comment>
   </data>
   <data name="ReadColumn_DisplayName" xml:space="preserve">
@@ -379,7 +378,7 @@
     <comment>property name</comment>
   </data>
   <data name="ReadColumn_Limit_Description" xml:space="preserve">
-    <value>Maximum number of cells to read from the column. If set to zero or less, all cells in the column are read.</value>
+    <value>Maximum number of cells to read from the column. If left blank, or set to zero or less, all cells are read.</value>
     <comment>property description</comment>
   </data>
   <data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
@@ -395,8 +394,7 @@
     <comment>property name</comment>
   </data>
   <data name="ReadColumn_StartingCell_Description" xml:space="preserve">
-    <value>Cell address (in range format) that defines the column to start reading.  
-(Default: A1)</value>
+    <value>Cell address (in range format, e.g.: A1) that defines the column to start reading.</value>
     <comment>property description</comment>
   </data>
   <data name="ReadRow_Result_Description" xml:space="preserve">

@@ -8,7 +8,7 @@ namespace Autossential.Workbook.Activities.ViewModels
         public DesignInArgument<string> SheetName { get; set; }
         public DesignInArgument<string> StartingCell { get; set; }
         public DesignInArgument<int> Limit { get; set; }
-        public DesignOutArgument<object> Result { get; set; }
+        public DesignOutArgument<object[]> Result { get; set; }
         protected override void InitializeModel()
         {
             base.InitializeModel();
@@ -17,7 +17,9 @@ namespace Autossential.Workbook.Activities.ViewModels
             var orderIndex = 0;
             SheetName.IsPrincipal = true;
             SheetName.OrderIndex = orderIndex++;
+
             StartingCell.OrderIndex++;
+            StartingCell.IsPrincipal = true;
             Limit.OrderIndex++;
             Result.OrderIndex++;
         }

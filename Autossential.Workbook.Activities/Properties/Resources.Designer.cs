@@ -214,7 +214,7 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Excel range (e.g., &quot;A1:B10&quot;) whose size will be calculated. If empty, the entire sheet is evaluated..
+        ///   Looks up a localized string similar to Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1).
         /// </summary>
         public static string GetRangeSize_Range_Description {
             get {
@@ -358,7 +358,7 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum number of cells to read from the column. If set to zero or less, all cells in the column are read..
+        ///   Looks up a localized string similar to Maximum number of cells to read from the column. If left blank, or set to zero or less, all cells are read..
         /// </summary>
         public static string ReadColumn_Limit_Description {
             get {
@@ -412,8 +412,7 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cell address (in range format) that defines the column to start reading.  
-        ///(Default: A1).
+        ///   Looks up a localized string similar to Cell address (in range format, e.g.: A1) that defines the column to start reading..
         /// </summary>
         public static string ReadColumn_StartingCell_Description {
             get {
@@ -485,7 +484,7 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell..
+        ///   Looks up a localized string similar to Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1).
         /// </summary>
         public static string ReadRange_Range_Description {
             get {
@@ -575,7 +574,7 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum number of cells to read from the row. If set to zero or less, all cells in the row are read..
+        ///   Looks up a localized string similar to Maximum number of cells to read from the row. If left blank, or set to zero or less, all cells are read..
         /// </summary>
         public static string ReadRow_Limit_Description {
             get {
@@ -629,8 +628,7 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cell address (in range format) that defines the row to start reading.  
-        ///(Default: A1).
+        ///   Looks up a localized string similar to Cell address (in range format, e.g.: A1) that defines the row to start reading..
         /// </summary>
         public static string ReadRow_StartingCell_Description {
             get {

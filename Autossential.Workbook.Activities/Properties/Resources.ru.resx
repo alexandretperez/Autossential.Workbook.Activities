@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+
+	<data name="ActivityCategories_Workbook" xml:space="preserve">
+    <value>Autossential.Workbook</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_Input" xml:space="preserve">
+    <value>Ввод</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_InputOutput" xml:space="preserve">
+    <value>Ввод/Вывод</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_Options" xml:space="preserve">
+    <value>Параметры</value>
+    <comment>category</comment>
+  </data>
+	<data name="Categories_Output" xml:space="preserve">
+    <value>Вывод</value>
+    <comment>category</comment>
+  </data>
+	<data name="Common_ContinueOnError_Description" xml:space="preserve">
+    <value>Указывает продолжать выполнение оставшихся действий, даже если текущее действие завершилось ошибкой. Разрешены только логические значения.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
+    <value>Продолжать при ошибке</value>
+    <comment>property name</comment>
+  </data>
+	<data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
+    <value>Значение для обязательного аргумента действия '{0}' не было предоставлено.</value>
+    <comment>error message</comment>
+  </data>
+	<data name="Common_TimeoutSeconds_Description" xml:space="preserve">
+    <value>Указывает время ожидания в секундах для выполнения действия до возникновения ошибки. Значение по умолчанию — 30 с.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
+    <value>Таймаут</value>
+    <comment>property name</comment>
+  </data>
+	<data name="Common_UsingOutsideOfScope" xml:space="preserve">
+    <value>Нельзя использовать вне действия {0}.</value>
+    <comment>error message</comment>
+  </data>
+	<data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
+    <value>Выбрать файл</value>
+    <comment>view model</comment>
+  </data>
+	<data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
+    <value>Выбрать папку</value>
+    <comment>view model</comment>
+  </data>
+	<data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
+    <value>Количество используемых столбцов в указанном диапазоне.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
+    <value>Количество столбцов</value>
+    <comment>property name</comment>
+  </data>
+	<data name="GetRangeSize_Description" xml:space="preserve">
+    <value>Получает количество используемых строк и столбцов в указанном диапазоне книги.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="GetRangeSize_DisplayName" xml:space="preserve">
+    <value>Получить размер диапазона</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="GetRangeSize_Range_Description" xml:space="preserve">
+    <value>Указывает диапазон ячеек для чтения. Если не указано, читаются все используемые ячейки листа. Если указано только одну ячейку, читаются все используемые строки, начиная с этой ячейки. (По умолчанию: A1)</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
+    <value>Диапазон</value>
+    <comment>property name</comment>
+  </data>
+	<data name="GetRangeSize_RowCount_Description" xml:space="preserve">
+    <value>Количество используемых строк в указанном диапазоне.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
+    <value>Количество строк</value>
+    <comment>property name</comment>
+  </data>
+	<data name="GetRangeSize_SheetName_Description" xml:space="preserve">
+    <value>Имя листа, содержащего целевой диапазон.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadCell_CellAddress_Description" xml:space="preserve">
+    <value>Адрес ячейки, из которой следует прочитать значение.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Адрес ячейки</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadCell_Description" xml:space="preserve">
+    <value>Читает значение ячейки на указанном листе и адресе.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadCell_DisplayName" xml:space="preserve">
+    <value>Прочитать ячейку</value>
+    <comment>activitiy name</comment>
+  </data>
+	<data name="ReadCell_Result_Description" xml:space="preserve">
+    <value>Значение, прочитанное из ячейки.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadCell_Result_DisplayName" xml:space="preserve">
+    <value>Значение</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadCell_SheetName_Description" xml:space="preserve">
+    <value>Лист, содержащий ячейку для чтения.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_Description" xml:space="preserve">
+    <value>Читает значения диапазона из электронной таблицы в DataTable. Если диапазон не указан, читаются все используемые ячейки. Если указана только одна ячейка, читаются все используемые строки, начиная с неё.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadRange_DisplayName" xml:space="preserve">
+    <value>Прочитать диапазон</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="ReadRange_HasHeaders_Description" xml:space="preserve">
+    <value>Указывает, следует ли считать первую строку диапазона заголовками столбцов. Если false, столбцы будут названы по шаблону "Col{number}".</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
+    <value>Есть заголовки</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_HeaderRows_Description" xml:space="preserve">
+    <value>Определяет количество строк, составляющих заголовок. Значения этих строк объединяются.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
+    <value>Строки заголовка</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_Range_Description" xml:space="preserve">
+    <value>Указывает диапазон ячеек для чтения. Если не указано, читаются все используемые ячейки. Если указана одна ячейка, читаются все используемые строки с неё. (По умолчанию: A1)</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_Range_DisplayName" xml:space="preserve">
+    <value>Диапазон</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_Result_Description" xml:space="preserve">
+    <value>Выходная DataTable, в которой хранятся прочитанные данные.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_Result_DisplayName" xml:space="preserve">
+    <value>DataTable</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
+    <value>Определяет количество строк, составляющих одну запись. Значения строк объединяются.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
+    <value>Строк на запись</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRange_SheetName_Description" xml:space="preserve">
+    <value>Имя листа книги.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRow_Description" xml:space="preserve">
+    <value>Читает строку ячеек из листа и возвращает значения в виде массива.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadRow_DisplayName" xml:space="preserve">
+    <value>Прочитать строку</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="ReadRow_Limit_DisplayName" xml:space="preserve">
+    <value>Макс. ячеек</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRow_SheetName_Description" xml:space="preserve">
+    <value>Имя листа для чтения.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadRow_StartingCell_Description" xml:space="preserve">
+    <value>Адрес ячейки (в формате диапазона, напр.: A1), с которой начинать чтение строки.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
+    <value>Начальная ячейка</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_Description" xml:space="preserve">
+    <value>Открывает книгу и делает её экземпляр доступным для дочерних действий.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="WorkbookScope_DisplayName" xml:space="preserve">
+    <value>Использовать книгу</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="WorkbookScope_Password_Description" xml:space="preserve">
+    <value>Пароль, необходимый для открытия книги, если она защищена паролем.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
+    <value>Пароль</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
+    <value>Возвращает список имён листов, содержащихся в книге.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
+    <value>Имена листов</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
+    <value>Путь к книге.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
+    <value>Путь к книге</value>
+    <comment>property name</comment>
+  </data>
+	<data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
+    <value>Введите путь к книге</value>
+    <comment>placeholder</comment>
+  </data>
+	<data name="ReadRow_Limit_Description" xml:space="preserve">
+    <value>Максимальное количество ячеек для чтения из строки. Если пусто или ≤ 0, читаются все ячейки.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_DisplayName" xml:space="preserve">
+    <value>Прочитать столбец</value>
+    <comment>activity name</comment>
+  </data>
+	<data name="ReadColumn_Description" xml:space="preserve">
+    <value>Читает столбец ячеек из листа и возвращает значения в виде массива.</value>
+    <comment>activity description</comment>
+  </data>
+	<data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
+    <value>Макс. ячеек</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_Limit_Description" xml:space="preserve">
+    <value>Максимальное количество ячеек для чтения из столбца. Если пусто или ≤ 0, читаются все ячейки.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_SheetName_Description" xml:space="preserve">
+    <value>Имя листа для чтения.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
+    <value>Начальная ячейка</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_StartingCell_Description" xml:space="preserve">
+    <value>Адрес ячейки (в формате диапазона, напр.: A1), с которой начинать чтение столбца.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_Result_Description" xml:space="preserve">
+    <value>Массив значений, прочитанных из строки.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadRow_Result_DisplayName" xml:space="preserve">
+    <value>Результат</value>
+    <comment>property name</comment>
+  </data>
+	<data name="ReadColumn_Result_Description" xml:space="preserve">
+    <value>Массив значений, прочитанных из столбца.</value>
+    <comment>property description</comment>
+  </data>
+	<data name="ReadColumn_Result_DisplayName" xml:space="preserve">
+    <value>Результат</value>
+    <comment>property name</comment>
+  </data>
+</root>
