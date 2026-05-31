@@ -1,0 +1,41 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+name: .NET
+
+on:
+  push:
+    branches: ["main"]
+      
+jobs:
+  pack-push:
+    env:
+      project: ./Autossential.Workbook.Activities.Packaging/Autossential.Workbook.Activities.Packaging.csproj
+      
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v5
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.0.x
+        
+    - name: Adding nuget package sources (MyGet-Official)
+      run: dotnet nuget add source https://pkgs.dev.azure.com/uipath/Public.Feeds/_packaging/UiPath-Official/nuget/v3/index.json --name UiPath-Official
+      
+    - name: Adding nuget package sources (UiPath-Internal)
+      run: dotnet nuget add source https://uipath.pkgs.visualstudio.com/Public.Feeds/_packaging/UiPath-Internal/nuget/v3/index.json --name UiPath-Internal
+     
+    - name: Restore
+      run: dotnet restore ${{env.project}}
+
+    - name: Build
+      run: dotnet build ${{env.project}} -c Release
+   
+    - name: Pack
+      run: dotnet pack ${{env.project}} -c Release -o Package --no-build
+      
+    - name: Push to NuGet
+      run: |
+        cd Package
+        dotnet nuget push *.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate

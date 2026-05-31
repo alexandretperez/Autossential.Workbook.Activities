@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivityCategories_Workbook" xml:space="preserve">
+    <value>Autossential.Workbook</value>
+    <comment>category</comment>
+  </data>
+  <data name="Categories_Input" xml:space="preserve">
+    <value>Input</value>
+    <comment>category</comment>
+  </data>
+  <data name="Categories_InputOutput" xml:space="preserve">
+    <value>Input/Output</value>
+    <comment>category</comment>
+  </data>
+  <data name="Categories_Options" xml:space="preserve">
+    <value>Options</value>
+    <comment>category</comment>
+  </data>
+  <data name="Categories_Output" xml:space="preserve">
+    <value>Output</value>
+    <comment>category</comment>
+  </data>
+  <data name="Common_ContinueOnError_Description" xml:space="preserve">
+    <value>Specifies to continue executing the remaining activities even if the current activity failed. Only boolean values are allowed.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
+    <value>Continue on error</value>
+    <comment>property name</comment>
+  </data>
+  <data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
+    <value>Value for a required activity argument '{0}' was not supplied.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Common_TimeoutSeconds_Description" xml:space="preserve">
+    <value>Specifies the amount of time in seconds to wait for the activity to run before an error is thrown. The default value is 30s.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
+    <value>Timeout</value>
+    <comment>property name</comment>
+  </data>
+  <data name="Common_UsingOutsideOfScope" xml:space="preserve">
+    <value>Cannot be used outside of {0} activity.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
+    <value>Browse for file</value>
+    <comment>view model</comment>
+  </data>
+  <data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
+    <value>Browse for folder</value>
+    <comment>view model</comment>
+  </data>
+  <data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
+    <value>The number of columns in use included in the specified range.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
+    <value>Column Count</value>
+    <comment>property name</comment>
+  </data>
+  <data name="GetRangeSize_Description" xml:space="preserve">
+    <value>Retrieves the number of rows and columns in use in a specified workbook range.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="GetRangeSize_DisplayName" xml:space="preserve">
+    <value>Get Range Size</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="GetRangeSize_Range_Description" xml:space="preserve">
+    <value>Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1)</value>
+    <comment>property description</comment>
+  </data>
+  <data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
+    <value>Range</value>
+    <comment>property name</comment>
+  </data>
+  <data name="GetRangeSize_RowCount_Description" xml:space="preserve">
+    <value>The number of rows in use included in the specified range.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
+    <value>Row Count</value>
+    <comment>property name</comment>
+  </data>
+  <data name="GetRangeSize_SheetName_Description" xml:space="preserve">
+    <value>The name of the worksheet containing the target range.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadCell_CellAddress_Description" xml:space="preserve">
+    <value>The cell address the value should be read from.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Cell Address</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadCell_Description" xml:space="preserve">
+    <value>Reads a cell value in the specified sheet and cell address.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="ReadCell_DisplayName" xml:space="preserve">
+    <value>Read Cell</value>
+    <comment>activitiy name</comment>
+  </data>
+  <data name="ReadCell_Result_Description" xml:space="preserve">
+    <value>The value read from the cell.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadCell_Result_DisplayName" xml:space="preserve">
+    <value>Value</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadCell_SheetName_Description" xml:space="preserve">
+    <value>The sheet containing the cell that will be read from.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRange_Description" xml:space="preserve">
+    <value>Reads the value of a range from a spreadsheet as a DataTable. If the range is not specified, all used cells in the spreadsheet are read. If the range is specified as a cell, all used rows starting from that cell is read.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="ReadRange_DisplayName" xml:space="preserve">
+    <value>Read Range</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="ReadRange_HasHeaders_Description" xml:space="preserve">
+    <value>Specifies if the first row in the range should be considered column headers definitions. If set to false, the columns in the DataTable will use the following pattern "Col{number}", e.g.: Col1, Col2, Col3, etc.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
+    <value>Has Headers</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRange_HeaderRows_Description" xml:space="preserve">
+    <value>Determines the number of rows that composes the header. The values of these rows are concatenated.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
+    <value>Headers Rows</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRange_Range_Description" xml:space="preserve">
+    <value>Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1)</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRange_Range_DisplayName" xml:space="preserve">
+    <value>Range</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRange_Result_Description" xml:space="preserve">
+    <value>The output DataTable in which the read data is stored.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRange_Result_DisplayName" xml:space="preserve">
+    <value>Data Table</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
+    <value>Determines the number of rows that composes a single record. The row values are concatenated.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
+    <value>Rows Per Record</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRange_SheetName_Description" xml:space="preserve">
+    <value>The name of the sheet from the workbook.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRow_Description" xml:space="preserve">
+    <value>Reads a row of cells from a worksheet and returns the values as an array.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="ReadRow_DisplayName" xml:space="preserve">
+    <value>Read Row</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="ReadRow_Limit_DisplayName" xml:space="preserve">
+    <value>Max Cells</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRow_SheetName_Description" xml:space="preserve">
+    <value>Name of the worksheet to read from.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadRow_StartingCell_Description" xml:space="preserve">
+    <value>Cell address (in range format, e.g.: A1) that defines the row to start reading.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
+    <value>Starting Cell</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WorkbookScope_Description" xml:space="preserve">
+    <value>Opens a workbook and share its instance across the child activities.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WorkbookScope_DisplayName" xml:space="preserve">
+    <value>Use Workbook</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="WorkbookScope_Password_Description" xml:space="preserve">
+    <value>The password required for open the workbook if it is password-protected.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
+    <value>Password</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
+    <value>Returns the list of sheet names contained in the workbook.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
+    <value>Sheet Names</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
+    <value>The path to the workbook.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
+    <value>Workbook Path</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
+    <value>Enter the workbook path</value>
+    <comment>placeholder</comment>
+  </data>
+  <data name="ReadRow_Limit_Description" xml:space="preserve">
+    <value>Maximum number of cells to read from the row. If left blank, or set to zero or less, all cells are read.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadColumn_DisplayName" xml:space="preserve">
+    <value>Read Column</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="ReadColumn_Description" xml:space="preserve">
+    <value>Reads a column of cells from a worksheet and returns the values as an array.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
+    <value>Max Cells</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadColumn_Limit_Description" xml:space="preserve">
+    <value>Maximum number of cells to read from the column. If left blank, or set to zero or less, all cells are read.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadColumn_SheetName_Description" xml:space="preserve">
+    <value>Name of the worksheet to read from.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
+    <value>Starting Cell</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadColumn_StartingCell_Description" xml:space="preserve">
+    <value>Cell address (in range format, e.g.: A1) that defines the column to start reading.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRow_Result_Description" xml:space="preserve">
+    <value>Array of values read from the row.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadRow_Result_DisplayName" xml:space="preserve">
+    <value>Result</value>
+    <comment>property name</comment>
+  </data>
+  <data name="ReadColumn_Result_Description" xml:space="preserve">
+    <value>Array of values read from the column.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="ReadColumn_Result_DisplayName" xml:space="preserve">
+    <value>Result</value>
+    <comment>property name</comment>
+  </data>
+</root>

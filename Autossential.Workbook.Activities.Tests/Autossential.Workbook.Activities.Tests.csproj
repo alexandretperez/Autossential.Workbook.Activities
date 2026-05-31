@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>14.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="ViewModel\" />
+		<Folder Include="Workflow\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.8" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="UiPath.Activities.Api" Version="24.10.1" developmentDependency="true" />
+		<PackageReference Include="UiPath.Workflow" Version="6.0.0-20240401-07" />
+		<PackageReference Include="System.Activities.Metadata" Version="6.0.0-20240517.13" />
+		<PackageReference Include="NPOI" Version="2.8.0" />
+		<PackageReference Include="xunit.v3" Version="3.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Autossential.Workbook.Activities\Autossential.Workbook.Activities.csproj" />
+	</ItemGroup>
+
+</Project>

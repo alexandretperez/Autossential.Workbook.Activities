@@ -1,0 +1,423 @@
+{
+  "activities": [
+    {
+      "fullName": "Autossential.Workbook.Activities.GetRangeSize",
+      "shortName": "GetRangeSize",
+      "displayNameKey": "GetRangeSize_DisplayName",
+      "descriptionKey": "GetRangeSize_Description",
+      "iconKey": "GetRangeSize.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetRangeSizeViewModel",
+      "categoryKey": "ActivityCategories_Workbook",
+      "properties": [
+        {
+          "name": "SheetName",
+          "displayNameKey": "GetRangeSize_SheetName_DisplayName",
+          "tooltipKey": "GetRangeSize_SheetName_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "Range",
+          "displayNameKey": "GetRangeSize_Range_DisplayName",
+          "tooltipKey": "GetRangeSize_Range_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "RowCount",
+          "displayNameKey": "GetRangeSize_RowCount_DisplayName",
+          "tooltipKey": "GetRangeSize_RowCount_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        },
+        {
+          "name": "ColumnCount",
+          "displayNameKey": "GetRangeSize_ColumnCount_DisplayName",
+          "tooltipKey": "GetRangeSize_ColumnCount_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        }
+      ]
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.ReadCell",
+      "shortName": "ReadCell",
+      "displayNameKey": "ReadCell_DisplayName",
+      "descriptionKey": "ReadCell_Description",
+      "iconKey": "ReadCell.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadCellViewModel",
+      "categoryKey": "ActivityCategories_Workbook",
+      "properties": [
+        {
+          "name": "SheetName",
+          "displayNameKey": "ReadCell_SheetName_DisplayName",
+          "tooltipKey": "ReadCell_SheetName_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "CellAddress",
+          "displayNameKey": "ReadCell_CellAddress_DisplayName",
+          "tooltipKey": "ReadCell_CellAddress_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadCell_Result_DisplayName",
+          "tooltipKey": "ReadCell_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        },
+        {
+          "name": "ResultType",
+          "displayNameKey": "ReadCell_ResultType_DisplayName",
+          "tooltipKey": "ReadCell_ResultType_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Options",
+            "displayNameKey": "Categories_Options"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadCell_Result_DisplayName",
+          "tooltipKey": "ReadCell_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        }
+      ]
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.ReadColumn",
+      "shortName": "ReadColumn",
+      "displayNameKey": "ReadColumn_DisplayName",
+      "descriptionKey": "ReadColumn_Description",
+      "iconKey": "ReadColumn.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadColumnViewModel",
+      "categoryKey": "ActivityCategories_Workbook",
+      "properties": [
+        {
+          "name": "SheetName",
+          "displayNameKey": "ReadColumn_SheetName_DisplayName",
+          "tooltipKey": "ReadColumn_SheetName_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "StartingCell",
+          "displayNameKey": "ReadColumn_StartingCell_DisplayName",
+          "tooltipKey": "ReadColumn_StartingCell_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "Limit",
+          "displayNameKey": "ReadColumn_Limit_DisplayName",
+          "tooltipKey": "ReadColumn_Limit_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadColumn_Result_DisplayName",
+          "tooltipKey": "ReadColumn_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        },
+        {
+          "name": "ResultType",
+          "displayNameKey": "ReadColumn_ResultType_DisplayName",
+          "tooltipKey": "ReadColumn_ResultType_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Options",
+            "displayNameKey": "Categories_Options"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadColumn_Result_DisplayName",
+          "tooltipKey": "ReadColumn_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        }
+      ]
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.ReadRange",
+      "shortName": "ReadRange",
+      "displayNameKey": "ReadRange_DisplayName",
+      "descriptionKey": "ReadRange_Description",
+      "iconKey": "ReadRange.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRangeViewModel",
+      "categoryKey": "ActivityCategories_Workbook",
+      "properties": [
+        {
+          "name": "SheetName",
+          "displayNameKey": "ReadRange_SheetName_DisplayName",
+          "tooltipKey": "ReadRange_SheetName_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "Range",
+          "displayNameKey": "ReadRange_Range_DisplayName",
+          "tooltipKey": "ReadRange_Range_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "HasHeaders",
+          "displayNameKey": "ReadRange_HasHeaders_DisplayName",
+          "tooltipKey": "ReadRange_HasHeaders_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Options",
+            "displayNameKey": "Categories_Options"
+          }
+        },
+        {
+          "name": "HeaderRows",
+          "displayNameKey": "ReadRange_HeaderRows_DisplayName",
+          "tooltipKey": "ReadRange_HeaderRows_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Options",
+            "displayNameKey": "Categories_Options"
+          }
+        },
+        {
+          "name": "RowsPerRecord",
+          "displayNameKey": "ReadRange_RowsPerRecord_DisplayName",
+          "tooltipKey": "ReadRange_RowsPerRecord_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Options",
+            "displayNameKey": "Categories_Options"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadRange_Result_DisplayName",
+          "tooltipKey": "ReadRange_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        },
+        {
+          "name": "ResultType",
+          "displayNameKey": "ReadRange_ResultType_DisplayName",
+          "tooltipKey": "ReadRange_ResultType_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Options",
+            "displayNameKey": "Categories_Options"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadRange_Result_DisplayName",
+          "tooltipKey": "ReadRange_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        }
+      ]
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.ReadRow",
+      "shortName": "ReadRow",
+      "displayNameKey": "ReadRow_DisplayName",
+      "descriptionKey": "ReadRow_Description",
+      "iconKey": "ReadRow.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRowViewModel",
+      "categoryKey": "ActivityCategories_Workbook",
+      "properties": [
+        {
+          "name": "SheetName",
+          "displayNameKey": "ReadRow_SheetName_DisplayName",
+          "tooltipKey": "ReadRow_SheetName_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "StartingCell",
+          "displayNameKey": "ReadRow_StartingCell_DisplayName",
+          "tooltipKey": "ReadRow_StartingCell_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "Limit",
+          "displayNameKey": "ReadRow_Limit_DisplayName",
+          "tooltipKey": "ReadRow_Limit_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadRow_Result_DisplayName",
+          "tooltipKey": "ReadRow_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        },
+        {
+          "name": "ResultType",
+          "displayNameKey": "ReadRow_ResultType_DisplayName",
+          "tooltipKey": "ReadRow_ResultType_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Options",
+            "displayNameKey": "Categories_Options"
+          }
+        },
+        {
+          "name": "Result",
+          "displayNameKey": "ReadRow_Result_DisplayName",
+          "tooltipKey": "ReadRow_Result_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        }
+      ]
+    },
+    {
+      "fullName": "Autossential.Workbook.Activities.WorkbookScope",
+      "shortName": "WorkbookScope",
+      "displayNameKey": "WorkbookScope_DisplayName",
+      "descriptionKey": "WorkbookScope_Description",
+      "iconKey": "WorkbookScope.svg",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.WorkbookScopeViewModel",
+      "categoryKey": "ActivityCategories_Workbook",
+      "properties": [
+        {
+          "name": "WorkbookPath",
+          "displayNameKey": "WorkbookScope_WorkbookPath_DisplayName",
+          "tooltipKey": "WorkbookScope_WorkbookPath_Description",
+          "isVisible": true,
+          "isRequired": true,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        },
+        {
+          "name": "SheetNames",
+          "displayNameKey": "WorkbookScope_SheetNames_DisplayName",
+          "tooltipKey": "WorkbookScope_SheetNames_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Output",
+            "displayNameKey": "Categories_Output"
+          }
+        },
+        {
+          "name": "Password",
+          "displayNameKey": "WorkbookScope_Password_DisplayName",
+          "tooltipKey": "WorkbookScope_Password_Description",
+          "isVisible": true,
+          "isRequired": false,
+          "category": {
+            "name": "Input",
+            "displayNameKey": "Categories_Input"
+          }
+        }
+      ]
+    }
+  ],
+  "resourceManagerName": "Autossential.Workbook.Activities.Properties.Resources"
+}
