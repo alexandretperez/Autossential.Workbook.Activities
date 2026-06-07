@@ -1,357 +1,415 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-	<data name="ActivityCategories_Workbook" xml:space="preserve">
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Input" xml:space="preserve">
+  <data name="Categories_Input" xml:space="preserve">
     <value>入力</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_InputOutput" xml:space="preserve">
+  <data name="Categories_InputOutput" xml:space="preserve">
     <value>入力/出力</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Options" xml:space="preserve">
+  <data name="Categories_Options" xml:space="preserve">
     <value>オプション</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Output" xml:space="preserve">
+  <data name="Categories_Output" xml:space="preserve">
     <value>出力</value>
     <comment>category</comment>
   </data>
-	<data name="Common_ContinueOnError_Description" xml:space="preserve">
+  <data name="Common_ContinueOnError_Description" xml:space="preserve">
     <value>現在のアクティビティが失敗した場合でも、残りのアクティビティの実行を続行するかどうかを指定します。ブール値のみ許可されます。</value>
     <comment>property description</comment>
   </data>
-	<data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
+  <data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
     <value>エラー時も続行</value>
     <comment>property name</comment>
   </data>
-	<data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
+  <data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
     <value>必要なアクティビティ引数 '{0}' の値が指定されていません。</value>
     <comment>error message</comment>
   </data>
-	<data name="Common_TimeoutSeconds_Description" xml:space="preserve">
+  <data name="Common_TimeoutSeconds_Description" xml:space="preserve">
     <value>アクティビティの実行を待機する秒数を指定します。エラーが発生するまでの時間です。既定値は30秒です。</value>
     <comment>property description</comment>
   </data>
-	<data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
+  <data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
     <value>タイムアウト</value>
     <comment>property name</comment>
   </data>
-	<data name="Common_UsingOutsideOfScope" xml:space="preserve">
+  <data name="Common_UsingOutsideOfScope" xml:space="preserve">
     <value>{0} アクティビティの外では使用できません。</value>
     <comment>error message</comment>
   </data>
-	<data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
+  <data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
     <value>ファイルを選択</value>
     <comment>view model</comment>
   </data>
-	<data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
+  <data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
     <value>フォルダーを選択</value>
     <comment>view model</comment>
   </data>
-	<data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
+  <data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
     <value>指定された範囲に含まれる使用中の列数です。</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
     <value>列数</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_Description" xml:space="preserve">
+  <data name="GetRangeSize_Description" xml:space="preserve">
     <value>指定されたワークブック範囲で使用中の行数と列数を取得します。</value>
     <comment>activity description</comment>
   </data>
-	<data name="GetRangeSize_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>範囲サイズの取得</value>
     <comment>activity name</comment>
   </data>
-	<data name="GetRangeSize_Range_Description" xml:space="preserve">
+  <data name="GetRangeSize_Range_Description" xml:space="preserve">
     <value>読み取るセルの範囲を指定します。指定がない場合は、すべての使用済みセルが読み取られます。1つのセルのみの場合は、そのセルからすべての使用済み行が読み取られます。（既定: A1）</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
     <value>範囲</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_RowCount_Description" xml:space="preserve">
+  <data name="GetRangeSize_RowCount_Description" xml:space="preserve">
     <value>指定された範囲に含まれる使用中の行数です。</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
     <value>行数</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_SheetName_Description" xml:space="preserve">
+  <data name="GetRangeSize_SheetName_Description" xml:space="preserve">
     <value>対象範囲を含むワークシートの名前です。</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_CellAddress_Description" xml:space="preserve">
+  <data name="ReadCell_CellAddress_Description" xml:space="preserve">
     <value>値を読み取るセルのアドレスです。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
+  <data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
     <value>セルアドレス</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_Description" xml:space="preserve">
+  <data name="ReadCell_Description" xml:space="preserve">
     <value>指定されたシートとセルアドレスからセルの値を読み取ります。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadCell_DisplayName" xml:space="preserve">
+  <data name="ReadCell_DisplayName" xml:space="preserve">
     <value>セルを読み取り</value>
     <comment>activitiy name</comment>
   </data>
-	<data name="ReadCell_Result_Description" xml:space="preserve">
+  <data name="ReadCell_Result_Description" xml:space="preserve">
     <value>セルから読み取った値です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_Result_DisplayName" xml:space="preserve">
+  <data name="ReadCell_Result_DisplayName" xml:space="preserve">
     <value>値</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_SheetName_Description" xml:space="preserve">
+  <data name="ReadCell_SheetName_Description" xml:space="preserve">
     <value>読み取り元のセルを含むシートです。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Description" xml:space="preserve">
+  <data name="ReadRange_Description" xml:space="preserve">
     <value>スプレッドシートの範囲の値を DataTable として読み取ります。範囲が指定されていない場合はすべての使用済みセルが読み取られます。1つのセルのみが指定された場合は、そのセルからすべての使用済み行が読み取られます。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadRange_DisplayName" xml:space="preserve">
+  <data name="ReadRange_DisplayName" xml:space="preserve">
     <value>範囲を読み取り</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadRange_HasHeaders_Description" xml:space="preserve">
+  <data name="ReadRange_HasHeaders_Description" xml:space="preserve">
     <value>範囲の最初の行を列ヘッダーとして扱うかどうかを指定します。false の場合、列は "Col{number}" パターンで命名されます。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
+  <data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
     <value>ヘッダーあり</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_HeaderRows_Description" xml:space="preserve">
+  <data name="ReadRange_HeaderRows_Description" xml:space="preserve">
     <value>ヘッダーを構成する行数を決定します。これらの行の値は連結されます。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
+  <data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
     <value>ヘッダー行</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Range_Description" xml:space="preserve">
+  <data name="ReadRange_Range_Description" xml:space="preserve">
     <value>読み取るセルの範囲を指定します。指定がない場合は、すべての使用済みセルが読み取られます。1つのセルのみの場合は、そのセルからすべての使用済み行が読み取られます。（既定: A1）</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_Range_DisplayName" xml:space="preserve">
+  <data name="ReadRange_Range_DisplayName" xml:space="preserve">
     <value>範囲</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Result_Description" xml:space="preserve">
+  <data name="ReadRange_Result_Description" xml:space="preserve">
     <value>読み取ったデータが格納される出力 DataTable です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_Result_DisplayName" xml:space="preserve">
+  <data name="ReadRange_Result_DisplayName" xml:space="preserve">
     <value>データテーブル</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
+  <data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
     <value>1つのレコードを構成する行数を決定します。行の値は連結されます。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
+  <data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
     <value>レコードあたりの行数</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_SheetName_Description" xml:space="preserve">
+  <data name="ReadRange_SheetName_Description" xml:space="preserve">
     <value>ワークブックのシート名です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_Description" xml:space="preserve">
+  <data name="ReadRow_Description" xml:space="preserve">
     <value>ワークシートからセルの行を読み取り、値を配列として返します。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadRow_DisplayName" xml:space="preserve">
+  <data name="ReadRow_DisplayName" xml:space="preserve">
     <value>行を読み取り</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadRow_Limit_DisplayName" xml:space="preserve">
+  <data name="ReadRow_Limit_DisplayName" xml:space="preserve">
     <value>最大セル数</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_SheetName_Description" xml:space="preserve">
+  <data name="ReadRow_SheetName_Description" xml:space="preserve">
     <value>読み取り元のワークシート名です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_StartingCell_Description" xml:space="preserve">
+  <data name="ReadRow_StartingCell_Description" xml:space="preserve">
     <value>読み取りを開始する行を定義するセルアドレス（範囲形式、例: A1）です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
+  <data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
     <value>開始セル</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_Description" xml:space="preserve">
+  <data name="WorkbookScope_Description" xml:space="preserve">
     <value>ワークブックを開き、そのインスタンスを子アクティビティ間で共有します。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WorkbookScope_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_DisplayName" xml:space="preserve">
     <value>ワークブックを使用</value>
     <comment>activity name</comment>
   </data>
-	<data name="WorkbookScope_Password_Description" xml:space="preserve">
+  <data name="WorkbookScope_Password_Description" xml:space="preserve">
     <value>パスワード保護されている場合にワークブックを開くために必要なパスワードです。</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
     <value>パスワード</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
+  <data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
     <value>ワークブックに含まれるシート名のリストを返します。</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
     <value>シート名一覧</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
     <value>ワークブックのファイルパスです。</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
     <value>ワークブックのパス</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
     <value>ワークブックの場所を入力</value>
     <comment>placeholder</comment>
   </data>
-	<data name="ReadRow_Limit_Description" xml:space="preserve">
+  <data name="ReadRow_Limit_Description" xml:space="preserve">
     <value>行から読み取る最大セル数です。空白または0以下の場合はすべてのセルを読み取ります。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_DisplayName" xml:space="preserve">
     <value>列を読み取り</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadColumn_Description" xml:space="preserve">
+  <data name="ReadColumn_Description" xml:space="preserve">
     <value>ワークシートからセルの列を読み取り、値を配列として返します。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
     <value>最大セル数</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_Limit_Description" xml:space="preserve">
+  <data name="ReadColumn_Limit_Description" xml:space="preserve">
     <value>列から読み取る最大セル数です。空白または0以下の場合はすべてのセルを読み取ります。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_SheetName_Description" xml:space="preserve">
+  <data name="ReadColumn_SheetName_Description" xml:space="preserve">
     <value>読み取り元のワークシート名です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
     <value>開始セル</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_StartingCell_Description" xml:space="preserve">
+  <data name="ReadColumn_StartingCell_Description" xml:space="preserve">
     <value>読み取りを開始する列を定義するセルアドレス（範囲形式、例: A1）です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_Result_Description" xml:space="preserve">
+  <data name="ReadRow_Result_Description" xml:space="preserve">
     <value>行から読み取った値の配列です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_Result_DisplayName" xml:space="preserve">
+  <data name="ReadRow_Result_DisplayName" xml:space="preserve">
     <value>結果</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_Result_Description" xml:space="preserve">
+  <data name="ReadColumn_Result_Description" xml:space="preserve">
     <value>列から読み取った値の配列です。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_Result_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_Result_DisplayName" xml:space="preserve">
     <value>結果</value>
     <comment>property name</comment>
   </data>

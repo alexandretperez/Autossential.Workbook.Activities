@@ -413,4 +413,52 @@
     <value>Result</value>
     <comment>property name</comment>
   </data>
+  <data name="WriteRange_DisplayName" xml:space="preserve">
+    <value>Write Range</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="WriteRange_Description" xml:space="preserve">
+    <value>Writes a DataTable into an Excel worksheet starting at a specified cell (default A1). If the target sheet does not exist, a new one is created. All existing values in the target range are overwritten.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
+    <value>Name of the worksheet to write data into.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+    <value>Starting Cell</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
+    <value>Top-left cell where writing begins.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+    <value>Add Headers</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+    <value>Indicates if column names are written as headers.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+    <value>Data Table</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
+    <value>Source DataTable to write into the worksheet.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
+    <value>Save Workbook</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="SaveWorkbook_Description" xml:space="preserve">
+    <value>Immediately saves all changes made to the workbook to disk, instead of waiting for the Use Workbook container to save them at the end. Use this activity when the workbook needs to be persisted early for operations outside of the current read/write workflow.</value>
+    <comment>activity description</comment>
+  </data>
 </root>

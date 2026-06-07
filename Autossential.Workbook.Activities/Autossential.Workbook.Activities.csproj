@@ -18,7 +18,9 @@
 		<None Remove="Resources\Icons\ReadCell.svg" />
 		<None Remove="Resources\Icons\ReadColumn.svg" />
 		<None Remove="Resources\Icons\ReadRow.svg" />
+		<None Remove="Resources\Icons\SaveWorkbook.svg" />
 		<None Remove="Resources\Icons\WorkbookScope.svg" />
+		<None Remove="Resources\Icons\WriteRange.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,13 +30,16 @@
 		<EmbeddedResource Include="Resources\Icons\ReadColumn.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadRange.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadRow.svg" />
+		<EmbeddedResource Include="Resources\Icons\SaveWorkbook.svg" />
 		<EmbeddedResource Include="Resources\Icons\WorkbookScope.svg" />
+		<EmbeddedResource Include="Resources\Icons\WriteRange.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="ExcelDataReader" Version="3.8.0" />
 		<PackageReference Include="ExcelDataReader.DataSet" Version="3.8.0" />
-		<PackageReference Include="System.Activities.ViewModels" Version="1.20260216.2" />
+		<PackageReference Include="DocumentFormat.OpenXml" Version="3.5.1" />
+		<PackageReference Include="System.Activities.ViewModels" Version="1.20260216.2" PrivateAssets="All" />
 		<PackageReference Include="UiPath.Activities.Api" Version="24.10.1" PrivateAssets="All" />
 		<PackageReference Include="System.Activities.Metadata" Version="6.0.0-20240517.13" PrivateAssets="All" />
 		<PackageReference Include="UiPath.Workflow" Version="6.0.0-20240401-07" PrivateAssets="All" />

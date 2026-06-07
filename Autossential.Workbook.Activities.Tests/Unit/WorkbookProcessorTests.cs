@@ -82,5 +82,15 @@ namespace Autossential.Workbook.Activities.Tests.Unit
             var values = processor.ReadColumn(sheetName, startingCell, limit);
             Assert.Equal(expectedCount, values.Length);
         }
+
+        [Fact]
+        public void WriteRange()
+        {
+            var dt = TableGenerator.GenerateTable(5, 5, typeof(string), typeof(int), typeof(DateTime), typeof(bool), typeof(double));
+            var processor = WorkbookProcessorFactory.OpenOrCreate(@"C:\Users\alexa\Downloads\Sandbox_copy.xlsx");
+            processor.WriteRange("Bug", dt, "B2", true);
+            processor.Save();
+            processor.Dispose();
+        }
     }
 }

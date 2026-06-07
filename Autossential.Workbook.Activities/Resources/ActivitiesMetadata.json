@@ -376,6 +376,16 @@
     },
     {
       "categoryKey": "ActivityCategories_Workbook",
+      "descriptionKey": "SaveWorkbook_Description",
+      "displayNameKey": "SaveWorkbook_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.SaveWorkbook",
+      "iconKey": "SaveWorkbook.svg",
+      "properties": [],
+      "shortName": "SaveWorkbook",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.SaveWorkbookViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook",
       "descriptionKey": "WorkbookScope_Description",
       "displayNameKey": "WorkbookScope_DisplayName",
       "fullName": "Autossential.Workbook.Activities.WorkbookScope",
@@ -417,6 +427,61 @@
       ],
       "shortName": "WorkbookScope",
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.WorkbookScopeViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook",
+      "descriptionKey": "WriteRange_Description",
+      "displayNameKey": "WriteRange_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.WriteRange",
+      "iconKey": "WriteRange.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "WriteRange_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "WriteRange_SheetName_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "WriteRange_StartingCell_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "StartingCell",
+          "tooltipKey": "WriteRange_StartingCell_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Options",
+            "name": "Options"
+          },
+          "displayNameKey": "WriteRange_HasHeaders_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "HasHeaders",
+          "tooltipKey": "WriteRange_HasHeaders_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "WriteRange_DataTable_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "DataTable",
+          "tooltipKey": "WriteRange_DataTable_Description"
+        }
+      ],
+      "shortName": "WriteRange",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.WriteRangeViewModel"
     }
   ],
   "resourceManagerName": "Autossential.Workbook.Activities.Properties.Resources"

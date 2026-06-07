@@ -1,17 +1,16 @@
-﻿namespace Autossential.Workbook.Activities.Core.Processors
+﻿using System.Data;
+
+namespace Autossential.Workbook.Activities.Core.Processors
 {
     internal class BinaryWorkbookProcessor(string filePath, string password) : WorkbookProcessorBase(filePath, password)
     {
-        private const ExcelFileType FileType = ExcelFileType.Binary;
-
-        protected override CellReference ResolveCell(string address)
+        public override void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders)
         {
-            return new CellReference(FileType, address);
+            throw new NotImplementedException();
         }
 
-        protected override RangeReference ResolveRange(string range)
-        {
-            return new RangeReference(FileType, range);
-        }
+        protected override CellReference ResolveCell(string address) => CellReference.Binary(address);
+
+        protected override RangeReference ResolveRange(string range) => RangeReference.Binary(range);
     }
 }

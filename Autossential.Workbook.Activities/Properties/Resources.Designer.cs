@@ -646,6 +646,24 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Immediately saves all changes made to the workbook to disk, instead of waiting for the Use Workbook container to save them at the end. Use this activity when the workbook needs to be persisted early for operations outside of the current read/write workflow..
+        /// </summary>
+        public static string SaveWorkbook_Description {
+            get {
+                return ResourceManager.GetString("SaveWorkbook_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Workbook.
+        /// </summary>
+        public static string SaveWorkbook_DisplayName {
+            get {
+                return ResourceManager.GetString("SaveWorkbook_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opens a workbook and share its instance across the child activities..
         /// </summary>
         public static string WorkbookScope_Description {
@@ -723,6 +741,96 @@ namespace Autossential.Workbook.Activities.Properties {
         public static string WorkbookScope_WorkbookPath_Placeholder {
             get {
                 return ResourceManager.GetString("WorkbookScope_WorkbookPath_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates if column names are written as headers..
+        /// </summary>
+        public static string WriteRange_AddHeaders_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_AddHeaders_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Headers.
+        /// </summary>
+        public static string WriteRange_AddHeaders_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_AddHeaders_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source DataTable to write into the worksheet..
+        /// </summary>
+        public static string WriteRange_DataTable_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_DataTable_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Table.
+        /// </summary>
+        public static string WriteRange_DataTable_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_DataTable_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Writes a DataTable into an Excel worksheet starting at a specified cell (default A1). If the target sheet does not exist, a new one is created. All existing values in the target range are overwritten..
+        /// </summary>
+        public static string WriteRange_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write Range.
+        /// </summary>
+        public static string WriteRange_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the worksheet to write data into..
+        /// </summary>
+        public static string WriteRange_SheetName_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string WriteRange_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top-left cell where writing begins..
+        /// </summary>
+        public static string WriteRange_StartingCell_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_StartingCell_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting Cell.
+        /// </summary>
+        public static string WriteRange_StartingCell_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_StartingCell_DisplayName", resourceCulture);
             }
         }
     }

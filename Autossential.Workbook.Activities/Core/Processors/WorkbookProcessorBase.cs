@@ -17,16 +17,19 @@ namespace Autossential.Workbook.Activities.Core.Processors
             {
                 var bytes = File.ReadAllBytes(FilePath);
                 WorkbookStream.Write(bytes, 0, bytes.Length);
-                WorkbookStream.Reset();
+                WorkbookStream.Position = 0;
             }
+            WorkbookHash = WorkbookStream.ComputeHash();
         }
 
         public string FilePath { get; }
         public string Password { get; }
         public MemoryStream WorkbookStream { get; }
+        protected string WorkbookHash { get; set; }
 
         public void Dispose()
         {
+            Save();
             _reader?.Dispose();
             WorkbookStream?.Dispose();
         }
@@ -133,7 +136,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
         {
             if (_reader == null)
             {
-                _reader = ExcelReaderFactory.CreateReader(WorkbookStream.Reset(), new ExcelReaderConfiguration
+                WorkbookStream.Position = 0;
+                _reader = ExcelReaderFactory.CreateReader(WorkbookStream, new ExcelReaderConfiguration
                 {
                     LeaveOpen = true,
                     Password = Password
@@ -163,7 +167,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             return -1;
         }
 
-        private const string EmptyColumnNamePrefix = "Col";
+        private const string EMPTY_COLUMN_NAME_PREFIX = "Col";
+
         public DataTable ReadRange(string sheetName, string range, bool hasHeaders, int headerRows, int rowsPerRecord)
         {
             var rangeRef = ResolveRange(range);
@@ -213,7 +218,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                             {
                                 if (string.IsNullOrEmpty(item.Value))
                                 {
-                                    dict[item.Key] = $"{EmptyColumnNamePrefix}{columnIndex++}";
+                                    dict[item.Key] = $"{EMPTY_COLUMN_NAME_PREFIX}{columnIndex++}";
                                 }
                                 else
                                 {
@@ -228,7 +233,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                                 if (!rangeRef.IsColInRange(i + 1))
                                     continue;
 
-                                dict.Add(i, $"{EmptyColumnNamePrefix}{columnIndex++}");
+                                dict.Add(i, $"{EMPTY_COLUMN_NAME_PREFIX}{columnIndex++}");
                                 j++;
                             }
                         }
@@ -276,7 +281,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             if (rangeRef.Origin == RangeOrigin.Explicit)
             {
                 var cols = rangeRef.End.Col - (rangeRef.Start.Col - 1);
-                table.AddTrailingColumns(cols, columnIndex, EmptyColumnNamePrefix);
+                table.AddTrailingColumns(cols, columnIndex, EMPTY_COLUMN_NAME_PREFIX);
 
                 var rows = rangeRef.End.Row - (rangeRef.Start.Row - 1) - (hasHeaders ? 1 : 0);
                 table.AddTrailingRows(rows);
@@ -401,6 +406,20 @@ namespace Autossential.Workbook.Activities.Core.Processors
             } while (reader.NextResult());
 
             return [];
+        }
+
+        public abstract void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders);
+
+        public void Save()
+        {
+            var currentHash = WorkbookStream.ComputeHash();
+            if (currentHash != WorkbookHash)
+            {
+                WorkbookStream.Position = 0;
+                using var fs = File.Create(FilePath);
+                WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
+                WorkbookHash = WorkbookStream.ComputeHash();
+            }
         }
     }
 }

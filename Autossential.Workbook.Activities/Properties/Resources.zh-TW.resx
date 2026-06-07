@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,357 +59,357 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="ActivityCategories_Workbook" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Input" xml:space="preserve">
+  <data name="Categories_Input" xml:space="preserve">
     <value>輸入</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_InputOutput" xml:space="preserve">
+  <data name="Categories_InputOutput" xml:space="preserve">
     <value>輸入/輸出</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Options" xml:space="preserve">
+  <data name="Categories_Options" xml:space="preserve">
     <value>選項</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Output" xml:space="preserve">
+  <data name="Categories_Output" xml:space="preserve">
     <value>輸出</value>
     <comment>category</comment>
   </data>
-	<data name="Common_ContinueOnError_Description" xml:space="preserve">
+  <data name="Common_ContinueOnError_Description" xml:space="preserve">
     <value>指定即使目前活動失敗也繼續執行剩餘活動。僅允許布林值。</value>
     <comment>property description</comment>
   </data>
-	<data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
+  <data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
     <value>發生錯誤時繼續</value>
     <comment>property name</comment>
   </data>
-	<data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
+  <data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
     <value>未提供所需活動參數「{0}」的值。</value>
     <comment>error message</comment>
   </data>
-	<data name="Common_TimeoutSeconds_Description" xml:space="preserve">
+  <data name="Common_TimeoutSeconds_Description" xml:space="preserve">
     <value>指定在擲回錯誤之前等待活動執行的時間（秒）。預設值為 30 秒。</value>
     <comment>property description</comment>
   </data>
-	<data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
+  <data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
     <value>逾時</value>
     <comment>property name</comment>
   </data>
-	<data name="Common_UsingOutsideOfScope" xml:space="preserve">
+  <data name="Common_UsingOutsideOfScope" xml:space="preserve">
     <value>不能在 {0} 活動之外使用。</value>
     <comment>error message</comment>
   </data>
-	<data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
+  <data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
     <value>瀏覽檔案</value>
     <comment>view model</comment>
   </data>
-	<data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
+  <data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
     <value>瀏覽資料夾</value>
     <comment>view model</comment>
   </data>
-	<data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
+  <data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
     <value>指定範圍內包含的使用中欄數。</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
     <value>欄數</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_Description" xml:space="preserve">
+  <data name="GetRangeSize_Description" xml:space="preserve">
     <value>擷取指定工作簿範圍內使用中的列數和欄數。</value>
     <comment>activity description</comment>
   </data>
-	<data name="GetRangeSize_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>取得範圍大小</value>
     <comment>activity name</comment>
   </data>
-	<data name="GetRangeSize_Range_Description" xml:space="preserve">
+  <data name="GetRangeSize_Range_Description" xml:space="preserve">
     <value>指定要讀取的儲存格範圍。如果未指定此值，則讀取試算表中所有使用中的儲存格。如果該值僅包含一個儲存格，則從該儲存格開始讀取試算表中所有使用中的列。（預設值：A1）</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
     <value>範圍</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_RowCount_Description" xml:space="preserve">
+  <data name="GetRangeSize_RowCount_Description" xml:space="preserve">
     <value>指定範圍內包含的使用中列數。</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
     <value>列數</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_SheetName_Description" xml:space="preserve">
+  <data name="GetRangeSize_SheetName_Description" xml:space="preserve">
     <value>包含目標範圍的工作表名稱。</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_CellAddress_Description" xml:space="preserve">
+  <data name="ReadCell_CellAddress_Description" xml:space="preserve">
     <value>要讀取值的儲存格位址。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
+  <data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
     <value>儲存格位址</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_Description" xml:space="preserve">
+  <data name="ReadCell_Description" xml:space="preserve">
     <value>讀取指定工作表和儲存格位址中的儲存格值。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadCell_DisplayName" xml:space="preserve">
+  <data name="ReadCell_DisplayName" xml:space="preserve">
     <value>讀取儲存格</value>
     <comment>activitiy name</comment>
   </data>
-	<data name="ReadCell_Result_Description" xml:space="preserve">
+  <data name="ReadCell_Result_Description" xml:space="preserve">
     <value>從儲存格讀取的值。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_Result_DisplayName" xml:space="preserve">
+  <data name="ReadCell_Result_DisplayName" xml:space="preserve">
     <value>值</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_SheetName_Description" xml:space="preserve">
+  <data name="ReadCell_SheetName_Description" xml:space="preserve">
     <value>包含要讀取儲存格的工作表。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Description" xml:space="preserve">
+  <data name="ReadRange_Description" xml:space="preserve">
     <value>將試算表中範圍的值作為 DataTable 讀取。如果未指定範圍，則讀取試算表中所有使用中的儲存格。如果範圍指定為儲存格，則從該儲存格開始讀取所有使用中的列。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadRange_DisplayName" xml:space="preserve">
+  <data name="ReadRange_DisplayName" xml:space="preserve">
     <value>讀取範圍</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadRange_HasHeaders_Description" xml:space="preserve">
+  <data name="ReadRange_HasHeaders_Description" xml:space="preserve">
     <value>指定範圍中的第一列是否應視為欄標題定義。如果設定為 false，DataTable 中的欄將使用下列模式「Col{number}」，例如：Col1、Col2、Col3 等。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
+  <data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
     <value>有標題</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_HeaderRows_Description" xml:space="preserve">
+  <data name="ReadRange_HeaderRows_Description" xml:space="preserve">
     <value>確定構成標題的列數。這些列的值將被串連。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
+  <data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
     <value>標題列數</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Range_Description" xml:space="preserve">
+  <data name="ReadRange_Range_Description" xml:space="preserve">
     <value>指定要讀取的儲存格範圍。如果未指定此值，則讀取試算表中所有使用中的儲存格。如果該值僅包含一個儲存格，則從該儲存格開始讀取試算表中所有使用中的列。（預設值：A1）</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_Range_DisplayName" xml:space="preserve">
+  <data name="ReadRange_Range_DisplayName" xml:space="preserve">
     <value>範圍</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Result_Description" xml:space="preserve">
+  <data name="ReadRange_Result_Description" xml:space="preserve">
     <value>儲存讀取資料的輸出 DataTable。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_Result_DisplayName" xml:space="preserve">
+  <data name="ReadRange_Result_DisplayName" xml:space="preserve">
     <value>資料表</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
+  <data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
     <value>確定構成單筆記錄的列數。列值將被串連。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
+  <data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
     <value>每筆記錄列數</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_SheetName_Description" xml:space="preserve">
+  <data name="ReadRange_SheetName_Description" xml:space="preserve">
     <value>工作簿中工作表的名稱。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_Description" xml:space="preserve">
+  <data name="ReadRow_Description" xml:space="preserve">
     <value>讀取工作表中的一列儲存格並將值作為陣列傳回。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadRow_DisplayName" xml:space="preserve">
+  <data name="ReadRow_DisplayName" xml:space="preserve">
     <value>讀取列</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadRow_Limit_DisplayName" xml:space="preserve">
+  <data name="ReadRow_Limit_DisplayName" xml:space="preserve">
     <value>最大儲存格數</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_SheetName_Description" xml:space="preserve">
+  <data name="ReadRow_SheetName_Description" xml:space="preserve">
     <value>要讀取的工作表名稱。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_StartingCell_Description" xml:space="preserve">
+  <data name="ReadRow_StartingCell_Description" xml:space="preserve">
     <value>定義要開始讀取之列的儲存格位址（範圍格式，例如：A1）。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
+  <data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
     <value>起始儲存格</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_Description" xml:space="preserve">
+  <data name="WorkbookScope_Description" xml:space="preserve">
     <value>開啟工作簿並與其子活動共用其實例。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WorkbookScope_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_DisplayName" xml:space="preserve">
     <value>使用工作簿</value>
     <comment>activity name</comment>
   </data>
-	<data name="WorkbookScope_Password_Description" xml:space="preserve">
+  <data name="WorkbookScope_Password_Description" xml:space="preserve">
     <value>如果工作簿受密碼保護，則開啟工作簿所需的密碼。</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
     <value>密碼</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
+  <data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
     <value>傳回工作簿中包含的工作表名稱清單。</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
     <value>工作簿的路徑。</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
     <value>工作簿路徑</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
     <value>輸入工作簿路徑</value>
     <comment>placeholder</comment>
   </data>
-	<data name="ReadRow_Limit_Description" xml:space="preserve">
+  <data name="ReadRow_Limit_Description" xml:space="preserve">
     <value>從列中讀取的最大儲存格數。如果保留空白、設定為零或更少，則讀取所有儲存格。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_DisplayName" xml:space="preserve">
     <value>讀取欄</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadColumn_Description" xml:space="preserve">
+  <data name="ReadColumn_Description" xml:space="preserve">
     <value>讀取工作表中的一欄儲存格並將值作為陣列傳回。</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
     <value>最大儲存格數</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_Limit_Description" xml:space="preserve">
+  <data name="ReadColumn_Limit_Description" xml:space="preserve">
     <value>從欄中讀取的最大儲存格數。如果保留空白、設定為零或更少，則讀取所有儲存格。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_SheetName_Description" xml:space="preserve">
+  <data name="ReadColumn_SheetName_Description" xml:space="preserve">
     <value>要讀取的工作表名稱。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
     <value>起始儲存格</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_StartingCell_Description" xml:space="preserve">
+  <data name="ReadColumn_StartingCell_Description" xml:space="preserve">
     <value>定義要開始讀取之欄的儲存格位址（範圍格式，例如：A1）。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_Result_Description" xml:space="preserve">
+  <data name="ReadRow_Result_Description" xml:space="preserve">
     <value>從列中讀取的值陣列。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_Result_DisplayName" xml:space="preserve">
+  <data name="ReadRow_Result_DisplayName" xml:space="preserve">
     <value>結果</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_Result_Description" xml:space="preserve">
+  <data name="ReadColumn_Result_Description" xml:space="preserve">
     <value>從欄中讀取的值陣列。</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_Result_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_Result_DisplayName" xml:space="preserve">
     <value>結果</value>
     <comment>property name</comment>
   </data>

@@ -22,7 +22,9 @@ namespace Autossential.Workbook.Activities.ViewModels
                     typeof(GetRangeSize),
                     typeof(ReadCell),
                     typeof(ReadRow),
-                    typeof(ReadColumn)
+                    typeof(ReadColumn),
+                    typeof(WriteRange),
+                    typeof(SaveWorkbook)
                  ]);
         }
 

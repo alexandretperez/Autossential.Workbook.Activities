@@ -2,8 +2,24 @@
 {
     internal enum RangeOrigin
     {
+        /// <summary>
+        /// Empty initialization
+        /// </summary>
         Default,
-        Explicit,
-        InferredEnd
+        
+        /// <summary>
+        /// Start and end inferred
+        /// </summary>
+        Inferred,
+        
+        /// <summary>
+        /// Only end inferred
+        /// </summary>
+        InferredEnd,
+
+        /// <summary>
+        /// Explicit start and end
+        /// </summary>
+        Explicit
     }
 }

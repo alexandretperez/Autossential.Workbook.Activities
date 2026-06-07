@@ -11,5 +11,7 @@ namespace Autossential.Workbook.Activities.Core
         object ReadCell(string sheetName, string address);
         object[] ReadRow(string sheetName, string startingCell, int limit);
         object[] ReadColumn(string sheetName, string startingCell, int limit);
+        void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders);
+        void Save();
     }
 }
