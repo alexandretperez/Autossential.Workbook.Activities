@@ -192,9 +192,12 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             stylesheet.NumberingFormats ??= new NumberingFormats();
 
-            stylesheet.Fonts ??= new Fonts(new DocumentFormat.OpenXml.Spreadsheet.Font());
+            stylesheet.Fonts ??= new Fonts(new DocumentFormat.OpenXml.Spreadsheet.Font(
+                new FontSize { Val = 11 },
+                new FontName { Val = "Calibri" }
+            ));
 
-            if (stylesheet.Fills == null || stylesheet.Fills.Count == 0)
+            if (stylesheet.Fills == null || !stylesheet.Fills.Elements<Fill>().Any())
             {
                 stylesheet.Fills = new Fills(
                     new Fill(new PatternFill { PatternType = PatternValues.None }),
@@ -305,7 +308,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 Name = "Sheet1"
             });
 
-            wbPart.Workbook.Save();
+            doc.Save();
         }
     }
 }

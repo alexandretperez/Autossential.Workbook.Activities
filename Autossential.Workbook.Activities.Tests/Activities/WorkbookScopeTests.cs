@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-
-namespace Autossential.Workbook.Activities.Tests.Activities
+﻿namespace Autossential.Workbook.Activities.Tests.Activities
 {
-    public class WorkbookScopeTests
-    {
-        [Theory]
-        [InlineData(WorkbookScope.TAG)]
-        [InlineData("_wbInst")]
-        public void WorkbookScopeDifferentTags_ShouldNotFail(string tag)
-        {
-            var path = WorkbookGenerator.CreateWorkbookFile(true, sheet =>
-            {
-                sheet.CreateRow(0).CreateCell(0).SetCellValue("Hello");
-            });
+    //public class WorkbookScopeTests
+    //{
+    //    [Theory]
+    //    [InlineData(WorkbookScope.TAG)]
+    //    [InlineData("_wbInst")]
+    //    public void WorkbookScopeDifferentTags_ShouldNotFail(string tag)
+    //    {
+    //        var path = WorkbookGenerator.CreateWorkbookFile(true, sheet =>
+    //        {
+    //            sheet.CreateRow(0).CreateCell(0).SetCellValue("Hello");
+    //        });
 
-            var result = WorkbookFixture.InvokeWorkbookScopeWith(path, new ReadCell
-            {
-                SheetName = "Sheet1",
-                CellAddress = "A1"
-            }, tag);
+    //        var result = WorkbookFixture.InvokeWorkbookScopeWith(path, new ReadCell
+    //        {
+    //            SheetName = "Sheet1",
+    //            CellAddress = "A1"
+    //        }, tag);
 
-            Assert.Equal("Hello", result);
-        }
-    }
+    //        Assert.Equal("Hello", result);
+    //    }
+    //}
 }

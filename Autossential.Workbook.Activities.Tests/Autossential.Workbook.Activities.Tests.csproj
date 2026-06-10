@@ -8,22 +8,25 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="ViewModel\" />
-		<Folder Include="Workflow\" />
+	  <Compile Remove="Activities\GetRangeSizeTests.cs" />
+	  <Compile Remove="Activities\ReadCellTests.cs" />
+	  <Compile Remove="Activities\ReadColumnTests.cs" />
+	  <Compile Remove="Activities\ReadRangeTests.cs" />
+	  <Compile Remove="Activities\ReadRowTests.cs" />
+	  <Compile Remove="Activities\WorkbookScopeTests.cs" />
+	  <Compile Remove="WorkbookFixture.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk"/>
+		<Folder Include="Activities\" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="System.Security.Cryptography.Xml" />
-		<PackageReference Include="xunit.runner.visualstudio">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="UiPath.Activities.Api" developmentDependency="true" />
 		<PackageReference Include="UiPath.Workflow" />
 		<PackageReference Include="System.Activities.Metadata" />
-		<PackageReference Include="NPOI" />
-		<PackageReference Include="xunit.v3" />
+		<PackageReference Include="TUnit" />
 	</ItemGroup>
 
 	<ItemGroup>

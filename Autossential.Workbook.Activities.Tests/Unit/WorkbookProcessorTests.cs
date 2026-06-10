@@ -1,110 +1,110 @@
 ﻿using Autossential.Workbook.Activities.Core;
-using Org.BouncyCastle.Bcpg.OpenPgp;
-using Xunit;
 
 namespace Autossential.Workbook.Activities.Tests.Unit
 {
-    public class WorkbookProcessorTests
+
+    [ClassDataSource<SharedSource>(Shared = SharedType.PerClass)]
+    public class WorkbookProcessorTest(SharedSource source)
     {
-        private string filePath = @"C:\Users\alexa\Downloads\SandboxNew.xls";
-        public WorkbookProcessorTests()
+        private readonly SharedSource source = source;
+
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task Dispose_WhenNotWrites_DoesNotCreateFile(string extension)
         {
-            //if (!File.Exists(filePath))
-            //    File.Copy(@"C:\Users\alexa\Downloads\Sandbox.xlsx", filePath);
-        }
-
-        [Theory]
-        [InlineData("Empty", "B3:E9", 7, 4, false)]
-        [InlineData("Empty", "B3:E9", 6, 4, true)]
-        [InlineData("Empty", "B3", 0, 0, false)]
-        [InlineData("Empty", "", 0, 0, true)]
-
-        [InlineData("Companies", "", 11, 7, false)]
-        [InlineData("Companies", "A1", 10, 7, true)]
-        [InlineData("Companies", "C1", 10, 5, true)]
-
-        [InlineData("Animals", "A1", 8, 4, true)]
-        [InlineData("Animals", "B4", 5, 3, true)]
-
-        [InlineData("Cars", "A1", 8, 4, false)]
-        [InlineData("Cars", "B3:F11", 8, 5, true)]
-        [InlineData("Cars", "A1:E10", 10, 5, false)]
-        public void ReadRange(string sheetName, string range, int rows, int cols, bool hasHeaders)
-        {
-            var processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
-            var table = processor.ReadRange(sheetName, range, hasHeaders, 1, 1);
-            Assert.Equal(rows, table.Rows.Count);
-            Assert.Equal(cols, table.Columns.Count);
-        }
-
-        [Theory]
-        [InlineData("Bug", "A1", 0, 7)]
-        [InlineData("Bug", "A2", 0, 6)]
-        [InlineData("Bug", "A3", 0, 5)]
-        [InlineData("Bug", "A4", 0, 7)]
-
-        [InlineData("Bug", "B1", 0, 6)]
-        [InlineData("Bug", "C2", 0, 4)]
-        [InlineData("Bug", "D3", 0, 2)]
-        [InlineData("Bug", "E4", 0, 3)]
-
-        [InlineData("Bug", "A1", 4, 4)]
-        [InlineData("Bug", "B1", 1, 1)]
-        [InlineData("Bug", "B2", 1, 0)]
-        [InlineData("Bug", "C3", 2, 2)]
-
-        [InlineData("Companies", "A1", 0, 7)]
-        public void ReadRow(string sheetName, string startingCell, int limit, int expectedCount)
-        {
-            var processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
-            var values = processor.ReadRow(sheetName, startingCell, limit);
-            Assert.Equal(expectedCount, values.Length);
-        }
-
-        [Theory]
-        [InlineData("Bug", "A1", 0, 2)]
-        [InlineData("Bug", "B1", 0, 3)]
-        [InlineData("Bug", "C1", 0, 4)]
-        [InlineData("Bug", "D1", 0, 3)]
-
-        [InlineData("Bug", "A3", 0, 0)]
-        [InlineData("Bug", "B3", 0, 1)]
-        [InlineData("Bug", "D2", 0, 2)]
-        [InlineData("Bug", "G2", 0, 3)]
-
-        [InlineData("Bug", "B2", 2, 2)]
-        [InlineData("Bug", "E2", 1, 0)]
-        [InlineData("Bug", "G1", 3, 1)]
-
-        [InlineData("Companies", "A1", 0, 11)]
-        public void ReadColumn(string sheetName, string startingCell, int limit, int expectedCount)
-        {
-            var processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
-            var values = processor.ReadColumn(sheetName, startingCell, limit);
-            Assert.Equal(expectedCount, values.Length);
-        }
-
-        [Fact]
-        public void WriteRange()
-        {
-            var dt = TableGenerator.GenerateTable(5, 5, typeof(string), typeof(int), typeof(DateTime), typeof(bool), typeof(double));
-            var processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
-            processor.WriteRange("DSheet", dt, "B2", true);
+            var (processor, filePath) = source.NewFile(extension);
             processor.Dispose();
+            await Assert.That(File.Exists(filePath)).IsFalse();
         }
 
-        [Theory]
-        [InlineData("ASheet", "C2", "Test")]
-        [InlineData("BSheet", "B5", 1578.75d)]
-        [InlineData("CSheet", "D10", null)]
-        public void WriteCell(string sheetName, string address, object value)
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task Dispose_WhenWrites_CreateFile(string extension)
         {
-            if (value == null)
-                value = DateTime.Now;
-
-            var processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
-            processor.WriteCell(sheetName, address, value);
+            var (processor, filePath) = source.NewFile(extension);
+            processor.WriteCell("Sheet1", "A1", "Hello");
             processor.Dispose();
+            await Assert.That(File.Exists(filePath)).IsTrue();
+        }
+
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task Save_WhenMultipleCalls_IgnoresSubsequent(string extension)
+        {
+            var (processor, filePath) = source.NewFile(extension);
+
+            processor.Save();
+            var first = File.GetLastWriteTime(filePath);
+            await Task.Delay(50);
+
+            processor.Save();
+            var second = File.GetLastWriteTime(filePath);
+            await Task.Delay(50);
+
+            processor.Dispose();
+            var third = File.GetLastWriteTime(filePath);
+
+            await Assert.That(first).IsEqualTo(second).And.IsEqualTo(third);
+        }
+
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task WriteRange_MissingSheet_CreateNewSheetAndWrite(string extension)
+        {
+            var (processor, _) = source.NewFile(extension);
+            var data = TableUtils.Generate(4, 5, "a");
+            processor.WriteRange("New Sheet", data, "A1", true);
+
+            await Assert.That(processor.GetSheetNames()).IsEquivalentTo(["Sheet1", "New Sheet"]);
+            var readData = processor.ReadRange("New Sheet", "A1", true, 1, 1);
+
+            await Assert.That(TableUtils.AreTablesEqual(data, readData)).IsTrue();
+        }
+
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task ReadRange_ExistingFile_ReadSheet(string extension)
+        {
+            var (processor, filePath) = source.NewFile(extension);
+            var data = TableUtils.Generate(5, 10, "b");
+            processor.WriteRange("Sheet1", data, "A1", true);
+            processor.Dispose();
+
+            processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
+
+            var readData = processor.ReadRange("Sheet1", "A1", true, 1, 1);
+            await Assert.That(TableUtils.AreTablesEqual(data, readData)).IsTrue();
+        }
+
+        [Test]
+        [NotInParallel]
+        [Arguments(".xlsx", "Sheet1", "A1", 7, 7)]
+        [Arguments(".xls", "Sheet2", "A1", 10, 10)]
+        [Arguments(".xlsx", "Sheet3", "A1", 4, 11)]
+
+        [Arguments(".xlsx", "Sheet1", "B3:F6", 5, 3)]
+        [Arguments(".xls", "Sheet2", "E2", 4, 9)]
+        [Arguments(".xlsx", "Sheet2", "C7", 6, 4)]
+        public async Task ReadRange_InMemory_ReadSheet(string extension, string sheet, string range, int expectedCols, int expectedRows)
+        {
+            var (processor, _) = source.SharedFile(extension);
+            var readData = processor.ReadRange(sheet, range, true, 1, 1);
+            await Assert.That(expectedRows).IsEqualTo(readData.Rows.Count);
+            await Assert.That(expectedCols).IsEqualTo(readData.Columns.Count);
+        }
+
+        [Test]
+        [Arguments(3)]
+        public async Task ReadRange_HeaderAndRecordRows_ReadSheet(int expectedRows)
+        {
+            var (processor, _) = source.SharedFile(".xlsx");
+            var readData = processor.ReadRange("Sheet3", "A2", true, 2, 3);
+            _ = await Assert.That(expectedRows).IsEqualTo(readData.Rows.Count);
         }
     }
 }

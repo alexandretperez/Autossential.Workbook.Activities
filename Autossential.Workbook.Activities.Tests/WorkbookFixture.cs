@@ -116,7 +116,7 @@ namespace Autossential.Workbook.Activities.Tests
             foreach (var v in variables)
                 handler.Variables.Add(v);
 
-            foreach(var a in activities)
+            foreach (var a in activities)
                 handler.Activities.Add(a);
 
             handler.Activities.Add(new Assign<T>

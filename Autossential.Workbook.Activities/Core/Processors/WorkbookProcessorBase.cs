@@ -35,7 +35,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
         protected string WorkbookHash { get; set; }
         public void Dispose()
         {
-            Save();
+            if (WorkbookStream.CanRead)
+                SaveInternal(WorkbookStream.ComputeHash());
+
             _reader?.Dispose();
             WorkbookStream?.Dispose();
         }
@@ -229,7 +231,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                                 }
                                 else
                                 {
-                                    lastNonInferredColumnIndex = item.Key;
+                                    lastNonInferredColumnIndex = item.Key - (rangeRef.Start.Col - 1);
                                 }
                             }
                         }
@@ -417,18 +419,28 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
         public abstract void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders);
 
+        private string _lastSaveHash = null;
         public void Save()
         {
-            var currentHash = WorkbookStream.ComputeHash();
-            if (currentHash != WorkbookHash)
+            var computedHash = WorkbookStream.ComputeHash();
+            if (_lastSaveHash == computedHash)
+                return;
+
+            SaveInternal(_lastSaveHash);
+            _lastSaveHash = computedHash;
+            WorkbookHash = computedHash;
+        }
+
+        private void SaveInternal(string computedHash)
+        {
+            if (computedHash != WorkbookHash)
             {
                 WorkbookStream.Position = 0;
                 using var fs = File.Create(FilePath);
                 WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
-                WorkbookHash = WorkbookStream.ComputeHash();
+                WorkbookHash = computedHash;
             }
         }
-
         public abstract void WriteCell(string sheetName, string address, object value);
     }
 }
