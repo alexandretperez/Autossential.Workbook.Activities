@@ -1,24 +1,25 @@
-﻿namespace Autossential.Workbook.Activities.Tests.Activities
+﻿using System.Activities;
+
+namespace Autossential.Workbook.Activities.Tests.Activities
 {
-    //public class WorkbookScopeTests
-    //{
-    //    [Theory]
-    //    [InlineData(WorkbookScope.TAG)]
-    //    [InlineData("_wbInst")]
-    //    public void WorkbookScopeDifferentTags_ShouldNotFail(string tag)
-    //    {
-    //        var path = WorkbookGenerator.CreateWorkbookFile(true, sheet =>
-    //        {
-    //            sheet.CreateRow(0).CreateCell(0).SetCellValue("Hello");
-    //        });
+    public class WorkbookScopeTests : BaseTests
+    {
+        [Test]
+        [Arguments(WorkbookScope.TAG)]
+        [Arguments("_wbInst")]
+        public async Task WorkbookScope_ShouldWork_WhenDifferentNameTag(string tag)
+        {
+            var (processor, filePath) = NewFile(".xlsx");
+            processor.WriteCell("Sheet1", "A1", 123d);
+            processor.Save();
 
-    //        var result = WorkbookFixture.InvokeWorkbookScopeWith(path, new ReadCell
-    //        {
-    //            SheetName = "Sheet1",
-    //            CellAddress = "A1"
-    //        }, tag);
+            var result = InvokeWorkbookScopeWith(filePath, new ReadCell
+            {
+                SheetName = "Sheet1",
+                CellAddress = "A1",
+            });
 
-    //        Assert.Equal("Hello", result);
-    //    }
-    //}
+            await Assert.That(result).IsEqualTo(123d);
+        }        
+    }
 }

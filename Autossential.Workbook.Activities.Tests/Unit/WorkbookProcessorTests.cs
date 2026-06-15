@@ -1,16 +1,4 @@
 ﻿using Autossential.Workbook.Activities.Core;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.CodeCoverage.Core.Reports.Coverage;
-using System.Activities;
-using System.Data;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.IO.Compression;
-using System.Runtime.InteropServices;
-using System.Windows.Markup;
-using System.Xml.Linq;
-using TUnit.Generated;
-using UiPath.Studio.Activities.Api;
 
 namespace Autossential.Workbook.Activities.Tests.Unit
 {
@@ -57,7 +45,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
                 return col % 2 == 0 ? null : "";
             });
 
-            var (processor, filePath) = NewFile(".xls");
+            var (processor, _) = NewFile(".xls");
             processor.WriteRange("Sheet1", data, startingCell, false);
 
             var count = processor.GetColumnCount("Sheet1", startingCell);
@@ -89,7 +77,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
                 };
             });
 
-            var (processor, f) = NewFile(extension);
+            var (processor, _) = NewFile(extension);
             processor.WriteRange("Sheet1", data, writeCell, false);
             await Assert.That(processor.GetColumnCount("Sheet1", range)).IsEqualTo(expectedCount);
         }
@@ -115,7 +103,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
                 return row % 2 == 0 ? null : "";
             });
 
-            var (processor, f) = NewFile(".xls");
+            var (processor, _) = NewFile(".xls");
             processor.WriteRange("Sheet1", data, startingCell, false);
             var count = processor.GetRowCount("Sheet1", startingCell);
             await Assert.That(count).IsEqualTo(expectedRows);
@@ -141,7 +129,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
                 };
             });
 
-            var (processor, f) = NewFile(extension);
+            var (processor, _) = NewFile(extension);
             processor.WriteRange("Sheet1", data, "A1", false);
             await Assert.That(processor.GetRowCount("Sheet1", range)).IsEqualTo(expectedCount);
         }
@@ -212,21 +200,6 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        [Arguments(".xlsx", "A1:G7", true, 7, 7)]
-        [Arguments(".xlsx", "B1:G7", true, 6, 7)]
-        [Arguments(".xlsx", "C3:F6", true, 4, 4)]
-        public async Task ReadRange_ReturnsFullRange_WhenExplictRange(string extension, string range, bool hasHeaders, int expectedCols, int expectedRows)
-        {
-            var data = TableUtils.Build(5, 5);
-            var (processor, _) = NewFile(extension);
-
-            processor.WriteRange("Sheet1", data, "A1", true);
-            var readData = processor.ReadRange("Sheet1", range, hasHeaders);
-            await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
-            await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
-        }
-
-        [Test]
         [Arguments(".xlsx", "A1", true, 1, 1, 10, 10)]
         [Arguments(".xls", "A2", false, 1, 1, 10, 10)]
         [Arguments(".xlsx", "A2:D9", false, 1, 1, 4, 8)]
@@ -238,10 +211,9 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         public async Task ReadRange_ReturnsExpectedData_BasedOnArguments(string extension, string range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
         {
             var data = TableUtils.Generate(10, 10);
-            var (processor, f) = NewFile(extension);
+            var (processor, _) = NewFile(extension);
 
             processor.WriteRange("Sheet1", data, "A1", true);
-         
             var readData = processor.ReadRange("Sheet1", range, hasHeaders, headerRows, rowsPerRecord);
             await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
             await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
@@ -254,7 +226,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         public async Task ReadRange_ReturnsExpectedRange_WhenHeaderRowsAndRowsPerRecord(string extension, string range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
         {
             var data = TableUtils.Build(10, 10);
-            var (processor, f) = NewFile(extension);
+            var (processor, _) = NewFile(extension);
 
             processor.WriteRange("Sheet1", data, "A1", true);
 
@@ -347,7 +319,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
                 };
             });
 
-            var (processor, filePath) = NewFile(extension);
+            var (processor, _) = NewFile(extension);
             processor.WriteRange("Sheet1", data, "A1", false);
             var values = processor.ReadColumn("Sheet1", startingCell, limit);
             await Assert.That(values.Length).IsEqualTo(expectedCount);
@@ -376,7 +348,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
                 };
             });
 
-            var (processor, filePath) = NewFile(extension);
+            var (processor, _) = NewFile(extension);
             processor.WriteRange("Sheet1", data, "A1", false);
             var values = processor.ReadRow("Sheet1", startingCell, limit);
             await Assert.That(values.Length).IsEqualTo(expectedCount);

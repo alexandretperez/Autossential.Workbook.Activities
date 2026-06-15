@@ -148,7 +148,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             return null;
         }
 
-        public object[] ReadColumn(string sheetName, string startingCell, int limit)
+        public object[] ReadColumn(string sheetName, string startingCell, int limit = 0)
         {
             ValidateSheetName(sheetName);
             var reader = GetReader();
@@ -314,7 +314,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             return table;
         }
 
-        public object[] ReadRow(string sheetName, string startingCell, int limit)
+        public object[] ReadRow(string sheetName, string startingCell, int limit = 0)
         {
             ValidateSheetName(sheetName);
             var reader = GetReader();
