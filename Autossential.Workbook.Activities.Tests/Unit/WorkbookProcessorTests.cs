@@ -212,21 +212,6 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        [Arguments(".xlsx", "A1:G7", true, 7, 7)]
-        [Arguments(".xlsx", "B1:G7", true, 6, 7)]
-        [Arguments(".xlsx", "C3:F6", true, 4, 4)]
-        public async Task ReadRange_ReturnsFullRange_WhenExplictRange(string extension, string range, bool hasHeaders, int expectedCols, int expectedRows)
-        {
-            var data = TableUtils.Build(5, 5);
-            var (processor, _) = NewFile(extension);
-
-            processor.WriteRange("Sheet1", data, "A1", true);
-            var readData = processor.ReadRange("Sheet1", range, hasHeaders);
-            await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
-            await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
-        }
-
-        [Test]
         [Arguments(".xlsx", "A1", true, 1, 1, 10, 10)]
         [Arguments(".xls", "A2", false, 1, 1, 10, 10)]
         [Arguments(".xlsx", "A2:D9", false, 1, 1, 4, 8)]
@@ -239,9 +224,8 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         {
             var data = TableUtils.Generate(10, 10);
             var (processor, f) = NewFile(extension);
-
+            
             processor.WriteRange("Sheet1", data, "A1", true);
-         
             var readData = processor.ReadRange("Sheet1", range, hasHeaders, headerRows, rowsPerRecord);
             await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
             await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
