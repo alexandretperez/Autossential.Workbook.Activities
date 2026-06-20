@@ -38,6 +38,19 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             await Assert.That(result.Item3).IsEqualTo(expectedRow);
         }
 
+        [Test]
+        public void FindValue_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new FindValue
+                {
+                    SheetName = "",
+                    Value = new InArgument<object>(ctx => 1)
+                });
+            });
+        }
+
         private Tuple<string, int, int> Run(string extension, string? range, object? value)
         {
             var data = TableUtils.Generate(5, 5, 1);

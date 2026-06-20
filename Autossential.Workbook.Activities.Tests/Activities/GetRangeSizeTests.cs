@@ -34,6 +34,18 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             await Assert.That(result.Item2).IsEqualTo(expectedRows);
         }
 
+        [Test]
+        public void GetRangeSize_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new GetRangeSize
+                {
+                    SheetName = ""
+                });
+            });
+        }
+
         private Tuple<int, int> Run(string extension, string? range)
         {
             var data = TableUtils.Build(10, 10, (col, row) =>

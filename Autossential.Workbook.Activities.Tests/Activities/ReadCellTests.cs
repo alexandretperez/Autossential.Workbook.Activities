@@ -11,9 +11,22 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "")]
         [Arguments(".xlsx", null)]
-        public async Task ReadCell_Fails_WhenCellAddressIsMissing(string extension, string? cell)
+        public void ReadCell_Fails_WhenCellAddressIsMissing(string extension, string? cell)
         {
-            await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Run(extension, cell, "A1")));
+            Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, cell, "A1"));
+        }
+
+        [Test]
+        public void ReadCell_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith<object>(NewTempFilePath(".xlsx"), new ReadCell
+                {
+                    SheetName = "",
+                    CellAddress = ""
+                });
+            });
         }
 
         [Test]

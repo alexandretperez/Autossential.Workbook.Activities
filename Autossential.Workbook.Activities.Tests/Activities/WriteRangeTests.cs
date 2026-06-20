@@ -13,12 +13,26 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "A1", true, 5, 5)]
         [Arguments(".xlsx", "C14", true, 5, 5)]
-        public async Task WirteRange_ExpectedRange_BasedOnArguments(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
+        public async Task WriteRange_ExpectedRange_BasedOnArguments(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
         {
             var readData = Run(extension, startingCell, addHeaders);
 
             await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
             await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
+        }
+
+        [Test]
+        public void WriteRange_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new WriteRange
+                {
+                    SheetName = "",
+                    DataTable = new InArgument<DataTable>(ctx => new DataTable()),
+                    StartingCell = ""
+                });
+            });
         }
 
         [Test]
@@ -28,7 +42,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "", true, 5, 5)]
         [Arguments(".xlsx", null, true, 5, 5)]
-        public async Task WirteRange_Fails_WhenMissingStartingCell(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
+        public async Task WriteRange_Fails_WhenMissingStartingCell(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
         {
             DataTable readData = Run(extension, startingCell, addHeaders);
 

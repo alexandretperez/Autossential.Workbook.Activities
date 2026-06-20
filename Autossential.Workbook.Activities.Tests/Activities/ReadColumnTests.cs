@@ -1,4 +1,6 @@
-﻿namespace Autossential.Workbook.Activities.Tests.Activities
+﻿using System.Activities;
+
+namespace Autossential.Workbook.Activities.Tests.Activities
 {
     public class ReadColumnTests : BaseTests
     {
@@ -27,9 +29,22 @@
 
         [Arguments(".xlsx", null)]
         [Arguments(".xlsx", "")]
-        public async Task ReadColumn_Fails_WhenMissingStartingCell(string extension, string? startingCell)
+        public void ReadColumn_Fails_WhenMissingStartingCell(string extension, string? startingCell)
         {
-            await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Run(extension, startingCell, 0)));
+            Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, startingCell, 0));
+        }
+
+        [Test]
+        public void ReadColumn_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new ReadColumn
+                {
+                    SheetName = "",
+                    StartingCell = ""
+                });
+            });
         }
 
         private object[] Run(string extension, string? startingCell, int limit)

@@ -21,14 +21,28 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Test]
 
-        [Arguments(".xls", null, "Hello")]
-        [Arguments(".xls", "", 1)]
+        [Arguments(".xls", null)]
+        [Arguments(".xls", "")]
 
-        [Arguments(".xlsx", null, "Hello")]
-        [Arguments(".xlsx", "", 1)]
-        public async Task WriteCell_Fails_WhenMissingCell(string extension, string? cell, object value)
+        [Arguments(".xlsx", null)]
+        [Arguments(".xlsx", "")]
+        public void WriteCell_Fails_WhenMissingCell(string extension, string? cell)
         {
-            await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Run(extension, cell, 0)));
+            Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, cell, 0));
+        }
+
+        [Test]
+        public void WriteCell_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new WriteCell
+                {
+                    SheetName = "",
+                    Value = new InArgument<object>(ctx => 1),
+                    CellAddress = ""
+                });
+            });
         }
 
         private object Run(string extension, string? cell, object value)

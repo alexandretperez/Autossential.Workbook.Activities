@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Activities;
+using System.Data;
 
 namespace Autossential.Workbook.Activities.Tests.Activities
 {
@@ -32,6 +33,18 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
             await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
             await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
+        }
+
+        [Test]
+        public void ReadRange_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new ReadRange
+                {
+                    SheetName = ""
+                });
+            });
         }
 
         private DataTable Run(string extension, string? range, bool hasHeaders, int headerRows, int rowsPerRecord)

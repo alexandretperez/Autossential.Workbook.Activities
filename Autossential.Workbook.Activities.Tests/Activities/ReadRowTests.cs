@@ -1,4 +1,6 @@
-﻿namespace Autossential.Workbook.Activities.Tests.Activities
+﻿using System.Activities;
+
+namespace Autossential.Workbook.Activities.Tests.Activities
 {
     public class ReadRowTests : BaseTests
     {
@@ -9,9 +11,22 @@
 
         [Arguments(".xlsx", "")]
         [Arguments(".xlsx", null)]
-        public async Task ReadRow_Fails_WhenMissingStartingCell(string extension, string? startingCell)
+        public void ReadRow_Fails_WhenMissingStartingCell(string extension, string? startingCell)
         {
-            await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Run(extension, startingCell, 0)));
+            Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, startingCell, 0));
+        }
+
+        [Test]
+        public void ReadRow_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new ReadRow
+                {
+                    SheetName = "",
+                    StartingCell = ""
+                });
+            });
         }
 
         [Test]

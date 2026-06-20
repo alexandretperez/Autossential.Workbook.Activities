@@ -1,5 +1,6 @@
 ﻿using Autossential.Workbook.Activities.Base;
 using Autossential.Workbook.Activities.Extensions;
+using Autossential.Workbook.Activities.Properties;
 using System.Activities;
 using System.Data;
 
@@ -20,6 +21,9 @@ namespace Autossential.Workbook.Activities
             var range = Range.Get(context) ?? "A1";
             var headerRows = HeaderRows.Get(context);
             var rowsPerRecord = RowsPerRecord.Get(context);
+
+            if (string.IsNullOrEmpty(sheetName))
+                throw new InvalidOperationException(ResourcesFn.Common_ErrorMsg_ValueNotSuppliedFormat(Resources.ReadRange_SheetName_DisplayName));
 
             return context.GetWorkbookProcessor().ReadRange(sheetName, range, HasHeaders, headerRows, rowsPerRecord);
         }
