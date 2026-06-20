@@ -53,14 +53,23 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        [Arguments(".xlsx", "A1", "A1", 8)]
+
+        [Arguments(".xls", "A1", "A1", 8)]
         [Arguments(".xls", "A1", "A2", 8)]
+        [Arguments(".xls", "A1", "A1:J1", 5)]
+        [Arguments(".xls", "A1", "B2:J2", 5)]
+        [Arguments(".xls", "A1", "D1:G3", 4)]
+        [Arguments(".xls", "A1", "H3", 1)]
+        [Arguments(".xls", "A1", "I3", 0)]
+        [Arguments(".xls", "A2", "A1", 8)]
+
+        [Arguments(".xlsx", "A1", "A1", 8)]
+        [Arguments(".xlsx", "A1", "A2", 8)]
         [Arguments(".xlsx", "A1", "A1:J1", 5)]
         [Arguments(".xlsx", "A1", "B2:J2", 5)]
-        [Arguments(".xls", "A1", "D1:G3", 4)]
+        [Arguments(".xlsx", "A1", "D1:G3", 4)]
         [Arguments(".xlsx", "A1", "H3", 1)]
-        [Arguments(".xls", "A1", "I3", 0)]
-
+        [Arguments(".xlsx", "A1", "I3", 0)]
         [Arguments(".xlsx", "A2", "A1", 8)]
         public async Task GetColumnCount_ReturnsExpectedCount_BasedOnRange(string extension, string writeCell, string range, int expectedCount)
         {
@@ -110,10 +119,16 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        [Arguments(".xlsx", "A1", 8)]
+
+        [Arguments(".xls", "A1", 8)]
         [Arguments(".xls", "A1:A10", 5)]
         [Arguments(".xls", "B1:C4", 0)]
         [Arguments(".xls", "B4:B6", 3)]
+
+        [Arguments(".xlsx", "A1", 8)]
+        [Arguments(".xlsx", "A1:A10", 5)]
+        [Arguments(".xlsx", "B1:C4", 0)]
+        [Arguments(".xlsx", "B4:B6", 3)]
         public async Task GetRowCount_ReturnsExpectedCount_BasedOnRange(string extension, string range, int expectedCount)
         {
             var data = TableUtils.Build(3, 10, (col, row) =>
@@ -200,12 +215,22 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        [Arguments(".xlsx", "A1", true, 1, 1, 10, 10)]
+
+        [Arguments(".xls", "A1", true, 1, 1, 10, 10)]
         [Arguments(".xls", "A2", false, 1, 1, 10, 10)]
-        [Arguments(".xlsx", "A2:D9", false, 1, 1, 4, 8)]
+        [Arguments(".xls", "A2:D9", false, 1, 1, 4, 8)]
         [Arguments(".xls", "B3:G8", false, 1, 1, 6, 6)]
-        [Arguments(".xlsx", "C5:E7", false, 1, 1, 3, 3)]
+        [Arguments(".xls", "C5:E7", false, 1, 1, 3, 3)]
         [Arguments(".xls", "F1", true, 3, 4, 5, 2)]
+        [Arguments(".xls", "H1:J11", true, 1, 1, 3, 10)]
+        [Arguments(".xls", "H2:I17", true, 1, 1, 2, 15)]
+
+        [Arguments(".xlsx", "A1", true, 1, 1, 10, 10)]
+        [Arguments(".xlsx", "A2", false, 1, 1, 10, 10)]
+        [Arguments(".xlsx", "A2:D9", false, 1, 1, 4, 8)]
+        [Arguments(".xlsx", "B3:G8", false, 1, 1, 6, 6)]
+        [Arguments(".xlsx", "C5:E7", false, 1, 1, 3, 3)]
+        [Arguments(".xlsx", "F1", true, 3, 4, 5, 2)]
         [Arguments(".xlsx", "H1:J11", true, 1, 1, 3, 10)]
         [Arguments(".xlsx", "H2:I17", true, 1, 1, 2, 15)]
         public async Task ReadRange_ReturnsExpectedData_BasedOnArguments(string extension, string range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
@@ -220,6 +245,11 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
+
+        [Arguments(".xls", "A1:C18", true, 2, 3, 3, 6)]
+        [Arguments(".xls", "B2:C18", true, 2, 3, 2, 5)]
+        [Arguments(".xls", "I3:L12", true, 3, 2, 4, 4)]
+
         [Arguments(".xlsx", "A1:C18", true, 2, 3, 3, 6)]
         [Arguments(".xlsx", "B2:C18", true, 2, 3, 2, 5)]
         [Arguments(".xlsx", "I3:L12", true, 3, 2, 4, 4)]
@@ -296,6 +326,16 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
+
+        [Arguments(".xls", "A1", 0, 10)]
+        [Arguments(".xls", "B4", 0, 6)]
+        [Arguments(".xls", "C4", 0, 5)]
+        [Arguments(".xls", "D1", 0, 0)]
+        [Arguments(".xls", "B7", 0, 3)]
+
+        [Arguments(".xls", "A1", 5, 5)]
+        [Arguments(".xls", "B1", 5, 3)]
+
         [Arguments(".xlsx", "A1", 0, 10)]
         [Arguments(".xlsx", "B4", 0, 6)]
         [Arguments(".xlsx", "C4", 0, 5)]
@@ -326,13 +366,22 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        [Arguments(".xlsx", "A1", 0, 10)]
+
+        [Arguments(".xls", "A1", 0, 10)]
         [Arguments(".xls", "A2", 0, 9)]
-        [Arguments(".xlsx", "A3", 0, 8)]
+        [Arguments(".xls", "A3", 0, 8)]
         [Arguments(".xls", "C3", 0, 6)]
-        [Arguments(".xlsx", "E2", 4, 2)]
+        [Arguments(".xls", "E2", 4, 2)]
         [Arguments(".xls", "E3", 0, 4)]
         [Arguments(".xls", "B3", 6, 3)]
+
+        [Arguments(".xlsx", "A1", 0, 10)]
+        [Arguments(".xlsx", "A2", 0, 9)]
+        [Arguments(".xlsx", "A3", 0, 8)]
+        [Arguments(".xlsx", "C3", 0, 6)]
+        [Arguments(".xlsx", "E2", 4, 2)]
+        [Arguments(".xlsx", "E3", 0, 4)]
+        [Arguments(".xlsx", "B3", 6, 3)]
         public async Task ReadRow_ReturnsExpectedData_BasedOnSpecificStartingCell(string extension, string startingCell, int limit, int expectedCount)
         {
             var data = TableUtils.Build(10, 4, (col, row) =>
@@ -355,12 +404,21 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        [Arguments(".xlsx", "A1", 32, "F3", 6, 3)]
+
+        [Arguments(".xls", "A1", 32, "F3", 6, 3)]
         [Arguments(".xls", "E2", 32, "F3", 6, 3)]
-        [Arguments(".xlsx", "H1", null, "I2", 9, 2)]
+        [Arguments(".xls", "H1", null, "I2", 9, 2)]
         [Arguments(".xls", "H1", "", "I2", 9, 2)]
-        [Arguments(".xlsx", "A1", "Col7", "G1", 7, 1)]
+        [Arguments(".xls", "A1", "Col7", "G1", 7, 1)]
         [Arguments(".xls", "A1", "C10R8", "J9", 10, 9)]
+        [Arguments(".xls", "A1", "IamNotThere", "", -1, -1)]
+
+        [Arguments(".xlsx", "A1", 32, "F3", 6, 3)]
+        [Arguments(".xlsx", "E2", 32, "F3", 6, 3)]
+        [Arguments(".xlsx", "H1", null, "I2", 9, 2)]
+        [Arguments(".xlsx", "H1", "", "I2", 9, 2)]
+        [Arguments(".xlsx", "A1", "Col7", "G1", 7, 1)]
+        [Arguments(".xlsx", "A1", "C10R8", "J9", 10, 9)]
         [Arguments(".xlsx", "A1", "IamNotThere", "", -1, -1)]
         public async Task FindValue_ReturnsAddress_WhenValueExists(string extension, string range, object? value, string expectedAddress, int expectedCol, int expectedRow)
         {

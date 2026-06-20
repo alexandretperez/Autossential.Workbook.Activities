@@ -5,8 +5,12 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     public class GetRangeSizeTests : BaseTests
     {
         [Test]
+
         [Arguments(".xls", "", 10, 10)]
-        [Arguments(".xlsx", null, 5, 10)]
+        [Arguments(".xls", null, 10, 10)]
+
+        [Arguments(".xlsx", "", 10, 10)]
+        [Arguments(".xlsx", null, 10, 10)]
         public async Task GetRangeSize_ReturnsBasedOnWholeSheet_WhenMissingRange(string extension, string? range, int expectedCols, int expectedRows)
         {
             Tuple<int, int> result = Run(extension, range);
@@ -16,8 +20,12 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
-        [Arguments(".xlsx", "A1", 10, 10)]
+
+        [Arguments(".xls", "A1", 10, 10)]
         [Arguments(".xls", "B1:G10", 5, 10)]
+
+        [Arguments(".xlsx", "A1", 10, 10)]
+        [Arguments(".xlsx", "B1:G10", 5, 10)]
         public async Task GetRangeSize_ReturnsExpectedSize_BasedOnRange(string extension, string range, int expectedCols, int expectedRows)
         {
             Tuple<int, int> result = Run(extension, range);

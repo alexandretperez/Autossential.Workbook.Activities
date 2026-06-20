@@ -873,18 +873,18 @@ namespace Autossential.Workbook.Activities.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Address of the target cell (e.g., A1, B5) where the value will be written..
         /// </summary>
-        public static string WriteCell_Cell_Description {
+        public static string WriteCell_CellAddress_Description {
             get {
-                return ResourceManager.GetString("WriteCell_Cell_Description", resourceCulture);
+                return ResourceManager.GetString("WriteCell_CellAddress_Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cell.
+        ///   Looks up a localized string similar to Cell Address.
         /// </summary>
-        public static string WriteCell_Cell_DisplayName {
+        public static string WriteCell_CellAddress_DisplayName {
             get {
-                return ResourceManager.GetString("WriteCell_Cell_DisplayName", resourceCulture);
+                return ResourceManager.GetString("WriteCell_CellAddress_DisplayName", resourceCulture);
             }
         }
         

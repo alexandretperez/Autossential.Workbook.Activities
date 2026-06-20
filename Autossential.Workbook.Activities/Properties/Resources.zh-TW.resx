@@ -413,140 +413,140 @@
     <value>結果</value>
     <comment>property name</comment>
   </data>
-	<data name="SaveWorkbook_DisplayName" xml:space="preserve">
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
     <value>儲存活頁簿</value>
     <comment>activity name</comment>
   </data>
-	<data name="SaveWorkbook_Description" xml:space="preserve">
+  <data name="SaveWorkbook_Description" xml:space="preserve">
     <value>立即將對活頁簿所做的所有變更儲存到磁碟，而不是等待使用活頁簿容器在最後儲存它們。當活頁簿需要為目前讀取/寫入工作流程之外的操作提前持久化時，請使用此活動。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DisplayName" xml:space="preserve">
     <value>寫入範圍</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteRange_Description" xml:space="preserve">
+  <data name="WriteRange_Description" xml:space="preserve">
     <value>從指定的儲存格（預設為 A1）開始，將 DataTable 寫入 Excel 工作表。如果目標工作表不存在，則會建立一個新工作表。目標範圍內的所有現有值都將被覆寫。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_SheetName_Description" xml:space="preserve">
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
     <value>要寫入資料的工作表名稱。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
     <value>起始儲存格</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_StartingCell_Description" xml:space="preserve">
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
     <value>開始寫入的左上角儲存格。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
     <value>新增標題</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
     <value>指示是否將欄位名稱作為標題寫入。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
     <value>資料表</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_DataTable_Description" xml:space="preserve">
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
     <value>要寫入工作表的來源 DataTable。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_DisplayName" xml:space="preserve">
+  <data name="WriteCell_DisplayName" xml:space="preserve">
     <value>寫入儲存格</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteCell_Description" xml:space="preserve">
+  <data name="WriteCell_Description" xml:space="preserve">
     <value>將單一值寫入 Excel 工作表的特定儲存格。如果目標工作表不存在，則會建立一個新工作表。指定儲存格中的任何現有值都將被覆寫。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_SheetName_Description" xml:space="preserve">
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
     <value>要寫入儲存格值的工作表名稱。如果不存在，則會建立一個新工作表。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Cell_DisplayName" xml:space="preserve">
-    <value>儲存格</value>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>儲存格位址</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Cell_Description" xml:space="preserve">
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
     <value>要寫入值的目標儲存格位址（例如 A1、B5）。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Value_DisplayName" xml:space="preserve">
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
     <value>值</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Value_Description" xml:space="preserve">
+  <data name="WriteCell_Value_Description" xml:space="preserve">
     <value>要寫入指定儲存格的內容。儲存格中的任何現有值都將被取代。</value>
     <comment>property description</comment>
   </data>
-	<data name="FindValue_DisplayName" xml:space="preserve">
+  <data name="FindValue_DisplayName" xml:space="preserve">
     <value>尋找值</value>
     <comment>activity name</comment>
-</data>
-	<data name="FindValue_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
     <value>在 Excel 工作表範圍內搜尋指定的值，並傳回第一個符合項目的儲存格位址、列號和欄號。當您需要在活頁簿中尋找特定資料並取得其座標以進行後續處理時，請使用此活動。</value>
     <comment>activity description</comment>
-</data>
-	<data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名稱</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
     <value>要搜尋值的工作表名稱。此屬性為必填，且該工作表必須存在於活頁簿中。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Range_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
     <value>範圍</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Range_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
     <value>要搜尋的儲存格範圍（例如 "A1:C10"）。如果未提供，預設為 "A1"，即搜尋整個工作表。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Value_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
     <value>值</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Value_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
     <value>要在工作表範圍內搜尋的特定文字或數值。此屬性為必填，並執行完全相符的搜尋。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
     <value>儲存格位址</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_CellAddress_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
     <value>傳回包含該值的儲存格位址（例如 "B4"）。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
     <value>列號</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_RowNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
     <value>傳回包含該值的儲存格之從 1 開始的列號（例如，儲存格 B4 傳回 4）。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
     <value>欄號</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
     <value>傳回包含該值的儲存格之從 1 開始的欄號（例如，儲存格 B4 傳回 2）。</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

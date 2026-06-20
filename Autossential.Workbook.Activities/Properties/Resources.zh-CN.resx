@@ -413,140 +413,140 @@
     <value>结果</value>
     <comment>property name</comment>
   </data>
-	<data name="SaveWorkbook_DisplayName" xml:space="preserve">
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
     <value>保存工作簿</value>
     <comment>activity name</comment>
   </data>
-	<data name="SaveWorkbook_Description" xml:space="preserve">
+  <data name="SaveWorkbook_Description" xml:space="preserve">
     <value>立即将对工作簿所做的所有更改保存到磁盘，而不是等待使用工作簿容器在最后保存它们。当工作簿需要为当前读/写工作流之外的操作提前持久化时，请使用此活动。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DisplayName" xml:space="preserve">
     <value>写入范围</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteRange_Description" xml:space="preserve">
+  <data name="WriteRange_Description" xml:space="preserve">
     <value>从指定的单元格（默认为 A1）开始，将 DataTable 写入 Excel 工作表。如果目标工作表不存在，则会创建一个新工作表。目标范围内的所有现有值都将被覆盖。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名称</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_SheetName_Description" xml:space="preserve">
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
     <value>要写入数据的工作表名称。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
     <value>起始单元格</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_StartingCell_Description" xml:space="preserve">
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
     <value>开始写入的左上角单元格。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
     <value>添加标题</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
     <value>指示是否将列名作为标题写入。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
     <value>数据表</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_DataTable_Description" xml:space="preserve">
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
     <value>要写入工作表的源 DataTable。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_DisplayName" xml:space="preserve">
+  <data name="WriteCell_DisplayName" xml:space="preserve">
     <value>写入单元格</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteCell_Description" xml:space="preserve">
+  <data name="WriteCell_Description" xml:space="preserve">
     <value>将单个值写入 Excel 工作表的特定单元格。如果目标工作表不存在，则会创建一个新工作表。指定单元格中的任何现有值都将被覆盖。</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名称</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_SheetName_Description" xml:space="preserve">
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
     <value>要写入单元格值的工作表名称。如果不存在，则会创建一个新工作表。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Cell_DisplayName" xml:space="preserve">
-    <value>单元格</value>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>单元格地址</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Cell_Description" xml:space="preserve">
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
     <value>要写入值的目标单元格地址（例如 A1、B5）。</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Value_DisplayName" xml:space="preserve">
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
     <value>值</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Value_Description" xml:space="preserve">
+  <data name="WriteCell_Value_Description" xml:space="preserve">
     <value>要写入指定单元格的内容。单元格中的任何现有值都将被替换。</value>
     <comment>property description</comment>
   </data>
-	<data name="FindValue_DisplayName" xml:space="preserve">
+  <data name="FindValue_DisplayName" xml:space="preserve">
     <value>查找值</value>
     <comment>activity name</comment>
-</data>
-	<data name="FindValue_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
     <value>在 Excel 工作表范围内搜索指定值，并返回第一个匹配项的单元格地址、行号和列号。当您需要在工作簿中定位特定数据并获取其坐标以供后续处理时，请使用此活动。</value>
     <comment>activity description</comment>
-</data>
-	<data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
     <value>工作表名称</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
     <value>要搜索值的工作表名称。此属性为必填项，且该工作表必须存在于工作簿中。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Range_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
     <value>范围</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Range_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
     <value>要搜索的单元格范围（例如 "A1:C10"）。如果未提供，默认为 "A1"，即搜索整个工作表。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Value_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
     <value>值</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Value_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
     <value>要在工作表范围内搜索的特定文本或数字值。此属性为必填项，并执行精确匹配搜索。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
     <value>单元格地址</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_CellAddress_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
     <value>返回包含该值的单元格地址（例如 "B4"）。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
     <value>行号</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_RowNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
     <value>返回包含该值的单元格的从 1 开始的行号（例如，单元格 B4 返回 4）。</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
     <value>列号</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
     <value>返回包含该值的单元格的从 1 开始的列号（例如，单元格 B4 返回 2）。</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

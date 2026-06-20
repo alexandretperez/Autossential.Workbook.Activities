@@ -528,11 +528,11 @@
             "displayNameKey": "Categories_Input",
             "name": "Input"
           },
-          "displayNameKey": "WriteCell_Cell_DisplayName",
+          "displayNameKey": "WriteCell_CellAddress_DisplayName",
           "isRequired": true,
           "isVisible": true,
-          "name": "Cell",
-          "tooltipKey": "WriteCell_Cell_Description"
+          "name": "CellAddress",
+          "tooltipKey": "WriteCell_CellAddress_Description"
         },
         {
           "category": {

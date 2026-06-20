@@ -3,9 +3,15 @@
     public class ReadColumnTests : BaseTests
     {
         [Test]
+
         [Arguments(".xls", "A1", 0, 10)]
-        [Arguments(".xlsx", "B1", 0, 0)]
+        [Arguments(".xls", "B1", 0, 0)]
         [Arguments(".xls", "F4", 0, 6)]
+        [Arguments(".xls", "I3", 5, 5)]
+
+        [Arguments(".xlsx", "A1", 0, 10)]
+        [Arguments(".xlsx", "B1", 0, 0)]
+        [Arguments(".xlsx", "F4", 0, 6)]
         [Arguments(".xlsx", "I3", 5, 5)]
         public async Task ReadColumn_ReturnsExpectedValue_BasedOnStaringCellAndLimit(string extension, string startingCell, int limit, int expectedCount)
         {
@@ -15,13 +21,15 @@
         }
 
         [Test]
-        [Arguments(".xls", null, 0, 10)]
-        [Arguments(".xlsx", "", 0, 0)]
-        public async Task ReadColumn_Fails_WhenMissingStartingCell(string extension, string? startingCell, int limit, int expectedCount)
-        {
-            object[] values = Run(extension, startingCell, limit);
 
-            await Assert.That(values.Length).IsEqualTo(expectedCount);
+        [Arguments(".xls", null)]
+        [Arguments(".xls", "")]
+
+        [Arguments(".xlsx", null)]
+        [Arguments(".xlsx", "")]
+        public async Task ReadColumn_Fails_WhenMissingStartingCell(string extension, string? startingCell)
+        {
+            await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Run(extension, startingCell, 0)));
         }
 
         private object[] Run(string extension, string? startingCell, int limit)

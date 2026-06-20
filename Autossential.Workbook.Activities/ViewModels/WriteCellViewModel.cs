@@ -6,7 +6,7 @@ namespace Autossential.Workbook.Activities.ViewModels
     internal class WriteCellViewModel(IDesignServices services) : BaseViewModel(services)
     {
         public DesignInArgument<string> SheetName { get; set; }
-        public DesignInArgument<string> Cell { get; set; }
+        public DesignInArgument<string> CellAddress { get; set; }
         public DesignInArgument<object> Value { get; set; }
         protected override void InitializeModel()
         {
@@ -17,8 +17,8 @@ namespace Autossential.Workbook.Activities.ViewModels
             SheetName.IsPrincipal = true;
             SheetName.OrderIndex = orderIndex++;
 
-            Cell.IsPrincipal = true;
-            Cell.OrderIndex = orderIndex++;
+            CellAddress.IsPrincipal = true;
+            CellAddress.OrderIndex = orderIndex++;
 
             Value.IsPrincipal = true;
             Value.OrderIndex = orderIndex++;

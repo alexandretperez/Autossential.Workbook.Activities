@@ -3,20 +3,28 @@
     public class ReadRowTests : BaseTests
     {
         [Test]
-        [Arguments(".xlsx", "", 0, 6)]
-        [Arguments(".xls", null, 5, 5)]
-        public async Task ReadRow_Fails_WhenMissingStartingCell(string extension, string? startingCell, int limit, int expectedCount)
-        {
-            object[] values = Run(extension, startingCell, limit);
 
-            await Assert.That(values.Length).IsEqualTo(expectedCount);
+        [Arguments(".xls", "")]
+        [Arguments(".xls", null)]
+
+        [Arguments(".xlsx", "")]
+        [Arguments(".xlsx", null)]
+        public async Task ReadRow_Fails_WhenMissingStartingCell(string extension, string? startingCell)
+        {
+            await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Run(extension, startingCell, 0)));
         }
 
         [Test]
-        [Arguments(".xlsx", "A1", 0, 10)]
+
+        [Arguments(".xls", "A1", 0, 10)]
         [Arguments(".xls", "A2", 0, 0)]
-        [Arguments(".xlsx", "D6", 0, 6)]
+        [Arguments(".xls", "D6", 0, 6)]
         [Arguments(".xls", "C9", 5, 5)]
+
+        [Arguments(".xlsx", "A1", 0, 10)]
+        [Arguments(".xlsx", "A2", 0, 0)]
+        [Arguments(".xlsx", "D6", 0, 6)]
+        [Arguments(".xlsx", "C9", 5, 5)]
         public async Task ReadRow_ReturnsExpectedValue_BasedOnStaringCellAndLimit(string extension, string startingCell, int limit, int expectedCount)
         {
             object[] values = Run(extension, startingCell, limit);

@@ -5,6 +5,10 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     public class ReadRangeTests : BaseTests
     {
         [Test]
+
+        [Arguments(".xls", null, true, 1, 1, 10, 10)]
+        [Arguments(".xls", "", true, 3, 2, 10, 4)]
+
         [Arguments(".xlsx", null, true, 1, 1, 10, 10)]
         [Arguments(".xlsx", "", true, 3, 2, 10, 4)]
         public async Task ReadRange_ReadsWholeSheet_WhenMissingRange(string extension, string? range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
@@ -16,6 +20,10 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
+
+        [Arguments(".xls", "A1", true, 1, 1, 10, 10)]
+        [Arguments(".xls", "A1", true, 3, 2, 10, 4)]
+
         [Arguments(".xlsx", "A1", true, 1, 1, 10, 10)]
         [Arguments(".xlsx", "A1", true, 3, 2, 10, 4)]
         public async Task ReadRange_ReturnsExpectedTable_BasedOnArguments(string extension, string range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)

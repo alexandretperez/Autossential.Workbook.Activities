@@ -413,140 +413,140 @@
     <value>Sonuç</value>
     <comment>property name</comment>
   </data>
-	<data name="SaveWorkbook_DisplayName" xml:space="preserve">
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
     <value>Çalışma Kitabını Kaydet</value>
     <comment>activity name</comment>
   </data>
-	<data name="SaveWorkbook_Description" xml:space="preserve">
+  <data name="SaveWorkbook_Description" xml:space="preserve">
     <value>Çalışma kitabında yapılan tüm değişiklikleri, Çalışma Kitabını Kullan kabının bunları sonunda kaydetmesini beklemek yerine hemen diske kaydeder. Çalışma kitabının mevcut okuma/yazma iş akışı dışındaki işlemler için erken kalıcı hale getirilmesi gerektiğinde bu etkinliği kullanın.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DisplayName" xml:space="preserve">
     <value>Aralık yaz</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteRange_Description" xml:space="preserve">
+  <data name="WriteRange_Description" xml:space="preserve">
     <value>Belirtilen bir hücreden başlayarak (varsayılan A1) bir DataTable'ı Excel çalışma sayfasına yazar. Hedef sayfa mevcut değilse, yeni bir sayfa oluşturulur. Hedef aralıktaki mevcut tüm değerlerin üzerine yazılır.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
     <value>Sayfa adı</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_SheetName_Description" xml:space="preserve">
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
     <value>Verilerin yazılacağı çalışma sayfasının adı.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
     <value>Başlangıç hücresi</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_StartingCell_Description" xml:space="preserve">
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
     <value>Yazmanın başladığı sol üst hücre.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
     <value>Başlık ekle</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
     <value>Sütun adlarının başlık olarak yazılıp yazılmayacağını belirtir.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
     <value>Veri tablosu</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_DataTable_Description" xml:space="preserve">
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
     <value>Çalışma sayfasına yazılacak kaynak DataTable.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_DisplayName" xml:space="preserve">
+  <data name="WriteCell_DisplayName" xml:space="preserve">
     <value>Hücre yaz</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteCell_Description" xml:space="preserve">
+  <data name="WriteCell_Description" xml:space="preserve">
     <value>Excel çalışma sayfasındaki belirli bir hücreye tek bir değer yazar. Hedef sayfa mevcut değilse, yeni bir sayfa oluşturulur. Belirtilen hücredeki mevcut değerin üzerine yazılır.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
     <value>Sayfa adı</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_SheetName_Description" xml:space="preserve">
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
     <value>Hücre değerinin yazılacağı çalışma sayfasının adı. Mevcut değilse yeni bir sayfa oluşturulur.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Cell_DisplayName" xml:space="preserve">
-    <value>Hücre</value>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Hücre Adresi</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Cell_Description" xml:space="preserve">
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
     <value>Değerin yazılacağı hedef hücrenin adresi (ör. A1, B5).</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Value_DisplayName" xml:space="preserve">
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
     <value>Değer</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Value_Description" xml:space="preserve">
+  <data name="WriteCell_Value_Description" xml:space="preserve">
     <value>Belirtilen hücreye yazılacak içerik. Hücredeki mevcut değerin yerine yazılır.</value>
     <comment>property description</comment>
   </data>
-	<data name="FindValue_DisplayName" xml:space="preserve">
+  <data name="FindValue_DisplayName" xml:space="preserve">
     <value>Değer bul</value>
     <comment>activity name</comment>
-</data>
-	<data name="FindValue_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
     <value>Bir Excel çalışma sayfası aralığında belirtilen bir değeri arar ve ilk eşleşmenin hücre adresini, satır numarasını ve sütun numarasını döndürür. Bir çalışma kitabı içinde belirli verileri bulmanız ve sonraki işlemler için koordinatlarını almanız gerektiğinde bu etkinliği kullanın.</value>
     <comment>activity description</comment>
-</data>
-	<data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
     <value>Sayfa adı</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
     <value>Değerin aranacağı çalışma sayfasının adı. Bu özellik zorunludur ve sayfa çalışma kitabında mevcut olmalıdır.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Range_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
     <value>Aralık</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Range_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
     <value>İçinde arama yapılacak hücre aralığı (ör. "A1:C10"). Sağlanmazsa, varsayılan olarak "A1" kullanılır ve bu tüm çalışma sayfasını arar.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Value_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
     <value>Değer</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Value_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
     <value>Çalışma sayfası aralığı içinde aranacak belirli metin veya sayısal değer. Bu özellik zorunludur ve tam eşleşme araması yapar.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
     <value>Hücre adresi</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_CellAddress_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
     <value>Değeri içeren hücrenin adresini döndürür (ör. "B4").</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
     <value>Satır numarası</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_RowNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
     <value>Değeri içeren hücrenin 1 tabanlı satır numarasını döndürür (ör. B4 hücresi için 4).</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
     <value>Sütun numarası</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
     <value>Değeri içeren hücrenin 1 tabanlı sütun numarasını döndürür (ör. B4 hücresi için 2).</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

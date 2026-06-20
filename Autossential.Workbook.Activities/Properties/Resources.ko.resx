@@ -413,140 +413,140 @@
     <value>결과</value>
     <comment>property name</comment>
   </data>
-	<data name="SaveWorkbook_DisplayName" xml:space="preserve">
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
     <value>워크북 저장</value>
     <comment>activity name</comment>
   </data>
-	<data name="SaveWorkbook_Description" xml:space="preserve">
+  <data name="SaveWorkbook_Description" xml:space="preserve">
     <value>워크북 사용 컨테이너가 마지막에 저장할 때까지 기다리지 않고 워크북에 적용된 모든 변경 사항을 즉시 디스크에 저장합니다. 현재 읽기/쓰기 워크플로 외부의 작업을 위해 워크북을 조기에 유지해야 하는 경우 이 활동을 사용하세요.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DisplayName" xml:space="preserve">
     <value>범위 쓰기</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteRange_Description" xml:space="preserve">
+  <data name="WriteRange_Description" xml:space="preserve">
     <value>지정된 셀(기본값 A1)부터 시작하여 DataTable을 Excel 워크시트에 씁니다. 대상 시트가 없으면 새 시트가 생성됩니다. 대상 범위의 모든 기존 값은 덮어쓰여집니다.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
     <value>시트 이름</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_SheetName_Description" xml:space="preserve">
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
     <value>데이터를 쓸 워크시트의 이름입니다.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
     <value>시작 셀</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_StartingCell_Description" xml:space="preserve">
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
     <value>쓰기가 시작되는 왼쪽 상단 셀입니다.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
     <value>헤더 추가</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
     <value>열 이름을 헤더로 쓸지 여부를 나타냅니다.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
     <value>데이터 테이블</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_DataTable_Description" xml:space="preserve">
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
     <value>워크시트에 쓸 소스 DataTable입니다.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_DisplayName" xml:space="preserve">
+  <data name="WriteCell_DisplayName" xml:space="preserve">
     <value>셀 쓰기</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteCell_Description" xml:space="preserve">
+  <data name="WriteCell_Description" xml:space="preserve">
     <value>Excel 워크시트의 특정 셀에 단일 값을 씁니다. 대상 시트가 없으면 새 시트가 생성됩니다. 지정된 셀의 기존 값은 덮어쓰여집니다.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
     <value>시트 이름</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_SheetName_Description" xml:space="preserve">
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
     <value>셀 값을 쓸 워크시트의 이름입니다. 존재하지 않으면 새 시트가 생성됩니다.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Cell_DisplayName" xml:space="preserve">
-    <value>셀</value>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>셀 주소</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Cell_Description" xml:space="preserve">
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
     <value>값이 쓰여질 대상 셀의 주소입니다(예: A1, B5).</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Value_DisplayName" xml:space="preserve">
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
     <value>값</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Value_Description" xml:space="preserve">
+  <data name="WriteCell_Value_Description" xml:space="preserve">
     <value>지정된 셀에 쓰여질 내용입니다. 셀의 기존 값은 대체됩니다.</value>
     <comment>property description</comment>
   </data>
-	<data name="FindValue_DisplayName" xml:space="preserve">
+  <data name="FindValue_DisplayName" xml:space="preserve">
     <value>값 찾기</value>
     <comment>activity name</comment>
-</data>
-	<data name="FindValue_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
     <value>Excel 워크시트 범위 내에서 지정된 값을 검색하고 첫 번째로 발견된 셀의 주소, 행 번호 및 열 번호를 반환합니다. 워크북 내에서 특정 데이터를 찾고 추가 처리를 위해 해당 좌표를 검색해야 하는 경우 이 활동을 사용하십시오.</value>
     <comment>activity description</comment>
-</data>
-	<data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
     <value>시트 이름</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
     <value>값을 검색할 워크시트의 이름입니다. 이 속성은 필수이며 시트는 워크북에 존재해야 합니다.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Range_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
     <value>범위</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Range_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
     <value>검색할 셀 범위입니다(예: "A1:C10"). 제공되지 않으면 기본값 "A1"이 사용되어 전체 워크시트를 검색합니다.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Value_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
     <value>값</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Value_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
     <value>워크시트 범위 내에서 찾을 특정 텍스트 또는 숫자 값입니다. 이 속성은 필수이며 정확히 일치하는 검색을 수행합니다.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
     <value>셀 주소</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_CellAddress_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
     <value>값이 포함된 셀의 주소를 반환합니다(예: "B4").</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
     <value>행 번호</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_RowNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
     <value>값이 포함된 셀의 1부터 시작하는 행 번호를 반환합니다(예: 셀 B4의 경우 4).</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
     <value>열 번호</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
     <value>값이 포함된 셀의 1부터 시작하는 열 번호를 반환합니다(예: 셀 B4의 경우 2).</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

@@ -413,140 +413,140 @@
     <value>Ergebnis</value>
     <comment>property name</comment>
   </data>
-	<data name="SaveWorkbook_DisplayName" xml:space="preserve">
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
     <value>Arbeitsmappe speichern</value>
     <comment>activity name</comment>
   </data>
-	<data name="SaveWorkbook_Description" xml:space="preserve">
+  <data name="SaveWorkbook_Description" xml:space="preserve">
     <value>Speichert alle Änderungen an der Arbeitsmappe sofort auf der Festplatte, anstatt zu warten, bis der Use Workbook-Container sie am Ende speichert. Verwenden Sie diese Aktivität, wenn die Arbeitsmappe frühzeitig für Vorgänge außerhalb des aktuellen Lese-/Schreib-Workflows gespeichert werden muss.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DisplayName" xml:space="preserve">
     <value>Bereich schreiben</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteRange_Description" xml:space="preserve">
+  <data name="WriteRange_Description" xml:space="preserve">
     <value>Schreibt eine DataTable in ein Excel-Arbeitsblatt, beginnend mit einer angegebenen Zelle (Standard A1). Wenn das Zielblatt nicht existiert, wird ein neues erstellt. Alle vorhandenen Werte im Zielbereich werden überschrieben.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
     <value>Blattname</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_SheetName_Description" xml:space="preserve">
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
     <value>Name des Arbeitsblatts, in das die Daten geschrieben werden sollen.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
     <value>Startzelle</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_StartingCell_Description" xml:space="preserve">
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
     <value>Obere linke Zelle, an der das Schreiben beginnt.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
     <value>Kopfzeilen hinzufügen</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
     <value>Gibt an, ob Spaltennamen als Kopfzeilen geschrieben werden.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
     <value>Datentabelle</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_DataTable_Description" xml:space="preserve">
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
     <value>Quell-DataTable, die in das Arbeitsblatt geschrieben werden soll.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_DisplayName" xml:space="preserve">
+  <data name="WriteCell_DisplayName" xml:space="preserve">
     <value>Zelle schreiben</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteCell_Description" xml:space="preserve">
+  <data name="WriteCell_Description" xml:space="preserve">
     <value>Schreibt einen einzelnen Wert in eine bestimmte Zelle eines Excel-Arbeitsblatts. Wenn das Zielblatt nicht existiert, wird ein neues erstellt. Vorhandene Werte in der angegebenen Zelle werden überschrieben.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
     <value>Blattname</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_SheetName_Description" xml:space="preserve">
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
     <value>Name des Arbeitsblatts, in das der Zellenwert geschrieben werden soll. Ein neues Blatt wird erstellt, wenn es nicht existiert.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Cell_DisplayName" xml:space="preserve">
-    <value>Zelle</value>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Zelladresse</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Cell_Description" xml:space="preserve">
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
     <value>Adresse der Zielzelle (z. B. A1, B5), in die der Wert geschrieben wird.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Value_DisplayName" xml:space="preserve">
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
     <value>Wert</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Value_Description" xml:space="preserve">
+  <data name="WriteCell_Value_Description" xml:space="preserve">
     <value>Der Inhalt, der in die angegebene Zelle geschrieben werden soll. Vorhandene Werte in der Zelle werden ersetzt.</value>
     <comment>property description</comment>
   </data>
-	<data name="FindValue_DisplayName" xml:space="preserve">
+  <data name="FindValue_DisplayName" xml:space="preserve">
     <value>Wert suchen</value>
     <comment>activity name</comment>
-</data>
-	<data name="FindValue_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
     <value>Sucht nach einem angegebenen Wert innerhalb eines Excel-Arbeitsblattbereichs und gibt die Zellenadresse, Zeilennummer und Spaltennummer des ersten Vorkommens zurück. Verwenden Sie diese Aktivität, wenn Sie bestimmte Daten in einer Arbeitsmappe lokalisieren und deren Koordinaten für die weitere Verarbeitung abrufen müssen.</value>
     <comment>activity description</comment>
-</data>
-	<data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
     <value>Blattname</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
     <value>Name des Arbeitsblatts, in dem nach dem Wert gesucht werden soll. Diese Eigenschaft ist erforderlich, und das Blatt muss in der Arbeitsmappe vorhanden sein.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Range_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
     <value>Bereich</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Range_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
     <value>Zellbereich, in dem gesucht werden soll (z. B. "A1:C10"). Wenn nicht angegeben, wird standardmäßig "A1" verwendet, wodurch das gesamte Arbeitsblatt durchsucht wird.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_Value_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
     <value>Wert</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_Value_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
     <value>Der spezifische Text- oder Zahlenwert, der innerhalb des Arbeitsblattbereichs gesucht werden soll. Diese Eigenschaft ist erforderlich und führt eine exakte Übereinstimmungssuche durch.</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
     <value>Zellenadresse</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_CellAddress_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
     <value>Gibt die Adresse der Zelle zurück, die den Wert enthält (z. B. "B4").</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
     <value>Zeilennummer</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_RowNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
     <value>Gibt die 1-basierte Zeilennummer der Zelle zurück, die den Wert enthält (z. B. 4 für Zelle B4).</value>
     <comment>property description</comment>
-</data>
-	<data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
     <value>Spaltennummer</value>
     <comment>property name</comment>
-</data>
-	<data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
     <value>Gibt die 1-basierte Spaltennummer der Zelle zurück, die den Wert enthält (z. B. 2 für Zelle B4).</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

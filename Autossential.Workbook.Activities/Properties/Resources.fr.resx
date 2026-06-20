@@ -413,140 +413,140 @@
     <value>Résultat</value>
     <comment>property name</comment>
   </data>
-	<data name="SaveWorkbook_DisplayName" xml:space="preserve">
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
     <value>Enregistrer le classeur</value>
     <comment>activity name</comment>
   </data>
-	<data name="SaveWorkbook_Description" xml:space="preserve">
+  <data name="SaveWorkbook_Description" xml:space="preserve">
     <value>Enregistre immédiatement toutes les modifications apportées au classeur sur le disque, au lieu d'attendre que le conteneur Utiliser le classeur les enregistre à la fin. Utilisez cette activité lorsque le classeur doit être persisté tôt pour des opérations en dehors du flux de travail actuel de lecture/écriture.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DisplayName" xml:space="preserve">
     <value>Écrire une plage</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteRange_Description" xml:space="preserve">
+  <data name="WriteRange_Description" xml:space="preserve">
     <value>Écrit un DataTable dans une feuille Excel à partir d'une cellule spécifiée (par défaut A1). Si la feuille cible n'existe pas, une nouvelle est créée. Toutes les valeurs existantes dans la plage cible sont écrasées.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_SheetName_Description" xml:space="preserve">
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
     <value>Nom de la feuille de calcul dans laquelle écrire les données.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
     <value>Cellule de départ</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_StartingCell_Description" xml:space="preserve">
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
     <value>Cellule en haut à gauche où l'écriture commence.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
     <value>Ajouter des en-têtes</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
     <value>Indique si les noms de colonnes sont écrits comme en-têtes.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
     <value>Table de données</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteRange_DataTable_Description" xml:space="preserve">
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
     <value>DataTable source à écrire dans la feuille de calcul.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_DisplayName" xml:space="preserve">
+  <data name="WriteCell_DisplayName" xml:space="preserve">
     <value>Écrire une cellule</value>
     <comment>activity name</comment>
   </data>
-	<data name="WriteCell_Description" xml:space="preserve">
+  <data name="WriteCell_Description" xml:space="preserve">
     <value>Écrit une seule valeur dans une cellule spécifique d'une feuille Excel. Si la feuille cible n'existe pas, une nouvelle est créée. Toute valeur existante dans la cellule spécifiée est écrasée.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_SheetName_Description" xml:space="preserve">
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
     <value>Nom de la feuille de calcul dans laquelle écrire la valeur de la cellule. Une nouvelle feuille est créée si elle n'existe pas.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Cell_DisplayName" xml:space="preserve">
-    <value>Cellule</value>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Adresse de la cellule</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Cell_Description" xml:space="preserve">
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
     <value>Adresse de la cellule cible (par exemple, A1, B5) où la valeur sera écrite.</value>
     <comment>property description</comment>
   </data>
-	<data name="WriteCell_Value_DisplayName" xml:space="preserve">
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
     <value>Valeur</value>
     <comment>property name</comment>
   </data>
-	<data name="WriteCell_Value_Description" xml:space="preserve">
+  <data name="WriteCell_Value_Description" xml:space="preserve">
     <value>Le contenu à écrire dans la cellule spécifiée. Toute valeur existante dans la cellule est remplacée.</value>
     <comment>property description</comment>
   </data>
-<data name="FindValue_DisplayName" xml:space="preserve">
+  <data name="FindValue_DisplayName" xml:space="preserve">
     <value>Rechercher une valeur</value>
     <comment>activity name</comment>
-</data>
-<data name="FindValue_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
     <value>Recherche une valeur spécifiée dans une plage d'une feuille Excel et retourne l'adresse de la cellule, le numéro de ligne et le numéro de colonne de la première occurrence. Utilisez cette activité lorsque vous devez localiser des données spécifiques dans un classeur et récupérer leurs coordonnées pour un traitement ultérieur.</value>
     <comment>activity description</comment>
-</data>
-<data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
-</data>
-<data name="FindValue_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
     <value>Nom de la feuille de calcul dans laquelle rechercher la valeur. Cette propriété est obligatoire et la feuille doit exister dans le classeur.</value>
     <comment>property description</comment>
-</data>
-<data name="FindValue_Range_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
     <value>Plage</value>
     <comment>property name</comment>
-</data>
-<data name="FindValue_Range_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
     <value>Plage de cellules dans laquelle rechercher (par exemple, "A1:C10"). Si elle n'est pas fournie, la valeur par défaut est "A1", ce qui recherche dans toute la feuille de calcul.</value>
     <comment>property description</comment>
-</data>
-<data name="FindValue_Value_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
     <value>Valeur</value>
     <comment>property name</comment>
-</data>
-<data name="FindValue_Value_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
     <value>La valeur textuelle ou numérique spécifique à rechercher dans la plage de la feuille de calcul. Cette propriété est obligatoire et effectue une recherche de correspondance exacte.</value>
     <comment>property description</comment>
-</data>
-<data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
     <value>Adresse de la cellule</value>
     <comment>property name</comment>
-</data>
-<data name="FindValue_CellAddress_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
     <value>Retourne l'adresse de la cellule contenant la valeur (par exemple, "B4").</value>
     <comment>property description</comment>
-</data>
-<data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
     <value>Numéro de ligne</value>
     <comment>property name</comment>
-</data>
-<data name="FindValue_RowNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
     <value>Retourne le numéro de ligne (base 1) de la cellule contenant la valeur (par exemple, 4 pour la cellule B4).</value>
     <comment>property description</comment>
-</data>
-<data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
     <value>Numéro de colonne</value>
     <comment>property name</comment>
-</data>
-<data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
     <value>Retourne le numéro de colonne (base 1) de la cellule contenant la valeur (par exemple, 2 pour la cellule B4).</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

@@ -7,6 +7,10 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     internal class WriteRangeTests : BaseTests
     {
         [Test]
+
+        [Arguments(".xls", "A1", true, 5, 5)]
+        [Arguments(".xls", "C14", true, 5, 5)]
+
         [Arguments(".xlsx", "A1", true, 5, 5)]
         [Arguments(".xlsx", "C14", true, 5, 5)]
         public async Task WirteRange_ExpectedRange_BasedOnArguments(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
@@ -18,8 +22,12 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
+
         [Arguments(".xls", "", true, 5, 5)]
         [Arguments(".xls", null, true, 5, 5)]
+
+        [Arguments(".xlsx", "", true, 5, 5)]
+        [Arguments(".xlsx", null, true, 5, 5)]
         public async Task WirteRange_Fails_WhenMissingStartingCell(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
         {
             DataTable readData = Run(extension, startingCell, addHeaders);

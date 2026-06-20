@@ -6,8 +6,12 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     internal class WriteCellTests : BaseTests
     {
         [Test]
-        [Arguments(".xlsx", "A1", "Hello")]
+
+        [Arguments(".xls", "A1", "Hello")]
         [Arguments(".xls", "B2", 1)]
+
+        [Arguments(".xlsx", "A1", "Hello")]
+        [Arguments(".xlsx", "B2", 1)]
         public async Task WriteCell_CellIsUpdated_BasedOnArguments(string extension, string cell, object value)
         {
             object readValue = Run(extension, cell, value);
@@ -16,13 +20,15 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
-        [Arguments(".xlsx", null, "Hello")]
+
+        [Arguments(".xls", null, "Hello")]
         [Arguments(".xls", "", 1)]
+
+        [Arguments(".xlsx", null, "Hello")]
+        [Arguments(".xlsx", "", 1)]
         public async Task WriteCell_Fails_WhenMissingCell(string extension, string? cell, object value)
         {
-            object readValue = Run(extension, cell, value);
-
-            await Assert.That(value?.ToString()).IsEqualTo(readValue?.ToString());
+            await Assert.ThrowsAsync<InvalidOperationException>(() => Task.FromResult(Run(extension, cell, 0)));
         }
 
         private object Run(string extension, string? cell, object value)
@@ -31,7 +37,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             InvokeWorkbookScopeWith(filePath, new WriteCell
             {
                 SheetName = "Sheet1",
-                Cell = cell,
+                CellAddress = cell,
                 Value = new InArgument<object>(ctx => value)
             });
 
