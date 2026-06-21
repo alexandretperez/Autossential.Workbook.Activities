@@ -1,17 +1,30 @@
 ﻿using Autossential.Workbook.Activities.Core;
 using System.Activities;
+using System.ComponentModel;
 
 namespace Autossential.Workbook.Activities.Extensions
 {
     public static class ActivityContextExtensions
     {
-        public const string WorkbookInstancePropertyName = "_wbInst";
-
         extension(ActivityContext context)
         {
             public IWorkbookProcessor GetWorkbookProcessor()
             {
-                return context.DataContext.GetProperties()[WorkbookInstancePropertyName]?.GetValue(context.DataContext) as IWorkbookProcessor;
+                var properties = context.DataContext.GetProperties();
+                var property = properties[WorkbookScope.TAG];
+                if (property == null)
+                {
+                    foreach (PropertyDescriptor prop in properties)
+                    {
+                        if (prop.PropertyType == typeof(IWorkbookProcessor))
+                        {
+                            property = prop;
+                            break;
+                        }
+                    }
+                }
+
+                return property.GetValue(context.DataContext) as IWorkbookProcessor;
             }
         }
     }

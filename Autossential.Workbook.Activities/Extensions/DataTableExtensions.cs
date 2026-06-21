@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Autossential.Workbook.Activities.Core;
+using System.Data;
 
 namespace Autossential.Workbook.Activities.Extensions
 {
@@ -6,57 +7,93 @@ namespace Autossential.Workbook.Activities.Extensions
     {
         extension(DataTable table)
         {
-            public void RemoveTrailingRows(int fromRowIndex = 0)
+            public DataTable TrimOrAppend(RangeReference range, string colNamePrefix, int colNameIndex, bool hasHeaders, int headerRows, int rowsPerRecord)
             {
-                for (int i = table.Rows.Count - 1; i >= fromRowIndex; i--)
+                static bool HasValue(DataRow row, int columnIndex)
                 {
-                    var row = table.Rows[i];
-                    if (row.ItemArray.All(value => value == null || string.IsNullOrEmpty(value.ToString())))
-                    {
-                        table.Rows.RemoveAt(i);
-                        continue;
-                    }
+                    if (row.IsNull(columnIndex))
+                        return false;
 
-                    break;
+                    return row[columnIndex]?.ToString().Length > 0;
                 }
-            }
 
-            public void RemoveTrailingColumns(int fromColumnIndex = 0)
-            {
-                int index = table.Columns.Count;
-                while (--index > fromColumnIndex)
+                int lastNonEmptyRowIndex = -1;
+                int lastNonEmptyColIndex = -1;
+
+                // last non-empty row
+                for (int ri = table.Rows.Count - 1; ri >= 0; ri--)
                 {
-                    var isEmpty = true;
-                    foreach (DataRow row in table.Rows)
+                    var row = table.Rows[ri];
+
+                    for (int ci = 0; ci < table.Columns.Count; ci++)
                     {
-                        var value = row[index];
-                        if (!row.IsNull(index) && value != null && !string.IsNullOrEmpty(value.ToString()))
+                        if (HasValue(row, ci))
                         {
-                            isEmpty = false;
+                            lastNonEmptyRowIndex = ri;
                             break;
                         }
                     }
 
-                    if (isEmpty)
+                    if (lastNonEmptyRowIndex >= 0)
+                        break;
+                }
+
+                // last non-empty column
+                for (int ci = table.Columns.Count - 1; ci >= 0; ci--)
+                {
+                    for (int ri = 0; ri < table.Rows.Count; ri++)
                     {
-                        table.Columns.RemoveAt(index);
-                        continue;
+                        var row = table.Rows[ri];
+
+                        if (HasValue(row, ci))
+                        {
+                            lastNonEmptyColIndex = ci;
+                            break;
+                        }
                     }
 
-                    break;
+                    if (lastNonEmptyColIndex >= 0)
+                        break;
                 }
-            }
 
-            public void AddTrailingRows(int rows)
-            {
-                for (int i = table.Rows.Count; i < rows; i++)
-                    table.Rows.Add(table.NewRow());
-            }
+                if (range.Origin == RangeOrigin.Explicit)
+                {
+                    int expectedRowCount = range.End.Row;
+                    expectedRowCount -= (range.Start.Row - 1);
 
-            public void AddTrailingColumns(int cols, int columnIndex, string columnPrefix)
-            {
-                for (int i = table.Columns.Count; i < cols; i++)
-                    table.Columns.Add($"{columnPrefix}{columnIndex++}", typeof(object));
+                    if (hasHeaders)
+                        expectedRowCount -= headerRows;
+
+                    if (rowsPerRecord > 1)
+                        expectedRowCount = (int)(Math.Ceiling(expectedRowCount / (double)rowsPerRecord));
+
+                    while (table.Rows.Count < expectedRowCount)
+                        table.Rows.Add(table.NewRow());
+
+                    int expectedColumnCount = range.End.Col;
+                    expectedColumnCount -= (range.Start.Col - 1);
+
+                    while (table.Columns.Count < expectedColumnCount)
+                    {
+                        string name;
+                        do
+                        {
+                            name = $"{colNamePrefix}{colNameIndex++}";
+                        } while (table.Columns.Contains(name));
+
+                        table.Columns.Add(name, typeof(object));
+                    }
+                }
+                else
+                {
+                    for (int i = table.Columns.Count - 1; i > lastNonEmptyColIndex; i--)
+                        table.Columns.RemoveAt(i);
+
+                    for (int i = table.Rows.Count - 1; i > lastNonEmptyRowIndex; i--)
+                        table.Rows.RemoveAt(i);
+                }
+
+                return table;
             }
         }
     }

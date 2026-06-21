@@ -2,42 +2,53 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net6.0;net6.0-windows;net8.0;net8.0-windows</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>14.0</LangVersion>
 		<PackageId>Autossential.Workbook</PackageId>
+		<AcceptNPOIOSMFLicense>true</AcceptNPOIOSMFLicense>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net8.0-windows'">
 		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	
 	<ItemGroup>
 		<None Remove="Resources\ActivitiesMetadata.json" />
+		<None Remove="Resources\Icons\FindValue.svg" />
 		<None Remove="Resources\Icons\GetRangeSize.svg" />
 		<None Remove="Resources\Icons\ReadCell.svg" />
 		<None Remove="Resources\Icons\ReadColumn.svg" />
 		<None Remove="Resources\Icons\ReadRow.svg" />
+		<None Remove="Resources\Icons\SaveWorkbook.svg" />
 		<None Remove="Resources\Icons\WorkbookScope.svg" />
+		<None Remove="Resources\Icons\WriteCell.svg" />
+		<None Remove="Resources\Icons\WriteRange.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\ActivitiesMetadata.json" />
+		<EmbeddedResource Include="Resources\Icons\FindValue.svg" />
 		<EmbeddedResource Include="Resources\Icons\GetRangeSize.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadCell.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadColumn.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadRange.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadRow.svg" />
+		<EmbeddedResource Include="Resources\Icons\SaveWorkbook.svg" />
 		<EmbeddedResource Include="Resources\Icons\WorkbookScope.svg" />
+		<EmbeddedResource Include="Resources\Icons\WriteCell.svg" />
+		<EmbeddedResource Include="Resources\Icons\WriteRange.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExcelDataReader" Version="3.8.0" />
-		<PackageReference Include="ExcelDataReader.DataSet" Version="3.8.0" />
-		<PackageReference Include="System.Activities.ViewModels" Version="1.20260216.2" />
-		<PackageReference Include="UiPath.Activities.Api" Version="24.10.1" PrivateAssets="All" />
-		<PackageReference Include="System.Activities.Metadata" Version="6.0.0-20240517.13" PrivateAssets="All" />
-		<PackageReference Include="UiPath.Workflow" Version="6.0.0-20240401-07" PrivateAssets="All" />
+		<PackageReference Include="ExcelDataReader" />
+		<PackageReference Include="DocumentFormat.OpenXml" />
+		<PackageReference Include="NPOI" />
+		<PackageReference Include="System.Activities.ViewModels" PrivateAssets="All" />
+		<PackageReference Include="UiPath.Activities.Api" PrivateAssets="All" />
+		<PackageReference Include="System.Activities.Metadata" PrivateAssets="All" />
+		<PackageReference Include="UiPath.Workflow" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup>

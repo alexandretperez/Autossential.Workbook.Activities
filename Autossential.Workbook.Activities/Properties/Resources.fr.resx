@@ -1,358 +1,552 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-	<data name="ActivityCategories_Workbook" xml:space="preserve">
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Input" xml:space="preserve">
+  <data name="Categories_Input" xml:space="preserve">
     <value>Entrée</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_InputOutput" xml:space="preserve">
+  <data name="Categories_InputOutput" xml:space="preserve">
     <value>Entrée/Sortie</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Options" xml:space="preserve">
+  <data name="Categories_Options" xml:space="preserve">
     <value>Options</value>
     <comment>category</comment>
   </data>
-	<data name="Categories_Output" xml:space="preserve">
+  <data name="Categories_Output" xml:space="preserve">
     <value>Sortie</value>
     <comment>category</comment>
   </data>
-	<data name="Common_ContinueOnError_Description" xml:space="preserve">
+  <data name="Common_ContinueOnError_Description" xml:space="preserve">
     <value>Spécifie de continuer l'exécution des activités restantes même si l'activité actuelle a échoué. Seules les valeurs booléennes sont autorisées.</value>
     <comment>property description</comment>
   </data>
-	<data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
+  <data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
     <value>Continuer en cas d'erreur</value>
     <comment>property name</comment>
   </data>
-	<data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
+  <data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
     <value>Valeur pour l'argument d'activité requis '{0}' non fournie.</value>
     <comment>error message</comment>
   </data>
-	<data name="Common_TimeoutSeconds_Description" xml:space="preserve">
+  <data name="Common_TimeoutSeconds_Description" xml:space="preserve">
     <value>Spécifie le temps d'attente en secondes avant de lever une erreur. La valeur par défaut est 30s.</value>
     <comment>property description</comment>
   </data>
-	<data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
+  <data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
     <value>Délai d'expiration</value>
     <comment>property name</comment>
   </data>
-	<data name="Common_UsingOutsideOfScope" xml:space="preserve">
+  <data name="Common_UsingOutsideOfScope" xml:space="preserve">
     <value>Ne peut pas être utilisé en dehors de l'activité {0}.</value>
     <comment>error message</comment>
   </data>
-	<data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
+  <data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
     <value>Parcourir un fichier</value>
     <comment>view model</comment>
   </data>
-	<data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
+  <data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
     <value>Parcourir un dossier</value>
     <comment>view model</comment>
   </data>
-	<data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
+  <data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
     <value>Le nombre de colonnes utilisées incluses dans la plage spécifiée.</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
     <value>Nombre de colonnes</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_Description" xml:space="preserve">
+  <data name="GetRangeSize_Description" xml:space="preserve">
     <value>Récupère le nombre de lignes et de colonnes utilisées dans une plage spécifiée du classeur.</value>
     <comment>activity description</comment>
   </data>
-	<data name="GetRangeSize_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>Obtenir la taille de la plage</value>
     <comment>activity name</comment>
   </data>
-	<data name="GetRangeSize_Range_Description" xml:space="preserve">
+  <data name="GetRangeSize_Range_Description" xml:space="preserve">
     <value>Spécifie la plage de cellules à lire. Si non spécifié, toutes les cellules utilisées de la feuille sont lues. Si la valeur ne contient qu'une seule cellule, toutes les lignes utilisées sont lues à partir de cette cellule. (Par défaut : A1)</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
     <value>Plage</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_RowCount_Description" xml:space="preserve">
+  <data name="GetRangeSize_RowCount_Description" xml:space="preserve">
     <value>Le nombre de lignes utilisées incluses dans la plage spécifiée.</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
     <value>Nombre de lignes</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_SheetName_Description" xml:space="preserve">
+  <data name="GetRangeSize_SheetName_Description" xml:space="preserve">
     <value>Le nom de la feuille contenant la plage cible.</value>
     <comment>property description</comment>
   </data>
-	<data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
+  <data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_CellAddress_Description" xml:space="preserve">
+  <data name="ReadCell_CellAddress_Description" xml:space="preserve">
     <value>L'adresse de la cellule dont la valeur doit être lue.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
+  <data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
     <value>Adresse de la cellule</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_Description" xml:space="preserve">
+  <data name="ReadCell_Description" xml:space="preserve">
     <value>Lit la valeur d'une cellule dans la feuille et à l'adresse spécifiée.</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadCell_DisplayName" xml:space="preserve">
+  <data name="ReadCell_DisplayName" xml:space="preserve">
     <value>Lire la cellule</value>
     <comment>activitiy name</comment>
   </data>
-	<data name="ReadCell_Result_Description" xml:space="preserve">
+  <data name="ReadCell_Result_Description" xml:space="preserve">
     <value>La valeur lue de la cellule.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_Result_DisplayName" xml:space="preserve">
+  <data name="ReadCell_Result_DisplayName" xml:space="preserve">
     <value>Valeur</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadCell_SheetName_Description" xml:space="preserve">
+  <data name="ReadCell_SheetName_Description" xml:space="preserve">
     <value>La feuille contenant la cellule à lire.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Description" xml:space="preserve">
+  <data name="ReadRange_Description" xml:space="preserve">
     <value>Lit la valeur d'une plage d'une feuille de calcul sous forme de DataTable. Si aucune plage n'est spécifiée, toutes les cellules utilisées sont lues. Si une seule cellule est spécifiée, toutes les lignes utilisées à partir de cette cellule sont lues.</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadRange_DisplayName" xml:space="preserve">
+  <data name="ReadRange_DisplayName" xml:space="preserve">
     <value>Lire la plage</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadRange_HasHeaders_Description" xml:space="preserve">
+  <data name="ReadRange_HasHeaders_Description" xml:space="preserve">
     <value>Spécifie si la première ligne de la plage doit être considérée comme des en-têtes de colonnes. Si faux, les colonnes utiliseront le modèle "Col{number}".</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
+  <data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
     <value>A des en-têtes</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_HeaderRows_Description" xml:space="preserve">
+  <data name="ReadRange_HeaderRows_Description" xml:space="preserve">
     <value>Détermine le nombre de lignes qui composent l'en-tête. Les valeurs de ces lignes sont concaténées.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
+  <data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
     <value>Lignes d'en-tête</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Range_Description" xml:space="preserve">
+  <data name="ReadRange_Range_Description" xml:space="preserve">
     <value>Spécifie la plage de cellules à lire. Si non spécifié, toutes les cellules utilisées sont lues. Si une seule cellule, toutes les lignes utilisées à partir de cette cellule sont lues. (Par défaut : A1)</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_Range_DisplayName" xml:space="preserve">
+  <data name="ReadRange_Range_DisplayName" xml:space="preserve">
     <value>Plage</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_Result_Description" xml:space="preserve">
+  <data name="ReadRange_Result_Description" xml:space="preserve">
     <value>Le DataTable de sortie dans lequel les données lues sont stockées.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_Result_DisplayName" xml:space="preserve">
+  <data name="ReadRange_Result_DisplayName" xml:space="preserve">
     <value>DataTable</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
+  <data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
     <value>Détermine le nombre de lignes qui composent un seul enregistrement. Les valeurs sont concaténées.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
+  <data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
     <value>Lignes par enregistrement</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRange_SheetName_Description" xml:space="preserve">
+  <data name="ReadRange_SheetName_Description" xml:space="preserve">
     <value>Le nom de la feuille du classeur.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_Description" xml:space="preserve">
+  <data name="ReadRow_Description" xml:space="preserve">
     <value>Lit une ligne de cellules d'une feuille et renvoie les valeurs sous forme de tableau.</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadRow_DisplayName" xml:space="preserve">
+  <data name="ReadRow_DisplayName" xml:space="preserve">
     <value>Lire la ligne</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadRow_Limit_DisplayName" xml:space="preserve">
+  <data name="ReadRow_Limit_DisplayName" xml:space="preserve">
     <value>Cellules max</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_SheetName_Description" xml:space="preserve">
+  <data name="ReadRow_SheetName_Description" xml:space="preserve">
     <value>Nom de la feuille à partir de laquelle lire.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadRow_StartingCell_Description" xml:space="preserve">
+  <data name="ReadRow_StartingCell_Description" xml:space="preserve">
     <value>Adresse de la cellule (format plage, ex. : A1) qui définit le début de la ligne à lire.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
+  <data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
     <value>Cellule de départ</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_Description" xml:space="preserve">
+  <data name="WorkbookScope_Description" xml:space="preserve">
     <value>Ouvre un classeur et partage son instance avec les activités enfants.</value>
     <comment>activity description</comment>
   </data>
-	<data name="WorkbookScope_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_DisplayName" xml:space="preserve">
     <value>Utiliser le classeur</value>
     <comment>activity name</comment>
   </data>
-	<data name="WorkbookScope_Password_Description" xml:space="preserve">
+  <data name="WorkbookScope_Password_Description" xml:space="preserve">
     <value>Le mot de passe requis pour ouvrir le classeur s'il est protégé.</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
     <value>Mot de passe</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
+  <data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
     <value>Renvoie la liste des noms de feuilles contenus dans le classeur.</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
     <value>Noms des feuilles</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
     <value>Le chemin vers le classeur.</value>
     <comment>property description</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
     <value>Chemin du classeur</value>
     <comment>property name</comment>
   </data>
-	<data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
+  <data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
     <value>Entrez le chemin du classeur</value>
     <comment>placeholder</comment>
   </data>
-	<data name="ReadRow_Limit_Description" xml:space="preserve">
+  <data name="ReadRow_Limit_Description" xml:space="preserve">
     <value>Nombre maximum de cellules à lire dans la ligne. Si vide ou ≤ 0, toutes les cellules sont lues.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_DisplayName" xml:space="preserve">
     <value>Lire la colonne</value>
     <comment>activity name</comment>
   </data>
-	<data name="ReadColumn_Description" xml:space="preserve">
+  <data name="ReadColumn_Description" xml:space="preserve">
     <value>Lit une colonne de cellules d'une feuille et renvoie les valeurs sous forme de tableau.</value>
     <comment>activity description</comment>
   </data>
-	<data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
     <value>Cellules max</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_Limit_Description" xml:space="preserve">
+  <data name="ReadColumn_Limit_Description" xml:space="preserve">
     <value>Nombre maximum de cellules à lire dans la colonne. Si vide ou ≤ 0, toutes les cellules sont lues.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
     <value>Nom de la feuille</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_SheetName_Description" xml:space="preserve">
+  <data name="ReadColumn_SheetName_Description" xml:space="preserve">
     <value>Nom de la feuille à partir de laquelle lire.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
     <value>Cellule de départ</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_StartingCell_Description" xml:space="preserve">
+  <data name="ReadColumn_StartingCell_Description" xml:space="preserve">
     <value>Adresse de la cellule (format plage, ex. : A1) qui définit le début de la colonne à lire.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_Result_Description" xml:space="preserve">
+  <data name="ReadRow_Result_Description" xml:space="preserve">
     <value>Tableau des valeurs lues de la ligne.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadRow_Result_DisplayName" xml:space="preserve">
+  <data name="ReadRow_Result_DisplayName" xml:space="preserve">
     <value>Résultat</value>
     <comment>property name</comment>
   </data>
-	<data name="ReadColumn_Result_Description" xml:space="preserve">
+  <data name="ReadColumn_Result_Description" xml:space="preserve">
     <value>Tableau des valeurs lues de la colonne.</value>
     <comment>property description</comment>
   </data>
-	<data name="ReadColumn_Result_DisplayName" xml:space="preserve">
+  <data name="ReadColumn_Result_DisplayName" xml:space="preserve">
     <value>Résultat</value>
     <comment>property name</comment>
+  </data>
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
+    <value>Enregistrer le classeur</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="SaveWorkbook_Description" xml:space="preserve">
+    <value>Enregistre immédiatement toutes les modifications apportées au classeur sur le disque, au lieu d'attendre que le conteneur Utiliser le classeur les enregistre à la fin. Utilisez cette activité lorsque le classeur doit être persisté tôt pour des opérations en dehors du flux de travail actuel de lecture/écriture.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WriteRange_DisplayName" xml:space="preserve">
+    <value>Écrire une plage</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="WriteRange_Description" xml:space="preserve">
+    <value>Écrit un DataTable dans une feuille Excel à partir d'une cellule spécifiée (par défaut A1). Si la feuille cible n'existe pas, une nouvelle est créée. Toutes les valeurs existantes dans la plage cible sont écrasées.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+    <value>Nom de la feuille</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
+    <value>Nom de la feuille de calcul dans laquelle écrire les données.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+    <value>Cellule de départ</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
+    <value>Cellule en haut à gauche où l'écriture commence.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+    <value>Ajouter des en-têtes</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+    <value>Indique si les noms de colonnes sont écrits comme en-têtes.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+    <value>Table de données</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
+    <value>DataTable source à écrire dans la feuille de calcul.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteCell_DisplayName" xml:space="preserve">
+    <value>Écrire une cellule</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="WriteCell_Description" xml:space="preserve">
+    <value>Écrit une seule valeur dans une cellule spécifique d'une feuille Excel. Si la feuille cible n'existe pas, une nouvelle est créée. Toute valeur existante dans la cellule spécifiée est écrasée.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+    <value>Nom de la feuille</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
+    <value>Nom de la feuille de calcul dans laquelle écrire la valeur de la cellule. Une nouvelle feuille est créée si elle n'existe pas.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Adresse de la cellule</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
+    <value>Adresse de la cellule cible (par exemple, A1, B5) où la valeur sera écrite.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
+    <value>Valeur</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteCell_Value_Description" xml:space="preserve">
+    <value>Le contenu à écrire dans la cellule spécifiée. Toute valeur existante dans la cellule est remplacée.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_DisplayName" xml:space="preserve">
+    <value>Rechercher une valeur</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
+    <value>Recherche une valeur spécifiée dans une plage d'une feuille Excel et retourne l'adresse de la cellule, le numéro de ligne et le numéro de colonne de la première occurrence. Utilisez cette activité lorsque vous devez localiser des données spécifiques dans un classeur et récupérer leurs coordonnées pour un traitement ultérieur.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+    <value>Nom de la feuille</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
+    <value>Nom de la feuille de calcul dans laquelle rechercher la valeur. Cette propriété est obligatoire et la feuille doit exister dans le classeur.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
+    <value>Plage</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
+    <value>Plage de cellules dans laquelle rechercher (par exemple, "A1:C10"). Si elle n'est pas fournie, la valeur par défaut est "A1", ce qui recherche dans toute la feuille de calcul.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
+    <value>Valeur</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
+    <value>La valeur textuelle ou numérique spécifique à rechercher dans la plage de la feuille de calcul. Cette propriété est obligatoire et effectue une recherche de correspondance exacte.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+    <value>Adresse de la cellule</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
+    <value>Retourne l'adresse de la cellule contenant la valeur (par exemple, "B4").</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+    <value>Numéro de ligne</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
+    <value>Retourne le numéro de ligne (base 1) de la cellule contenant la valeur (par exemple, 4 pour la cellule B4).</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+    <value>Numéro de colonne</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+    <value>Retourne le numéro de colonne (base 1) de la cellule contenant la valeur (par exemple, 2 pour la cellule B4).</value>
+    <comment>property description</comment>
   </data>
 </root>

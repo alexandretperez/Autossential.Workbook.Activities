@@ -12,9 +12,6 @@ namespace Autossential.Workbook.Activities.Core
             if (string.IsNullOrEmpty(filePath))
                 throw new ArgumentException("File path cannot be null or empty", nameof(filePath));
 
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException($"The file '{filePath}' was not found.");
-
             var extension = Path.GetExtension(filePath).ToLowerInvariant();
             return extension switch
             {

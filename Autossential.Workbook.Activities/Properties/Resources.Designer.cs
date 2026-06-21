@@ -178,6 +178,132 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Returns the address of the cell containing the value (e.g., &quot;B4&quot;)..
+        /// </summary>
+        public static string FindValue_CellAddress_Description {
+            get {
+                return ResourceManager.GetString("FindValue_CellAddress_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell Address.
+        /// </summary>
+        public static string FindValue_CellAddress_DisplayName {
+            get {
+                return ResourceManager.GetString("FindValue_CellAddress_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returns the 1-based column number of the cell containing the value (e.g., 2 for cell B4)..
+        /// </summary>
+        public static string FindValue_ColumnNumber_Description {
+            get {
+                return ResourceManager.GetString("FindValue_ColumnNumber_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column Number.
+        /// </summary>
+        public static string FindValue_ColumnNumber_DisplayName {
+            get {
+                return ResourceManager.GetString("FindValue_ColumnNumber_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searches for a specified value within an Excel worksheet range and returns the cell address, row number, and column number of the first occurrence. Use this activity when you need to locate specific data within a workbook and retrieve its coordinates for further processing..
+        /// </summary>
+        public static string FindValue_Description {
+            get {
+                return ResourceManager.GetString("FindValue_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Value.
+        /// </summary>
+        public static string FindValue_DisplayName {
+            get {
+                return ResourceManager.GetString("FindValue_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell range to search within (e.g., &quot;A1:C10&quot;). If not provided, defaults to &quot;A1&quot; which searches the entire worksheet..
+        /// </summary>
+        public static string FindValue_Range_Description {
+            get {
+                return ResourceManager.GetString("FindValue_Range_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range.
+        /// </summary>
+        public static string FindValue_Range_DisplayName {
+            get {
+                return ResourceManager.GetString("FindValue_Range_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returns the 1-based row number of the cell containing the value (e.g., 4 for cell B4)..
+        /// </summary>
+        public static string FindValue_RowNumber_Description {
+            get {
+                return ResourceManager.GetString("FindValue_RowNumber_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row Number.
+        /// </summary>
+        public static string FindValue_RowNumber_DisplayName {
+            get {
+                return ResourceManager.GetString("FindValue_RowNumber_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the worksheet to search for the value. This property is required and the sheet must exist in the workbook..
+        /// </summary>
+        public static string FindValue_SheetName_Description {
+            get {
+                return ResourceManager.GetString("FindValue_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string FindValue_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("FindValue_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specific text or numeric value to locate within the worksheet range. This property is required and performs an exact match search..
+        /// </summary>
+        public static string FindValue_Value_Description {
+            get {
+                return ResourceManager.GetString("FindValue_Value_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string FindValue_Value_DisplayName {
+            get {
+                return ResourceManager.GetString("FindValue_Value_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of columns in use included in the specified range..
         /// </summary>
         public static string GetRangeSize_ColumnCount_Description {
@@ -646,6 +772,24 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Immediately saves all changes made to the workbook to disk, instead of waiting for the Use Workbook container to save them at the end. Use this activity when the workbook needs to be persisted early for operations outside of the current read/write workflow..
+        /// </summary>
+        public static string SaveWorkbook_Description {
+            get {
+                return ResourceManager.GetString("SaveWorkbook_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Workbook.
+        /// </summary>
+        public static string SaveWorkbook_DisplayName {
+            get {
+                return ResourceManager.GetString("SaveWorkbook_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opens a workbook and share its instance across the child activities..
         /// </summary>
         public static string WorkbookScope_Description {
@@ -723,6 +867,168 @@ namespace Autossential.Workbook.Activities.Properties {
         public static string WorkbookScope_WorkbookPath_Placeholder {
             get {
                 return ResourceManager.GetString("WorkbookScope_WorkbookPath_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address of the target cell (e.g., A1, B5) where the value will be written..
+        /// </summary>
+        public static string WriteCell_CellAddress_Description {
+            get {
+                return ResourceManager.GetString("WriteCell_CellAddress_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell Address.
+        /// </summary>
+        public static string WriteCell_CellAddress_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteCell_CellAddress_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Writes a single value into a specific cell of an Excel worksheet. If the target sheet does not exist, a new one is created. Any existing value in the specified cell is overwritten..
+        /// </summary>
+        public static string WriteCell_Description {
+            get {
+                return ResourceManager.GetString("WriteCell_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write Cell.
+        /// </summary>
+        public static string WriteCell_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteCell_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the worksheet to write the cell value into. A new sheet is created if it does not exist..
+        /// </summary>
+        public static string WriteCell_SheetName_Description {
+            get {
+                return ResourceManager.GetString("WriteCell_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string WriteCell_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteCell_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The content to be written into the specified cell. Any existing value in the cell is replaced..
+        /// </summary>
+        public static string WriteCell_Value_Description {
+            get {
+                return ResourceManager.GetString("WriteCell_Value_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string WriteCell_Value_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteCell_Value_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates if column names are written as headers..
+        /// </summary>
+        public static string WriteRange_AddHeaders_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_AddHeaders_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Headers.
+        /// </summary>
+        public static string WriteRange_AddHeaders_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_AddHeaders_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source DataTable to write into the worksheet..
+        /// </summary>
+        public static string WriteRange_DataTable_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_DataTable_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Table.
+        /// </summary>
+        public static string WriteRange_DataTable_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_DataTable_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Writes a DataTable into an Excel worksheet starting at a specified cell (default A1). If the target sheet does not exist, a new one is created. All existing values in the target range are overwritten..
+        /// </summary>
+        public static string WriteRange_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write Range.
+        /// </summary>
+        public static string WriteRange_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the worksheet to write data into..
+        /// </summary>
+        public static string WriteRange_SheetName_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string WriteRange_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top-left cell where writing begins..
+        /// </summary>
+        public static string WriteRange_StartingCell_Description {
+            get {
+                return ResourceManager.GetString("WriteRange_StartingCell_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting Cell.
+        /// </summary>
+        public static string WriteRange_StartingCell_DisplayName {
+            get {
+                return ResourceManager.GetString("WriteRange_StartingCell_DisplayName", resourceCulture);
             }
         }
     }

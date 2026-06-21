@@ -1,109 +1,82 @@
-﻿using Autossential.Workbook.Activities.Core;
-using Autossential.Workbook.Activities.Extensions;
-using System.Activities;
-using System.Activities.Statements;
-using Xunit;
+﻿using System.Activities;
 
 namespace Autossential.Workbook.Activities.Tests.Activities
 {
-    public class GetRangeSizeTests(WorkbookFixture fixture) : IClassFixture<WorkbookFixture>
+    public class GetRangeSizeTests : BaseTests
     {
-        public WorkbookFixture Fixture { get; } = fixture;
+        [Test]
 
-        [Theory]
-        [InlineData(true, "A1", 10, 10)]
-        [InlineData(true, "D5:F12", 6, 3)]
-        [InlineData(true, "B11:G15", 0, 0)]
-        [InlineData(false, "A1", 10, 10)]
-        [InlineData(false, "D6:F12", 5, 3)]
-        [InlineData(false, "J10:K14", 1, 1)]
+        [Arguments(".xls", "", 10, 10)]
+        [Arguments(".xls", null, 10, 10)]
 
-        public void GetRangeSize_FullFill_ReturnsExpectedDimensions(bool openXmlFormat, string range, int rows, int cols)
+        [Arguments(".xlsx", "", 10, 10)]
+        [Arguments(".xlsx", null, 10, 10)]
+        public async Task GetRangeSize_ReturnsBasedOnWholeSheet_WhenMissingRange(string extension, string? range, int expectedCols, int expectedRows)
         {
-            var path = openXmlFormat ? Fixture.OpenXMLFilePath : Fixture.BinaryFilePath;
+            Tuple<int, int> result = Run(extension, range);
 
-            var rowCount = new Variable<int>();
-            var colCount = new Variable<int>();
-
-            var dyn = new DynamicActivity<Tuple<int, int>>();
-            dyn.Implementation = () => new WorkbookScope
-            {
-                WorkbookPath = path,
-                Body = new ActivityAction<IWorkbookProcessor>
-                {
-                    Argument = new DelegateInArgument<IWorkbookProcessor>(ActivityContextExtensions.WorkbookInstancePropertyName),
-                    Handler = new Sequence
-                    {
-                        Variables = { rowCount, colCount },
-                        Activities =
-                        {
-                            new GetRangeSize
-                            {
-                                SheetName = "Sheet1",
-                                Range = range,
-                                RowCount = new OutArgument<int>(rowCount),
-                                ColumnCount = new OutArgument<int>(colCount)
-                            },
-                            new Assign<Tuple<int,int>>
-                            {
-                                To   = new OutArgument<Tuple<int,int>>(env => dyn.Result.Get(env)),
-                                Value = new InArgument<Tuple<int,int>>(env=> Tuple.Create(rowCount.Get(env),colCount.Get(env)))
-                            }
-                        }
-                    }
-                }
-            };
-
-            var result = WorkflowInvoker.Invoke(dyn);
-            Assert.Equal(rows, result.Item1);
-            Assert.Equal(cols, result.Item2);
+            await Assert.That(result.Item1).IsEqualTo(expectedCols);
+            await Assert.That(result.Item2).IsEqualTo(expectedRows);
         }
 
+        [Test]
 
-        [Theory]
-        [InlineData(true, "Sheet2", "A1:E3", 3, 3)]
-        [InlineData(false, "Sheet2", "C2:F4", 2, 2)]
-        [InlineData(true, "Sheet3", "A1:E3", 2, 3)]
-        [InlineData(false, "Sheet3", "B2:G4", 3, 5)]
-        public void GetRangeSize_PartialFill_ReturnsExpectedDimensions(bool openXmlFormat, string sheetName, string range, int rows, int cols)
+        [Arguments(".xls", "A1", 10, 10)]
+        [Arguments(".xls", "B1:G10", 5, 10)]
+
+        [Arguments(".xlsx", "A1", 10, 10)]
+        [Arguments(".xlsx", "B1:G10", 5, 10)]
+        public async Task GetRangeSize_ReturnsExpectedSize_BasedOnRange(string extension, string range, int expectedCols, int expectedRows)
         {
-            var path = openXmlFormat ? Fixture.OpenXMLFilePath : Fixture.BinaryFilePath;
+            Tuple<int, int> result = Run(extension, range);
+
+            await Assert.That(result.Item1).IsEqualTo(expectedCols);
+            await Assert.That(result.Item2).IsEqualTo(expectedRows);
+        }
+
+        [Test]
+        public void GetRangeSize_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
+            {
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new GetRangeSize
+                {
+                    SheetName = ""
+                });
+            });
+        }
+
+        private Tuple<int, int> Run(string extension, string? range)
+        {
+            var data = TableUtils.Build(10, 10, (col, row) =>
+            {
+                var value = $"C{col}R{row}";
+                return col switch
+                {
+                    2 or 7 => null,
+                    3 => row % 2 == 0 || row % 7 == 0 ? value : "",
+                    8 => row < 6 ? value : null,
+                    4 or 5 or 6 => (row + col) % 3 == 0 ? value : DBNull.Value,
+                    10 => row > 4 && row < 10 ? value : "",
+                    _ => value
+                };
+            });
+
+            var (processor, filePath) = NewFile(extension);
+            processor.WriteRange("Sheet1", data, "A1", false);
+            processor.Save();
 
             var rowCount = new Variable<int>();
             var colCount = new Variable<int>();
 
-            var dyn = new DynamicActivity<Tuple<int, int>>();
-            dyn.Implementation = () => new WorkbookScope
-            {
-                WorkbookPath = path,
-                Body = new ActivityAction<IWorkbookProcessor>
-                {
-                    Argument = new DelegateInArgument<IWorkbookProcessor>(ActivityContextExtensions.WorkbookInstancePropertyName),
-                    Handler = new Sequence
+            var result = InvokeWorkbookScopeWith(filePath, [rowCount, colCount], [new GetRangeSize
                     {
-                        Variables = { rowCount, colCount },
-                        Activities =
-                        {
-                            new GetRangeSize
-                            {
-                                SheetName = sheetName,
-                                Range = range,
-                                RowCount = new OutArgument<int>(rowCount),
-                                ColumnCount = new OutArgument<int>(colCount)
-                            },
-                            new Assign<Tuple<int,int>>
-                            {
-                                To   = new OutArgument<Tuple<int,int>>(env => dyn.Result.Get(env)),
-                                Value = new InArgument<Tuple<int,int>>(env=> Tuple.Create(rowCount.Get(env),colCount.Get(env)))
-                            }
-                        }
-                    }
-                }
-            };
-
-            var result = WorkflowInvoker.Invoke(dyn);
-            Assert.Equal(rows, result.Item1);
-            Assert.Equal(cols, result.Item2);
+                        SheetName = "Sheet1",
+                        Range = range,
+                        RowCount = new OutArgument<int>(rowCount),
+                        ColumnCount = new OutArgument<int>(colCount)
+                    }], env => Tuple.Create(colCount.Get(env), rowCount.Get(env)));
+            return result;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Autossential.Workbook.Activities.Core;
-using Autossential.Workbook.Activities.Extensions;
 using System.Activities;
 using System.Activities.Statements;
 using System.ComponentModel;
@@ -8,6 +7,8 @@ namespace Autossential.Workbook.Activities
 {
     public sealed class WorkbookScope : NativeActivity
     {
+        public const string TAG = "WorkbookScope";
+
         [Browsable(false)]
         public ActivityAction<IWorkbookProcessor> Body { get; set; }
         protected override bool CanInduceIdle => true;
@@ -15,7 +16,7 @@ namespace Autossential.Workbook.Activities
         {
             Body = new ActivityAction<IWorkbookProcessor>
             {
-                Argument = new DelegateInArgument<IWorkbookProcessor>(ActivityContextExtensions.WorkbookInstancePropertyName),
+                Argument = new DelegateInArgument<IWorkbookProcessor>(TAG),
                 Handler = new Sequence
                 {
                     DisplayName = "Do"

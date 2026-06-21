@@ -1,71 +1,81 @@
-﻿using Autossential.Workbook.Activities.Core;
-using Autossential.Workbook.Activities.Extensions;
-using System.Activities;
-using System.Activities.Statements;
+﻿using System.Activities;
 using System.Data;
-using Xunit;
 
 namespace Autossential.Workbook.Activities.Tests.Activities
 {
-    public class ReadRangeTests : IClassFixture<WorkbookFixture>
+    public class ReadRangeTests : BaseTests
     {
-        public ReadRangeTests(WorkbookFixture fixture)
+        [Test]
+
+        [Arguments(".xls", null, true, 1, 1, 10, 10)]
+        [Arguments(".xls", "", true, 3, 2, 10, 4)]
+
+        [Arguments(".xlsx", null, true, 1, 1, 10, 10)]
+        [Arguments(".xlsx", "", true, 3, 2, 10, 4)]
+        public async Task ReadRange_ReadsWholeSheet_WhenMissingRange(string extension, string? range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
         {
-            Fixture = fixture;
+            var readData = Run(extension, range, hasHeaders, headerRows, rowsPerRecord);
+
+            await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
+            await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
         }
 
-        public WorkbookFixture Fixture { get; }
+        [Test]
 
-        [Theory]
-        //[InlineData(true, "Sheet1", false, "A1", 10, 10, 1, 1)]
-        //[InlineData(false, "Sheet1", false, "A1:E5", 5, 5, 1, 1)]
-        //[InlineData(true, "Sheet1", true, "A1", 9, 10, 1, 1)]
-        [InlineData(false, "Sheet4", true, "A3", 9, 5, 2, 3)]
-        //[InlineData(false, "Sheet4", true, "A1", 10, 5, 2, 3)]
+        [Arguments(".xls", "A1", true, 1, 1, 10, 10)]
+        [Arguments(".xls", "A1", true, 3, 2, 10, 4)]
 
-        public void ReadRange_ReturnsTable(bool openXmlFormat, string sheetName, bool hasHeaders, string range, int rows, int cols, int headerRows, int rowsPerRecord)
+        [Arguments(".xlsx", "A1", true, 1, 1, 10, 10)]
+        [Arguments(".xlsx", "A1", true, 3, 2, 10, 4)]
+        public async Task ReadRange_ReturnsExpectedTable_BasedOnArguments(string extension, string range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
         {
-            var path = openXmlFormat ? Fixture.OpenXMLFilePath : Fixture.BinaryFilePath;
+            var readData = Run(extension, range, hasHeaders, headerRows, rowsPerRecord);
 
-            var table = new Variable<DataTable>();
+            await Assert.That(readData.Rows.Count).IsEqualTo(expectedRows);
+            await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
+        }
 
-            var dyn = new DynamicActivity<DataTable>();
-            dyn.Implementation = () => new WorkbookScope
+        [Test]
+        public void ReadRange_Fails_WhenSheetIsMissing()
+        {
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
             {
-                WorkbookPath = path,
-                Body = new ActivityAction<IWorkbookProcessor>
+                InvokeWorkbookScopeWith(NewTempFilePath(".xlsx"), new ReadRange
                 {
-                    Argument = new DelegateInArgument<IWorkbookProcessor>(ActivityContextExtensions.WorkbookInstancePropertyName),
-                    Handler = new Sequence
-                    {
-                        Variables = { table },
-                        Activities =
-                        {
-                            new ReadRange
-                            {
-                                SheetName= sheetName,
-                                HasHeaders = hasHeaders,
-                                Range = range,
-                                RowsPerRecord = rowsPerRecord,
-                                HeaderRows = headerRows,
-                                Result = new OutArgument<DataTable>(env=>dyn.Result.Get(env))
-                            },
-                        }
-                    }
-                }
-            };
+                    SheetName = ""
+                });
+            });
+        }
 
-            var result = WorkflowInvoker.Invoke(dyn);
-            Assert.Equal(rows, result.Rows.Count);
-            Assert.Equal(cols, result.Columns.Count);
-            if (hasHeaders)
+        private DataTable Run(string extension, string? range, bool hasHeaders, int headerRows, int rowsPerRecord)
+        {
+            var data = TableUtils.Build(10, 10, (col, row) =>
             {
-                Assert.NotEqual("Col1", result.Columns[0].ColumnName);
-            }
-            else
+                var value = $"C{col}R{row}";
+                return col switch
+                {
+                    2 or 7 => null,
+                    3 => row % 2 == 0 || row % 7 == 0 ? value : "",
+                    8 => row < 6 ? value : null,
+                    4 or 5 or 6 => (row + col) % 3 == 0 ? value : DBNull.Value,
+                    10 => row > 4 && row < 10 ? value : "",
+                    _ => value
+                };
+            });
+
+            var (processor, filePath) = NewFile(extension);
+            processor.WriteRange("Sheet1", data, "A1", hasHeaders);
+            processor.Save();
+
+            var readData = InvokeWorkbookScopeWith(filePath, new ReadRange
             {
-                Assert.Equal("Col1", result.Columns[0].ColumnName);
-            }
+                SheetName = "Sheet1",
+                HasHeaders = hasHeaders,
+                Range = range,
+                RowsPerRecord = rowsPerRecord,
+                HeaderRows = headerRows
+            });
+            return readData;
         }
     }
 }

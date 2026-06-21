@@ -1,70 +1,87 @@
-﻿namespace Autossential.Workbook.Activities.Core
+﻿using System.Activities.Expressions;
+
+namespace Autossential.Workbook.Activities.Core
 {
-    internal class RangeReference : IEquatable<RangeReference>
+    internal readonly struct RangeReference : IEquatable<RangeReference>
     {
-        public RangeReference(CellReference start, CellReference end)
+        private RangeReference(CellReference start, CellReference end, RangeOrigin origin)
         {
+            if (end.Col < start.Col || end.Row < start.Row)
+                throw new ArgumentException("Range end must be greater than or equal to range start.");
+
             Start = start;
             End = end;
-            Origin = RangeOrigin.Explicit;
-        }
-
-        public RangeReference(ExcelFileType type, string range)
-        {
-            if (string.IsNullOrEmpty(range))
-            {
-                Start = new CellReference(type, "A1");
-                End = CellReference.Max(type);
-                Origin = RangeOrigin.Default;
-                return;
-            }
-
-            var parts = range.Split(':');
-            if (parts.Length == 1)
-            {
-                Start = new CellReference(type, parts[0]);
-                End = CellReference.Max(type);
-                Origin = RangeOrigin.InferredEnd;
-            }
-            else if (parts.Length == 2)
-            {
-                Start = new CellReference(type, parts[0]);
-                End = new CellReference(type, parts[1]);
-                Origin = RangeOrigin.Explicit;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid range address format.", nameof(range));
-            }
+            Origin = origin;
         }
 
         public CellReference Start { get; }
         public CellReference End { get; }
         public RangeOrigin Origin { get; }
+        public bool IsValid => Start.IsValid && End.IsValid;
 
-        public override string ToString()
+        public static RangeReference OpenXml(int startCol, int startRow, int endCol, int endRow) =>
+            new(CellReference.OpenXml(startCol, startRow), CellReference.OpenXml(endCol, endRow), RangeOrigin.Explicit);
+
+        public static RangeReference Binary(int startCol, int startRow, int endCol, int endRow) =>
+            new(CellReference.Binary(startCol, startRow), CellReference.Binary(endCol, endRow), RangeOrigin.Explicit);
+
+        private static (string start, string end, RangeOrigin origin) Parse(string range, string maxReference)
         {
-            return $"{Start}:{End}";
+            if (string.IsNullOrEmpty(range))
+                return (CellReference.MIN_REFERENCE, maxReference, RangeOrigin.Inferred);
+
+            var sepIndex = range.IndexOf(':');
+            if (sepIndex < 0)
+                return (range, maxReference, RangeOrigin.InferredEnd);
+
+            if (sepIndex == 0 || sepIndex == range.Length - 1 || range.IndexOf(':', sepIndex + 1) >= 0)
+                throw new ArgumentException("The range address is invalid. The expected format is <start>:<end>, e.g.: A1:E9", nameof(range));
+
+            return (range[..sepIndex], range[(sepIndex + 1)..], RangeOrigin.Explicit);
         }
 
-        public bool IsRowInRange(int row) => row >= Start.Row && row <= End.Row;
-        public bool IsColInRange(int col) => col >= Start.Col && col <= End.Col;
-
-        public bool Equals(RangeReference other)
+        public static RangeReference OpenXml(string range)
         {
-            if (other is null) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Start.Equals(other.Start) && End.Equals(other.End);
+            var (start, end, origin) = Parse(range, CellReference.OPENXML_MAX_REFERENCE);
+            return new RangeReference(
+                CellReference.OpenXml(start),
+                CellReference.OpenXml(end),
+                origin
+            );
         }
 
-        public override bool Equals(object obj) => Equals(obj as RangeReference);
+        public static RangeReference Binary(string range)
+        {
+            var (start, end, origin) = Parse(range, CellReference.BIFF8_MAX_REFERENCE);
+            return new RangeReference(
+                CellReference.Binary(start),
+                CellReference.Binary(end),
+                origin
+            );
+        }
 
-        public override int GetHashCode() => HashCode.Combine(Start, End);
+        public readonly bool Equals(RangeReference other) =>
+            Start == other.Start && End == other.End && Origin == other.Origin;
 
-        public static bool operator ==(RangeReference left, RangeReference right)
-            => EqualityComparer<RangeReference>.Default.Equals(left, right);
+        public override readonly bool Equals(object obj) =>
+            obj is RangeReference other && Equals(other);
 
-        public static bool operator !=(RangeReference left, RangeReference right)
-            => !(left == right);
+        public static bool operator ==(RangeReference left, RangeReference right) =>
+            left.Equals(right);
+
+        public static bool operator !=(RangeReference left, RangeReference right) =>
+            !left.Equals(right);
+
+        public override readonly int GetHashCode() =>
+            HashCode.Combine(Start, End, Origin);
+
+        /// <summary>
+        /// Determines if this range is equivalent to another range, ignoring the origin. This is used to determine if two ranges refer to the same cells, even if they were created differently (e.g. one with an explicit end and one with an inferred end).
+        /// </summary>
+        /// <param name="other">The other range to compare with.</param>
+        /// <returns>True if the ranges are equivalent, false otherwise.</returns>
+        public bool IsEquivalentTo(RangeReference other) => Start == other.Start && End == other.End;
+
+        public override readonly string ToString() => IsValid ? $"{Start}:{End}" : string.Empty;
     }
 }

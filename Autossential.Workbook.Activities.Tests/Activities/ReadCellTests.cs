@@ -1,103 +1,66 @@
-using Autossential.Workbook.Activities.Core;
-using Autossential.Workbook.Activities.Extensions;
 using System.Activities;
-using System.Activities.Statements;
-using Xunit;
 
 namespace Autossential.Workbook.Activities.Tests.Activities
 {
-    public class ReadCellTests
+    public class ReadCellTests : BaseTests
     {
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void ReadCell_ValidAddress_ShouldReturnValue(bool openXmlFormat)
+        [Test]
+
+        [Arguments(".xls", "")]
+        [Arguments(".xls", null)]
+
+        [Arguments(".xlsx", "")]
+        [Arguments(".xlsx", null)]
+        public void ReadCell_Fails_WhenCellAddressIsMissing(string extension, string? cell)
         {
-            var path = WorkbookGenerator.CreateWorkbookFile(openXmlFormat, sheet =>
-            {
-                var header = sheet.CreateRow(0);
-                header.CreateCell(0).SetCellValue("Text");
-                header.CreateCell(1).SetCellValue("Number");
-                var row = sheet.CreateRow(1);
-                row.CreateCell(0).SetCellValue("Brazil");
-                row.CreateCell(1).SetCellValue(55);
-            });
-
-            var A1 = new Variable<object>();
-            var B1 = new Variable<object>();
-            var A2 = new Variable<object>();
-            var B2 = new Variable<object>();
-
-            var dyn = new DynamicActivity<IDictionary<string, object>>();
-            dyn.Implementation = () => new WorkbookScope
-            {
-                WorkbookPath = path,
-                Body = new ActivityAction<IWorkbookProcessor>
-                {
-                    Argument = new DelegateInArgument<IWorkbookProcessor>(ActivityContextExtensions.WorkbookInstancePropertyName),
-                    Handler = new Sequence
-                    {
-                        Variables = { A1, B1, A2, B2 },
-                        Activities =
-                        {
-                            new ReadCell { SheetName = "Sheet1", CellAddress = "A1", Result = new OutArgument<object>(A1) },
-                            new ReadCell { SheetName = "Sheet1", CellAddress = "B1", Result = new OutArgument<object>(B1) },
-                            new ReadCell { SheetName = "Sheet1", CellAddress = "A2", Result = new OutArgument<object>(A2) },
-                            new ReadCell { SheetName = "Sheet1", CellAddress = "B2", Result = new OutArgument<object>(B2) },
-                            new Assign<IDictionary<string, object>>
-                            {
-                                To   = new OutArgument<IDictionary<string, object>>(env => dyn.Result.Get(env)),
-                                Value = new InArgument<IDictionary<string, object>>(env => new Dictionary<string, object>
-                                {
-                                    { "A1", A1.Get(env) },
-                                    { "B1", B1.Get(env) },
-                                    { "A2", A2.Get(env) },
-                                    { "B2", B2.Get(env) }
-                                })
-                            }
-                        }
-                    }
-                }
-            };
-
-            var result = WorkflowInvoker.Invoke(dyn);
-
-            Assert.Equal("Text", result["A1"]);
-            Assert.Equal("Number", result["B1"]);
-            Assert.Equal("Brazil", result["A2"]);
-            Assert.Equal(55d, result["B2"]);
+            Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, cell, "A1"));
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void ReadCell_EmptyCell_ShouldReturnNull(bool openXmlFormat)
+        [Test]
+        public void ReadCell_Fails_WhenSheetIsMissing()
         {
-            var path = WorkbookGenerator.CreateWorkbookFile(openXmlFormat, _ => { });
-
-            var dyn = new DynamicActivity<object>();
-            dyn.Implementation = () => new WorkbookScope
+            Assert.ThrowsExactly<InvalidOperationException>(() =>
             {
-                WorkbookPath = path,
-                Body = new ActivityAction<IWorkbookProcessor>
+                InvokeWorkbookScopeWith<object>(NewTempFilePath(".xlsx"), new ReadCell
                 {
-                    Argument = new DelegateInArgument<IWorkbookProcessor>(ActivityContextExtensions.WorkbookInstancePropertyName),
-                    Handler = new Sequence
-                    {
-                        Activities =
-                        {
-                            new ReadCell {
-                                SheetName = "Sheet1",
-                                CellAddress = "B1",
-                                Result = new OutArgument<object>(env => dyn.Result.Get(env) )
-                            }
-                        }
-                    }
-                }
-            };
+                    SheetName = "",
+                    CellAddress = ""
+                });
+            });
+        }
 
-            var result = WorkflowInvoker.Invoke<object>(dyn);
-            Assert.Null(result);
+        [Test]
+
+        [Arguments(".xls", "B3")]
+        [Arguments(".xls", "J14")]
+        [Arguments(".xls", "A1")]
+
+        [Arguments(".xlsx", "B3")]
+        [Arguments(".xlsx", "J14")]
+        [Arguments(".xlsx", "A1")]
+        public async Task ReadCell_ReturnsExpectedValue_AfterWrite(string extension, string cell)
+        {
+            Dictionary<string, object> result = Run(extension, cell, cell);
+
+            await Assert.That(result["Value"].ToString()).IsEqualTo("Hello");
+        }
+
+        private Dictionary<string, object> Run(string extension, string? cell, string? writeCell)
+        {
+            var (processor, filePath) = NewFile(extension);
+            processor.WriteCell("Sheet1", writeCell, "Hello");
+            processor.Save();
+
+            var value = new Variable<object>();
+            var result = InvokeWorkbookScopeWith(filePath, [value], [new ReadCell {
+                SheetName = "Sheet1",
+                CellAddress = cell,
+                Result = new OutArgument<object>(value)
+            }], env => new Dictionary<string, object>
+            {
+                {"Value",value.Get(env) }
+            });
+            return result;
         }
     }
 }

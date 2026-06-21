@@ -413,4 +413,140 @@
     <value>Result</value>
     <comment>property name</comment>
   </data>
+  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
+    <value>Save Workbook</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="SaveWorkbook_Description" xml:space="preserve">
+    <value>Immediately saves all changes made to the workbook to disk, instead of waiting for the Use Workbook container to save them at the end. Use this activity when the workbook needs to be persisted early for operations outside of the current read/write workflow.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WriteRange_DisplayName" xml:space="preserve">
+    <value>Write Range</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="WriteRange_Description" xml:space="preserve">
+    <value>Writes a DataTable into an Excel worksheet starting at a specified cell (default A1). If the target sheet does not exist, a new one is created. All existing values in the target range are overwritten.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_SheetName_Description" xml:space="preserve">
+    <value>Name of the worksheet to write data into.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+    <value>Starting Cell</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
+    <value>Top-left cell where writing begins.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+    <value>Add Headers</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+    <value>Indicates if column names are written as headers.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+    <value>Data Table</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteRange_DataTable_Description" xml:space="preserve">
+    <value>Source DataTable to write into the worksheet.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteCell_DisplayName" xml:space="preserve">
+    <value>Write Cell</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="WriteCell_Description" xml:space="preserve">
+    <value>Writes a single value into a specific cell of an Excel worksheet. If the target sheet does not exist, a new one is created. Any existing value in the specified cell is overwritten.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteCell_SheetName_Description" xml:space="preserve">
+    <value>Name of the worksheet to write the cell value into. A new sheet is created if it does not exist.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+    <value>Cell Address</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
+    <value>Address of the target cell (e.g., A1, B5) where the value will be written.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
+    <value>Value</value>
+    <comment>property name</comment>
+  </data>
+  <data name="WriteCell_Value_Description" xml:space="preserve">
+    <value>The content to be written into the specified cell. Any existing value in the cell is replaced.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_DisplayName" xml:space="preserve">
+    <value>Find Value</value>
+    <comment>activity name</comment>
+  </data>
+  <data name="FindValue_Description" xml:space="preserve">
+    <value>Searches for a specified value within an Excel worksheet range and returns the cell address, row number, and column number of the first occurrence. Use this activity when you need to locate specific data within a workbook and retrieve its coordinates for further processing.</value>
+    <comment>activity description</comment>
+  </data>
+  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_SheetName_Description" xml:space="preserve">
+    <value>Name of the worksheet to search for the value. This property is required and the sheet must exist in the workbook.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_Range_DisplayName" xml:space="preserve">
+    <value>Range</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_Range_Description" xml:space="preserve">
+    <value>Cell range to search within (e.g., "A1:C10"). If not provided, defaults to "A1" which searches the entire worksheet.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_Value_DisplayName" xml:space="preserve">
+    <value>Value</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_Value_Description" xml:space="preserve">
+    <value>The specific text or numeric value to locate within the worksheet range. This property is required and performs an exact match search.</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+    <value>Cell Address</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_CellAddress_Description" xml:space="preserve">
+    <value>Returns the address of the cell containing the value (e.g., "B4").</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+    <value>Row Number</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_RowNumber_Description" xml:space="preserve">
+    <value>Returns the 1-based row number of the cell containing the value (e.g., 4 for cell B4).</value>
+    <comment>property description</comment>
+  </data>
+  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+    <value>Column Number</value>
+    <comment>property name</comment>
+  </data>
+  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+    <value>Returns the 1-based column number of the cell containing the value (e.g., 2 for cell B4).</value>
+    <comment>property description</comment>
+  </data>
 </root>
