@@ -7,29 +7,11 @@ using UiPath.Studio.Activities.Api;
 
 namespace Autossential.Workbook.Activities.ViewModels
 {
-    public class WorkbookScopeViewModel : BaseViewModel
+    public class WorkbookScopeViewModel(IDesignServices services) : BaseViewModel(services)
     {
         public DesignInArgument<string> WorkbookPath { get; set; }
         public DesignOutArgument<string[]> SheetNames { get; set; }
         public DesignInArgument<string> Password { get; set; }
-
-        public WorkbookScopeViewModel(IDesignServices services) : base(services)
-        {
-            var api = GetWorkflowDesignApi();
-            if (api.HasFeature(DesignFeatureKeys.ScopedActivities))
-                api.ScopedActivitiesService.SetScopedActivities(typeof(WorkbookScope), [
-                    typeof(ReadRange),
-                    typeof(GetRangeSize),
-                    typeof(ReadCell),
-                    typeof(ReadRow),
-                    typeof(ReadColumn),
-                    typeof(WriteRange),
-                    typeof(SaveWorkbook),
-                    typeof(WriteCell),
-                    typeof(WriteRange),
-                    typeof(FindValue)
-                 ]);
-        }
 
         protected override void InitializeModel()
         {

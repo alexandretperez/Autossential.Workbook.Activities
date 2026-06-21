@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net6.0;net6.0-windows;net8.0;net8.0-windows</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<AcceptNPOIOSMFLicense>true</AcceptNPOIOSMFLicense>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -11,9 +13,8 @@
 		<VersionBuild>$([System.DateTime]::UtcNow.DayOfYear.ToString("F0"))</VersionBuild>
 		<VersionRevision>$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString("F0"))</VersionRevision>
 		<PackageId>Autossential.Workbook.Activities</PackageId>
-		<Version>1.1.0</Version>
-		<VersionPrefix Condition="'$(Configuration)' == 'Release'">$(Version)</VersionPrefix>
-		<VersionPrefix Condition="'$(Configuration)' == 'Debug'">$(Version).$(VersionBuild)-preview.$(VersionRevision)</VersionPrefix>
+		<VersionPrefix>1.1.0</VersionPrefix>
+		<VersionSuffix Condition="'$(Configuration)' == 'Debug'">$(VersionBuild)-preview.$(VersionRevision)</VersionSuffix>
 		<Authors>UiPath</Authors>
 		<PackageTags>UiPathActivities</PackageTags>
 		<Product>Autossential.Workbook.Activities.Packaging</Product>
@@ -72,9 +73,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExcelDataReader"/>
+		<PackageReference Include="ExcelDataReader" />
 		<PackageReference Include="DocumentFormat.OpenXml" />
 		<PackageReference Include="NPOI" />
+		<PackageReference Include="UiPath.Activities.Api" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup>
