@@ -205,6 +205,42 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deletes a specified worksheet from the workbook. Use this activity when you need to remove unwanted sheets from the workbook..
+        /// </summary>
+        public static string DeleteSheet_Description {
+            get {
+                return ResourceManager.GetString("DeleteSheet_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Sheet.
+        /// </summary>
+        public static string DeleteSheet_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteSheet_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the worksheet to be deleted. This property is required and the sheet must exist in the workbook..
+        /// </summary>
+        public static string DeleteSheet_SheetName_Description {
+            get {
+                return ResourceManager.GetString("DeleteSheet_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string DeleteSheet_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteSheet_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Returns the address of the cell containing the value (e.g., &quot;B4&quot;)..
         /// </summary>
         public static string FindValue_CellAddress_Description {
@@ -417,6 +453,60 @@ namespace Autossential.Workbook.Activities.Properties {
         public static string GetRangeSize_SheetName_DisplayName {
             get {
                 return ResourceManager.GetString("GetRangeSize_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inserts a new worksheet into the workbook with the specified name and optional position. Use this activity when you need to add a new sheet to the workbook..
+        /// </summary>
+        public static string InsertSheet_Description {
+            get {
+                return ResourceManager.GetString("InsertSheet_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Sheet.
+        /// </summary>
+        public static string InsertSheet_DisplayName {
+            get {
+                return ResourceManager.GetString("InsertSheet_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional index position where the new sheet will be inserted (1-based). If not provided or less than 1, the sheet is added at the end of the workbook..
+        /// </summary>
+        public static string InsertSheet_Position_Description {
+            get {
+                return ResourceManager.GetString("InsertSheet_Position_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        public static string InsertSheet_Position_DisplayName {
+            get {
+                return ResourceManager.GetString("InsertSheet_Position_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the new worksheet to be inserted. This property is required and must be unique within the workbook..
+        /// </summary>
+        public static string InsertSheet_SheetName_Description {
+            get {
+                return ResourceManager.GetString("InsertSheet_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string InsertSheet_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("InsertSheet_SheetName_DisplayName", resourceCulture);
             }
         }
         
@@ -795,6 +885,60 @@ namespace Autossential.Workbook.Activities.Properties {
         public static string ReadRow_StartingCell_DisplayName {
             get {
                 return ResourceManager.GetString("ReadRow_StartingCell_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renames an existing worksheet in the workbook. Use this activity when you need to change the name of a specific sheet..
+        /// </summary>
+        public static string RenameSheet_Description {
+            get {
+                return ResourceManager.GetString("RenameSheet_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Sheet.
+        /// </summary>
+        public static string RenameSheet_DisplayName {
+            get {
+                return ResourceManager.GetString("RenameSheet_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New name for the worksheet. This property is required and must be unique within the workbook..
+        /// </summary>
+        public static string RenameSheet_NewSheetName_Description {
+            get {
+                return ResourceManager.GetString("RenameSheet_NewSheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Sheet Name.
+        /// </summary>
+        public static string RenameSheet_NewSheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("RenameSheet_NewSheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current name of the worksheet to be renamed. This property is required and the sheet must exist in the workbook..
+        /// </summary>
+        public static string RenameSheet_SheetName_Description {
+            get {
+                return ResourceManager.GetString("RenameSheet_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string RenameSheet_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("RenameSheet_SheetName_DisplayName", resourceCulture);
             }
         }
         

@@ -561,4 +561,70 @@
     <value>Возвращает номер столбца (с отсчетом от 1) ячейки, содержащей значение (например, 2 для ячейки B4).</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>Удалить лист</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>Удаляет указанный лист из книги. Используйте это действие, когда необходимо удалить ненужные листы из книги.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>Имя листа, который необходимо удалить. Это свойство является обязательным, и лист должен существовать в книге.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Переименовать лист</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>Переименовывает существующий лист в книге. Используйте это действие, когда необходимо изменить имя конкретного листа.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>Текущее имя листа, который необходимо переименовать. Это свойство является обязательным, и лист должен существовать в книге.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>Новое имя листа</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>Новое имя для листа. Это свойство является обязательным и должно быть уникальным в пределах книги.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>Вставить лист</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>Вставляет новый лист в книгу с указанным именем и необязательной позицией. Используйте это действие, когда необходимо добавить новый лист в книгу.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Имя листа</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>Имя нового листа для вставки. Это свойство является обязательным и должно быть уникальным в пределах книги.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>Позиция</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>Необязательная позиция индекса, куда будет вставлен новый лист (начиная с 1). Если не указана или меньше 1, лист добавляется в конец книги.</value>
+    <comment>property description</comment>
+</data>
 </root>

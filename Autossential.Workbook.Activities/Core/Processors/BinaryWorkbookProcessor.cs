@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using System.Activities.Presentation.ViewState;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -247,9 +248,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 throw new InvalidOperationException($"A sheet with name '{sheetName}' already exists.");
 
             var newSheet = wb.CreateSheet(sheetName);
-            if (position.HasValue)
+            if (position.HasValue && position.Value > 0)
             {
-                int pos = position.Value;
+                int pos = position.Value - 1;
                 if (pos < 0 || pos > wb.NumberOfSheets - 1)
                     pos = wb.NumberOfSheets - 1;
 
@@ -265,6 +266,10 @@ namespace Autossential.Workbook.Activities.Core.Processors
             var sheet = wb.GetSheet(fromSheetName) ?? throw new InvalidOperationException($"No sheet with name '{fromSheetName}' was found.");
             if (sheet.SheetName == toSheetName)
                 return;
+
+            var anotherSheet = wb.GetSheet(toSheetName);
+            if (anotherSheet is not null && wb.GetSheetIndex(sheet) != wb.GetSheetIndex(anotherSheet))
+                throw new InvalidOperationException($"Another sheet with name '{toSheetName}' already exists in the workbook.");
 
             int sheetIndex = wb.GetSheetIndex(sheet);
             wb.SetSheetName(sheetIndex, toSheetName);

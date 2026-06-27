@@ -561,4 +561,70 @@
     <value>Devolve o número da coluna (base 1) da célula que contém o valor (por exemplo, 2 para a célula B4).</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>Eliminar folha</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>Elimina uma folha de cálculo especificada do livro de trabalho. Utilize esta atividade quando precisar remover folhas indesejadas do livro de trabalho.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nome da folha</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>Nome da folha de cálculo a ser eliminada. Esta propriedade é obrigatória e a folha deve existir no livro de trabalho.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Renomear folha</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>Renomeia uma folha de cálculo existente no livro de trabalho. Utilize esta atividade quando precisar alterar o nome de uma folha específica.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nome da folha</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>Nome atual da folha de cálculo a ser renomeada. Esta propriedade é obrigatória e a folha deve existir no livro de trabalho.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>Novo nome da folha</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>Novo nome para a folha de cálculo. Esta propriedade é obrigatória e deve ser única dentro do livro de trabalho.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>Inserir folha</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>Insere uma nova folha de cálculo no livro de trabalho com o nome e posição opcional especificados. Utilize esta atividade quando precisar adicionar uma nova folha ao livro de trabalho.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nome da folha</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>Nome da nova folha de cálculo a ser inserida. Esta propriedade é obrigatória e deve ser única dentro do livro de trabalho.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>Posição</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>Posição de índice opcional onde a nova folha será inserida (base 1). Se não for fornecida ou for inferior a 1, a folha é adicionada no final do livro de trabalho.</value>
+    <comment>property description</comment>
+</data>
 </root>

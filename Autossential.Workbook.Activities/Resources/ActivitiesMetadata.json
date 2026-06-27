@@ -1,6 +1,94 @@
 {
   "activities": [
     {
+      "categoryKey": "ActivityCategories_Workbook_Sheet",
+      "descriptionKey": "DeleteSheet_Description",
+      "displayNameKey": "DeleteSheet_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.DeleteSheet",
+      "iconKey": "DeleteSheet.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "DeleteSheet_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "DeleteSheet_SheetName_Description"
+        }
+      ],
+      "shortName": "DeleteSheet",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.DeleteSheetViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook_Sheet",
+      "descriptionKey": "RenameSheet_Description",
+      "displayNameKey": "RenameSheet_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.RenameSheet",
+      "iconKey": "RenameSheet.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "RenameSheet_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "RenameSheet_SheetName_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "RenameSheet_NewSheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "NewSheetName",
+          "tooltipKey": "RenameSheet_NewSheetName_Description"
+        }
+      ],
+      "shortName": "RenameSheet",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.RenameSheetViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook_Sheet",
+      "descriptionKey": "InsertSheet_Description",
+      "displayNameKey": "InsertSheet_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.InsertSheet",
+      "iconKey": "InsertSheet.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "InsertSheet_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "InsertSheet_SheetName_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "InsertSheet_Position_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "Position",
+          "tooltipKey": "InsertSheet_Position_Description"
+        }
+      ],
+      "shortName": "InsertSheet",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.InsertSheetViewModel"
+    },
+    {
       "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "FindValue_Description",
       "displayNameKey": "FindValue_DisplayName",
@@ -199,7 +287,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadCellViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook_Cell",
+      "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "ReadColumn_Description",
       "displayNameKey": "ReadColumn_DisplayName",
       "fullName": "Autossential.Workbook.Activities.ReadColumn",
@@ -375,7 +463,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRangeViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook_Cell",
+      "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "ReadRow_Description",
       "displayNameKey": "ReadRow_DisplayName",
       "fullName": "Autossential.Workbook.Activities.ReadRow",

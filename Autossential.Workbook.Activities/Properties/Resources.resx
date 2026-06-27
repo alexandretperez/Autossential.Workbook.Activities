@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,64 +59,64 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
 	<data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
     <comment>category</comment>
@@ -129,436 +129,500 @@
     <value>Autossential.Workbook.Range</value>
     <comment>category</comment>
   </data>
-  <data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
+	<data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
     <value>Autossential.Workbook.Sheet</value>
     <comment>category</comment>
   </data>
-  <data name="Categories_Input" xml:space="preserve">
+	<data name="Categories_Input" xml:space="preserve">
     <value>Input</value>
     <comment>category</comment>
   </data>
-  <data name="Categories_InputOutput" xml:space="preserve">
+	<data name="Categories_InputOutput" xml:space="preserve">
     <value>Input/Output</value>
     <comment>category</comment>
   </data>
-  <data name="Categories_Options" xml:space="preserve">
+	<data name="Categories_Options" xml:space="preserve">
     <value>Options</value>
     <comment>category</comment>
   </data>
-  <data name="Categories_Output" xml:space="preserve">
+	<data name="Categories_Output" xml:space="preserve">
     <value>Output</value>
     <comment>category</comment>
   </data>
-  <data name="Common_ContinueOnError_Description" xml:space="preserve">
+	<data name="Common_ContinueOnError_Description" xml:space="preserve">
     <value>Specifies to continue executing the remaining activities even if the current activity failed. Only boolean values are allowed.</value>
     <comment>property description</comment>
   </data>
-  <data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
+	<data name="Common_ContinueOnError_DisplayName" xml:space="preserve">
     <value>Continue on error</value>
     <comment>property name</comment>
   </data>
-  <data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
+	<data name="Common_ErrorMsg_ValueNotSupplied" xml:space="preserve">
     <value>Value for a required activity argument '{0}' was not supplied.</value>
     <comment>error message</comment>
   </data>
-  <data name="Common_TimeoutSeconds_Description" xml:space="preserve">
+	<data name="Common_TimeoutSeconds_Description" xml:space="preserve">
     <value>Specifies the amount of time in seconds to wait for the activity to run before an error is thrown. The default value is 30s.</value>
     <comment>property description</comment>
   </data>
-  <data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
+	<data name="Common_TimeoutSeconds_DisplayName" xml:space="preserve">
     <value>Timeout</value>
     <comment>property name</comment>
   </data>
-  <data name="Common_UsingOutsideOfScope" xml:space="preserve">
+	<data name="Common_UsingOutsideOfScope" xml:space="preserve">
     <value>Cannot be used outside of {0} activity.</value>
     <comment>error message</comment>
   </data>
-  <data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
+	<data name="Common_ViewModel_BrowseForFile" xml:space="preserve">
     <value>Browse for file</value>
     <comment>view model</comment>
   </data>
-  <data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
+	<data name="Common_ViewModel_BrowseForFolder" xml:space="preserve">
     <value>Browse for folder</value>
     <comment>view model</comment>
   </data>
-  <data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
+	<data name="GetRangeSize_ColumnCount_Description" xml:space="preserve">
     <value>The number of columns in use included in the specified range.</value>
     <comment>property description</comment>
   </data>
-  <data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
+	<data name="GetRangeSize_ColumnCount_DisplayName" xml:space="preserve">
     <value>Column Count</value>
     <comment>property name</comment>
   </data>
-  <data name="GetRangeSize_Description" xml:space="preserve">
+	<data name="GetRangeSize_Description" xml:space="preserve">
     <value>Retrieves the number of rows and columns in use in a specified workbook range.</value>
     <comment>activity description</comment>
   </data>
-  <data name="GetRangeSize_DisplayName" xml:space="preserve">
+	<data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>Get Range Size</value>
     <comment>activity name</comment>
   </data>
-  <data name="GetRangeSize_Range_Description" xml:space="preserve">
+	<data name="GetRangeSize_Range_Description" xml:space="preserve">
     <value>Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1)</value>
     <comment>property description</comment>
   </data>
-  <data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
+	<data name="GetRangeSize_Range_DisplayName" xml:space="preserve">
     <value>Range</value>
     <comment>property name</comment>
   </data>
-  <data name="GetRangeSize_RowCount_Description" xml:space="preserve">
+	<data name="GetRangeSize_RowCount_Description" xml:space="preserve">
     <value>The number of rows in use included in the specified range.</value>
     <comment>property description</comment>
   </data>
-  <data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
+	<data name="GetRangeSize_RowCount_DisplayName" xml:space="preserve">
     <value>Row Count</value>
     <comment>property name</comment>
   </data>
-  <data name="GetRangeSize_SheetName_Description" xml:space="preserve">
+	<data name="GetRangeSize_SheetName_Description" xml:space="preserve">
     <value>The name of the worksheet containing the target range.</value>
     <comment>property description</comment>
   </data>
-  <data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
+	<data name="GetRangeSize_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadCell_CellAddress_Description" xml:space="preserve">
+	<data name="ReadCell_CellAddress_Description" xml:space="preserve">
     <value>The cell address the value should be read from.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
+	<data name="ReadCell_CellAddress_DisplayName" xml:space="preserve">
     <value>Cell Address</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadCell_Description" xml:space="preserve">
+	<data name="ReadCell_Description" xml:space="preserve">
     <value>Reads a cell value in the specified sheet and cell address.</value>
     <comment>activity description</comment>
   </data>
-  <data name="ReadCell_DisplayName" xml:space="preserve">
+	<data name="ReadCell_DisplayName" xml:space="preserve">
     <value>Read Cell</value>
     <comment>activitiy name</comment>
   </data>
-  <data name="ReadCell_Result_Description" xml:space="preserve">
+	<data name="ReadCell_Result_Description" xml:space="preserve">
     <value>The value read from the cell.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadCell_Result_DisplayName" xml:space="preserve">
+	<data name="ReadCell_Result_DisplayName" xml:space="preserve">
     <value>Value</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadCell_SheetName_Description" xml:space="preserve">
+	<data name="ReadCell_SheetName_Description" xml:space="preserve">
     <value>The sheet containing the cell that will be read from.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
+	<data name="ReadCell_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRange_Description" xml:space="preserve">
+	<data name="ReadRange_Description" xml:space="preserve">
     <value>Reads the value of a range from a spreadsheet as a DataTable. If the range is not specified, all used cells in the spreadsheet are read. If the range is specified as a cell, all used rows starting from that cell is read.</value>
     <comment>activity description</comment>
   </data>
-  <data name="ReadRange_DisplayName" xml:space="preserve">
+	<data name="ReadRange_DisplayName" xml:space="preserve">
     <value>Read Range</value>
     <comment>activity name</comment>
   </data>
-  <data name="ReadRange_HasHeaders_Description" xml:space="preserve">
+	<data name="ReadRange_HasHeaders_Description" xml:space="preserve">
     <value>Specifies if the first row in the range should be considered column headers definitions. If set to false, the columns in the DataTable will use the following pattern "Col{number}", e.g.: Col1, Col2, Col3, etc.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
+	<data name="ReadRange_HasHeaders_DisplayName" xml:space="preserve">
     <value>Has Headers</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRange_HeaderRows_Description" xml:space="preserve">
+	<data name="ReadRange_HeaderRows_Description" xml:space="preserve">
     <value>Determines the number of rows that composes the header. The values of these rows are concatenated.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
+	<data name="ReadRange_HeaderRows_DisplayName" xml:space="preserve">
     <value>Headers Rows</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRange_Range_Description" xml:space="preserve">
+	<data name="ReadRange_Range_Description" xml:space="preserve">
     <value>Specifies the range of cells to be read. If this value is not specified, all used cells of the spreadsheet is read. If the value consists of only one cell, all used rows in the spreadsheet are read starting from that cell. (Default: A1)</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRange_Range_DisplayName" xml:space="preserve">
+	<data name="ReadRange_Range_DisplayName" xml:space="preserve">
     <value>Range</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRange_Result_Description" xml:space="preserve">
+	<data name="ReadRange_Result_Description" xml:space="preserve">
     <value>The output DataTable in which the read data is stored.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRange_Result_DisplayName" xml:space="preserve">
+	<data name="ReadRange_Result_DisplayName" xml:space="preserve">
     <value>Data Table</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
+	<data name="ReadRange_RowsPerRecord_Description" xml:space="preserve">
     <value>Determines the number of rows that composes a single record. The row values are concatenated.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
+	<data name="ReadRange_RowsPerRecord_DisplayName" xml:space="preserve">
     <value>Rows Per Record</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRange_SheetName_Description" xml:space="preserve">
+	<data name="ReadRange_SheetName_Description" xml:space="preserve">
     <value>The name of the sheet from the workbook.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
+	<data name="ReadRange_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRow_Description" xml:space="preserve">
+	<data name="ReadRow_Description" xml:space="preserve">
     <value>Reads a row of cells from a worksheet and returns the values as an array.</value>
     <comment>activity description</comment>
   </data>
-  <data name="ReadRow_DisplayName" xml:space="preserve">
+	<data name="ReadRow_DisplayName" xml:space="preserve">
     <value>Read Row</value>
     <comment>activity name</comment>
   </data>
-  <data name="ReadRow_Limit_DisplayName" xml:space="preserve">
+	<data name="ReadRow_Limit_DisplayName" xml:space="preserve">
     <value>Max Cells</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRow_SheetName_Description" xml:space="preserve">
+	<data name="ReadRow_SheetName_Description" xml:space="preserve">
     <value>Name of the worksheet to read from.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
+	<data name="ReadRow_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadRow_StartingCell_Description" xml:space="preserve">
+	<data name="ReadRow_StartingCell_Description" xml:space="preserve">
     <value>Cell address (in range format, e.g.: A1) that defines the row to start reading.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
+	<data name="ReadRow_StartingCell_DisplayName" xml:space="preserve">
     <value>Starting Cell</value>
     <comment>property name</comment>
   </data>
-  <data name="WorkbookScope_Description" xml:space="preserve">
+	<data name="WorkbookScope_Description" xml:space="preserve">
     <value>Opens a workbook and share its instance across the child activities.</value>
     <comment>activity description</comment>
   </data>
-  <data name="WorkbookScope_DisplayName" xml:space="preserve">
+	<data name="WorkbookScope_DisplayName" xml:space="preserve">
     <value>Use Workbook</value>
     <comment>activity name</comment>
   </data>
-  <data name="WorkbookScope_Password_Description" xml:space="preserve">
+	<data name="WorkbookScope_Password_Description" xml:space="preserve">
     <value>The password required for open the workbook if it is password-protected.</value>
     <comment>property description</comment>
   </data>
-  <data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
+	<data name="WorkbookScope_Password_DisplayName" xml:space="preserve">
     <value>Password</value>
     <comment>property name</comment>
   </data>
-  <data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
+	<data name="WorkbookScope_SheetNames_Description" xml:space="preserve">
     <value>Returns the list of sheet names contained in the workbook.</value>
     <comment>property description</comment>
   </data>
-  <data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
+	<data name="WorkbookScope_SheetNames_DisplayName" xml:space="preserve">
     <value>Sheet Names</value>
     <comment>property name</comment>
   </data>
-  <data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
+	<data name="WorkbookScope_WorkbookPath_Description" xml:space="preserve">
     <value>The path to the workbook.</value>
     <comment>property description</comment>
   </data>
-  <data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
+	<data name="WorkbookScope_WorkbookPath_DisplayName" xml:space="preserve">
     <value>Workbook Path</value>
     <comment>property name</comment>
   </data>
-  <data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
+	<data name="WorkbookScope_WorkbookPath_Placeholder" xml:space="preserve">
     <value>Enter the workbook path</value>
     <comment>placeholder</comment>
   </data>
-  <data name="ReadRow_Limit_Description" xml:space="preserve">
+	<data name="ReadRow_Limit_Description" xml:space="preserve">
     <value>Maximum number of cells to read from the row. If left blank, or set to zero or less, all cells are read.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadColumn_DisplayName" xml:space="preserve">
+	<data name="ReadColumn_DisplayName" xml:space="preserve">
     <value>Read Column</value>
     <comment>activity name</comment>
   </data>
-  <data name="ReadColumn_Description" xml:space="preserve">
+	<data name="ReadColumn_Description" xml:space="preserve">
     <value>Reads a column of cells from a worksheet and returns the values as an array.</value>
     <comment>activity description</comment>
   </data>
-  <data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
+	<data name="ReadColumn_Limit_DisplayName" xml:space="preserve">
     <value>Max Cells</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadColumn_Limit_Description" xml:space="preserve">
+	<data name="ReadColumn_Limit_Description" xml:space="preserve">
     <value>Maximum number of cells to read from the column. If left blank, or set to zero or less, all cells are read.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
+	<data name="ReadColumn_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadColumn_SheetName_Description" xml:space="preserve">
+	<data name="ReadColumn_SheetName_Description" xml:space="preserve">
     <value>Name of the worksheet to read from.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
+	<data name="ReadColumn_StartingCell_DisplayName" xml:space="preserve">
     <value>Starting Cell</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadColumn_StartingCell_Description" xml:space="preserve">
+	<data name="ReadColumn_StartingCell_Description" xml:space="preserve">
     <value>Cell address (in range format, e.g.: A1) that defines the column to start reading.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRow_Result_Description" xml:space="preserve">
+	<data name="ReadRow_Result_Description" xml:space="preserve">
     <value>Array of values read from the row.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadRow_Result_DisplayName" xml:space="preserve">
+	<data name="ReadRow_Result_DisplayName" xml:space="preserve">
     <value>Result</value>
     <comment>property name</comment>
   </data>
-  <data name="ReadColumn_Result_Description" xml:space="preserve">
+	<data name="ReadColumn_Result_Description" xml:space="preserve">
     <value>Array of values read from the column.</value>
     <comment>property description</comment>
   </data>
-  <data name="ReadColumn_Result_DisplayName" xml:space="preserve">
+	<data name="ReadColumn_Result_DisplayName" xml:space="preserve">
     <value>Result</value>
     <comment>property name</comment>
   </data>
-  <data name="SaveWorkbook_DisplayName" xml:space="preserve">
+	<data name="SaveWorkbook_DisplayName" xml:space="preserve">
     <value>Save Workbook</value>
     <comment>activity name</comment>
   </data>
-  <data name="SaveWorkbook_Description" xml:space="preserve">
+	<data name="SaveWorkbook_Description" xml:space="preserve">
     <value>Immediately saves all changes made to the workbook to disk, instead of waiting for the Use Workbook container to save them at the end. Use this activity when the workbook needs to be persisted early for operations outside of the current read/write workflow.</value>
     <comment>activity description</comment>
   </data>
-  <data name="WriteRange_DisplayName" xml:space="preserve">
+	<data name="WriteRange_DisplayName" xml:space="preserve">
     <value>Write Range</value>
     <comment>activity name</comment>
   </data>
-  <data name="WriteRange_Description" xml:space="preserve">
+	<data name="WriteRange_Description" xml:space="preserve">
     <value>Writes a DataTable into an Excel worksheet starting at a specified cell (default A1). If the target sheet does not exist, a new one is created. All existing values in the target range are overwritten.</value>
     <comment>activity description</comment>
   </data>
-  <data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
+	<data name="WriteRange_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="WriteRange_SheetName_Description" xml:space="preserve">
+	<data name="WriteRange_SheetName_Description" xml:space="preserve">
     <value>Name of the worksheet to write data into.</value>
     <comment>property description</comment>
   </data>
-  <data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
+	<data name="WriteRange_StartingCell_DisplayName" xml:space="preserve">
     <value>Starting Cell</value>
     <comment>property name</comment>
   </data>
-  <data name="WriteRange_StartingCell_Description" xml:space="preserve">
+	<data name="WriteRange_StartingCell_Description" xml:space="preserve">
     <value>Top-left cell where writing begins.</value>
     <comment>property description</comment>
   </data>
-  <data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
+	<data name="WriteRange_AddHeaders_DisplayName" xml:space="preserve">
     <value>Add Headers</value>
     <comment>property name</comment>
   </data>
-  <data name="WriteRange_AddHeaders_Description" xml:space="preserve">
+	<data name="WriteRange_AddHeaders_Description" xml:space="preserve">
     <value>Indicates if column names are written as headers.</value>
     <comment>property description</comment>
   </data>
-  <data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
+	<data name="WriteRange_DataTable_DisplayName" xml:space="preserve">
     <value>Data Table</value>
     <comment>property name</comment>
   </data>
-  <data name="WriteRange_DataTable_Description" xml:space="preserve">
+	<data name="WriteRange_DataTable_Description" xml:space="preserve">
     <value>Source DataTable to write into the worksheet.</value>
     <comment>property description</comment>
   </data>
-  <data name="WriteCell_DisplayName" xml:space="preserve">
+	<data name="WriteCell_DisplayName" xml:space="preserve">
     <value>Write Cell</value>
     <comment>activity name</comment>
   </data>
-  <data name="WriteCell_Description" xml:space="preserve">
+	<data name="WriteCell_Description" xml:space="preserve">
     <value>Writes a single value into a specific cell of an Excel worksheet. If the target sheet does not exist, a new one is created. Any existing value in the specified cell is overwritten.</value>
     <comment>activity description</comment>
   </data>
-  <data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
+	<data name="WriteCell_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="WriteCell_SheetName_Description" xml:space="preserve">
+	<data name="WriteCell_SheetName_Description" xml:space="preserve">
     <value>Name of the worksheet to write the cell value into. A new sheet is created if it does not exist.</value>
     <comment>property description</comment>
   </data>
-  <data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
+	<data name="WriteCell_CellAddress_DisplayName" xml:space="preserve">
     <value>Cell Address</value>
     <comment>property name</comment>
   </data>
-  <data name="WriteCell_CellAddress_Description" xml:space="preserve">
+	<data name="WriteCell_CellAddress_Description" xml:space="preserve">
     <value>Address of the target cell (e.g., A1, B5) where the value will be written.</value>
     <comment>property description</comment>
   </data>
-  <data name="WriteCell_Value_DisplayName" xml:space="preserve">
+	<data name="WriteCell_Value_DisplayName" xml:space="preserve">
     <value>Value</value>
     <comment>property name</comment>
   </data>
-  <data name="WriteCell_Value_Description" xml:space="preserve">
+	<data name="WriteCell_Value_Description" xml:space="preserve">
     <value>The content to be written into the specified cell. Any existing value in the cell is replaced.</value>
     <comment>property description</comment>
   </data>
-  <data name="FindValue_DisplayName" xml:space="preserve">
+	<data name="FindValue_DisplayName" xml:space="preserve">
     <value>Find Value</value>
     <comment>activity name</comment>
   </data>
-  <data name="FindValue_Description" xml:space="preserve">
+	<data name="FindValue_Description" xml:space="preserve">
     <value>Searches for a specified value within an Excel worksheet range and returns the cell address, row number, and column number of the first occurrence. Use this activity when you need to locate specific data within a workbook and retrieve its coordinates for further processing.</value>
     <comment>activity description</comment>
   </data>
-  <data name="FindValue_SheetName_DisplayName" xml:space="preserve">
+	<data name="FindValue_SheetName_DisplayName" xml:space="preserve">
     <value>Sheet Name</value>
     <comment>property name</comment>
   </data>
-  <data name="FindValue_SheetName_Description" xml:space="preserve">
+	<data name="FindValue_SheetName_Description" xml:space="preserve">
     <value>Name of the worksheet to search for the value. This property is required and the sheet must exist in the workbook.</value>
     <comment>property description</comment>
   </data>
-  <data name="FindValue_Range_DisplayName" xml:space="preserve">
+	<data name="FindValue_Range_DisplayName" xml:space="preserve">
     <value>Range</value>
     <comment>property name</comment>
   </data>
-  <data name="FindValue_Range_Description" xml:space="preserve">
+	<data name="FindValue_Range_Description" xml:space="preserve">
     <value>Cell range to search within (e.g., "A1:C10"). If not provided, defaults to "A1" which searches the entire worksheet.</value>
     <comment>property description</comment>
   </data>
-  <data name="FindValue_Value_DisplayName" xml:space="preserve">
+	<data name="FindValue_Value_DisplayName" xml:space="preserve">
     <value>Value</value>
     <comment>property name</comment>
   </data>
-  <data name="FindValue_Value_Description" xml:space="preserve">
+	<data name="FindValue_Value_Description" xml:space="preserve">
     <value>The specific text or numeric value to locate within the worksheet range. This property is required and performs an exact match search.</value>
     <comment>property description</comment>
   </data>
-  <data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
+	<data name="FindValue_CellAddress_DisplayName" xml:space="preserve">
     <value>Cell Address</value>
     <comment>property name</comment>
   </data>
-  <data name="FindValue_CellAddress_Description" xml:space="preserve">
+	<data name="FindValue_CellAddress_Description" xml:space="preserve">
     <value>Returns the address of the cell containing the value (e.g., "B4").</value>
     <comment>property description</comment>
   </data>
-  <data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
+	<data name="FindValue_RowNumber_DisplayName" xml:space="preserve">
     <value>Row Number</value>
     <comment>property name</comment>
   </data>
-  <data name="FindValue_RowNumber_Description" xml:space="preserve">
+	<data name="FindValue_RowNumber_Description" xml:space="preserve">
     <value>Returns the 1-based row number of the cell containing the value (e.g., 4 for cell B4).</value>
     <comment>property description</comment>
   </data>
-  <data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
+	<data name="FindValue_ColumnNumber_DisplayName" xml:space="preserve">
     <value>Column Number</value>
     <comment>property name</comment>
   </data>
-  <data name="FindValue_ColumnNumber_Description" xml:space="preserve">
+	<data name="FindValue_ColumnNumber_Description" xml:space="preserve">
     <value>Returns the 1-based column number of the cell containing the value (e.g., 2 for cell B4).</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>Delete Sheet</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>Deletes a specified worksheet from the workbook. Use this activity when you need to remove unwanted sheets from the workbook.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>Name of the worksheet to be deleted. This property is required and the sheet must exist in the workbook.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Rename Sheet</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>Renames an existing worksheet in the workbook. Use this activity when you need to change the name of a specific sheet.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>Current name of the worksheet to be renamed. This property is required and the sheet must exist in the workbook.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>New Sheet Name</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>New name for the worksheet. This property is required and must be unique within the workbook.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>Insert Sheet</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>Inserts a new worksheet into the workbook with the specified name and optional position. Use this activity when you need to add a new sheet to the workbook.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>Name of the new worksheet to be inserted. This property is required and must be unique within the workbook.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>Position</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>Optional index position where the new sheet will be inserted (1-based). If not provided or less than 1, the sheet is added at the end of the workbook.</value>
+    <comment>property description</comment>
+</data>
 </root>

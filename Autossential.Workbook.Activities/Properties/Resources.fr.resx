@@ -561,4 +561,70 @@
     <value>Retourne le numéro de colonne (base 1) de la cellule contenant la valeur (par exemple, 2 pour la cellule B4).</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>Supprimer la feuille</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>Supprime une feuille de calcul spécifiée du classeur. Utilisez cette activité lorsque vous devez retirer des feuilles indésirables du classeur.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nom de la feuille</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>Nom de la feuille de calcul à supprimer. Cette propriété est obligatoire et la feuille doit exister dans le classeur.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Renommer la feuille</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>Renomme une feuille de calcul existante dans le classeur. Utilisez cette activité lorsque vous devez modifier le nom d'une feuille spécifique.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nom de la feuille</value>
+   <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>Nom actuel de la feuille de calcul à renommer. Cette propriété est obligatoire et la feuille doit exister dans le classeur.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>Nouveau nom de la feuille</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>Nouveau nom pour la feuille de calcul. Cette propriété est obligatoire et doit être unique dans le classeur.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>Insérer une feuille</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>Insère une nouvelle feuille de calcul dans le classeur avec le nom et la position facultative spécifiés. Utilisez cette activité lorsque vous devez ajouter une nouvelle feuille au classeur.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nom de la feuille</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>Nom de la nouvelle feuille de calcul à insérer. Cette propriété est obligatoire et doit être unique dans le classeur.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>Position</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>Position d'index facultative où la nouvelle feuille sera insérée (base 1). Si elle n'est pas fournie ou est inférieure à 1, la feuille est ajoutée à la fin du classeur.</value>
+    <comment>property description</comment>
+</data>
 </root>

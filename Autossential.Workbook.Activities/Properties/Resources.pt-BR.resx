@@ -561,4 +561,70 @@
     <value>Retorna o número da coluna (base 1) da célula que contém o valor (por exemplo, 2 para a célula B4).</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>Excluir planilha</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>Exclui uma planilha especificada da pasta de trabalho. Use esta atividade quando precisar remover planilhas indesejadas da pasta de trabalho.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nome da planilha</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>Nome da planilha a ser excluída. Esta propriedade é obrigatória e a planilha deve existir na pasta de trabalho.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Renomear planilha</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>Renomeia uma planilha existente na pasta de trabalho. Use esta atividade quando precisar alterar o nome de uma planilha específica.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nome da planilha</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>Nome atual da planilha a ser renomeada. Esta propriedade é obrigatória e a planilha deve existir na pasta de trabalho.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>Novo nome da planilha</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>Novo nome para a planilha. Esta propriedade é obrigatória e deve ser único dentro da pasta de trabalho.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>Inserir planilha</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>Insere uma nova planilha na pasta de trabalho com o nome e a posição opcional especificados. Use esta atividade quando precisar adicionar uma nova planilha à pasta de trabalho.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nome da planilha</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>Nome da nova planilha a ser inserida. Esta propriedade é obrigatória e deve ser única dentro da pasta de trabalho.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>Posição</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>Posição de índice opcional onde a nova planilha será inserida (base 1). Se não for fornecida ou for menor que 1, a planilha é adicionada no final da pasta de trabalho.</value>
+    <comment>property description</comment>
+</data>
 </root>

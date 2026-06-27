@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using NPOI.XSSF.Streaming;
 using System.Data;
 using System.Globalization;
 
@@ -496,13 +497,16 @@ namespace Autossential.Workbook.Activities.Core.Processors
         {
             using var doc = GetWorkbook();
             var wbPart = doc.WorkbookPart;
-            var sheet = wbPart.Workbook.Sheets
-                .Elements<Sheet>()
-                .FirstOrDefault(s => string.Equals(s.Name?.Value, fromSheetName, StringComparison.OrdinalIgnoreCase))
+            var sheets = wbPart.Workbook.Sheets.Elements<Sheet>();
+            var sheet = sheets.FirstOrDefault(s => string.Equals(s.Name?.Value, fromSheetName, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidOperationException($"No sheet with name '{fromSheetName}' was found.");
 
             if (sheet.Name.Value == toSheetName)
                 return;
+
+            var anotherSheet = sheets.FirstOrDefault(s => string.Equals(s.Name?.Value, toSheetName, StringComparison.OrdinalIgnoreCase));
+            if (anotherSheet is not null && anotherSheet.Id.Value != sheet.Id.Value)
+                throw new InvalidOperationException($"Another sheet with name '{toSheetName}' already exists in the workbook.");
 
             sheet.Name = toSheetName;
             wbPart.Workbook.Save();

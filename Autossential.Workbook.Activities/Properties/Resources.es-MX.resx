@@ -561,4 +561,70 @@
     <value>Devuelve el número de columna basado en 1 de la celda que contiene el valor (por ejemplo, 2 para la celda B4).</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>Eliminar hoja</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>Elimina una hoja de trabajo especificada del libro de trabajo. Utilice esta actividad cuando necesite eliminar hojas no deseadas del libro de trabajo.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nombre de la hoja</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>Nombre de la hoja de trabajo que se va a eliminar. Esta propiedad es obligatoria y la hoja debe existir en el libro de trabajo.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Cambiar nombre de hoja</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>Cambia el nombre de una hoja de trabajo existente en el libro de trabajo. Utilice esta actividad cuando necesite cambiar el nombre de una hoja específica.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nombre de la hoja</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>Nombre actual de la hoja de trabajo que se va a renombrar. Esta propiedad es obligatoria y la hoja debe existir en el libro de trabajo.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>Nuevo nombre de la hoja</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>Nuevo nombre para la hoja de trabajo. Esta propiedad es obligatoria y debe ser único dentro del libro de trabajo.</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>Insertar hoja</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>Inserta una nueva hoja de trabajo en el libro de trabajo con el nombre y la posición opcional especificados. Utilice esta actividad cuando necesite añadir una nueva hoja al libro de trabajo.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Nombre de la hoja</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>Nombre de la nueva hoja de trabajo que se va a insertar. Esta propiedad es obligatoria y debe ser única dentro del libro de trabajo.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>Posición</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>Posición de índice opcional donde se insertará la nueva hoja (base 1). Si no se proporciona o es menor que 1, la hoja se añade al final del libro de trabajo.</value>
+    <comment>property description</comment>
+</data>
 </root>

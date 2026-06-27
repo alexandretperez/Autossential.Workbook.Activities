@@ -561,4 +561,68 @@
     <value>Gibt die 1-basierte Spaltennummer der Zelle zurück, die den Wert enthält (z. B. 2 für Zelle B4).</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>Blatt löschen</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>Löscht ein angegebenes Arbeitsblatt aus der Arbeitsmappe. Verwenden Sie diese Aktivität, wenn Sie nicht benötigte Blätter aus der Arbeitsmappe entfernen müssen.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Blattname</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>Name des zu löschenden Arbeitsblatts. Diese Eigenschaft ist erforderlich, und das Blatt muss in der Arbeitsmappe vorhanden sein.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>Blatt umbenennen</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>Benennt ein vorhandenes Arbeitsblatt in der Arbeitsmappe um. Verwenden Sie diese Aktivität, wenn Sie den Namen eines bestimmten Blatts ändern müssen.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Blattname</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>Aktueller Name des umzubenennenden Arbeitsblatts. Diese Eigenschaft ist erforderlich, und das Blatt muss in der Arbeitsmappe vorhanden sein.</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>Neuer Blattname</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>Neuer Name für das Arbeitsblatt. Diese Eigenschaft ist erforderlich und muss innerhalb der Arbeitsmappe eindeutig sein.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>Blatt einfügen</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>Fügt ein neues Arbeitsblatt mit dem angegebenen Namen und optionaler Position in die Arbeitsmappe ein. Verwenden Sie diese Aktivität, wenn Sie der Arbeitsmappe ein neues Blatt hinzufügen müssen.</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>Blattname</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>Name des neuen einzufügenden Arbeitsblatts. Diese Eigenschaft ist erforderlich und muss innerhalb der Arbeitsmappe eindeutig sein.</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>Position</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>Optionale Indexposition, an der das neue Blatt eingefügt wird (1-basiert). Wenn nicht angegeben oder kleiner als 1, wird das Blatt am Ende der Arbeitsmappe hinzugefügt.</value>
+    <comment>property description</comment>
+</data>
 </root>

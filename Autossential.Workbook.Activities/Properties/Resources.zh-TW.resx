@@ -561,4 +561,70 @@
     <value>傳回包含該值的儲存格之從 1 開始的欄號（例如，儲存格 B4 傳回 2）。</value>
     <comment>property description</comment>
   </data>
+	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+    <value>刪除工作表</value>
+    <comment>activity name</comment>
+</data>
+	<data name="DeleteSheet_Description" xml:space="preserve">
+    <value>從活頁簿中刪除指定的工作表。當您需要從活頁簿中移除不需要的工作表時，請使用此活動。</value>
+    <comment>activity description</comment>
+</data>
+	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>工作表名稱</value>
+    <comment>property name</comment>
+</data>
+	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+    <value>要刪除的工作表名稱。此屬性為必填，且該工作表必須存在於活頁簿中。</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="RenameSheet_DisplayName" xml:space="preserve">
+    <value>重新命名工作表</value>
+    <comment>activity name</comment>
+</data>
+	<data name="RenameSheet_Description" xml:space="preserve">
+    <value>重新命名活頁簿中現有的工作表。當您需要變更特定工作表的名稱時，請使用此活動。</value>
+    <comment>activity description</comment>
+</data>
+	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>工作表名稱</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+    <value>要重新命名的工作表目前的名稱。此屬性為必填，且該工作表必須存在於活頁簿中。</value>
+    <comment>property description</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+    <value>新工作表名稱</value>
+    <comment>property name</comment>
+</data>
+	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+    <value>工作表的新名稱。此屬性為必填，且必須在活頁簿中唯一。</value>
+    <comment>property description</comment>
+</data>
+
+	<data name="InsertSheet_DisplayName" xml:space="preserve">
+    <value>插入工作表</value>
+    <comment>activity name</comment>
+</data>
+	<data name="InsertSheet_Description" xml:space="preserve">
+    <value>使用指定的名稱和選擇性位置在活頁簿中插入新工作表。當您需要向活頁簿新增工作表時，請使用此活動。</value>
+    <comment>activity description</comment>
+</data>
+	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+    <value>工作表名稱</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+    <value>要插入的新工作表名稱。此屬性為必填，且必須在活頁簿中唯一。</value>
+    <comment>property description</comment>
+</data>
+	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+    <value>位置</value>
+    <comment>property name</comment>
+</data>
+	<data name="InsertSheet_Position_Description" xml:space="preserve">
+    <value>插入新工作表的選擇性索引位置（從 1 開始）。如果未提供或小於 1，則工作表將新增在活頁簿的結尾。</value>
+    <comment>property description</comment>
+</data>
 </root>
