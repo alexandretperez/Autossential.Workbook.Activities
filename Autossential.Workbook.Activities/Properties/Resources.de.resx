@@ -121,6 +121,18 @@
     <value>Autossential.Workbook</value>
     <comment>category</comment>
   </data>
+  <data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
+    <value>Autossential.Workbook.Cell</value>
+    <comment>category</comment>
+  </data>
+	<data name="ActivityCategories_Workbook_Range" xml:space="preserve">
+    <value>Autossential.Workbook.Range</value>
+    <comment>category</comment>
+  </data>
+	<data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
+    <value>Autossential.Workbook.Sheet</value>
+    <comment>category</comment>
+  </data>
   <data name="Categories_Input" xml:space="preserve">
     <value>Eingabe</value>
     <comment>category</comment>

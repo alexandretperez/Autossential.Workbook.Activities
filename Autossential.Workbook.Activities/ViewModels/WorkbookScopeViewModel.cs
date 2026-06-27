@@ -3,7 +3,6 @@ using Autossential.Workbook.Activities.Extensions;
 using Autossential.Workbook.Activities.Properties;
 using System.Activities.DesignViewModels;
 using System.Activities.ViewModels;
-using UiPath.Studio.Activities.Api;
 
 namespace Autossential.Workbook.Activities.ViewModels
 {

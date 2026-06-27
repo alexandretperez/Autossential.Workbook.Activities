@@ -14,6 +14,9 @@ namespace Autossential.Workbook.Activities.Core
         void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders);
         void WriteCell(string sheetName, string address, object value);
         (string, int, int) FindValue(string sheetName, string range, object value);
+        void DeleteSheet(string sheetName);
+        void InsertSheet(string sheetName, int? position = null);
+        void RenameSheet(string fromSheetName, string toSheetName);
         void Save();
     }
 }

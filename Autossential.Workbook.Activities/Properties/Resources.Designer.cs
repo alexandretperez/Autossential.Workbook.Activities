@@ -70,6 +70,33 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autossential.Workbook.Cell.
+        /// </summary>
+        public static string ActivityCategories_Workbook_Cell {
+            get {
+                return ResourceManager.GetString("ActivityCategories_Workbook_Cell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Autossential.Workbook.Range.
+        /// </summary>
+        public static string ActivityCategories_Workbook_Range {
+            get {
+                return ResourceManager.GetString("ActivityCategories_Workbook_Range", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Autossential.Workbook.Sheet.
+        /// </summary>
+        public static string ActivityCategories_Workbook_Sheet {
+            get {
+                return ResourceManager.GetString("ActivityCategories_Workbook_Sheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input.
         /// </summary>
         public static string Categories_Input {

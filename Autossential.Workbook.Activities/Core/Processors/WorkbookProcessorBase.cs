@@ -1,9 +1,5 @@
 ﻿using Autossential.Workbook.Activities.Extensions;
-using DocumentFormat.OpenXml.Math;
-using DocumentFormat.OpenXml.Spreadsheet;
 using ExcelDataReader;
-using NPOI.HSSF.Record.Chart;
-using NPOI.SS.Formula.Functions;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -11,6 +7,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
     internal abstract class WorkbookProcessorBase : IWorkbookProcessor
     {
         public MemoryStream WorkbookStream { get; }
+
         public void Dispose()
         {
             if (WorkbookStream.CanRead)
@@ -63,7 +60,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
 
                 return count;
-
             } while (reader.NextResult());
 
             return count;
@@ -106,7 +102,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
 
                 return lastNonEmptyRow;
-
             } while (reader.NextResult());
 
             return 0;
@@ -189,7 +184,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
 
                 return values[..lastNonEmptyRow];
-
             } while (reader.NextResult());
 
             return [];
@@ -309,7 +303,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     hasHeaders,
                     safeHeaderRows,
                     safeRowsPerRecord);
-
             } while (reader.NextResult());
 
             return table;
@@ -357,7 +350,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
                 size = lastNonEmptyColumnIndex - colIndex;
                 return values[..size];
-
             } while (reader.NextResult());
 
             return [];
@@ -402,6 +394,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
         protected string FilePath { get; }
         protected string Password { get; }
         protected string WorkbookHash { get; set; }
+
         protected abstract void CreateNew();
 
         protected IExcelDataReader GetReader()
@@ -448,6 +441,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
         private string _defaultSheetName;
 
         protected string SetDefaultSheetName(string sheetName = "Sheet1") => (_defaultSheetName = sheetName);
+
         protected string ConsumeDefaultSheetName()
         {
             string name = _defaultSheetName;
@@ -496,10 +490,15 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
 
                 break;
-
             } while (reader.NextResult());
 
             return (string.Empty, -1, -1);
         }
+
+        public abstract void DeleteSheet(string sheetName);
+
+        public abstract void InsertSheet(string sheetName, int? position);
+
+        public abstract void RenameSheet(string fromSheetName, string toSheetName);
     }
 }

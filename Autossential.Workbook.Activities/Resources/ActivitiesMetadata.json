@@ -1,7 +1,7 @@
 {
   "activities": [
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "FindValue_Description",
       "displayNameKey": "FindValue_DisplayName",
       "fullName": "Autossential.Workbook.Activities.FindValue",
@@ -78,7 +78,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.FindValueViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "GetRangeSize_Description",
       "displayNameKey": "GetRangeSize_DisplayName",
       "fullName": "Autossential.Workbook.Activities.GetRangeSize",
@@ -90,7 +90,7 @@
             "name": "Input"
           },
           "displayNameKey": "GetRangeSize_SheetName_DisplayName",
-          "isRequired": false,
+          "isRequired": true,
           "isVisible": true,
           "name": "SheetName",
           "tooltipKey": "GetRangeSize_SheetName_Description"
@@ -133,7 +133,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetRangeSizeViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Cell",
       "descriptionKey": "ReadCell_Description",
       "displayNameKey": "ReadCell_DisplayName",
       "fullName": "Autossential.Workbook.Activities.ReadCell",
@@ -199,7 +199,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadCellViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Cell",
       "descriptionKey": "ReadColumn_Description",
       "displayNameKey": "ReadColumn_DisplayName",
       "fullName": "Autossential.Workbook.Activities.ReadColumn",
@@ -276,7 +276,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadColumnViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "ReadRange_Description",
       "displayNameKey": "ReadRange_DisplayName",
       "fullName": "Autossential.Workbook.Activities.ReadRange",
@@ -375,7 +375,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRangeViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Cell",
       "descriptionKey": "ReadRow_Description",
       "displayNameKey": "ReadRow_DisplayName",
       "fullName": "Autossential.Workbook.Activities.ReadRow",
@@ -506,7 +506,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.WorkbookScopeViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Cell",
       "descriptionKey": "WriteCell_Description",
       "displayNameKey": "WriteCell_DisplayName",
       "fullName": "Autossential.Workbook.Activities.WriteCell",
@@ -550,7 +550,7 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.WriteCellViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook",
+      "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "WriteRange_Description",
       "displayNameKey": "WriteRange_DisplayName",
       "fullName": "Autossential.Workbook.Activities.WriteRange",

@@ -7,6 +7,27 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     internal class WriteRangeTests : BaseTests
     {
         [Test]
+        [Arguments(".xls")]
+        [Arguments(".xlsx")]
+        public async Task WriteRange_WriteFormulas_WhenDetected(string extension)
+        {
+            var data = TableUtils.Build(3, 3, (col, row) =>
+            {
+                if (col < 3)
+                {
+                    return row;
+                }
+
+                return $"=A{row}+B{row}";
+            });
+
+            var (processor, filePath) = NewFile(extension);
+            processor.WriteRange("Sheet1", data, "A1", false);
+            processor.Save();
+            File.Move(filePath, $@"C:\Users\alexa\Downloads\range{extension}", true);
+        }
+
+        [Test]
 
         [Arguments(".xls", "A1", true, 5, 5)]
         [Arguments(".xls", "C14", true, 5, 5)]
@@ -64,6 +85,9 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             });
 
             var processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
+            if (string.IsNullOrEmpty(startingCell))
+                startingCell = "A1";
+
             var readData = processor.ReadRange("Sheet1", startingCell, addHeaders);
             return readData;
         }

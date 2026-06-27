@@ -20,7 +20,7 @@ namespace Autossential.Workbook.Activities.Extensions
                 const int defaultBufferSize = 81920;
 
                 if (len < defaultBufferSize)
-                    return (int)len; 
+                    return (int)len;
 
                 if (len < 10 * 1024 * 1024) // < 10 MB
                     return defaultBufferSize;

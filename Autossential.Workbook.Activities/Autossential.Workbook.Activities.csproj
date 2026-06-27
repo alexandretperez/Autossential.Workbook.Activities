@@ -16,11 +16,14 @@
 	
 	<ItemGroup>
 		<None Remove="Resources\ActivitiesMetadata.json" />
+		<None Remove="Resources\Icons\DeleteSheet.svg" />
 		<None Remove="Resources\Icons\FindValue.svg" />
 		<None Remove="Resources\Icons\GetRangeSize.svg" />
+		<None Remove="Resources\Icons\InsertSheet.svg" />
 		<None Remove="Resources\Icons\ReadCell.svg" />
 		<None Remove="Resources\Icons\ReadColumn.svg" />
 		<None Remove="Resources\Icons\ReadRow.svg" />
+		<None Remove="Resources\Icons\RenameSheet.svg" />
 		<None Remove="Resources\Icons\SaveWorkbook.svg" />
 		<None Remove="Resources\Icons\WorkbookScope.svg" />
 		<None Remove="Resources\Icons\WriteCell.svg" />
@@ -29,12 +32,15 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\ActivitiesMetadata.json" />
+		<EmbeddedResource Include="Resources\Icons\DeleteSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\FindValue.svg" />
 		<EmbeddedResource Include="Resources\Icons\GetRangeSize.svg" />
+		<EmbeddedResource Include="Resources\Icons\InsertSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadCell.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadColumn.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadRange.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadRow.svg" />
+		<EmbeddedResource Include="Resources\Icons\RenameSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\SaveWorkbook.svg" />
 		<EmbeddedResource Include="Resources\Icons\WorkbookScope.svg" />
 		<EmbeddedResource Include="Resources\Icons\WriteCell.svg" />

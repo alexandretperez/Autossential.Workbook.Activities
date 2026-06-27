@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActivityCategories_Workbook" xml:space="preserve">
+	<data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
+    <comment>category</comment>
+  </data>
+	<data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
+    <value>Autossential.Workbook.Cell</value>
+    <comment>category</comment>
+  </data>
+	<data name="ActivityCategories_Workbook_Range" xml:space="preserve">
+    <value>Autossential.Workbook.Range</value>
+    <comment>category</comment>
+  </data>
+	<data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
+    <value>Autossential.Workbook.Sheet</value>
     <comment>category</comment>
   </data>
   <data name="Categories_Input" xml:space="preserve">

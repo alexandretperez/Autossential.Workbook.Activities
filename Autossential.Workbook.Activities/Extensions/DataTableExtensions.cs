@@ -56,7 +56,7 @@ namespace Autossential.Workbook.Activities.Extensions
                         break;
                 }
 
-                if (range.Origin == RangeOrigin.Explicit)
+                if (range.InputType == RangeInputType.A1B1 || range.InputType == RangeInputType.AB1)
                 {
                     int expectedRowCount = range.End.Row;
                     expectedRowCount -= (range.Start.Row - 1);

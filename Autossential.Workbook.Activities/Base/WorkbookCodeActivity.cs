@@ -18,6 +18,7 @@ namespace Autossential.Workbook.Activities.Base
         {
             Constraints.Add(ActivityConstraints.CreateConstraint<WorkbookCodeActivity<TResult>, WorkbookScope>(ResourcesFn.Common_UsingOutsideOfScopeFormat(Resources.WorkbookScope_DisplayName)));
         }
+
         protected abstract override TResult Execute(CodeActivityContext context);
     }
 }

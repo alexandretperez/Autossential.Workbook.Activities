@@ -8,11 +8,11 @@
   </Folder>
   <Project Path="Autossential.Workbook.Activities.Packaging/Autossential.Workbook.Activities.Packaging.csproj">
     <Platform Solution="Debug|x64" Project="x64" />
-    <Build Solution="*|x64" Project="false" />
+    <Build Solution="Release|x64" Project="false" />
   </Project>
   <Project Path="Autossential.Workbook.Activities.Tests/Autossential.Workbook.Activities.Tests.csproj">
     <Platform Solution="Debug|x64" Project="x64" />
-    <Build Solution="*|x64" Project="false" />
+    <Build Solution="Release|x64" Project="false" />
   </Project>
   <Project Path="Autossential.Workbook.Activities/Autossential.Workbook.Activities.csproj">
     <Platform Solution="*|x64" Project="x64" />

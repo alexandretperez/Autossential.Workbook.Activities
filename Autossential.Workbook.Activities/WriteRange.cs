@@ -17,13 +17,13 @@ namespace Autossential.Workbook.Activities
         protected override void Execute(CodeActivityContext context)
         {
             var sheetName = SheetName.Get(context);
-            var startingCell = StartingCell.Get(context) ?? "A1";
-            
-            if (startingCell.Length == 0)
-                startingCell = "A1";
+            var startingCell = StartingCell.Get(context);
 
             if (string.IsNullOrEmpty(sheetName))
                 throw new InvalidOperationException(ResourcesFn.Common_ErrorMsg_ValueNotSuppliedFormat(Resources.WriteRange_SheetName_DisplayName));
+
+            if (string.IsNullOrEmpty(startingCell))
+                startingCell = "A1";
 
             var data = DataTable.Get(context);
             context.GetWorkbookProcessor().WriteRange(sheetName, data, startingCell, AddHeaders);

@@ -6,6 +6,25 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     internal class WriteCellTests : BaseTests
     {
         [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task WriteCell_WriteFormula_WhenDetected(string extension)
+        {
+            var (processor, filePath) = NewFile(extension);
+            processor.WriteCell("Sheet1", "A1", 1);
+            processor.WriteCell("Sheet1", "B1", 1);
+            processor.WriteCell("Sheet1", "C1", "=A1+B1");
+            processor.Save();
+
+            processor = WorkbookProcessorFactory.OpenOrCreate(filePath);
+            var value = processor.ReadCell("Sheet1", "C1");
+            if (extension == ".xlsx")
+                await Assert.That(value).IsNull();
+            else
+                await Assert.That(value).IsEqualTo("=A1+B1");
+        }
+
+        [Test]
 
         [Arguments(".xls", "A1", "Hello")]
         [Arguments(".xls", "B2", 1)]

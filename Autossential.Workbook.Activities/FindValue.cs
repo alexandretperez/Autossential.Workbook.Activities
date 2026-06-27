@@ -19,11 +19,14 @@ namespace Autossential.Workbook.Activities
         protected override void Execute(CodeActivityContext context)
         {
             var sheetName = SheetName.Get(context);
-            var range = Range.Get(context) ?? "A1";
+            var range = Range.Get(context);
             var value = Value.Get(context);
 
             if (string.IsNullOrEmpty(sheetName))
                 throw new InvalidOperationException(ResourcesFn.Common_ErrorMsg_ValueNotSuppliedFormat(Resources.FindValue_SheetName_DisplayName));
+
+            if (string.IsNullOrEmpty(range))
+                range = "A1";
 
             var (address, col, row) = context.GetWorkbookProcessor().FindValue(sheetName, range, value);
 
