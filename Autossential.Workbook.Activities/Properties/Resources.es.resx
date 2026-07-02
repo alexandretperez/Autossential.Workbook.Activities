@@ -189,10 +189,10 @@
     <value>Recuento de columnas</value>
     <comment>property name</comment>
   </data>
-  <data name="GetRangeSize_Description" xml:space="preserve">
-    <value>Obtiene el número de filas y columnas en uso en un rango especificado del libro.</value>
-    <comment>activity description</comment>
-  </data>
+	<data name="GetRangeSize_Description" xml:space="preserve">
+  <value>Devuelve las dimensiones delimitadoras (filas y columnas) del rango especificado, recortando solo las filas y columnas vacías finales.</value>
+  <comment>activity description</comment>
+</data>
   <data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>Obtener tamaño del rango</value>
     <comment>activity name</comment>

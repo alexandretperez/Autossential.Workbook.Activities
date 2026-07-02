@@ -25,23 +25,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
             workbook.Write(WorkbookStream, true);
         }
 
-        protected override CellReference ResolveCell(string address)
-        {
-            var cellRef = new CellReference(address);
-            if (!cellRef.IsValidForBIFF8())
-                throw new InvalidOperationException("The specified cell address is not valid for Excel 97 - Excel 2003 (BIFF8) format.");
+        protected override CellReference ResolveCell(string address) => new BIFF8CellReference(address);
 
-            return cellRef;
-        }
-
-        protected override RangeReference ResolveRange(string range)
-        {
-            var rangeRef = new RangeReference(range, CellReference.BIFF8_MAX_REFERENCE);
-            if (!rangeRef.IsValidForBIFF8())
-                throw new InvalidOperationException("The specified range is not valid for Excel 97 - Excel 2003 (BIFF8) format.");
-
-            return rangeRef;
-        }
+        protected override RangeReference ResolveRange(string range) => new BIFF8RangeReference(range);
 
         public override void WriteCell(string sheetName, string address, object value)
         {
