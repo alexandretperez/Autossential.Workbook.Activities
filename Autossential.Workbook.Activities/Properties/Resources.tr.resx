@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="ActivityCategories_Workbook" xml:space="preserve">
+  <data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
     <value>Autossential.Workbook.Cell</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Range" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Range" xml:space="preserve">
     <value>Autossential.Workbook.Range</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
     <value>Autossential.Workbook.Sheet</value>
     <comment>category</comment>
   </data>
@@ -190,7 +190,7 @@
     <comment>property name</comment>
   </data>
   <data name="GetRangeSize_Description" xml:space="preserve">
-    <value>Belirtilen çalışma kitabı aralığında kullanımdaki satır ve sütun sayısını alır.</value>
+    <value>Belirtilen aralığın sınırlayıcı boyutlarını (satırlar ve sütunlar) döndürür, yalnızca sondaki boş satırları ve sütunları kırpar.</value>
     <comment>activity description</comment>
   </data>
   <data name="GetRangeSize_DisplayName" xml:space="preserve">
@@ -561,70 +561,68 @@
     <value>Değeri içeren hücrenin 1 tabanlı sütun numarasını döndürür (ör. B4 hücresi için 2).</value>
     <comment>property description</comment>
   </data>
-	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+  <data name="DeleteSheet_DisplayName" xml:space="preserve">
     <value>Sayfayı sil</value>
     <comment>activity name</comment>
-</data>
-	<data name="DeleteSheet_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_Description" xml:space="preserve">
     <value>Belirtilen bir çalışma sayfasını çalışma kitabından siler. Çalışma kitabından istenmeyen sayfaları kaldırmanız gerektiğinde bu etkinliği kullanın.</value>
     <comment>activity description</comment>
-</data>
-	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Sayfa adı</value>
     <comment>property name</comment>
-</data>
-	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_Description" xml:space="preserve">
     <value>Silinecek çalışma sayfasının adı. Bu özellik zorunludur ve sayfa çalışma kitabında mevcut olmalıdır.</value>
     <comment>property description</comment>
-</data>
-
-	<data name="RenameSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_DisplayName" xml:space="preserve">
     <value>Sayfayı yeniden adlandır</value>
     <comment>activity name</comment>
-</data>
-	<data name="RenameSheet_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_Description" xml:space="preserve">
     <value>Çalışma kitabındaki mevcut bir çalışma sayfasını yeniden adlandırır. Belirli bir sayfanın adını değiştirmeniz gerektiğinde bu etkinliği kullanın.</value>
     <comment>activity description</comment>
-</data>
-	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Sayfa adı</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_Description" xml:space="preserve">
     <value>Yeniden adlandırılacak çalışma sayfasının geçerli adı. Bu özellik zorunludur ve sayfa çalışma kitabında mevcut olmalıdır.</value>
     <comment>property description</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
     <value>Yeni sayfa adı</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
     <value>Çalışma sayfası için yeni ad. Bu özellik zorunludur ve çalışma kitabı içinde benzersiz olmalıdır.</value>
     <comment>property description</comment>
-</data>
-
-	<data name="InsertSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_DisplayName" xml:space="preserve">
     <value>Sayfa ekle</value>
     <comment>activity name</comment>
-</data>
-	<data name="InsertSheet_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Description" xml:space="preserve">
     <value>Belirtilen ad ve isteğe bağlı konum ile çalışma kitabına yeni bir çalışma sayfası ekler. Çalışma kitabına yeni bir sayfa eklemeniz gerektiğinde bu etkinliği kullanın.</value>
     <comment>activity description</comment>
-</data>
-	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Sayfa adı</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_Description" xml:space="preserve">
     <value>Eklenecek yeni çalışma sayfasının adı. Bu özellik zorunludur ve çalışma kitabı içinde benzersiz olmalıdır.</value>
     <comment>property description</comment>
-</data>
-	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_DisplayName" xml:space="preserve">
     <value>Konum</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_Position_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_Description" xml:space="preserve">
     <value>Yeni sayfanın ekleneceği isteğe bağlı dizin konumu (1 tabanlı). Sağlanmazsa veya 1'den küçükse, sayfa çalışma kitabının sonuna eklenir.</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

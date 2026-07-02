@@ -1,35 +1,33 @@
 ﻿namespace Autossential.Workbook.Activities.Core
 {
-    internal readonly struct CellReference : IEquatable<CellReference>
+    internal abstract record class CellReference
     {
-        public const int BIFF8_MAX_COLS = 256;
-        public const string BIFF8_MAX_REFERENCE = "IV65536";
-        public const int BIFF8_MAX_ROWS = 65_536;
-        public const int OPENXML_MAX_COLS = 16_384;
-        public const string OPENXML_MAX_REFERENCE = "XFD1048576";
-        public const int OPENXML_MAX_ROWS = 1_048_576;
-
-        public CellReference(int col, int row)
+        private void Initialize(int col, int row)
         {
-            if (col < 1) throw new ArgumentOutOfRangeException(nameof(col), "The 'col' argument must be greater than zero.");
-            if (row < 1) throw new ArgumentOutOfRangeException(nameof(col), "The 'row' argument must be greater than zero.");
+            var (maxCol, maxRow) = MaxReference();
+            if (col < 1 || col > maxCol)
+                throw new ArgumentOutOfRangeException(nameof(col), "The 'col' is out of range for this workbook type.");
+
+            if (row < 1 || row > maxRow)
+                throw new ArgumentOutOfRangeException(nameof(row), "The 'row' is out of range for this workbook type.");
 
             Col = col;
             Row = row;
         }
 
-        public CellReference(string address)
+        protected CellReference(int col, int row) => Initialize(col, row);
+        protected CellReference(string address, int maxRows)
         {
-            var (col, row, inferredRow) = Parse(address);
-            Col = col;
-            Row = row;
-            _hasInferredRow = inferredRow;
+            var (col, row, inferredRow) = Parse(address, maxRows);
+            Initialize(col, row);
+            _isRowInferred = inferredRow;
         }
 
-        public int Col { get; }
-        public bool IsValidForBIFF8() => Col > 0 && Col <= BIFF8_MAX_COLS && Row > 0 && Row <= BIFF8_MAX_ROWS;
-        public bool IsValidForOpenXml() => Col > 0 && Col <= OPENXML_MAX_COLS && Row > 0 && Row <= OPENXML_MAX_ROWS;
-        public int Row { get; }
+        public int Col { get; private set; }
+        public int Row { get; private set; }
+
+        private readonly bool _isRowInferred;
+        public bool IsRowInferred() => _isRowInferred;
         public static string GetColumnName(int col)
         {
             if (col <= 0)
@@ -47,29 +45,8 @@
 
             return new string(buffer[index..]);
         }
-
-        public static bool operator !=(CellReference left, CellReference right) => !left.Equals(right);
-
-        public static bool operator ==(CellReference left, CellReference right) => left.Equals(right);
-
-        public static bool operator >(CellReference left, CellReference right) => left.Col > right.Col || (left.Col == right.Col && left.Row > right.Row);
-        public static bool operator <(CellReference left, CellReference right) => left.Col < right.Col || (left.Col == right.Col && left.Row < right.Row);
-
-        public static bool operator >=(CellReference left, CellReference right) => left > right || left == right;
-        public static bool operator <=(CellReference left, CellReference right) => left < right || left == right;
-
-        public bool Equals(CellReference other) => Row == other.Row && Col == other.Col;
-        public override bool Equals(object obj) => obj is CellReference other && Equals(other);
-
-        public override readonly int GetHashCode() =>
-             HashCode.Combine(Col, Row);
-
-        public bool HasInferredRow() => _hasInferredRow;
-
-        public override readonly string ToString() => $"{GetColumnName(Col)}{Row}";
-
-        private bool _hasInferredRow { get; }
-        private static (int col, int row, bool hasInferredRow) Parse(string address)
+        public string ToAddress() => $"{GetColumnName(Col)}{Row}";
+        public static (int col, int row, bool inferredRow) Parse(string address, int maxRows)
         {
             if (string.IsNullOrEmpty(address))
                 return (0, 0, false);
@@ -105,7 +82,7 @@
                 i++;
 
             if (i >= span.Length)
-                return (col, 1, true);
+                return (col, maxRows, true);
 
             var row = 0;
 
@@ -122,5 +99,13 @@
 
             return row > 0 ? (col, row, false) : (0, 0, false);
         }
+
+        public static bool operator >(CellReference left, CellReference right) => left.Col > right.Col || (left.Col == right.Col && left.Row > right.Row);
+        public static bool operator <(CellReference left, CellReference right) => left.Col < right.Col || (left.Col == right.Col && left.Row < right.Row);
+        public static bool operator >=(CellReference left, CellReference right) => left > right || left == right;
+        public static bool operator <=(CellReference left, CellReference right) => left < right || left == right;
+        public override int GetHashCode() => HashCode.Combine(Col, Row);
+        public virtual bool Equals(CellReference other) => other is not null && Col == other.Col && Row == other.Row;
+        protected abstract (int col, int row) MaxReference();
     }
 }

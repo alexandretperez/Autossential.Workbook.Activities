@@ -1,5 +1,6 @@
 ﻿using Autossential.Workbook.Activities.Extensions;
 using ExcelDataReader;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -493,8 +494,10 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
                         if (cellValue == value || cellValue?.ToString() == value?.ToString())
                         {
-                            var cell = new CellReference(i + 1, reader.Depth + 1);
-                            return (cell.ToString(), cell.Col, cell.Row);
+                            int col = i + 1;
+                            int row = reader.Depth + 1;
+                            var address = $"{CellReference.GetColumnName(col)}{row}";
+                            return (address, col, row);
                         }
                     }
                 }

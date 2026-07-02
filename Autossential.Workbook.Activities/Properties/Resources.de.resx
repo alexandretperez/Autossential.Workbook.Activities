@@ -189,10 +189,10 @@
     <value>Spaltenanzahl</value>
     <comment>property name</comment>
   </data>
-  <data name="GetRangeSize_Description" xml:space="preserve">
-    <value>Ermittelt die Anzahl der verwendeten Zeilen und Spalten in einem bestimmten Arbeitsmappenbereich.</value>
-    <comment>activity description</comment>
-  </data>
+	<data name="GetRangeSize_Description" xml:space="preserve">
+  <value>Gibt die Begrenzungsabmessungen (Zeilen und Spalten) des angegebenen Bereichs zurück und entfernt dabei nur nachfolgende leere Zeilen und Spalten.</value>
+  <comment>activity description</comment>
+</data>
   <data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>Bereichsgröße abrufen</value>
     <comment>activity name</comment>

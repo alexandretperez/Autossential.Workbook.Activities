@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="ActivityCategories_Workbook" xml:space="preserve">
+  <data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
     <value>Autossential.Workbook.Cell</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Range" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Range" xml:space="preserve">
     <value>Autossential.Workbook.Range</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
     <value>Autossential.Workbook.Sheet</value>
     <comment>category</comment>
   </data>
@@ -190,7 +190,7 @@
     <comment>property name</comment>
   </data>
   <data name="GetRangeSize_Description" xml:space="preserve">
-    <value>指定されたワークブック範囲で使用中の行数と列数を取得します。</value>
+    <value>指定された範囲の境界寸法（行と列）を返します。末尾の空の行と列のみをトリミングします。</value>
     <comment>activity description</comment>
   </data>
   <data name="GetRangeSize_DisplayName" xml:space="preserve">
@@ -561,70 +561,68 @@
     <value>値を含むセルの1から始まる列番号を返します（例：セルB4の場合は2）。</value>
     <comment>property description</comment>
   </data>
-	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+  <data name="DeleteSheet_DisplayName" xml:space="preserve">
     <value>シートの削除</value>
     <comment>activity name</comment>
-</data>
-	<data name="DeleteSheet_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_Description" xml:space="preserve">
     <value>指定されたワークシートをワークブックから削除します。ワークブックから不要なシートを削除する必要がある場合に、このアクティビティを使用します。</value>
     <comment>activity description</comment>
-</data>
-	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
-</data>
-	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_Description" xml:space="preserve">
     <value>削除するワークシートの名前。このプロパティは必須であり、シートはワークブック内に存在している必要があります。</value>
     <comment>property description</comment>
-</data>
-
-	<data name="RenameSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_DisplayName" xml:space="preserve">
     <value>シート名の変更</value>
     <comment>activity name</comment>
-</data>
-	<data name="RenameSheet_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_Description" xml:space="preserve">
     <value>ワークブック内の既存のワークシートの名前を変更します。特定のシートの名前を変更する必要がある場合に、このアクティビティを使用します。</value>
     <comment>activity description</comment>
-</data>
-	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_Description" xml:space="preserve">
     <value>名前を変更するワークシートの現在の名前。このプロパティは必須であり、シートはワークブック内に存在している必要があります。</value>
     <comment>property description</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
     <value>新しいシート名</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
     <value>ワークシートの新しい名前。このプロパティは必須であり、ワークブック内で一意である必要があります。</value>
     <comment>property description</comment>
-</data>
-
-	<data name="InsertSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_DisplayName" xml:space="preserve">
     <value>シートの挿入</value>
     <comment>activity name</comment>
-</data>
-	<data name="InsertSheet_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Description" xml:space="preserve">
     <value>指定された名前とオプションの位置で新しいワークシートをワークブックに挿入します。ワークブックに新しいシートを追加する必要がある場合に、このアクティビティを使用します。</value>
     <comment>activity description</comment>
-</data>
-	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
     <value>シート名</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_Description" xml:space="preserve">
     <value>挿入する新しいワークシートの名前。このプロパティは必須であり、ワークブック内で一意である必要があります。</value>
     <comment>property description</comment>
-</data>
-	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_DisplayName" xml:space="preserve">
     <value>位置</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_Position_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_Description" xml:space="preserve">
     <value>新しいシートが挿入されるオプションのインデックス位置（1から始まる）。指定されないか1未満の場合は、シートはワークブックの末尾に追加されます。</value>
     <comment>property description</comment>
-</data>
+  </data>
 </root>

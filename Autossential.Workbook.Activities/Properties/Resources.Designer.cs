@@ -385,7 +385,7 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Retrieves the number of rows and columns in use in a specified workbook range..
+        ///   Looks up a localized string similar to Returns the bounding dimensions (rows and columns) of the specified range, trimming only trailing empty rows and columns..
         /// </summary>
         public static string GetRangeSize_Description {
             get {

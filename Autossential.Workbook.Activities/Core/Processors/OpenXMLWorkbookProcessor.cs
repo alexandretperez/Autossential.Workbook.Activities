@@ -2,7 +2,6 @@
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using NPOI.XSSF.Streaming;
 using System.Data;
 using System.Globalization;
 
@@ -16,24 +15,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
             return SpreadsheetDocument.Open(WorkbookStream, true);
         }
 
-        protected override CellReference ResolveCell(string address)
-        {
-            var cellRef = new CellReference(address);
-            if (!cellRef.IsValidForOpenXml())
-                throw new InvalidOperationException("The specified cell address is not valid for Excel 97 - Excel 2003 (BIFF8) format.");
+        protected override CellReference ResolveCell(string address) => new OpenXmlCellReference(address);
 
-            return cellRef;
-        }
-
-        protected override RangeReference ResolveRange(string range)
-        {
-            var rangeRef = new RangeReference(range, CellReference.OPENXML_MAX_REFERENCE);
-
-            if (!rangeRef.IsValidForOpenXml())
-                throw new InvalidOperationException("The specified range is not valid for Excel 2007 format.");
-
-            return rangeRef;
-        }
+        protected override RangeReference ResolveRange(string range) => new OpenXmlRangeReference(range);
 
         public override void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders)
         {
