@@ -372,9 +372,19 @@ namespace Autossential.Workbook.Activities.Core.Processors
             if (_lastSaveHash == computedHash)
                 return;
 
-            SaveInternal(_lastSaveHash);
+            SaveInternal(computedHash);
             _lastSaveHash = computedHash;
             WorkbookHash = computedHash;
+        }
+        private void SaveInternal(string computedHash)
+        {
+            if (computedHash != WorkbookHash)
+            {
+                WorkbookStream.Position = 0;
+                using var fs = File.Create(FilePath);
+                WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
+                WorkbookHash = computedHash;
+            }
         }
 
         public abstract void WriteCell(string sheetName, string address, object value);
@@ -437,17 +447,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
         private const string EMPTY_COLUMN_NAME_PREFIX = "Col";
         private string _lastSaveHash = null;
         private IExcelDataReader _reader;
-
-        private void SaveInternal(string computedHash)
-        {
-            if (computedHash != WorkbookHash)
-            {
-                WorkbookStream.Position = 0;
-                using var fs = File.Create(FilePath);
-                WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
-                WorkbookHash = computedHash;
-            }
-        }
 
         private string _defaultSheetName;
 
@@ -513,5 +512,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
         public abstract void InsertSheet(string sheetName, int? position);
 
         public abstract void RenameSheet(string fromSheetName, string toSheetName);
+        public abstract void FreezePanes(string sheetName, int colsToFreeze, int rowsToFreeze);
+        public abstract void HideSheet(string sheetName);
+        public abstract void UnhideSheet(string sheetName);
     }
 }

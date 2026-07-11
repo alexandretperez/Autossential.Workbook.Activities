@@ -1,5 +1,9 @@
 ﻿using Autossential.Workbook.Activities.Core;
 using DocumentFormat.OpenXml.Office2016.Drawing.Command;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Tests.Unit
@@ -601,6 +605,76 @@ namespace Autossential.Workbook.Activities.Tests.Unit
 
             await Assert.That(readData.Rows[2].ItemArray.Cast<string>())
                 .IsEquivalentTo(["C1R10 C1R11", "C2R11 C2R12", "C3R10 C3R11", "C4R10 C4R11"]);
+        }
+
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task HideUnhide_Sheets_Verify(string extension)
+        {
+            var (processor, file) = NewFile(extension);
+            processor.InsertSheet("Sheet2");
+            processor.InsertSheet("Sheet3");
+            processor.HideSheet("Sheet2");
+            processor.Save();
+            
+            var info = WorkbookInspector.Inspect(file, "Sheet2");
+            await Assert.That(info.IsVisible).IsFalse();
+
+            processor.UnhideSheet("Sheet2");
+            processor.Save();
+
+            info = WorkbookInspector.Inspect(file, "Sheet2");
+            await Assert.That(info.IsVisible).IsTrue();
+        }
+
+
+        [Test]
+        public async Task FreezePanes_Xlsx_Verify()
+        {
+            var (processor, file) = NewFile(".xlsx");
+            var table = TableUtils.Generate(10, 10);
+            processor.WriteRange("Sheet1", table, "A1", true);
+
+            processor.FreezePanes("Sheet1", 2, 2);
+            processor.Save();
+
+            var info = WorkbookInspector.Inspect(file, "Sheet1");
+            await Assert.That(info.IsFrozen).IsTrue();
+            await Assert.That(info.ColsFrozen).IsEqualTo(2);
+            await Assert.That(info.RowsFrozen).IsEqualTo(2);
+
+            processor.FreezePanes("Sheet1", 0, 0);
+            processor.Save();
+
+            info = WorkbookInspector.Inspect(file, "Sheet1");
+            await Assert.That(info.IsFrozen).IsFalse();
+            await Assert.That(info.ColsFrozen).IsEqualTo(0);
+            await Assert.That(info.RowsFrozen).IsEqualTo(0);
+        }
+
+        [Test]
+        public async Task FreezePanes_Xls_Verify()
+        {
+            var (processor, file) = NewFile(".xls");
+            var table = TableUtils.Generate(10, 10);
+            processor.WriteRange("Sheet1", table, "A1", true);
+
+            processor.FreezePanes("Sheet1", 2, 2);
+            processor.Save();
+
+            var info = WorkbookInspector.Inspect(file, "Sheet1");
+            await Assert.That(info.IsFrozen).IsTrue();
+            await Assert.That(info.ColsFrozen).IsEqualTo(2);
+            await Assert.That(info.RowsFrozen).IsEqualTo(2);
+
+            processor.FreezePanes("Sheet1", 0, 0);
+            processor.Save();
+
+            info = WorkbookInspector.Inspect(file, "Sheet1");
+            await Assert.That(info.IsFrozen).IsFalse();
+            await Assert.That(info.ColsFrozen).IsEqualTo(0);
+            await Assert.That(info.RowsFrozen).IsEqualTo(0);
         }
     }
 }
