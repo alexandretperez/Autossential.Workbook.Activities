@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="ActivityCategories_Workbook" xml:space="preserve">
+  <data name="ActivityCategories_Workbook" xml:space="preserve">
     <value>Autossential.Workbook</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Cell" xml:space="preserve">
     <value>Autossential.Workbook.Cell</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Range" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Range" xml:space="preserve">
     <value>Autossential.Workbook.Range</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
     <value>Autossential.Workbook.Sheet</value>
     <comment>category</comment>
   </data>
@@ -189,10 +189,10 @@
     <value>Recuento de columnas</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_Description" xml:space="preserve">
-  <value>Devuelve las dimensiones delimitadoras (filas y columnas) del rango especificado, recortando solo las filas y columnas vacías finales.</value>
-  <comment>activity description</comment>
-</data>
+  <data name="GetRangeSize_Description" xml:space="preserve">
+    <value>Devuelve las dimensiones delimitadoras (filas y columnas) del rango especificado, recortando solo las filas y columnas vacías finales.</value>
+    <comment>activity description</comment>
+  </data>
   <data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>Obtener tamaño del rango</value>
     <comment>activity name</comment>
@@ -561,70 +561,124 @@
     <value>Devuelve el número de columna basado en 1 de la celda que contiene el valor (por ejemplo, 2 para la celda B4).</value>
     <comment>property description</comment>
   </data>
-	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+  <data name="DeleteSheet_DisplayName" xml:space="preserve">
     <value>Eliminar hoja</value>
     <comment>activity name</comment>
-</data>
-	<data name="DeleteSheet_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_Description" xml:space="preserve">
     <value>Elimina una hoja de trabajo especificada del libro de trabajo. Utilice esta actividad cuando necesite eliminar hojas no deseadas del libro de trabajo.</value>
     <comment>activity description</comment>
-</data>
-	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Nombre de la hoja</value>
     <comment>property name</comment>
-</data>
-	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_Description" xml:space="preserve">
     <value>Nombre de la hoja de trabajo que se va a eliminar. Esta propiedad es obligatoria y la hoja debe existir en el libro de trabajo.</value>
     <comment>property description</comment>
-</data>
-
-	<data name="RenameSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_DisplayName" xml:space="preserve">
     <value>Cambiar nombre de hoja</value>
     <comment>activity name</comment>
-</data>
-	<data name="RenameSheet_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_Description" xml:space="preserve">
     <value>Cambia el nombre de una hoja de trabajo existente en el libro de trabajo. Utilice esta actividad cuando necesite cambiar el nombre de una hoja específica.</value>
     <comment>activity description</comment>
-</data>
-	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Nombre de la hoja</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_Description" xml:space="preserve">
     <value>Nombre actual de la hoja de trabajo que se va a renombrar. Esta propiedad es obligatoria y la hoja debe existir en el libro de trabajo.</value>
     <comment>property description</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
     <value>Nuevo nombre de la hoja</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
     <value>Nuevo nombre para la hoja de trabajo. Esta propiedad es obligatoria y debe ser único dentro del libro de trabajo.</value>
     <comment>property description</comment>
-</data>
-
-	<data name="InsertSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_DisplayName" xml:space="preserve">
     <value>Insertar hoja</value>
     <comment>activity name</comment>
-</data>
-	<data name="InsertSheet_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Description" xml:space="preserve">
     <value>Inserta una nueva hoja de trabajo en el libro de trabajo con el nombre y la posición opcional especificados. Utilice esta actividad cuando necesite añadir una nueva hoja al libro de trabajo.</value>
     <comment>activity description</comment>
-</data>
-	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Nombre de la hoja</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_Description" xml:space="preserve">
     <value>Nombre de la nueva hoja de trabajo que se va a insertar. Esta propiedad es obligatoria y debe ser única dentro del libro de trabajo.</value>
     <comment>property description</comment>
-</data>
-	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_DisplayName" xml:space="preserve">
     <value>Posición</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_Position_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_Description" xml:space="preserve">
     <value>Posición de índice opcional donde se insertará la nueva hoja (base 1). Si no se proporciona o es menor que 1, la hoja se añade al final del libro de trabajo.</value>
     <comment>property description</comment>
+  </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Oculta o muestra una hoja de cálculo especificada en el libro de trabajo.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Ocultar/Mostrar hoja</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo que se va a ocultar o mostrar.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Especifica la acción a realizar en la hoja de cálculo. Seleccione Ocultar para hacer la hoja invisible, o Mostrar para hacerla visible nuevamente.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Acción</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Inmoviliza filas y columnas especificadas en una hoja de cálculo, manteniéndolas visibles al desplazarse por el resto de la hoja.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Inmovilizar paneles</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo donde se inmovilizarán los paneles.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Especifica el número de columnas a inmovilizar desde la izquierda. Si se establece en 0, no se inmovilizará ninguna columna.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Columnas a inmovilizar</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Especifica el número de filas a inmovilizar desde la parte superior. Si se establece en 0, no se inmovilizará ninguna fila.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Filas a inmovilizar</value>
+  <comment>property name</comment>
 </data>
 </root>

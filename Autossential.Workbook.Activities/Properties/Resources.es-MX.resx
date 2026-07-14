@@ -625,4 +625,60 @@
     <value>Posición de índice opcional donde se insertará la nueva hoja (base 1). Si no se proporciona o es menor que 1, la hoja se añade al final del libro de trabajo.</value>
     <comment>property description</comment>
   </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Oculta o muestra una hoja de cálculo especificada en el libro de trabajo.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Ocultar/Mostrar hoja</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo que se va a ocultar o mostrar.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Especifica la acción a realizar en la hoja de cálculo. Seleccione Ocultar para hacer la hoja invisible, o Mostrar para hacerla visible nuevamente.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Acción</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Inmoviliza filas y columnas especificadas en una hoja de cálculo, manteniéndolas visibles al desplazarse por el resto de la hoja.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Inmovilizar paneles</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo donde se inmovilizarán los paneles.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Especifica el número de columnas a inmovilizar desde la izquierda. Si se establece en 0, no se inmovilizará ninguna columna.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Columnas a inmovilizar</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Especifica el número de filas a inmovilizar desde la parte superior. Si se establece en 0, no se inmovilizará ninguna fila.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Filas a inmovilizar</value>
+  <comment>property name</comment>
+</data>
 </root>

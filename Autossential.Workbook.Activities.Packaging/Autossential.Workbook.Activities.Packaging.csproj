@@ -13,7 +13,7 @@
 		<VersionBuild>$([System.DateTime]::UtcNow.DayOfYear.ToString("F0"))</VersionBuild>
 		<VersionRevision>$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString("F0"))</VersionRevision>
 		<PackageId>Autossential.Workbook.Activities</PackageId>
-		<VersionPrefix>1.2.2</VersionPrefix>
+		<VersionPrefix>1.3.0</VersionPrefix>
 		<VersionSuffix Condition="'$(Configuration)' == 'Debug'">$(VersionBuild)-preview.$(VersionRevision)</VersionSuffix>
 		<Authors>UiPath</Authors>
 		<PackageTags>UiPathActivities</PackageTags>

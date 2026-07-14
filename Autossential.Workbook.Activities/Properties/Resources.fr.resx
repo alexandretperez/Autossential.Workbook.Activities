@@ -625,4 +625,60 @@
     <value>Position d'index facultative où la nouvelle feuille sera insérée (base 1). Si elle n'est pas fournie ou est inférieure à 1, la feuille est ajoutée à la fin du classeur.</value>
     <comment>property description</comment>
   </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Masque ou affiche une feuille de calcul spécifiée dans le classeur.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Masquer/Afficher la feuille</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>Le nom de la feuille de calcul à masquer ou à afficher.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Nom de la feuille</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Spécifie l'action à effectuer sur la feuille de calcul. Sélectionnez Masquer pour rendre la feuille invisible, ou Afficher pour la rendre visible à nouveau.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Action</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Fige les lignes et colonnes spécifiées dans une feuille de calcul, en les maintenant visibles lors du défilement dans le reste de la feuille.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Figer les volets</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>Le nom de la feuille de calcul dans laquelle les volets seront figés.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Nom de la feuille</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Spécifie le nombre de colonnes à figer à partir de la gauche. Si défini sur 0, aucune colonne ne sera figée.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Colonnes à figer</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Spécifie le nombre de lignes à figer à partir du haut. Si défini sur 0, aucune ligne ne sera figée.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Lignes à figer</value>
+  <comment>property name</comment>
+</data>
 </root>

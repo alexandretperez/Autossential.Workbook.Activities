@@ -625,4 +625,60 @@
     <value>Yeni sayfanın ekleneceği isteğe bağlı dizin konumu (1 tabanlı). Sağlanmazsa veya 1'den küçükse, sayfa çalışma kitabının sonuna eklenir.</value>
     <comment>property description</comment>
   </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Çalışma kitabındaki belirtilen bir çalışma sayfasını gizler veya gizliliğini kaldırır.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Sayfayı Gizle/Gizliliği Kaldır</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>Gizlenecek veya gizliliği kaldırılacak çalışma sayfasının adı.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Sayfa Adı</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Çalışma sayfasında gerçekleştirilecek eylemi belirtir. Sayfayı görünmez yapmak için Gizle'yi veya tekrar görünür yapmak için Gizliliği Kaldır'ı seçin.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Eylem</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Bir çalışma sayfasında belirtilen satır ve sütunları dondurarak, sayfanın geri kalanında gezinirken görünür kalmalarını sağlar.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Bölmeleri Dondur</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>Bölmelerin dondurulacağı çalışma sayfasının adı.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Sayfa Adı</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Soldan dondurulacak sütun sayısını belirtir. 0 olarak ayarlanırsa, hiçbir sütun dondurulmaz.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Dondurulacak Sütunlar</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Yukarıdan dondurulacak satır sayısını belirtir. 0 olarak ayarlanırsa, hiçbir satır dondurulmaz.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Dondurulacak Satırlar</value>
+  <comment>property name</comment>
+</data>
 </root>

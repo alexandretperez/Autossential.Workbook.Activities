@@ -625,4 +625,60 @@
     <value>Posição de índice opcional onde a nova folha será inserida (base 1). Se não for fornecida ou for inferior a 1, a folha é adicionada no final do livro de trabalho.</value>
     <comment>property description</comment>
   </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Oculta ou exibe uma folha de cálculo especificada no livro de trabalho.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Ocultar/Exibir folha</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>O nome da folha de cálculo a ocultar ou exibir.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da folha</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Especifica a ação a realizar na folha de cálculo. Selecione Ocultar para tornar a folha invisível, ou Exibir para torná-la visível novamente.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Ação</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Fixa linhas e colunas especificadas numa folha de cálculo, mantendo-as visíveis ao deslocar-se pelo resto da folha.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Fixar painéis</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>O nome da folha de cálculo onde os painéis serão fixados.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da folha</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Especifica o número de colunas a fixar a partir da esquerda. Se definido como 0, nenhuma coluna será fixada.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Colunas a fixar</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Especifica o número de linhas a fixar a partir do topo. Se definido como 0, nenhuma linha será fixada.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Linhas a fixar</value>
+  <comment>property name</comment>
+</data>
 </root>

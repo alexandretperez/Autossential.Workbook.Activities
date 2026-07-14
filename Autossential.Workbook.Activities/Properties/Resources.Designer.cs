@@ -367,6 +367,78 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the number of columns to freeze from the left. If set to 0, no columns will be frozen..
+        /// </summary>
+        public static string FreezePanes_ColumnsToFreeze_Description {
+            get {
+                return ResourceManager.GetString("FreezePanes_ColumnsToFreeze_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Columns to Freeze.
+        /// </summary>
+        public static string FreezePanes_ColumnsToFreeze_DisplayName {
+            get {
+                return ResourceManager.GetString("FreezePanes_ColumnsToFreeze_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freezes specified rows and columns in a worksheet, keeping them visible while scrolling through the rest of the sheet..
+        /// </summary>
+        public static string FreezePanes_Description {
+            get {
+                return ResourceManager.GetString("FreezePanes_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freeze Panes.
+        /// </summary>
+        public static string FreezePanes_DisplayName {
+            get {
+                return ResourceManager.GetString("FreezePanes_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the number of rows to freeze from the top. If set to 0, no rows will be frozen..
+        /// </summary>
+        public static string FreezePanes_RowsToFreeze_Description {
+            get {
+                return ResourceManager.GetString("FreezePanes_RowsToFreeze_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rows to Freeze.
+        /// </summary>
+        public static string FreezePanes_RowsToFreeze_DisplayName {
+            get {
+                return ResourceManager.GetString("FreezePanes_RowsToFreeze_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the worksheet where the panes will be frozen..
+        /// </summary>
+        public static string FreezePanes_SheetName_Description {
+            get {
+                return ResourceManager.GetString("FreezePanes_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string FreezePanes_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("FreezePanes_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of columns in use included in the specified range..
         /// </summary>
         public static string GetRangeSize_ColumnCount_Description {
@@ -453,6 +525,60 @@ namespace Autossential.Workbook.Activities.Properties {
         public static string GetRangeSize_SheetName_DisplayName {
             get {
                 return ResourceManager.GetString("GetRangeSize_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the action to perform on the worksheet. Select Hide to make the sheet invisible, or Unhide to make it visible again..
+        /// </summary>
+        public static string HideUnhideSheet_Action_Description {
+            get {
+                return ResourceManager.GetString("HideUnhideSheet_Action_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string HideUnhideSheet_Action_DisplayName {
+            get {
+                return ResourceManager.GetString("HideUnhideSheet_Action_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hides or unhides a specified worksheet in the workbook..
+        /// </summary>
+        public static string HideUnhideSheet_Description {
+            get {
+                return ResourceManager.GetString("HideUnhideSheet_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide/Unhide Sheet.
+        /// </summary>
+        public static string HideUnhideSheet_DisplayName {
+            get {
+                return ResourceManager.GetString("HideUnhideSheet_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the worksheet to hide or unhide..
+        /// </summary>
+        public static string HideUnhideSheet_SheetName_Description {
+            get {
+                return ResourceManager.GetString("HideUnhideSheet_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string HideUnhideSheet_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("HideUnhideSheet_SheetName_DisplayName", resourceCulture);
             }
         }
         
