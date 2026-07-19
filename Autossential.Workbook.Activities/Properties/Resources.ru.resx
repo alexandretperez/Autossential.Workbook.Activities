@@ -625,4 +625,60 @@
     <value>Необязательная позиция индекса, куда будет вставлен новый лист (начиная с 1). Если не указана или меньше 1, лист добавляется в конец книги.</value>
     <comment>property description</comment>
   </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Скрывает или отображает указанный рабочий лист в книге.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Скрыть/Показать лист</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>Имя рабочего листа, который необходимо скрыть или отобразить.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Имя листа</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Указывает действие, которое необходимо выполнить с рабочим листом. Выберите Скрыть, чтобы сделать лист невидимым, или Показать, чтобы снова сделать его видимым.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Действие</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Закрепляет указанные строки и столбцы на рабочем листе, сохраняя их видимыми при прокрутке остальной части листа.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Закрепить области</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>Имя рабочего листа, на котором будут закреплены области.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Имя листа</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Указывает количество столбцов для закрепления слева. Если установлено 0, столбцы не будут закреплены.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Закрепляемые столбцы</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Указывает количество строк для закрепления сверху. Если установлено 0, строки не будут закреплены.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Закрепляемые строки</value>
+  <comment>property name</comment>
+</data>
 </root>

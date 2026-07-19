@@ -17,6 +17,9 @@ namespace Autossential.Workbook.Activities.Core
         void DeleteSheet(string sheetName);
         void InsertSheet(string sheetName, int? position = null);
         void RenameSheet(string fromSheetName, string toSheetName);
+        void FreezePanes(string sheetName, int colsToFreeze, int rowsToFreeze);
+        void HideSheet(string sheetName);
+        void UnhideSheet(string sheetName);
         void Save();
     }
 }

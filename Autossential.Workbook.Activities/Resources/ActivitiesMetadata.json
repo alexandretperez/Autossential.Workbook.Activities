@@ -23,72 +23,6 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.DeleteSheetViewModel"
     },
     {
-      "categoryKey": "ActivityCategories_Workbook_Sheet",
-      "descriptionKey": "RenameSheet_Description",
-      "displayNameKey": "RenameSheet_DisplayName",
-      "fullName": "Autossential.Workbook.Activities.RenameSheet",
-      "iconKey": "RenameSheet.svg",
-      "properties": [
-        {
-          "category": {
-            "displayNameKey": "Categories_Input",
-            "name": "Input"
-          },
-          "displayNameKey": "RenameSheet_SheetName_DisplayName",
-          "isRequired": true,
-          "isVisible": true,
-          "name": "SheetName",
-          "tooltipKey": "RenameSheet_SheetName_Description"
-        },
-        {
-          "category": {
-            "displayNameKey": "Categories_Input",
-            "name": "Input"
-          },
-          "displayNameKey": "RenameSheet_NewSheetName_DisplayName",
-          "isRequired": true,
-          "isVisible": true,
-          "name": "NewSheetName",
-          "tooltipKey": "RenameSheet_NewSheetName_Description"
-        }
-      ],
-      "shortName": "RenameSheet",
-      "viewModelType": "Autossential.Workbook.Activities.ViewModels.RenameSheetViewModel"
-    },
-    {
-      "categoryKey": "ActivityCategories_Workbook_Sheet",
-      "descriptionKey": "InsertSheet_Description",
-      "displayNameKey": "InsertSheet_DisplayName",
-      "fullName": "Autossential.Workbook.Activities.InsertSheet",
-      "iconKey": "InsertSheet.svg",
-      "properties": [
-        {
-          "category": {
-            "displayNameKey": "Categories_Input",
-            "name": "Input"
-          },
-          "displayNameKey": "InsertSheet_SheetName_DisplayName",
-          "isRequired": true,
-          "isVisible": true,
-          "name": "SheetName",
-          "tooltipKey": "InsertSheet_SheetName_Description"
-        },
-        {
-          "category": {
-            "displayNameKey": "Categories_Input",
-            "name": "Input"
-          },
-          "displayNameKey": "InsertSheet_Position_DisplayName",
-          "isRequired": false,
-          "isVisible": true,
-          "name": "Position",
-          "tooltipKey": "InsertSheet_Position_Description"
-        }
-      ],
-      "shortName": "InsertSheet",
-      "viewModelType": "Autossential.Workbook.Activities.ViewModels.InsertSheetViewModel"
-    },
-    {
       "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "FindValue_Description",
       "displayNameKey": "FindValue_DisplayName",
@@ -166,6 +100,50 @@
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.FindValueViewModel"
     },
     {
+      "categoryKey": "ActivityCategories_Workbook_Sheet",
+      "descriptionKey": "FreezePanes_Description",
+      "displayNameKey": "FreezePanes_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.FreezePanes",
+      "iconKey": "FreezePanes.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "FreezePanes_SheetName_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "FreezePanes_SheetName_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "FreezePanes_ColumnsToFreeze_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "ColumnsToFreeze",
+          "tooltipKey": "FreezePanes_ColumnsToFreeze_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "FreezePanes_RowsToFreeze_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "RowsToFreeze",
+          "tooltipKey": "FreezePanes_RowsToFreeze_Description"
+        }
+      ],
+      "shortName": "FreezePanes",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.FreezePanesViewModel"
+    },
+    {
       "categoryKey": "ActivityCategories_Workbook_Range",
       "descriptionKey": "GetRangeSize_Description",
       "displayNameKey": "GetRangeSize_DisplayName",
@@ -219,6 +197,72 @@
       ],
       "shortName": "GetRangeSize",
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.GetRangeSizeViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook_Sheet",
+      "descriptionKey": "HideUnhideSheet_Description",
+      "displayNameKey": "HideUnhideSheet_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.HideUnhideSheet",
+      "iconKey": "HideUnhideSheet.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "HideUnhideSheet_SheetName_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "HideUnhideSheet_SheetName_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Options",
+            "name": "Options"
+          },
+          "displayNameKey": "HideUnhideSheet_Action_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "Action",
+          "tooltipKey": "HideUnhideSheet_Action_Description"
+        }
+      ],
+      "shortName": "HideUnhideSheet",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.HideUnhideSheetViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook_Sheet",
+      "descriptionKey": "InsertSheet_Description",
+      "displayNameKey": "InsertSheet_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.InsertSheet",
+      "iconKey": "InsertSheet.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "InsertSheet_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "InsertSheet_SheetName_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "InsertSheet_Position_DisplayName",
+          "isRequired": false,
+          "isVisible": true,
+          "name": "Position",
+          "tooltipKey": "InsertSheet_Position_Description"
+        }
+      ],
+      "shortName": "InsertSheet",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.InsertSheetViewModel"
     },
     {
       "categoryKey": "ActivityCategories_Workbook_Cell",
@@ -538,6 +582,39 @@
       ],
       "shortName": "ReadRow",
       "viewModelType": "Autossential.Workbook.Activities.ViewModels.ReadRowViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook_Sheet",
+      "descriptionKey": "RenameSheet_Description",
+      "displayNameKey": "RenameSheet_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.RenameSheet",
+      "iconKey": "RenameSheet.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "RenameSheet_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "RenameSheet_SheetName_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "RenameSheet_NewSheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "NewSheetName",
+          "tooltipKey": "RenameSheet_NewSheetName_Description"
+        }
+      ],
+      "shortName": "RenameSheet",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.RenameSheetViewModel"
     },
     {
       "categoryKey": "ActivityCategories_Workbook",

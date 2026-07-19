@@ -261,5 +261,38 @@ namespace Autossential.Workbook.Activities.Core.Processors
             wb.SetSheetName(sheetIndex, toSheetName);
             FlushWorkbook(wb);
         }
+
+        public override void FreezePanes(string sheetName, int colsToFreeze, int rowsToFreeze)
+        {
+            ValidateSheetName(sheetName);
+            using var wb = GetWorkbook();
+            var sheet = wb.GetSheet(sheetName);
+            if (sheet is null)
+                return;
+
+            sheet.CreateFreezePane(colsToFreeze, rowsToFreeze);
+
+            FlushWorkbook(wb);
+        }
+
+        private void ToggleSheetState(string sheetName, SheetVisibility state)
+        {
+            ValidateSheetName(sheetName);
+            using var wb = GetWorkbook();
+            var sheet = wb.GetSheet(sheetName);
+            if (sheet is null)
+                return;
+
+            var index = wb.GetSheetIndex(sheet);
+            wb.SetSheetVisibility(index, state);
+
+            FlushWorkbook(wb);
+        }
+
+        public override void HideSheet(string sheetName) => 
+            ToggleSheetState(sheetName, SheetVisibility.Hidden);
+
+        public override void UnhideSheet(string sheetName) => 
+            ToggleSheetState(sheetName, SheetVisibility.Visible);
     }
 }

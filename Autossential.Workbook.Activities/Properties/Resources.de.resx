@@ -125,11 +125,11 @@
     <value>Autossential.Workbook.Cell</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Range" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Range" xml:space="preserve">
     <value>Autossential.Workbook.Range</value>
     <comment>category</comment>
   </data>
-	<data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
+  <data name="ActivityCategories_Workbook_Sheet" xml:space="preserve">
     <value>Autossential.Workbook.Sheet</value>
     <comment>category</comment>
   </data>
@@ -189,10 +189,10 @@
     <value>Spaltenanzahl</value>
     <comment>property name</comment>
   </data>
-	<data name="GetRangeSize_Description" xml:space="preserve">
-  <value>Gibt die Begrenzungsabmessungen (Zeilen und Spalten) des angegebenen Bereichs zurück und entfernt dabei nur nachfolgende leere Zeilen und Spalten.</value>
-  <comment>activity description</comment>
-</data>
+  <data name="GetRangeSize_Description" xml:space="preserve">
+    <value>Gibt die Begrenzungsabmessungen (Zeilen und Spalten) des angegebenen Bereichs zurück und entfernt dabei nur nachfolgende leere Zeilen und Spalten.</value>
+    <comment>activity description</comment>
+  </data>
   <data name="GetRangeSize_DisplayName" xml:space="preserve">
     <value>Bereichsgröße abrufen</value>
     <comment>activity name</comment>
@@ -561,68 +561,124 @@
     <value>Gibt die 1-basierte Spaltennummer der Zelle zurück, die den Wert enthält (z. B. 2 für Zelle B4).</value>
     <comment>property description</comment>
   </data>
-	<data name="DeleteSheet_DisplayName" xml:space="preserve">
+  <data name="DeleteSheet_DisplayName" xml:space="preserve">
     <value>Blatt löschen</value>
     <comment>activity name</comment>
-</data>
-	<data name="DeleteSheet_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_Description" xml:space="preserve">
     <value>Löscht ein angegebenes Arbeitsblatt aus der Arbeitsmappe. Verwenden Sie diese Aktivität, wenn Sie nicht benötigte Blätter aus der Arbeitsmappe entfernen müssen.</value>
     <comment>activity description</comment>
-</data>
-	<data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Blattname</value>
     <comment>property name</comment>
-</data>
-	<data name="DeleteSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="DeleteSheet_SheetName_Description" xml:space="preserve">
     <value>Name des zu löschenden Arbeitsblatts. Diese Eigenschaft ist erforderlich, und das Blatt muss in der Arbeitsmappe vorhanden sein.</value>
     <comment>property description</comment>
-</data>
-	<data name="RenameSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_DisplayName" xml:space="preserve">
     <value>Blatt umbenennen</value>
     <comment>activity name</comment>
-</data>
-	<data name="RenameSheet_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_Description" xml:space="preserve">
     <value>Benennt ein vorhandenes Arbeitsblatt in der Arbeitsmappe um. Verwenden Sie diese Aktivität, wenn Sie den Namen eines bestimmten Blatts ändern müssen.</value>
     <comment>activity description</comment>
-</data>
-	<data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Blattname</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_SheetName_Description" xml:space="preserve">
     <value>Aktueller Name des umzubenennenden Arbeitsblatts. Diese Eigenschaft ist erforderlich, und das Blatt muss in der Arbeitsmappe vorhanden sein.</value>
     <comment>property description</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_DisplayName" xml:space="preserve">
     <value>Neuer Blattname</value>
     <comment>property name</comment>
-</data>
-	<data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
+  </data>
+  <data name="RenameSheet_NewSheetName_Description" xml:space="preserve">
     <value>Neuer Name für das Arbeitsblatt. Diese Eigenschaft ist erforderlich und muss innerhalb der Arbeitsmappe eindeutig sein.</value>
     <comment>property description</comment>
-</data>
-	<data name="InsertSheet_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_DisplayName" xml:space="preserve">
     <value>Blatt einfügen</value>
     <comment>activity name</comment>
-</data>
-	<data name="InsertSheet_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Description" xml:space="preserve">
     <value>Fügt ein neues Arbeitsblatt mit dem angegebenen Namen und optionaler Position in die Arbeitsmappe ein. Verwenden Sie diese Aktivität, wenn Sie der Arbeitsmappe ein neues Blatt hinzufügen müssen.</value>
     <comment>activity description</comment>
-</data>
-	<data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_DisplayName" xml:space="preserve">
     <value>Blattname</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_SheetName_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_SheetName_Description" xml:space="preserve">
     <value>Name des neuen einzufügenden Arbeitsblatts. Diese Eigenschaft ist erforderlich und muss innerhalb der Arbeitsmappe eindeutig sein.</value>
     <comment>property description</comment>
-</data>
-	<data name="InsertSheet_Position_DisplayName" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_DisplayName" xml:space="preserve">
     <value>Position</value>
     <comment>property name</comment>
-</data>
-	<data name="InsertSheet_Position_Description" xml:space="preserve">
+  </data>
+  <data name="InsertSheet_Position_Description" xml:space="preserve">
     <value>Optionale Indexposition, an der das neue Blatt eingefügt wird (1-basiert). Wenn nicht angegeben oder kleiner als 1, wird das Blatt am Ende der Arbeitsmappe hinzugefügt.</value>
     <comment>property description</comment>
+  </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Blendet ein angegebenes Arbeitsblatt in der Arbeitsmappe ein oder aus.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Blatt ein-/ausblenden</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>Der Name des Arbeitsblatts, das ein- oder ausgeblendet werden soll.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Blattname</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Gibt die Aktion an, die für das Arbeitsblatt ausgeführt werden soll. Wählen Sie Ausblenden, um das Blatt unsichtbar zu machen, oder Einblenden, um es wieder sichtbar zu machen.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Aktion</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Fixiert angegebene Zeilen und Spalten in einem Arbeitsblatt, sodass sie beim Scrollen durch den Rest des Blatts sichtbar bleiben.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Bereiche fixieren</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>Der Name des Arbeitsblatts, in dem die Bereiche fixiert werden sollen.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Blattname</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Gibt die Anzahl der Spalten an, die von links fixiert werden sollen. Bei 0 werden keine Spalten fixiert.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Zu fixierende Spalten</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Gibt die Anzahl der Zeilen an, die von oben fixiert werden sollen. Bei 0 werden keine Zeilen fixiert.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Zu fixierende Zeilen</value>
+  <comment>property name</comment>
 </data>
 </root>

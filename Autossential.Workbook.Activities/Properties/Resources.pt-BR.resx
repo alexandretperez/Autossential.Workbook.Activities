@@ -625,4 +625,60 @@
     <value>Posição de índice opcional onde a nova planilha será inserida (base 1). Se não for fornecida ou for menor que 1, a planilha é adicionada no final da pasta de trabalho.</value>
     <comment>property description</comment>
   </data>
+	<data name="HideUnhideSheet_Description" xml:space="preserve">
+  <value>Oculta ou exibe uma planilha especificada na pasta de trabalho.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="HideUnhideSheet_DisplayName" xml:space="preserve">
+  <value>Ocultar/Exibir planilha</value>
+  <comment>activity name</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_Description" xml:space="preserve">
+  <value>O nome da planilha a ocultar ou exibir.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da planilha</value>
+  <comment>property name</comment>
+</data>
+	<data name="HideUnhideSheet_Action_Description" xml:space="preserve">
+  <value>Especifica a ação a ser realizada na planilha. Selecione Ocultar para tornar a planilha invisível, ou Exibir para torná-la visível novamente.</value>
+  <comment>property description</comment>
+</data>
+	<data name="HideUnhideSheet_Action_DisplayName" xml:space="preserve">
+  <value>Ação</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_Description" xml:space="preserve">
+  <value>Congela linhas e colunas especificadas em uma planilha, mantendo-as visíveis ao rolar o restante da planilha.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="FreezePanes_DisplayName" xml:space="preserve">
+  <value>Congelar painéis</value>
+  <comment>activity name</comment>
+</data>
+	<data name="FreezePanes_SheetName_Description" xml:space="preserve">
+  <value>O nome da planilha onde os painéis serão congelados.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da planilha</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_Description" xml:space="preserve">
+  <value>Especifica o número de colunas a congelar a partir da esquerda. Se definido como 0, nenhuma coluna será congelada.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_ColumnsToFreeze_DisplayName" xml:space="preserve">
+  <value>Colunas a congelar</value>
+  <comment>property name</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_Description" xml:space="preserve">
+  <value>Especifica o número de linhas a congelar a partir do topo. Se definido como 0, nenhuma linha será congelada.</value>
+  <comment>property description</comment>
+</data>
+	<data name="FreezePanes_RowsToFreeze_DisplayName" xml:space="preserve">
+  <value>Linhas a congelar</value>
+  <comment>property name</comment>
+</data>
 </root>

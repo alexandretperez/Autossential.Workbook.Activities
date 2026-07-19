@@ -495,5 +495,97 @@ namespace Autossential.Workbook.Activities.Core.Processors
             sheet.Name = toSheetName;
             wbPart.Workbook.Save();
         }
+
+        public override void FreezePanes(string sheetName, int colsToFreeze, int rowsToFreeze)
+        {
+            ValidateSheetName(sheetName);
+
+            using var doc = GetWorkbook();
+            var wbPart = doc.WorkbookPart;
+
+            var sheet = wbPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => string.Equals(s.Name, sheetName, StringComparison.OrdinalIgnoreCase));
+            if (sheet == null)
+                return;
+
+            var wsPart = (WorksheetPart)wbPart.GetPartById(sheet.Id);
+            var worksheet = wsPart.Worksheet;
+            var sheetViews = worksheet.GetFirstChild<SheetViews>();
+            if (sheetViews is null)
+            {
+                sheetViews = new SheetViews();
+                worksheet.InsertAt(sheetViews, 0);
+            }
+
+            var sheetView = sheetViews.GetFirstChild<SheetView>();
+            if (sheetView is null)
+            {
+                sheetView = new SheetView { WorkbookViewId = 0 };
+                sheetViews.Append(sheetView);
+            }
+
+            sheetView.RemoveAllChildren<Pane>();
+            sheetView.RemoveAllChildren<Selection>();
+
+            var freezeCols = colsToFreeze > 0;
+            var freezeRows = rowsToFreeze > 0;
+
+            if (!freezeCols && !freezeRows)
+            {
+                worksheet.Save();
+                return;
+            }
+
+            var topLeftCell = new OpenXmlCellReference(colsToFreeze + 1, rowsToFreeze + 1).ToAddress();
+
+            var activePane = (freezeCols, freezeRows) switch
+            {
+                (true, true) => PaneValues.BottomRight,
+                (false, true) => PaneValues.BottomLeft,
+                (true, false) => PaneValues.TopRight,
+                _ => PaneValues.TopLeft
+            };
+
+            var pane = new Pane
+            {
+                HorizontalSplit = colsToFreeze,
+                VerticalSplit = rowsToFreeze,
+                TopLeftCell = topLeftCell,
+                ActivePane = activePane,
+                State = PaneStateValues.Frozen
+            };
+
+            sheetView.Append(pane);
+            sheetView.Append(new Selection
+            {
+                Pane = activePane,
+                ActiveCell = topLeftCell,
+                SequenceOfReferences = new ListValue<StringValue>
+                {
+                    InnerText = topLeftCell
+                }
+            });
+
+            worksheet.Save();
+        }
+
+        public override void HideSheet(string sheetName) => 
+            ToggleSheetState(sheetName, SheetStateValues.Hidden);
+
+        public override void UnhideSheet(string sheetName) => 
+            ToggleSheetState(sheetName, SheetStateValues.Visible);
+
+        private void ToggleSheetState(string sheetName, SheetStateValues state)
+        {
+            ValidateSheetName(sheetName);
+            using var doc = GetWorkbook();
+            var wbPart = doc.WorkbookPart;
+            var sheets = wbPart.Workbook.Sheets;
+            foreach (Sheet sheet in sheets.Cast<Sheet>())
+            {
+                if (string.Equals(sheet.Name, sheetName, StringComparison.OrdinalIgnoreCase))
+                    sheet.State = state;
+            }
+            wbPart.Workbook.Save();
+        }
     }
 }

@@ -2,15 +2,16 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net6.0;net6.0-windows;net8.0;net8.0-windows</TargetFrameworks>
+		<TargetFrameworks>net8.0;net8.0-windows</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<LangVersion>14.0</LangVersion>
 		<PackageId>Autossential.Workbook</PackageId>
 		<AcceptNPOIOSMFLicense>true</AcceptNPOIOSMFLicense>
 		<Platforms>AnyCPU;x64</Platforms>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows' Or '$(TargetFramework)' == 'net8.0-windows'">
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
 		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	
@@ -18,7 +19,9 @@
 		<None Remove="Resources\ActivitiesMetadata.json" />
 		<None Remove="Resources\Icons\DeleteSheet.svg" />
 		<None Remove="Resources\Icons\FindValue.svg" />
+		<None Remove="Resources\Icons\FreezePanes.svg" />
 		<None Remove="Resources\Icons\GetRangeSize.svg" />
+		<None Remove="Resources\Icons\HideUnhideSheet.svg" />
 		<None Remove="Resources\Icons\InsertSheet.svg" />
 		<None Remove="Resources\Icons\ReadCell.svg" />
 		<None Remove="Resources\Icons\ReadColumn.svg" />
@@ -34,7 +37,9 @@
 		<EmbeddedResource Include="Resources\ActivitiesMetadata.json" />
 		<EmbeddedResource Include="Resources\Icons\DeleteSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\FindValue.svg" />
+		<EmbeddedResource Include="Resources\Icons\FreezePanes.svg" />
 		<EmbeddedResource Include="Resources\Icons\GetRangeSize.svg" />
+		<EmbeddedResource Include="Resources\Icons\HideUnhideSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\InsertSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadCell.svg" />
 		<EmbeddedResource Include="Resources\Icons\ReadColumn.svg" />

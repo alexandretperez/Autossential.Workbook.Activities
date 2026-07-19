@@ -6,16 +6,14 @@
 	<ItemGroup>
 		<PackageVersion Include="ExcelDataReader" Version="3.9.0" />
 		<PackageVersion Include="DocumentFormat.OpenXml" Version="3.5.1" />
-		
-		<PackageVersion Include="System.Activities.ViewModels" Version="1.20260216.2" />
+		<PackageVersion Include="System.Activities.ViewModels" Version="1.20260609.1" />
 		<PackageVersion Include="System.Activities.Metadata" Version="6.0.0-20240517.13" />
 		<PackageVersion Include="UiPath.Activities.Api" Version="24.10.1" />
 		<PackageVersion Include="UiPath.Workflow" Version="6.0.0-20240401-07" />
-
+		<PackageVersion Include="TUnit" Version="1.56.18" />
+		
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
 		<PackageVersion Include="System.Security.Cryptography.Xml" Version="10.0.8" />
 		<PackageVersion Include="NPOI" Version="2.8.0" />
-
-		<PackageVersion Include="TUnit" Version="1.50.0" />
 	</ItemGroup>
 </Project>
