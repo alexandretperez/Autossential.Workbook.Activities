@@ -112,7 +112,7 @@
             "name": "Input"
           },
           "displayNameKey": "FreezePanes_SheetName_DisplayName",
-          "isRequired": false,
+          "isRequired": true,
           "isVisible": true,
           "name": "SheetName",
           "tooltipKey": "FreezePanes_SheetName_Description"
@@ -123,7 +123,7 @@
             "name": "Input"
           },
           "displayNameKey": "FreezePanes_ColumnsToFreeze_DisplayName",
-          "isRequired": false,
+          "isRequired": true,
           "isVisible": true,
           "name": "ColumnsToFreeze",
           "tooltipKey": "FreezePanes_ColumnsToFreeze_Description"
@@ -134,7 +134,7 @@
             "name": "Input"
           },
           "displayNameKey": "FreezePanes_RowsToFreeze_DisplayName",
-          "isRequired": false,
+          "isRequired": true,
           "isVisible": true,
           "name": "RowsToFreeze",
           "tooltipKey": "FreezePanes_RowsToFreeze_Description"
@@ -211,7 +211,7 @@
             "name": "Input"
           },
           "displayNameKey": "HideUnhideSheet_SheetName_DisplayName",
-          "isRequired": false,
+          "isRequired": true,
           "isVisible": true,
           "name": "SheetName",
           "tooltipKey": "HideUnhideSheet_SheetName_Description"
@@ -314,17 +314,6 @@
           "isVisible": true,
           "name": "ResultType",
           "tooltipKey": "ReadCell_ResultType_Description"
-        },
-        {
-          "category": {
-            "displayNameKey": "Categories_Output",
-            "name": "Output"
-          },
-          "displayNameKey": "ReadCell_Result_DisplayName",
-          "isRequired": false,
-          "isVisible": true,
-          "name": "Result",
-          "tooltipKey": "ReadCell_Result_Description"
         }
       ],
       "shortName": "ReadCell",
@@ -391,17 +380,6 @@
           "isVisible": true,
           "name": "ResultType",
           "tooltipKey": "ReadColumn_ResultType_Description"
-        },
-        {
-          "category": {
-            "displayNameKey": "Categories_Output",
-            "name": "Output"
-          },
-          "displayNameKey": "ReadColumn_Result_DisplayName",
-          "isRequired": false,
-          "isVisible": true,
-          "name": "Result",
-          "tooltipKey": "ReadColumn_Result_Description"
         }
       ],
       "shortName": "ReadColumn",
@@ -490,17 +468,6 @@
           "isVisible": true,
           "name": "ResultType",
           "tooltipKey": "ReadRange_ResultType_Description"
-        },
-        {
-          "category": {
-            "displayNameKey": "Categories_Output",
-            "name": "Output"
-          },
-          "displayNameKey": "ReadRange_Result_DisplayName",
-          "isRequired": false,
-          "isVisible": true,
-          "name": "Result",
-          "tooltipKey": "ReadRange_Result_Description"
         }
       ],
       "shortName": "ReadRange",
@@ -567,17 +534,6 @@
           "isVisible": true,
           "name": "ResultType",
           "tooltipKey": "ReadRow_ResultType_Description"
-        },
-        {
-          "category": {
-            "displayNameKey": "Categories_Output",
-            "name": "Output"
-          },
-          "displayNameKey": "ReadRow_Result_DisplayName",
-          "isRequired": false,
-          "isVisible": true,
-          "name": "Result",
-          "tooltipKey": "ReadRow_Result_Description"
         }
       ],
       "shortName": "ReadRow",
