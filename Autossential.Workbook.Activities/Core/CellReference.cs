@@ -45,7 +45,9 @@
 
             return new string(buffer[index..]);
         }
+
         public string ToAddress() => $"{GetColumnName(Col)}{Row}";
+
         public static (int col, int row, bool inferredRow) Parse(string address, int maxRows)
         {
             if (string.IsNullOrEmpty(address))

@@ -1,6 +1,4 @@
-﻿using System.Activities;
-
-namespace Autossential.Workbook.Activities.Tests.Activities
+﻿namespace Autossential.Workbook.Activities.Tests.Activities
 {
     public class ReadColumnTests : BaseTests
     {

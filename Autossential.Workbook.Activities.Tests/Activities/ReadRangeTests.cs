@@ -1,5 +1,4 @@
-﻿using System.Activities;
-using System.Data;
+﻿using System.Data;
 
 namespace Autossential.Workbook.Activities.Tests.Activities
 {

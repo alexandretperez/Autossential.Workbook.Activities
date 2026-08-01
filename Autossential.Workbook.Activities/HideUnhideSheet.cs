@@ -2,7 +2,6 @@
 using Autossential.Workbook.Activities.Extensions;
 using Autossential.Workbook.Activities.Properties;
 using System.Activities;
-using System.ComponentModel.DataAnnotations;
 
 namespace Autossential.Workbook.Activities
 {
