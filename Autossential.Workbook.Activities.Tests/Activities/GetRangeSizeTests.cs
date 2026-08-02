@@ -12,7 +12,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "", 10, 10)]
         [Arguments(".xlsx", null, 10, 10)]
-        public async Task GetRangeSize_ReturnsBasedOnWholeSheet_WhenMissingRange(string extension, string? range, int expectedCols, int expectedRows)
+        public async Task GetRangeSize_ReturnsBasedOnWholeSheet_WhenMissingRange(string extension, string range, int expectedCols, int expectedRows)
         {
             Tuple<int, int> result = Run(extension, range);
 
@@ -75,7 +75,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             });
         }
 
-        private Tuple<int, int> Run(string extension, string? range, DataTable? customTable = null)
+        private Tuple<int, int> Run(string extension, string range, DataTable? customTable = null)
         {
             var data = customTable ?? TableUtils.Build(10, 10, (col, row) =>
             {

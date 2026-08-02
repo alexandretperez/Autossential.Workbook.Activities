@@ -13,7 +13,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         [Arguments(".xlsx", "A1", "Col3", "C1", 3, 1)]
         [Arguments(".xlsx", "B2", 657.52, "B2", 2, 2)]
         [Arguments(".xlsx", "A1", "IamNotThere", "", -1, -1)]
-        public async Task FindValue_ReturnsCoordinates_WhenValidArguments(string extension, string range, object? value, string expectedAddress, int expectedCol, int expectedRow)
+        public async Task FindValue_ReturnsCoordinates_WhenValidArguments(string extension, string range, object value, string expectedAddress, int expectedCol, int expectedRow)
         {
             Tuple<string, int, int> result = Run(extension, range, value);
 
@@ -29,7 +29,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "", "Col1", "A1", 1, 1)]
         [Arguments(".xlsx", null, "Col1", "A1", 1, 1)]
-        public async Task FindValue_ReturnsCoordinatesBaseInWholeSheet_WhenMissingRange(string extension, string? range, object? value, string expectedAddress, int expectedCol, int expectedRow)
+        public async Task FindValue_ReturnsCoordinatesBaseInWholeSheet_WhenMissingRange(string extension, string range, object value, string expectedAddress, int expectedCol, int expectedRow)
         {
             Tuple<string, int, int> result = Run(extension, range, value);
 
@@ -51,7 +51,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             });
         }
 
-        private Tuple<string, int, int> Run(string extension, string? range, object? value)
+        private Tuple<string, int, int> Run(string extension, string range, object value)
         {
             var data = TableUtils.Generate(5, 5, 1);
             var (processor, filePath) = NewFile(extension);

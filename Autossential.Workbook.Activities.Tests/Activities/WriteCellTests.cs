@@ -45,7 +45,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", null)]
         [Arguments(".xlsx", "")]
-        public void WriteCell_Fails_WhenMissingCell(string extension, string? cell)
+        public void WriteCell_Fails_WhenMissingCell(string extension, string cell)
         {
             Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, cell, 0));
         }
@@ -64,7 +64,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             });
         }
 
-        private object Run(string extension, string? cell, object value)
+        private object Run(string extension, string cell, object value)
         {
             var filePath = NewTempFilePath(extension);
             InvokeWorkbookScopeWith(filePath, new WriteCell

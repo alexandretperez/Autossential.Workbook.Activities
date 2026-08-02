@@ -9,7 +9,7 @@
 
         [Arguments(".xlsx", "")]
         [Arguments(".xlsx", null)]
-        public void ReadRow_Fails_WhenMissingStartingCell(string extension, string? startingCell)
+        public void ReadRow_Fails_WhenMissingStartingCell(string extension, string startingCell)
         {
             Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, startingCell, 0));
         }
@@ -45,7 +45,7 @@
             await Assert.That(values.Length).IsEqualTo(expectedCount);
         }
 
-        private object[] Run(string extension, string? startingCell, int limit)
+        private object[] Run(string extension, string startingCell, int limit)
         {
             var data = TableUtils.Build(10, 10, (col, row) =>
             {

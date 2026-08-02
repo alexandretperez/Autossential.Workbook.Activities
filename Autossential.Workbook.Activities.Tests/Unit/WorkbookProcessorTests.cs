@@ -1,6 +1,8 @@
 ﻿using Autossential.Workbook.Activities.Core;
+using Microsoft.CodeAnalysis.Emit;
 using NPOI.SS.UserModel;
 using System.Data;
+using System.Diagnostics;
 
 namespace Autossential.Workbook.Activities.Tests.Unit
 {
@@ -302,7 +304,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         [Arguments(".xls", "E4", true)]
         [Arguments(".xlsx", "H9", "")]
         [Arguments(".xls", "E1", "")]
-        public async Task WriteAndReadCell_ValueMatches_AfterWriteAndRead(string extension, string address, object? value)
+        public async Task WriteAndReadCell_ValueMatches_AfterWriteAndRead(string extension, string address, object value)
         {
             var (processor, _) = NewFile(extension);
 
@@ -425,7 +427,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         [Arguments(".xlsx", "A1", "Col7", "G1", 7, 1)]
         [Arguments(".xlsx", "A1", "C10R8", "J9", 10, 9)]
         [Arguments(".xlsx", "A1", "IamNotThere", "", -1, -1)]
-        public async Task FindValue_ReturnsAddress_WhenValueExists(string extension, string range, object? value, string expectedAddress, int expectedCol, int expectedRow)
+        public async Task FindValue_ReturnsAddress_WhenValueExists(string extension, string range, object value, string expectedAddress, int expectedCol, int expectedRow)
         {
             var data = TableUtils.Generate(10, 10, 42);
             var (processor, _) = NewFile(extension);
@@ -689,7 +691,6 @@ namespace Autossential.Workbook.Activities.Tests.Unit
                 data.Rows.Add(dr);
                 processor.WriteRange("Sheet1", data, "A1", true);
                 data = processor.ReadRange("Sheet1", "A1", true);
-                processor.Dispose();
             }
             catch (Exception ex)
             {

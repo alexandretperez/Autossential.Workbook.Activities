@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -33,7 +34,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             int startRow = cellRef.Row;
             int startCol = cellRef.Col;
 
-            //// Loads SharedStrings only once and builds the index in memory to avoid repeated linear searches while writing the range
+            // Loads SharedStrings only once and builds the index in memory to avoid repeated linear searches while writing the range
             var sst = GetOrCreateSharedStringTable(wbPart);
             var sstIndex = BuildSharedStringIndex(sst);
 
@@ -41,6 +42,22 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             var rows = sheetData.BuildRowEnumerator();
             KeyValuePair<int, Row>? currentRow = rows.MoveNext() ? rows.Current : null;
+
+            // Pre-computed column names for the range being written, avoiding repeated
+            // CellReference.GetColumnName + string concatenation per cell
+            var columnNames = new string[data.Columns.Count];
+            for (int i = 0; i < columnNames.Length; i++)
+                columnNames[i] = CellReference.GetColumnName(startCol + i);
+
+            static string BuildCellReference(string columnName, int rowIndex)
+            {
+                var rowDigits = (int)Math.Floor(Math.Log10(rowIndex)) + 1;
+                return string.Create(columnName.Length + rowDigits, (columnName, rowIndex), (span, state) =>
+                {
+                    state.columnName.AsSpan().CopyTo(span);
+                    state.rowIndex.TryFormat(span[state.columnName.Length..], out _);
+                });
+            }
 
             Row GetOrCreateRow(int rowIndex)
             {
@@ -71,7 +88,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
                 else
                 {
-                    cell = new Cell { CellReference = CellReference.GetColumnName(colIndex) + rowIndex };
+                    var cellReference = BuildCellReference(columnNames[colIndex - startCol], rowIndex);
+                    cell = new Cell { CellReference = cellReference };
                     if (current == null)
                         row.AppendChild(cell);
                     else
@@ -98,6 +116,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 var row = GetOrCreateRow(rowIndex);
                 var cells = row.BuildCellEnumerator();
                 KeyValuePair<int, Cell>? current = cells.MoveNext() ? cells.Current : null;
+
                 var dr = data.Rows[i];
                 for (int j = 0; j < data.Columns.Count; j++)
                 {
@@ -106,6 +125,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             }
 
+            sst.UniqueCount = (uint)sstIndex.Count;
             wbPart.SharedStringTablePart.SharedStringTable.Save();
             wsPart.Worksheet.Save();
 

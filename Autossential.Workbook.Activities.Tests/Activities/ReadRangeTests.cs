@@ -11,7 +11,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", null, true, 1, 1, 10, 10)]
         [Arguments(".xlsx", "", true, 3, 2, 10, 4)]
-        public async Task ReadRange_ReadsWholeSheet_WhenMissingRange(string extension, string? range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
+        public async Task ReadRange_ReadsWholeSheet_WhenMissingRange(string extension, string range, bool hasHeaders, int headerRows, int rowsPerRecord, int expectedCols, int expectedRows)
         {
             var readData = Run(extension, range, hasHeaders, headerRows, rowsPerRecord);
 
@@ -46,7 +46,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             });
         }
 
-        private DataTable Run(string extension, string? range, bool hasHeaders, int headerRows, int rowsPerRecord)
+        private DataTable Run(string extension, string range, bool hasHeaders, int headerRows, int rowsPerRecord)
         {
             var data = TableUtils.Build(10, 10, (col, row) =>
             {
