@@ -1,7 +1,5 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using NPOI.HSSF.UserModel;
+﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
-using System.Activities.Presentation.ViewState;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -289,10 +287,10 @@ namespace Autossential.Workbook.Activities.Core.Processors
             FlushWorkbook(wb);
         }
 
-        public override void HideSheet(string sheetName) => 
+        public override void HideSheet(string sheetName) =>
             ToggleSheetState(sheetName, SheetVisibility.Hidden);
 
-        public override void UnhideSheet(string sheetName) => 
+        public override void UnhideSheet(string sheetName) =>
             ToggleSheetState(sheetName, SheetVisibility.Visible);
     }
 }

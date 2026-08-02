@@ -4,7 +4,7 @@ namespace Autossential.Workbook.Activities.Tests
 {
     public static class TableUtils
     {
-        private static readonly Func<Random, int, int, object?>[] Generators = [
+        private static readonly Func<Random, int, int, object>[] Generators = [
             (rand, col, row) => $"C{col}R{row}",
             (rand, col, row) => DateTime.Today.AddDays(rand.Next(-1000, 1000)).ToString("yyyy-MM-dd"),
             (rand, col, row) => new TimeSpan(rand.Next(0, 24), rand.Next(0, 60), 0).ToString(@"hh\:mm"),
@@ -17,7 +17,7 @@ namespace Autossential.Workbook.Activities.Tests
             (rand, col, row) => string.Empty
         ];
 
-        public static DataTable Build(int cols, int rows, Func<int, int, object?>? valueResolver = null)
+        public static DataTable Build(int cols, int rows, Func<int, int, object> valueResolver = null)
         {
             valueResolver ??= (col, row) => $"C{col}R{row}";
 

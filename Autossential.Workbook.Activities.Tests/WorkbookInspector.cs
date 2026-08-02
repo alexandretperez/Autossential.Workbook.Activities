@@ -2,7 +2,6 @@
 using DocumentFormat.OpenXml.Spreadsheet;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
-using System.Windows.Controls;
 
 namespace Autossential.Workbook.Activities.Tests
 {

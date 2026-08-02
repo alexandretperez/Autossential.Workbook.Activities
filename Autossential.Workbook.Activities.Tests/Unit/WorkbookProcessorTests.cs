@@ -1,10 +1,8 @@
 ﻿using Autossential.Workbook.Activities.Core;
-using DocumentFormat.OpenXml.Office2016.Drawing.Command;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using NPOI.HSSF.UserModel;
+using Microsoft.CodeAnalysis.Emit;
 using NPOI.SS.UserModel;
 using System.Data;
+using System.Diagnostics;
 
 namespace Autossential.Workbook.Activities.Tests.Unit
 {
@@ -306,7 +304,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         [Arguments(".xls", "E4", true)]
         [Arguments(".xlsx", "H9", "")]
         [Arguments(".xls", "E1", "")]
-        public async Task WriteAndReadCell_ValueMatches_AfterWriteAndRead(string extension, string address, object? value)
+        public async Task WriteAndReadCell_ValueMatches_AfterWriteAndRead(string extension, string address, object value)
         {
             var (processor, _) = NewFile(extension);
 
@@ -429,7 +427,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         [Arguments(".xlsx", "A1", "Col7", "G1", 7, 1)]
         [Arguments(".xlsx", "A1", "C10R8", "J9", 10, 9)]
         [Arguments(".xlsx", "A1", "IamNotThere", "", -1, -1)]
-        public async Task FindValue_ReturnsAddress_WhenValueExists(string extension, string range, object? value, string expectedAddress, int expectedCol, int expectedRow)
+        public async Task FindValue_ReturnsAddress_WhenValueExists(string extension, string range, object value, string expectedAddress, int expectedCol, int expectedRow)
         {
             var data = TableUtils.Generate(10, 10, 42);
             var (processor, _) = NewFile(extension);
@@ -617,7 +615,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
             processor.InsertSheet("Sheet3");
             processor.HideSheet("Sheet2");
             processor.Save();
-            
+
             var info = WorkbookInspector.Inspect(file, "Sheet2");
             await Assert.That(info.IsVisible).IsFalse();
 
@@ -675,6 +673,59 @@ namespace Autossential.Workbook.Activities.Tests.Unit
             await Assert.That(info.IsFrozen).IsFalse();
             await Assert.That(info.ColsFrozen).IsEqualTo(0);
             await Assert.That(info.RowsFrozen).IsEqualTo(0);
+        }
+
+        [Test]
+        public async Task WriteRange_MinimalXlsx_ShouldWork()
+        {
+            var path = MinimalXLSX.Create(3, 3);
+
+            try
+            {
+                var processor = WorkbookProcessorFactory.OpenOrCreate(path);
+                var data = processor.ReadRange("Sheet1", "A1", true);
+                var dr = data.NewRow();
+                dr[0] = "Hello";
+                dr[1] = "New";
+                dr[2] = "World!";
+                data.Rows.Add(dr);
+                processor.WriteRange("Sheet1", data, "A1", true);
+                data = processor.ReadRange("Sheet1", "A1", true);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            finally
+            {
+                File.Delete(path);
+            }
+        }
+
+        [Test]
+        public async Task WriteCell_MinimalXlsx_ShouldWork()
+        {
+            var path = MinimalXLSX.Create(3, 4);
+
+            try
+            {
+                var processor = WorkbookProcessorFactory.OpenOrCreate(path);
+                var cell = "B3";
+                var text = "Alex";
+                var value = processor.ReadCell("Sheet1", cell);
+                await Assert.That(value).IsNotEqualTo(text);
+                processor.WriteCell("Sheet1", cell, text);
+                value = processor.ReadCell("Sheet1", cell);
+                await Assert.That(value).IsEqualTo(text);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            finally
+            {
+                File.Delete(path);
+            }
         }
     }
 }

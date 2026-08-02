@@ -1,6 +1,5 @@
 ﻿using Autossential.Workbook.Activities.Extensions;
 using ExcelDataReader;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -418,19 +417,28 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
         protected abstract void CreateNew();
 
+        private string _readerStreamHash;
+
         protected IExcelDataReader GetReader()
         {
-            if (_reader == null)
+            var currentHash = WorkbookStream.ComputeHash();
+
+            if (_reader == null || currentHash != _readerStreamHash)
             {
+                _reader?.Dispose();
                 WorkbookStream.Position = 0;
                 _reader = ExcelReaderFactory.CreateReader(WorkbookStream, new ExcelReaderConfiguration
                 {
                     LeaveOpen = true,
                     Password = Password
                 });
-                return _reader;
+                _readerStreamHash = currentHash;
             }
-            _reader.Reset();
+            else
+            {
+                _reader.Reset();
+            }
+
             return _reader;
         }
 

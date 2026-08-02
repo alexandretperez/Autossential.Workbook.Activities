@@ -15,7 +15,7 @@ namespace Autossential.Workbook.Activities.Tests
             if (File.Exists(_filePath))
                 File.Delete(_filePath);
         }
-        private string? _filePath;
+        private string _filePath;
 
         /// <summary>
         /// Simulates corruption in an Excel file by renaming it to .zip,

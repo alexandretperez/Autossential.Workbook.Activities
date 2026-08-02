@@ -34,7 +34,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "A1", true, 5, 5)]
         [Arguments(".xlsx", "C14", true, 5, 5)]
-        public async Task WriteRange_ExpectedRange_BasedOnArguments(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
+        public async Task WriteRange_ExpectedRange_BasedOnArguments(string extension, string startingCell, bool addHeaders, int expectedCols, int expectedRows)
         {
             var readData = Run(extension, startingCell, addHeaders);
 
@@ -63,7 +63,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "", true, 5, 5)]
         [Arguments(".xlsx", null, true, 5, 5)]
-        public async Task WriteRange_Fails_WhenMissingStartingCell(string extension, string? startingCell, bool addHeaders, int expectedCols, int expectedRows)
+        public async Task WriteRange_Fails_WhenMissingStartingCell(string extension, string startingCell, bool addHeaders, int expectedCols, int expectedRows)
         {
             DataTable readData = Run(extension, startingCell, addHeaders);
 
@@ -71,7 +71,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             await Assert.That(readData.Columns.Count).IsEqualTo(expectedCols);
         }
 
-        private DataTable Run(string extension, string? startingCell, bool addHeaders)
+        private DataTable Run(string extension, string startingCell, bool addHeaders)
         {
             var data = TableUtils.Generate(5, 5, 2);
 

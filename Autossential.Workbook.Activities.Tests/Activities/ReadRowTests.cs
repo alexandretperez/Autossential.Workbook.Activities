@@ -1,6 +1,4 @@
-﻿using System.Activities;
-
-namespace Autossential.Workbook.Activities.Tests.Activities
+﻿namespace Autossential.Workbook.Activities.Tests.Activities
 {
     public class ReadRowTests : BaseTests
     {
@@ -11,7 +9,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "")]
         [Arguments(".xlsx", null)]
-        public void ReadRow_Fails_WhenMissingStartingCell(string extension, string? startingCell)
+        public void ReadRow_Fails_WhenMissingStartingCell(string extension, string startingCell)
         {
             Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, startingCell, 0));
         }
@@ -47,7 +45,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             await Assert.That(values.Length).IsEqualTo(expectedCount);
         }
 
-        private object[] Run(string extension, string? startingCell, int limit)
+        private object[] Run(string extension, string startingCell, int limit)
         {
             var data = TableUtils.Build(10, 10, (col, row) =>
             {

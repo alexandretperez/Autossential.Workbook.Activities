@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -32,61 +33,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             int startRow = cellRef.Row;
             int startCol = cellRef.Col;
-            uint firstRow = (uint)startRow;
-            uint lastRow = (uint)(startRow + data.Rows.Count);
-
-            var targetCols = Enumerable.Range(startCol, data.Columns.Count)
-                                       .Select(CellReference.GetColumnName)
-                                       .ToHashSet();
-
-            var existingRows = sheetData.Elements<Row>()
-                                        .ToDictionary(r => (int)r.RowIndex.Value);
-
-            for (uint ri = firstRow; ri <= lastRow; ri++)
-            {
-                if (!existingRows.TryGetValue((int)ri, out var existingRow))
-                    continue;
-
-                existingRow.Elements<Cell>()
-                           .Where(c =>
-                           {
-                               var col = new string(c.CellReference?.Value?.TakeWhile(char.IsLetter).ToArray());
-                               return targetCols.Contains(col);
-                           })
-                           .ToList()
-                           .ForEach(c => c.Remove());
-            }
-
-            var anchor = existingRows.Values
-                                     .Where(r => r.RowIndex.Value > lastRow)
-                                     .OrderBy(r => r.RowIndex.Value)
-                                     .FirstOrDefault();
-
-            Row GetOrCreateRow(int rowIndex)
-            {
-                if (existingRows.TryGetValue(rowIndex, out var existing))
-                    return existing;
-
-                var newRow = new Row { RowIndex = (uint)rowIndex };
-                if (anchor != null)
-                    sheetData.InsertBefore(newRow, anchor);
-                else
-                    sheetData.AppendChild(newRow);
-
-                existingRows[rowIndex] = newRow;
-                return newRow;
-            }
-
-            void AppendCell(Row row, Cell cell)
-            {
-                var nextCell = row.Elements<Cell>().FirstOrDefault(c =>
-                    string.Compare(c.CellReference?.Value, cell.CellReference?.Value,
-                                   StringComparison.OrdinalIgnoreCase) > 0);
-                if (nextCell != null)
-                    row.InsertBefore(cell, nextCell);
-                else
-                    row.AppendChild(cell);
-            }
 
             // Loads SharedStrings only once and builds the index in memory to avoid repeated linear searches while writing the range
             var sst = GetOrCreateSharedStringTable(wbPart);
@@ -94,33 +40,91 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             var (dateStyle, timeStyle, dateTimeStyle) = EnsureStyles(wbPart);
 
-            Cell BuildCell(int rowIndex, int colIndex, object value)
+            var rows = sheetData.BuildRowEnumerator();
+            KeyValuePair<int, Row>? currentRow = rows.MoveNext() ? rows.Current : null;
+
+            // Pre-computed column names for the range being written, avoiding repeated
+            // CellReference.GetColumnName + string concatenation per cell
+            var columnNames = new string[data.Columns.Count];
+            for (int i = 0; i < columnNames.Length; i++)
+                columnNames[i] = CellReference.GetColumnName(startCol + i);
+
+            static string BuildCellReference(string columnName, int rowIndex)
             {
-                var cellAddress = CellReference.GetColumnName(colIndex) + rowIndex;
-                var cell = new Cell { CellReference = cellAddress };
+                var rowDigits = (int)Math.Floor(Math.Log10(rowIndex)) + 1;
+                return string.Create(columnName.Length + rowDigits, (columnName, rowIndex), (span, state) =>
+                {
+                    state.columnName.AsSpan().CopyTo(span);
+                    state.rowIndex.TryFormat(span[state.columnName.Length..], out _);
+                });
+            }
+
+            Row GetOrCreateRow(int rowIndex)
+            {
+                while (currentRow.HasValue && currentRow.Value.Key < rowIndex)
+                    currentRow = rows.MoveNext() ? rows.Current : null;
+
+                if (currentRow.HasValue && currentRow.Value.Key == rowIndex)
+                    return currentRow.Value.Value;
+
+                var newRow = new Row { RowIndex = (uint)rowIndex };
+                if (currentRow == null)
+                    sheetData.AppendChild(newRow);
+                else
+                    sheetData.InsertBefore(newRow, currentRow.Value.Value);
+
+                return newRow;
+            }
+
+            void UpdateOrCreateCell(Row row, ref List<KeyValuePair<int, Cell>>.Enumerator remaining, ref KeyValuePair<int, Cell>? current, int colIndex, int rowIndex, object value)
+            {
+                while (current.HasValue && current.Value.Key < colIndex)
+                    current = remaining.MoveNext() ? remaining.Current : null;
+
+                Cell cell;
+                if (current.HasValue && current.Value.Key == colIndex)
+                {
+                    cell = current.Value.Value;
+                }
+                else
+                {
+                    var cellReference = BuildCellReference(columnNames[colIndex - startCol], rowIndex);
+                    cell = new Cell { CellReference = cellReference };
+                    if (current == null)
+                        row.AppendChild(cell);
+                    else
+                        row.InsertBefore(cell, current.Value.Value);
+                }
+
                 UpdateCell(cell, value, dateStyle, timeStyle, dateTimeStyle, sst, sstIndex);
-                return cell;
             }
 
             if (addHeaders)
             {
                 var headerRow = GetOrCreateRow(startRow);
-                for (int c = 0; c < data.Columns.Count; c++)
-                    AppendCell(headerRow, BuildCell(startRow, startCol + c, data.Columns[c].ColumnName));
+                var cells = headerRow.BuildCellEnumerator();
+                KeyValuePair<int, Cell>? current = cells.MoveNext() ? cells.Current : null;
+                for (int i = 0; i < data.Columns.Count; i++)
+                    UpdateOrCreateCell(headerRow, ref cells, ref current, startCol + i, startRow, data.Columns[i].ColumnName);
+
                 startRow++;
             }
 
-            for (int r = 0; r < data.Rows.Count; r++)
+            for (int i = 0; i < data.Rows.Count; i++)
             {
-                int rowIndex = startRow + r;
+                var rowIndex = startRow + i;
                 var row = GetOrCreateRow(rowIndex);
-                var dr = data.Rows[r];
-                for (int c = 0; c < data.Columns.Count; c++)
-                    AppendCell(row, BuildCell(rowIndex, startCol + c, dr[c]));
+                var cells = row.BuildCellEnumerator();
+                KeyValuePair<int, Cell>? current = cells.MoveNext() ? cells.Current : null;
+
+                var dr = data.Rows[i];
+                for (int j = 0; j < data.Columns.Count; j++)
+                {
+                    var colIndex = startCol + j;
+                    UpdateOrCreateCell(row, ref cells, ref current, colIndex, rowIndex, dr[j]);
+                }
             }
 
-            // Updates the SST count before save it
-            sst.Count = (uint)sstIndex.Count;
             sst.UniqueCount = (uint)sstIndex.Count;
             wbPart.SharedStringTablePart.SharedStringTable.Save();
             wsPart.Worksheet.Save();
@@ -141,31 +145,43 @@ namespace Autossential.Workbook.Activities.Core.Processors
             var cellRef = ResolveCell(address);
             var rowIndex = cellRef.Row;
 
-            var existingRow = sheetData.Elements<Row>()
-                                       .FirstOrDefault(r => r.RowIndex?.Value == (uint)rowIndex);
-            if (existingRow == null)
+            var rows = sheetData.BuildRowEnumerator();
+            KeyValuePair<int, Row>? currentRow = rows.MoveNext() ? rows.Current : null;
+            while (currentRow.HasValue && currentRow.Value.Key < rowIndex)
+                currentRow = rows.MoveNext() ? rows.Current : null;
+
+            Row row;
+            if (currentRow.HasValue && currentRow.Value.Key == rowIndex)
             {
-                existingRow = new Row { RowIndex = (uint)rowIndex };
-                var anchor = sheetData.Elements<Row>()
-                                      .FirstOrDefault(r => r.RowIndex?.Value > (uint)rowIndex);
-                if (anchor != null)
-                    sheetData.InsertBefore(existingRow, anchor);
+                row = currentRow.Value.Value;
+            }
+            else
+            {
+                row = new Row { RowIndex = (uint)rowIndex };
+                if (currentRow == null)
+                    sheetData.AppendChild(row);
                 else
-                    sheetData.AppendChild(existingRow);
+                    sheetData.InsertBefore(row, currentRow.Value.Value);
             }
 
-            var cell = existingRow.Elements<Cell>()
-                                  .FirstOrDefault(c => c.CellReference?.Value == address);
-            if (cell == null)
+            var cells = row.BuildCellEnumerator();
+            KeyValuePair<int, Cell>? currentCell = cells.MoveNext() ? cells.Current : null;
+
+            while (currentCell.HasValue && currentCell.Value.Key < cellRef.Col)
+                currentCell = cells.MoveNext() ? cells.Current : null;
+
+            Cell cell;
+            if (currentCell.HasValue && currentCell.Value.Key == cellRef.Col)
+            {
+                cell = currentCell.Value.Value;
+            }
+            else
             {
                 cell = new Cell { CellReference = address };
-                var nextCell = existingRow.Elements<Cell>().FirstOrDefault(c =>
-                    string.Compare(c.CellReference?.Value, address,
-                                   StringComparison.OrdinalIgnoreCase) > 0);
-                if (nextCell != null)
-                    existingRow.InsertBefore(cell, nextCell);
+                if (currentCell == null)
+                    row.AppendChild(cell);
                 else
-                    existingRow.AppendChild(cell);
+                    row.InsertBefore(cell, currentCell.Value.Value);
             }
 
             cell.RemoveAllChildren();
@@ -252,19 +268,19 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 case DateTime dt:
                     cell.CellValue = new CellValue(dt.ToOADate().ToString(CultureInfo.InvariantCulture));
                     cell.StyleIndex = dt.TimeOfDay == TimeSpan.Zero
-                                    ? dateStyle
-                                    : dt.Date == DateTime.MinValue.Date
-                                    ? timeStyle
-                                    : dateTimeStyle;
+                            ? dateStyle
+                            : dt.Date == DateTime.MinValue.Date
+                            ? timeStyle
+                            : dateTimeStyle;
                     break;
 
                 case DateTimeOffset dto:
                     cell.CellValue = new CellValue(dto.DateTime.ToOADate().ToString(CultureInfo.InvariantCulture));
                     cell.StyleIndex = dto.TimeOfDay == TimeSpan.Zero
-                                    ? dateStyle
-                                    : dto.Date == DateTimeOffset.MinValue.Date
-                                    ? timeStyle
-                                    : dateTimeStyle;
+                            ? dateStyle
+                            : dto.Date == DateTimeOffset.MinValue.Date
+                            ? timeStyle
+                            : dateTimeStyle;
                     break;
 
                 case TimeSpan ts:
@@ -568,10 +584,10 @@ namespace Autossential.Workbook.Activities.Core.Processors
             worksheet.Save();
         }
 
-        public override void HideSheet(string sheetName) => 
+        public override void HideSheet(string sheetName) =>
             ToggleSheetState(sheetName, SheetStateValues.Hidden);
 
-        public override void UnhideSheet(string sheetName) => 
+        public override void UnhideSheet(string sheetName) =>
             ToggleSheetState(sheetName, SheetStateValues.Visible);
 
         private void ToggleSheetState(string sheetName, SheetStateValues state)

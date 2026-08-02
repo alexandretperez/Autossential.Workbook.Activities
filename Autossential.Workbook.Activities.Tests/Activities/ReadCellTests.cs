@@ -11,7 +11,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", "")]
         [Arguments(".xlsx", null)]
-        public void ReadCell_Fails_WhenCellAddressIsMissing(string extension, string? cell)
+        public void ReadCell_Fails_WhenCellAddressIsMissing(string extension, string cell)
         {
             Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, cell, "A1"));
         }
@@ -45,7 +45,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             await Assert.That(result["Value"].ToString()).IsEqualTo("Hello");
         }
 
-        private Dictionary<string, object> Run(string extension, string? cell, string? writeCell)
+        private Dictionary<string, object> Run(string extension, string cell, string writeCell)
         {
             var (processor, filePath) = NewFile(extension);
             processor.WriteCell("Sheet1", writeCell, "Hello");

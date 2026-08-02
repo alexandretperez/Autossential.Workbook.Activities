@@ -1,6 +1,4 @@
-﻿using System.Activities;
-
-namespace Autossential.Workbook.Activities.Tests.Activities
+﻿namespace Autossential.Workbook.Activities.Tests.Activities
 {
     public class ReadColumnTests : BaseTests
     {
@@ -29,7 +27,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
 
         [Arguments(".xlsx", null)]
         [Arguments(".xlsx", "")]
-        public void ReadColumn_Fails_WhenMissingStartingCell(string extension, string? startingCell)
+        public void ReadColumn_Fails_WhenMissingStartingCell(string extension, string startingCell)
         {
             Assert.ThrowsExactly<InvalidOperationException>(() => Run(extension, startingCell, 0));
         }
@@ -47,7 +45,7 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             });
         }
 
-        private object[] Run(string extension, string? startingCell, int limit)
+        private object[] Run(string extension, string startingCell, int limit)
         {
             var data = TableUtils.Build(10, 10, (col, row) =>
             {

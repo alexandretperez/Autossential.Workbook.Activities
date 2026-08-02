@@ -9,13 +9,13 @@ namespace Autossential.Workbook.Activities
     {
         [RequiredArgument]
         public InArgument<string> SheetName { get; set; }
-        
+
         [RequiredArgument]
         public InArgument<int> ColumnsToFreeze { get; set; } = 0;
 
         [RequiredArgument]
         public InArgument<int> RowsToFreeze { get; set; } = 1;
-        
+
         protected override void Execute(CodeActivityContext context)
         {
             var sheetName = SheetName.Get(context);
