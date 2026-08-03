@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.Emit;
 using NPOI.SS.UserModel;
 using System.Data;
 using System.Diagnostics;
+using System.IO.Compression;
 
 namespace Autossential.Workbook.Activities.Tests.Unit
 {

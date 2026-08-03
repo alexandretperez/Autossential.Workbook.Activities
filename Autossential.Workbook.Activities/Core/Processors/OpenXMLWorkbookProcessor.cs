@@ -184,10 +184,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     row.InsertBefore(cell, currentCell.Value.Value);
             }
 
-            cell.RemoveAllChildren();
-            cell.DataType = null;
-            cell.StyleIndex = null;
-
             var sst = GetOrCreateSharedStringTable(wbPart);
             var sstIndex = BuildSharedStringIndex(sst);
             var (dateStyle, timeStyle, dateTimeStyle) = EnsureStyles(wbPart);
@@ -241,6 +237,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
                                        uint dateStyle, uint timeStyle, uint dateTimeStyle,
                                        SharedStringTable sst, Dictionary<string, int> sstIndex)
         {
+            cell.RemoveAllChildren();
+            cell.DataType = null;
+
             switch (value)
             {
                 case null:
