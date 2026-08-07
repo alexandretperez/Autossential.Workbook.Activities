@@ -58,7 +58,7 @@ namespace Autossential.Workbook.Activities.Extensions
                 foreach (var cell in row.Elements<Cell>())
                 {
                     int colIndex = cell.CellReference?.Value is string cellRef
-                        ? new OpenXmlCellReference(cellRef).Col
+                        ? CellRef.Parse(cellRef).Col
                         : previousColIndex + 1;
 
                     list.Add(new KeyValuePair<int, Cell>(colIndex, cell));

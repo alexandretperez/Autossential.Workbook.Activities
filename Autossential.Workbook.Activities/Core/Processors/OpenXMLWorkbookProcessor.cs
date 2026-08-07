@@ -3,22 +3,25 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Data;
-using System.Diagnostics;
 using System.Globalization;
 
 namespace Autossential.Workbook.Activities.Core.Processors
 {
     internal class OpenXMLWorkbookProcessor(string filePath, string password) : WorkbookProcessorBase(filePath, password)
     {
+        public override bool IsOpenXML => true;
+
+        public override bool IsBIFF8 => false;
+
         private SpreadsheetDocument GetWorkbook()
         {
             WorkbookStream.Position = 0;
             return SpreadsheetDocument.Open(WorkbookStream, true);
         }
 
-        protected override CellReference ResolveCell(string address) => new OpenXmlCellReference(address);
+        protected override CellRef ResolveCell(string address) => CellRef.Parse(address.AsSpan());
 
-        protected override RangeReference ResolveRange(string range) => new OpenXmlRangeReference(range);
+        protected override RangeRef ResolveRange(string address) => RangeRef.Parse(address.AsSpan());
 
         public override void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders)
         {
@@ -47,7 +50,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             // CellReference.GetColumnName + string concatenation per cell
             var columnNames = new string[data.Columns.Count];
             for (int i = 0; i < columnNames.Length; i++)
-                columnNames[i] = CellReference.GetColumnName(startCol + i);
+                columnNames[i] = CellRef.GetColumnName(startCol + i);
 
             static string BuildCellReference(string columnName, int rowIndex)
             {
@@ -550,7 +553,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 return;
             }
 
-            var topLeftCell = new OpenXmlCellReference(colsToFreeze + 1, rowsToFreeze + 1).ToAddress();
+            var topLeftCell = new CellRef(colsToFreeze + 1, rowsToFreeze + 1).ToAddress();
 
             var activePane = (freezeCols, freezeRows) switch
             {

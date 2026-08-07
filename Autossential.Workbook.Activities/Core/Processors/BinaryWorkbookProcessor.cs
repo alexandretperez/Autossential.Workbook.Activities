@@ -6,6 +6,10 @@ namespace Autossential.Workbook.Activities.Core.Processors
 {
     internal class BinaryWorkbookProcessor(string filePath, string password) : WorkbookProcessorBase(filePath, password)
     {
+        public override bool IsOpenXML => false;
+
+        public override bool IsBIFF8 => true;
+
         private HSSFWorkbook GetWorkbook()
         {
             var editStream = new MemoryStream();
@@ -23,9 +27,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
             workbook.Write(WorkbookStream, true);
         }
 
-        protected override CellReference ResolveCell(string address) => new BIFF8CellReference(address);
+        protected override CellRef ResolveCell(string address) => CellRef.Parse(address.AsSpan());
 
-        protected override RangeReference ResolveRange(string range) => new BIFF8RangeReference(range);
+        protected override RangeRef ResolveRange(string address) => RangeRef.Parse(address.AsSpan());
 
         public override void WriteCell(string sheetName, string address, object value)
         {
@@ -36,7 +40,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             var (dateStyle, timeStyle, dateTimeStyle) = GetCellStyles(wb);
 
             var cellRef = ResolveCell(address);
-            var colLetter = CellReference.GetColumnName(cellRef.Col);
+            var colLetter = CellRef.GetColumnName(cellRef.Col);
             var rowIndex = cellRef.Row;
 
             var rowIdx = rowIndex - 1; // 0-based
@@ -60,7 +64,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             var (dateStyle, timeStyle, dateTimeStyle) = GetCellStyles(wb);
 
             var cellRef = ResolveCell(startingCell);
-            var colLetter = CellReference.GetColumnName(cellRef.Col);
+            var colLetter = CellRef.GetColumnName(cellRef.Col);
             var rowIndex = cellRef.Row;
 
             var startRow = rowIndex - 1; // 0-based

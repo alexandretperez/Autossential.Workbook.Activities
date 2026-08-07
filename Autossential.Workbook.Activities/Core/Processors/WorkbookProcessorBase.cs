@@ -1,5 +1,6 @@
 ﻿using Autossential.Workbook.Activities.Extensions;
 using ExcelDataReader;
+using System.Activities.Presentation.ViewState;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -20,7 +21,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
         public int GetColumnCount(string sheetName, string range)
         {
             ValidateSheetName(sheetName);
-            var rangeRef = ResolveRange(range);
+            var rangeRef = ResolveRange(range).Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
             var reader = GetReader();
             int count = 0;
 
@@ -69,7 +70,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
         {
             ValidateSheetName(sheetName);
 
-            var rangeRef = ResolveRange(range);
+            var rangeRef = ResolveRange(range).Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
             var reader = GetReader();
 
             do
@@ -203,12 +204,13 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     continue;
 
                 var rangeRef = ResolveRange(range);
+                var normRangeRef = rangeRef.Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
 
-                var startRowIndex = rangeRef.Start.Row - 1;
-                var endRowIndex = rangeRef.End.Row - 1;
+                var startRowIndex = normRangeRef.Start.Row - 1;
+                var endRowIndex = normRangeRef.End.Row - 1;
 
-                var startColIndex = rangeRef.Start.Col - 1;
-                var endColIndex = rangeRef.End.Col - 1;
+                var startColIndex = normRangeRef.Start.Col - 1;
+                var endColIndex = normRangeRef.End.Col - 1;
 
                 endColIndex = Math.Min(endColIndex, reader.FieldCount - 1);
 
@@ -411,6 +413,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
             WorkbookHash = WorkbookStream.ComputeHash();
         }
 
+        public abstract bool IsOpenXML { get; }
+        public abstract bool IsBIFF8 { get; }
+
         protected string FilePath { get; }
         protected string Password { get; }
         protected string WorkbookHash { get; set; }
@@ -442,9 +447,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
             return _reader;
         }
 
-        protected abstract CellReference ResolveCell(string address);
+        protected abstract CellRef ResolveCell(string address);
 
-        protected abstract RangeReference ResolveRange(string range);
+        protected abstract RangeRef ResolveRange(string address);
 
         protected virtual void ValidateSheetName(string sheetName)
         {
@@ -477,7 +482,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 if (!reader.Name.Equals(sheetName, StringComparison.OrdinalIgnoreCase))
                     continue;
 
-                var rangeRef = ResolveRange(range);
+                var rangeRef = ResolveRange(range).Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
 
                 var startColIndex = rangeRef.Start.Col - 1;
                 var endCol = Math.Min(rangeRef.End.Col, reader.FieldCount);
@@ -503,7 +508,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                         {
                             int col = i + 1;
                             int row = reader.Depth + 1;
-                            var address = $"{CellReference.GetColumnName(col)}{row}";
+                            var address = $"{CellRef.GetColumnName(col)}{row}";
                             return (address, col, row);
                         }
                     }
