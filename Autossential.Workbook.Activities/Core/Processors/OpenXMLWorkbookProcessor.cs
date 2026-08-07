@@ -193,7 +193,6 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             UpdateCell(cell, value, dateStyle, timeStyle, dateTimeStyle, sst, sstIndex);
 
-            sst.Count = (uint)sstIndex.Count;
             sst.UniqueCount = (uint)sstIndex.Count;
             wbPart.SharedStringTablePart.SharedStringTable.Save();
             wsPart.Worksheet.Save();
