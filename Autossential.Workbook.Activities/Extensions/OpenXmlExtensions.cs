@@ -30,6 +30,22 @@ namespace Autossential.Workbook.Activities.Extensions
 
         extension(SheetData sheetData)
         {
+            public void RemoveDefaultEmptyRows()
+            {
+                var emptyRows = sheetData.Elements<Row>()
+                    .Where(row =>
+                       !row.Elements<Cell>().Any() &&
+                        row.CustomHeight?.Value != true &&
+                        row.CustomFormat?.Value != true &&
+                        row.Hidden?.Value != true &&
+                        row.OutlineLevel?.Value == 0 &&
+                        row.Collapsed?.Value != true
+                    ).ToList();
+
+                foreach (var row in emptyRows)
+                    row.Remove();
+            }
+
             public List<KeyValuePair<int, Row>>.Enumerator BuildRowEnumerator()
             {
                 int previousRowIndex = 0;

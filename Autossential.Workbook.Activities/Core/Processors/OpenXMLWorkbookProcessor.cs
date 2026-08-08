@@ -32,6 +32,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             var wsPart = (WorksheetPart)wbPart.GetPartById(sheet.Id.Value);
 
             var sheetData = wsPart.Worksheet.GetFirstChild<SheetData>();
+            sheetData.RemoveDefaultEmptyRows();
             var cellRef = ResolveCell(startingCell);
 
             int startRow = cellRef.Row;
@@ -79,7 +80,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 return newRow;
             }
 
-            void UpdateOrCreateCell(Row row, ref List<KeyValuePair<int, Cell>>.Enumerator remaining, ref KeyValuePair<int, Cell>? current, int colIndex, int rowIndex, object value)
+            void UpdateOrCreateCell(Row row, List<KeyValuePair<int, Cell>>.Enumerator remaining, ref KeyValuePair<int, Cell>? current, int colIndex, int rowIndex, object value)
             {
                 while (current.HasValue && current.Value.Key < colIndex)
                     current = remaining.MoveNext() ? remaining.Current : null;
@@ -108,7 +109,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 var cells = headerRow.BuildCellEnumerator();
                 KeyValuePair<int, Cell>? current = cells.MoveNext() ? cells.Current : null;
                 for (int i = 0; i < data.Columns.Count; i++)
-                    UpdateOrCreateCell(headerRow, ref cells, ref current, startCol + i, startRow, data.Columns[i].ColumnName);
+                    UpdateOrCreateCell(headerRow, cells, ref current, startCol + i, startRow, data.Columns[i].ColumnName);
 
                 startRow++;
             }
@@ -124,7 +125,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 for (int j = 0; j < data.Columns.Count; j++)
                 {
                     var colIndex = startCol + j;
-                    UpdateOrCreateCell(row, ref cells, ref current, colIndex, rowIndex, dr[j]);
+                    UpdateOrCreateCell(row, cells, ref current, colIndex, rowIndex, dr[j]);
                 }
             }
 
