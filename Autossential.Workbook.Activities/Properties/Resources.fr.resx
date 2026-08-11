@@ -681,4 +681,28 @@
   <value>Lignes à figer</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Ajoute un DataTable à la fin des données existantes dans une feuille de calcul spécifiée, en commençant par la première ligne vide après la dernière cellule utilisée.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Ajouter la plage</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>Le nom de la feuille de calcul à laquelle les données seront ajoutées.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Nom de la feuille</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>Le DataTable contenant les données à ajouter à la feuille de calcul.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Table de données</value>
+  <comment>property name</comment>
+</data>
 </root>

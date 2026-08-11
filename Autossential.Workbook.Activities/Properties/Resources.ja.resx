@@ -681,4 +681,28 @@
   <value>固定する行数</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>指定されたワークシートの既存データの末尾に DataTable を追加します。最後に使用されたセルの後の最初の空行から開始します。</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>範囲を追加</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>データが追加されるワークシートの名前。</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>シート名</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>ワークシートに追加するデータを含む DataTable。</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>データテーブル</value>
+  <comment>property name</comment>
+</data>
 </root>

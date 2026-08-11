@@ -1,9 +1,14 @@
 ﻿using Autossential.Workbook.Activities.Core;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.CodeAnalysis.Emit;
+using Microsoft.CodeCoverage.Core.Reports.Coverage;
 using NPOI.SS.UserModel;
 using System.Data;
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Runtime.CompilerServices;
+using UiPath.Studio.Activities.Api.Analyzer.Rules;
 
 namespace Autossential.Workbook.Activities.Tests.Unit
 {
@@ -478,7 +483,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         [Test]
         [Arguments(".xlsx")]
         [Arguments(".xls")]
-        public void InsertSheet_ThrownsException_WhenNameAlreadyExists(string extension)
+        public void InsertSheet_ThrowsException_WhenNameAlreadyExists(string extension)
         {
             Assert.ThrowsExactly<InvalidOperationException>(() =>
             {
@@ -629,7 +634,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
 
 
         [Test]
-        public async Task FreezePanes_Xlsx_Verify()
+        public async Task FreezePanes_XLSX_VerifyRowsAndColsFrozen()
         {
             var (processor, file) = NewFile(".xlsx");
             var table = TableUtils.Generate(10, 10);
@@ -653,7 +658,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        public async Task FreezePanes_Xls_Verify()
+        public async Task FreezePanes_XLS_VerifyRowsAndColsFrozen()
         {
             var (processor, file) = NewFile(".xls");
             var table = TableUtils.Generate(10, 10);
@@ -677,56 +682,224 @@ namespace Autossential.Workbook.Activities.Tests.Unit
         }
 
         [Test]
-        public async Task WriteRange_MinimalXlsx_ShouldWork()
+        public async Task WriteRange_MinimalXLSX_ShouldWork()
         {
-            var path = MinimalXLSX.Create(3, 3);
+            var (processor, _) = NewMinimalXLSX(TableUtils.Build(3, 3), true);
+            var data = processor.ReadRange("Sheet1", "A1", true);
+            var dr = data.NewRow();
+            dr[0] = "Hello";
+            dr[1] = "New";
+            dr[2] = "World!";
+            data.Rows.Add(dr);
+            processor.WriteRange("Sheet1", data, "A1", true);
+            data = processor.ReadRange("Sheet1", "A1", true);
+            await Assert.That(data.Rows.Count).IsEqualTo(4);
+        }
 
-            try
+        [Test]
+        public async Task WriteCell_MinimalXLSX_ShouldWork()
+        {
+            var (processor, _) = NewMinimalXLSX(TableUtils.Build(3, 4), true);
+            var cell = "B3";
+            var text = "Alex";
+            var value = processor.ReadCell("Sheet1", cell);
+            await Assert.That(value).IsNotEqualTo(text);
+            processor.WriteCell("Sheet1", cell, text);
+            value = processor.ReadCell("Sheet1", cell);
+            await Assert.That(value).IsEqualTo(text);
+        }
+
+        [Test]
+        [Arguments(".xls")]
+        [Arguments(".xlsx")]
+        public async Task AppendRange_ReturnsExpectedData_AfterAppend(string extension)
+        {
+            var (processor, _) = NewFile(extension);
+            var data = TableUtils.Build(5, 6);
+
+            // Arrange            
+            processor.WriteRange("Sheet1", data, "A1", true);
+            processor.WriteRange("Sheet2", data, "C5", true);
+            processor.WriteRange("Sheet3", data, "E9", true);
+            processor.WriteRange("Sheet3", data, "J20", true);
+
+            // Act
+            data = data.Clone();
+            object[] entry = ["A", "B", "C", "D", "E"];
+            data.Rows.Add(entry);
+
+            processor.AppendRange("Sheet1", data);
+            processor.AppendRange("Sheet2", data);
+            processor.AppendRange("Sheet3", data);
+            processor.AppendRange("Sheet4", data);
+            data.Clear();
+            processor.AppendRange("Sheet5", data);
+
+            // Assert
+            var sheets = processor.GetSheetNames();
+            await Assert.That(sheets).IsEquivalentTo(["Sheet1", "Sheet2", "Sheet3", "Sheet4", "Sheet5"]);
+
+            var sheet1 = processor.ReadRange("Sheet1", "A1", true);
+            await Assert.That(sheet1.Rows.Count).IsEqualTo(7);
+            await Assert.That(sheet1.Columns.Count).IsEqualTo(5);
+            await Assert.That(sheet1.Rows[^1].ItemArray).IsEquivalentTo(entry);
+
+            var sheet2 = processor.ReadRange("Sheet2", "C5", true);
+            await Assert.That(sheet2.Rows.Count).IsEqualTo(7);
+            await Assert.That(sheet2.Columns.Count).IsEqualTo(5);
+            await Assert.That(sheet2.Rows[^1].ItemArray).IsEquivalentTo(entry);
+
+            var sheet3 = processor.ReadRange("Sheet3", "E9", true);
+            await Assert.That(sheet3.Rows.Count).IsEqualTo(18);
+            await Assert.That(sheet3.Columns.Count).IsEqualTo(10);
+            await Assert.That(sheet3.Rows[^1].ItemArray).IsEquivalentTo(entry.Concat([DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value]));
+        }
+
+        [Test]
+        [Arguments("2:4,6,8:9", 1, 5, 7, 10)]
+        public async Task DeleteRows_ReturnsRightRowIndexes_AfterDeletingReferences(string references, params double[] expectedValues)
+        {
+            var (processor, path) = NewFile(".xlsx");
+            var data = TableUtils.Build(1, 10, (cols, rows) => rows);
+            processor.WriteRange("Sheet1", data, "A1", false);
+            processor.DeleteRows("Sheet1", references);
+
+            var readData = processor.ReadColumn("Sheet1", "A1");
+            processor.Dispose();
+
+            await Assert.That(readData).IsEquivalentTo(expectedValues);
+
+            using SpreadsheetDocument document = SpreadsheetDocument.Open(path, false);
+            WorkbookPart workbookPart = document.WorkbookPart;
+            Sheet firstSheet = workbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
+            WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(firstSheet.Id);
+            SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+            var rowIndexes = sheetData.Elements<Row>().Select(r => r.RowIndex.Value);
+            var values = Enumerable.Range(1, rowIndexes.Count()).Select(i => (uint)i).ToList();
+            await Assert.That(rowIndexes).IsEquivalentTo(values);
+        }
+
+        [Test]
+        [Arguments("B:D,F,H:I", 1, 5, 7, 10)]
+        public async Task DeleteColumns_ReturnsRightRowIndexes_AfterDeletingReferences(string references, params double[] expectedValues)
+        {
+            var (processor, path) = NewFile(".xlsx");
+            var data = TableUtils.Build(10, 2, (cols, rows) => cols);
+            processor.WriteRange("Sheet1", data, "A1", false);
+            processor.DeleteColumns("Sheet1", references);
+            var readData = processor.ReadRow("Sheet1", "A1");
+            processor.Dispose();
+
+            await Assert.That(readData).IsEquivalentTo(expectedValues);
+            using SpreadsheetDocument document = SpreadsheetDocument.Open(path, false);
+            WorkbookPart workbookPart = document.WorkbookPart;
+            Sheet firstSheet = workbookPart.Workbook.Sheets.GetFirstChild<Sheet>();
+            WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(firstSheet.Id);
+            SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+            foreach (var row in sheetData.Elements<Row>())
             {
-                var processor = WorkbookProcessorFactory.OpenOrCreate(path);
-                var data = processor.ReadRange("Sheet1", "A1", true);
-                var dr = data.NewRow();
-                dr[0] = "Hello";
-                dr[1] = "New";
-                dr[2] = "World!";
-                data.Rows.Add(dr);
-                processor.WriteRange("Sheet1", data, "A1", true);
-                data = processor.ReadRange("Sheet1", "A1", true);
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail(ex.Message);
-            }
-            finally
-            {
-                File.Delete(path);
+                var index = row.RowIndex.Value;
+                var expectedRefNames = Enumerable.Range('A', expectedValues.Length).Select(v => $"{(char)v}{index}");
+                var cells = row.Elements<Cell>().Select(c => c.CellReference.Value!);
+                await Assert.That(cells).IsEquivalentTo(expectedRefNames);
             }
         }
 
         [Test]
-        public async Task WriteCell_MinimalXlsx_ShouldWork()
+        [Arguments("2:4,6,8:9", "1", "5", "7", "10")]
+        public async Task DeleteRows_ReturnsRightData_WhenMinimalXLSX(string references, params string[] expectedValues)
         {
-            var path = MinimalXLSX.Create(3, 4);
+            var (processor, _) = NewMinimalXLSX(TableUtils.Build(1, 10, (cols, rows) => rows), false);
+            processor.DeleteRows("Sheet1", references);
+            var readData = processor.ReadColumn("Sheet1", "A1");
+            await Assert.That(readData).IsEquivalentTo(expectedValues);
+        }
 
-            try
+        [Test]
+        [Arguments("2:4,6,8:9", 1, 5, 7, 10)]
+        public async Task DeleteRows_ReturnsRightData_WhenXLS(string references, params double[] expectedValues)
+        {
+            var (processor, path) = NewFile(".xls");
+            var data = TableUtils.Build(1, 10, (cols, rows) => rows);
+            processor.WriteRange("Sheet1", data, "A1", false);
+            processor.DeleteRows("Sheet1", references);
+            var readData = processor.ReadColumn("Sheet1", "A1");
+            await Assert.That(readData).IsEquivalentTo(expectedValues);
+        }
+
+        [Test]
+        [Arguments("B:D,F,H:I", 1, 5, 7, 10)]
+        public async Task DeleteColumns_XLS_ReturnsRightData(string references, params double[] expectedValues)
+        {
+            var (processor, path) = NewFile(".xls");
+            var data = TableUtils.Build(10, 2, (cols, rows) => cols);
+            processor.WriteRange("Sheet1", data, "A1", false);
+            //processor.Save();
+            processor.DeleteColumns("Sheet1", references);
+            //processor.Save();
+            var readData = processor.ReadRange("Sheet1", "A1", false);
+            foreach (DataRow row in readData.Rows)
             {
-                var processor = WorkbookProcessorFactory.OpenOrCreate(path);
-                var cell = "B3";
-                var text = "Alex";
-                var value = processor.ReadCell("Sheet1", cell);
-                await Assert.That(value).IsNotEqualTo(text);
-                processor.WriteCell("Sheet1", cell, text);
-                value = processor.ReadCell("Sheet1", cell);
-                await Assert.That(value).IsEqualTo(text);
+                await Assert.That(row.ItemArray).IsEquivalentTo(expectedValues);
             }
-            catch (Exception ex)
-            {
-                Assert.Fail(ex.Message);
-            }
-            finally
-            {
-                File.Delete(path);
-            }
+        }
+
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task DeleteRows_SparseData_ShiftRowsCorrectly(string extension)
+        {
+            var source = Path.GetFullPath($"../../../../Assets/Data{extension}");
+            var target = Path.GetFullPath($"Data{extension}");
+
+            File.Copy(source, target, true);
+            var processor = WorkbookProcessorFactory.OpenOrCreate(target);
+            var values = processor.ReadColumn("SparseRows", "A1");
+
+            var expected = Enumerable.Range(1, 25).Select(v => (double?)v).ToArray();
+            var nullIndexes = new[] { 5, 8, 9, 11, 12, 13, 16, 17, 18, 19, 21 };
+            foreach (int i in nullIndexes)
+                expected[i] = null;
+
+            await Assert.That(values.Length).IsEqualTo(expected.Length);
+            await Assert.That(values).IsEquivalentTo(expected);
+
+            processor.DeleteRows("SparseRows", "2,3,6:9,12:18,22");
+            values = processor.ReadColumn("SparseRows", "A1");
+            double? n = null;
+            expected = [1, 4, 5, n, 11, n, n, 21, 23, 24, 25];
+            await Assert.That(values.Length).IsEqualTo(expected.Length);
+            await Assert.That(values).IsEquivalentTo(expected);
+            //processor.Save();
+        }
+
+        [Test]
+        [Arguments(".xlsx")]
+        [Arguments(".xls")]
+        public async Task DeleteColumns_SparseData_ShiftColumnsCorrectly(string extension)
+        {
+            var source = Path.GetFullPath($"../../../../Assets/Data{extension}");
+            var target = Path.GetFullPath($"Data{extension}");
+
+            File.Copy(source, target, true);
+            var processor = WorkbookProcessorFactory.OpenOrCreate(target);
+            var values = processor.ReadRow("SparseColumns", "A1");
+
+            var expected = Enumerable.Range(0, 17).Select(v => ((char?)('a' + v)).ToString()).ToArray();
+            var nullIndexes = new[] { 2,4,6,7,10,11,12,15 };
+            foreach (int i in nullIndexes)
+                expected[i] = null;
+
+            await Assert.That(values.Length).IsEqualTo(expected.Length);
+            await Assert.That(values).IsEquivalentTo(expected);
+
+            processor.DeleteColumns("SparseColumns", "B,E,H:L,O");
+            values = processor.ReadRow("SparseColumns", "A1");
+            expected = ["a", null, "d", "f", null, null, "n", null, "q"];
+            await Assert.That(values.Length).IsEqualTo(expected.Length);
+            await Assert.That(values).IsEquivalentTo(expected);
+            //processor.Save();
         }
     }
 }

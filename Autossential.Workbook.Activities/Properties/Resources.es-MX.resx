@@ -681,4 +681,28 @@
   <value>Filas a inmovilizar</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Anexa un DataTable al final de los datos existentes en una hoja de cálculo especificada, comenzando desde la primera fila vacía después de la última celda utilizada.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Anexar rango</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo donde se anexarán los datos.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>El DataTable que contiene los datos a anexar a la hoja de cálculo.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Tabla de datos</value>
+  <comment>property name</comment>
+</data>
 </root>

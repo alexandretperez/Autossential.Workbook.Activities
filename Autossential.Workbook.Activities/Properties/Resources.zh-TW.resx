@@ -681,4 +681,28 @@
   <value>要凍結的列數</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>將 DataTable 附加到指定工作表中現有資料的結尾，從最後一個使用過的儲存格之後的第一個空列開始。</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>附加範圍</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>將附加資料的工作表名稱。</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>工作表名稱</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>包含要附加到工作表中之資料的 DataTable。</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>資料表</value>
+  <comment>property name</comment>
+</data>
 </root>

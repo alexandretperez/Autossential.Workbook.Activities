@@ -681,4 +681,28 @@
   <value>Linhas a congelar</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Acrescenta um DataTable ao final dos dados existentes em uma planilha especificada, começando na primeira linha vazia após a última célula utilizada.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Acrescentar intervalo</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>O nome da planilha onde os dados serão acrescentados.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da planilha</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>O DataTable que contém os dados a serem acrescentados à planilha.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Tabela de dados</value>
+  <comment>property name</comment>
+</data>
 </root>

@@ -24,7 +24,6 @@ namespace Autossential.Workbook.Activities.Tests.Activities
             var (processor, filePath) = NewFile(extension);
             processor.WriteRange("Sheet1", data, "A1", false);
             processor.Save();
-            File.Move(filePath, $@"C:\Users\alexa\Downloads\range{extension}", true);
         }
 
         [Test]

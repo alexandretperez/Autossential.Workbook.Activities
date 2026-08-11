@@ -681,4 +681,28 @@
   <value>고정할 행 수</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>지정된 워크시트의 기존 데이터 끝에 DataTable을 추가합니다. 마지막으로 사용된 셀 다음의 첫 번째 빈 행부터 시작합니다.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>범위 추가</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>데이터가 추가될 워크시트의 이름입니다.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>시트 이름</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>워크시트에 추가할 데이터가 포함된 DataTable입니다.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>데이터 테이블</value>
+  <comment>property name</comment>
+</data>
 </root>

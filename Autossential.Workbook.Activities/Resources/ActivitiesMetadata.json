@@ -1,6 +1,39 @@
 {
   "activities": [
     {
+      "categoryKey": "ActivityCategories_Workbook_Range",
+      "descriptionKey": "AppendRange_Description",
+      "displayNameKey": "AppendRange_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.AppendRange",
+      "iconKey": "AppendRange.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "AppendRange_DataTable_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "DataTable",
+          "tooltipKey": "AppendRange_DataTable_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "AppendRange_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "AppendRange_SheetName_Description"
+        }
+      ],
+      "shortName": "AppendRange",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.AppendRangeViewModel"
+    },
+    {
       "categoryKey": "ActivityCategories_Workbook_Sheet",
       "descriptionKey": "DeleteSheet_Description",
       "displayNameKey": "DeleteSheet_DisplayName",

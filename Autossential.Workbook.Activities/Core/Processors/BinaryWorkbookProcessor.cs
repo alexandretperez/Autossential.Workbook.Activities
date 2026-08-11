@@ -1,4 +1,5 @@
 ﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
 using System.Data;
 
@@ -76,7 +77,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             {
                 var headerRow = GetOrCreateRow(startRow);
                 for (int c = 0; c < data.Columns.Count; c++)
-                    SetCell(headerRow.CreateCell(startCol + c), data.Columns[c].ColumnName, dateStyle, timeStyle, dateTimeStyle);
+                    SetCell(headerRow.CreateCell(startCol + c), data.Columns[c].ColumnName, dateStyle, timeStyle,
+                        dateTimeStyle);
 
                 startRow++;
             }
@@ -93,7 +95,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             FlushWorkbook(wb);
         }
 
-        private static void SetCell(ICell cell, object value, ICellStyle dateStyle, ICellStyle timeStyle, ICellStyle dateTimeStyle)
+        private static void SetCell(ICell cell, object value, ICellStyle dateStyle, ICellStyle timeStyle,
+            ICellStyle dateTimeStyle)
         {
             cell.CellStyle = null; // reset
 
@@ -109,6 +112,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     {
                         cell.SetCellFormula(s[1..]);
                     }
+
                     {
                         cell.SetCellValue(s);
                     }
@@ -121,19 +125,19 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 case DateTime dt:
                     cell.SetCellValue(dt);
                     cell.CellStyle = dt.TimeOfDay == TimeSpan.Zero
-                                   ? dateStyle
-                                   : dt.Date == DateTime.MinValue.Date
-                                   ? timeStyle
-                                   : dateTimeStyle;
+                        ? dateStyle
+                        : dt.Date == DateTime.MinValue.Date
+                            ? timeStyle
+                            : dateTimeStyle;
                     break;
 
                 case DateTimeOffset dto:
                     cell.SetCellValue(dto.DateTime);
                     cell.CellStyle = dto.TimeOfDay == TimeSpan.Zero
-                                   ? dateStyle
-                                   : dto.Date == DateTimeOffset.MinValue.Date
-                                   ? timeStyle
-                                   : dateTimeStyle;
+                        ? dateStyle
+                        : dto.Date == DateTimeOffset.MinValue.Date
+                            ? timeStyle
+                            : dateTimeStyle;
                     break;
 
                 case TimeSpan ts:
@@ -179,7 +183,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             }
         }
 
-        private static (ICellStyle DateStyle, ICellStyle TimeStyle, ICellStyle DateTimeStyle) GetCellStyles(IWorkbook wb)
+        private static (ICellStyle DateStyle, ICellStyle TimeStyle, ICellStyle DateTimeStyle) GetCellStyles(
+            IWorkbook wb)
         {
             var dateStyle = wb.CreateCellStyle();
             dateStyle.DataFormat = (short)BuiltinFormats.GetBuiltinFormat(BuiltinFormats.ShortDate);
@@ -251,13 +256,15 @@ namespace Autossential.Workbook.Activities.Core.Processors
         public override void RenameSheet(string fromSheetName, string toSheetName)
         {
             using var wb = GetWorkbook();
-            var sheet = wb.GetSheet(fromSheetName) ?? throw new InvalidOperationException($"No sheet with name '{fromSheetName}' was found.");
+            var sheet = wb.GetSheet(fromSheetName) ??
+                        throw new InvalidOperationException($"No sheet with name '{fromSheetName}' was found.");
             if (sheet.SheetName == toSheetName)
                 return;
 
             var anotherSheet = wb.GetSheet(toSheetName);
             if (anotherSheet is not null && wb.GetSheetIndex(sheet) != wb.GetSheetIndex(anotherSheet))
-                throw new InvalidOperationException($"Another sheet with name '{toSheetName}' already exists in the workbook.");
+                throw new InvalidOperationException(
+                    $"Another sheet with name '{toSheetName}' already exists in the workbook.");
 
             int sheetIndex = wb.GetSheetIndex(sheet);
             wb.SetSheetName(sheetIndex, toSheetName);
@@ -296,5 +303,114 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
         public override void UnhideSheet(string sheetName) =>
             ToggleSheetState(sheetName, SheetVisibility.Visible);
+
+        public override void DeleteColumns(string sheetName, string references)
+        {
+            ValidateSheetName(sheetName);
+            var positions = ResolveColumnsReferences(references);
+
+            if (positions.Count == 0)
+                return;
+
+            var columns = new List<int>(positions.Select(p => p - 1));
+            columns.Sort((a, b) => b.CompareTo(a));
+
+            static void CloneCell(ICell source, ICell target)
+            {
+                target.CellStyle = source.CellStyle;
+
+                switch (source.CellType)
+                {
+                    case CellType.Boolean:
+                        target.SetCellValue(source.BooleanCellValue);
+                        break;
+                    case CellType.Numeric:
+                        target.SetCellValue(source.NumericCellValue);
+                        break;
+                    case CellType.String:
+                        target.SetCellValue(source.StringCellValue);
+                        break;
+                    case CellType.Formula:
+                        target.SetCellFormula(source.CellFormula);
+                        break;
+                    case CellType.Error:
+                        target.SetCellErrorValue(source.ErrorCellValue);
+                        break;
+                    case CellType.Blank:
+                        target.SetBlank();
+                        break;
+                    default:
+                        target.SetBlank(); // set as blank for unknow types
+                        break;
+                }
+
+                if (source.Hyperlink is not null)
+                    target.Hyperlink = source.Hyperlink;
+
+                if (source.CellComment is not null)
+                    target.CellComment = source.CellComment;
+            }
+
+            var wb = GetWorkbook();
+            var sheet = wb.GetSheet(sheetName) ?? throw new InvalidOperationException($"No sheet with name '{sheetName}' was found.");
+
+            var lastRow = sheet.LastRowNum;
+            for (int ri = 0; ri <= lastRow; ri++)
+            {
+                var row = sheet.GetRow(ri);
+                if (row is null)
+                    continue;
+
+                foreach (var col in columns)
+                {
+                    var cell = row.GetCell(col);
+                    if (cell is not null)
+                        row.RemoveCell(cell);
+
+                    var lastCellNum = row.LastCellNum;
+
+                    for (int c = col + 1; c < lastCellNum; c++)
+                    {
+                        var nextCell = row.GetCell(c);
+                        if (nextCell is not null)
+                        {
+                            var movedCell = row.CreateCell(c - 1, nextCell.CellType);
+                            CloneCell(nextCell, movedCell);
+                            row.RemoveCell(nextCell);
+                        }
+                    }
+                }
+            }
+
+            FlushWorkbook(wb);
+        }
+
+        public override void DeleteRows(string sheetName, string references)
+        {
+            ValidateSheetName(sheetName);
+
+            var positions = ResolveRowsReferences(references);
+            if (positions.Count == 0)
+                return;
+
+            var rowsDesc = new List<int>(positions.Select(p => p - 1)); // 0-based index for NPOI
+            rowsDesc.Sort((a, b) => b.CompareTo(a));
+
+            var wb = GetWorkbook();
+            var sheet = wb.GetSheet(sheetName) ?? throw new InvalidOperationException($"No sheet with name '{sheetName}' was found.");
+
+            foreach (var row in rowsDesc)
+            {
+                var sheetRow = sheet.GetRow(row);
+                var lastRow = sheet.LastRowNum;
+                if (sheetRow is not null)
+                    sheet.RemoveRow(sheetRow);
+
+                if (row + 1 <= lastRow)
+                    sheet.ShiftRows(row + 1, lastRow, -1);
+            }
+
+            FlushWorkbook(wb);
+        }
     }
 }

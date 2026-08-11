@@ -1,6 +1,7 @@
 ﻿using Autossential.Workbook.Activities.Core;
 using System.Activities;
 using System.Activities.Statements;
+using System.Data;
 using System.IO.Compression;
 using System.Linq.Expressions;
 using System.Xml.Linq;
@@ -67,6 +68,13 @@ namespace Autossential.Workbook.Activities.Tests
         protected (IWorkbookProcessor processor, string filePath) NewFile(string extension)
         {
             _filePath = NewTempFilePath(extension);
+            var processor = WorkbookProcessorFactory.OpenOrCreate(_filePath);
+            return (processor, _filePath);
+        }
+
+        protected (IWorkbookProcessor processor, string file) NewMinimalXLSX(DataTable data, bool addHeaders)
+        {
+            _filePath= MinimalXLSX.Create(data, addHeaders);
             var processor = WorkbookProcessorFactory.OpenOrCreate(_filePath);
             return (processor, _filePath);
         }

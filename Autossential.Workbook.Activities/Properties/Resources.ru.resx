@@ -681,4 +681,28 @@
   <value>Закрепляемые строки</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Добавляет DataTable в конец существующих данных на указанном рабочем листе, начиная с первой пустой строки после последней использованной ячейки.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Добавить диапазон</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>Имя рабочего листа, к которому будут добавлены данные.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Имя листа</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>DataTable, содержащая данные для добавления на рабочий лист.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Таблица данных</value>
+  <comment>property name</comment>
+</data>
 </root>

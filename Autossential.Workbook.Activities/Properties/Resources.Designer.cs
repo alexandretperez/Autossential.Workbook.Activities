@@ -97,6 +97,60 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The DataTable containing the data to append to the worksheet..
+        /// </summary>
+        public static string AppendRange_DataTable_Description {
+            get {
+                return ResourceManager.GetString("AppendRange_DataTable_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Table.
+        /// </summary>
+        public static string AppendRange_DataTable_DisplayName {
+            get {
+                return ResourceManager.GetString("AppendRange_DataTable_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appends a DataTable to the end of existing data in a specified worksheet, starting at the first empty row after the last used cell..
+        /// </summary>
+        public static string AppendRange_Description {
+            get {
+                return ResourceManager.GetString("AppendRange_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Append Range.
+        /// </summary>
+        public static string AppendRange_DisplayName {
+            get {
+                return ResourceManager.GetString("AppendRange_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the worksheet where the data will be appended..
+        /// </summary>
+        public static string AppendRange_SheetName_Description {
+            get {
+                return ResourceManager.GetString("AppendRange_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string AppendRange_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("AppendRange_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input.
         /// </summary>
         public static string Categories_Input {

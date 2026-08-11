@@ -49,6 +49,7 @@
 		<EmbeddedResource Include="Resources\Icons\SaveWorkbook.svg" />
 		<EmbeddedResource Include="Resources\Icons\WorkbookScope.svg" />
 		<EmbeddedResource Include="Resources\Icons\WriteCell.svg" />
+		<EmbeddedResource Include="Resources\Icons\AppendRange.svg" />
 		<EmbeddedResource Include="Resources\Icons\WriteRange.svg" />
 	</ItemGroup>
 

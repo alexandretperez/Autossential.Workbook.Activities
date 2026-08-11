@@ -40,5 +40,8 @@
                 _ => this
             };
         }
+
+        public static RangeRef MaxOpenXML() => new(new CellRef(1, 1), CellRef.MaxOpenXML());
+        public static RangeRef MaxBIFF8() => new(new CellRef(1, 1), CellRef.MaxBIFF8());
     }
 }

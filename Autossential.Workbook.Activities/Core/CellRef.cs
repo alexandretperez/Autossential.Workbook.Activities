@@ -68,10 +68,36 @@
 
             return new string(buffer[index..]);
         }
-        
+
+        public static int GetColumnIndex(ReadOnlySpan<char> columnName)
+        {
+            if (columnName.IsEmpty)
+                throw new FormatException("Column name cannot be empty.");
+
+            int result = 0;
+
+            foreach (var c in columnName)
+            {
+                int digit;
+                if (c is >= 'A' and <= 'Z')
+                    digit = c - 'A' + 1;
+                else if (c is >= 'a' and <= 'z')
+                    digit = c - 'a' + 1;
+                else
+                    throw new FormatException($"Invalid column character '{c}' in '{columnName}'.");
+
+                result = result * 26 + digit;
+
+                if (result > 16384) // XFD
+                    throw new FormatException($"Column '{columnName}' exceeds maximum column index.");
+            }
+
+            return result;
+        }
+
         public static CellRef MaxOpenXML() => new(16_384, 1_048_576);
         public static CellRef MaxBIFF8() => new(256, 65_536);
 
-        public string ToAddress() => $"{GetColumnName(Col)}{Row}";
+        public string GetAddress() => $"{GetColumnName(Col)}{Row}";
     }
 }

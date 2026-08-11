@@ -681,4 +681,28 @@
   <value>Zu fixierende Zeilen</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Fügt eine DataTable am Ende der vorhandenen Daten in einem angegebenen Arbeitsblatt hinzu, beginnend mit der ersten leeren Zeile nach der letzten verwendeten Zelle.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Bereich anhängen</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>Der Name des Arbeitsblatts, an das die Daten angehängt werden sollen.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Blattname</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>Die DataTable, die die an das Arbeitsblatt anzuhängenden Daten enthält.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Datentabelle</value>
+  <comment>property name</comment>
+</data>
 </root>

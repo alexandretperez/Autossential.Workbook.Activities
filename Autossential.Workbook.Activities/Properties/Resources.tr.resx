@@ -681,4 +681,28 @@
   <value>Dondurulacak Satırlar</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Belirtilen bir çalışma sayfasındaki mevcut verilerin sonuna, son kullanılan hücreden sonraki ilk boş satırdan başlayarak bir DataTable ekler.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Aralık Ekle</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>Verilerin ekleneceği çalışma sayfasının adı.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Sayfa Adı</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>Çalışma sayfasına eklenecek verileri içeren DataTable.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Veri Tablosu</value>
+  <comment>property name</comment>
+</data>
 </root>
