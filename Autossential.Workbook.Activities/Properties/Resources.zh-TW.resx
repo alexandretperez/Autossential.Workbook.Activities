@@ -705,4 +705,52 @@
   <value>資料表</value>
   <comment>property name</comment>
 </data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>根據列索引或範圍從指定的工作表中刪除一列或多列。</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>刪除列</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>包含要刪除的列的工作表名稱。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>工作表名稱</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>按列號指定要刪除的列。多個值可以用逗號分隔，範圍可以用冒號指定。範例："1,3,5:7" 刪除第 1、3 和 5 到 7 列。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>列參考</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>根據欄字母或範圍從指定的工作表中刪除一欄或多欄。</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>刪除欄</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>包含要刪除的欄的工作表名稱。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>工作表名稱</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>指定要刪除的欄字母。多個值可以用逗號分隔，範圍可以用冒號指定。範例："A,C,E:G" 刪除 A、C 和 E 到 G 欄。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>欄參考</value>
+  <comment>property name</comment>
+</data>
 </root>

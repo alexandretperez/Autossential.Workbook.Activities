@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.CodeAnalysis.Emit;
 using Microsoft.CodeCoverage.Core.Reports.Coverage;
 using NPOI.SS.UserModel;
+using System.Activities;
 using System.Data;
 using System.Diagnostics;
 using System.IO.Compression;
@@ -887,7 +888,7 @@ namespace Autossential.Workbook.Activities.Tests.Unit
             var values = processor.ReadRow("SparseColumns", "A1");
 
             var expected = Enumerable.Range(0, 17).Select(v => ((char?)('a' + v)).ToString()).ToArray();
-            var nullIndexes = new[] { 2,4,6,7,10,11,12,15 };
+            var nullIndexes = new[] { 2, 4, 6, 7, 10, 11, 12, 15 };
             foreach (int i in nullIndexes)
                 expected[i] = null;
 
@@ -900,6 +901,74 @@ namespace Autossential.Workbook.Activities.Tests.Unit
             await Assert.That(values.Length).IsEqualTo(expected.Length);
             await Assert.That(values).IsEquivalentTo(expected);
             //processor.Save();
+        }
+
+        [Test]
+        [MethodDataSource(nameof(GetDeleteRowsTestCase))]
+        public async Task DeleteRows_MergedRows_ShiftRowsCorrectly(string extension, string references, params double?[] expectedResult)
+        {
+            var sheetName = "MergedRows";
+
+            var source = Path.GetFullPath($"../../../../Assets/Data{extension}");
+
+            var processor = WorkbookProcessorFactory.OpenOrCreate(source);
+            var values = processor.ReadColumn(sheetName, "A1");
+
+            double? n = null;
+            var expected = new[] { 1, 2, n, n, 5, 6, 7, n, 9 };
+
+            await Assert.That(values.Length).IsEqualTo(expected.Length);
+            await Assert.That(values).IsEquivalentTo(expected);
+
+            processor.DeleteRows(sheetName, references);
+            values = processor.ReadColumn(sheetName, "A1");
+
+            await Assert.That(values.Length).IsEqualTo(expectedResult.Length);
+            await Assert.That(values).IsEquivalentTo(expectedResult);
+        }
+
+        [Test]
+        [MethodDataSource(nameof(GetDeleteColumnsTestCase))]
+        public async Task DeleteColums_MergedColumns_ShiftColumnsCorrectly(string extension, string references, params string[] expectedResult)
+        {
+            var sheetName = "MergedColumns";
+
+            var source = Path.GetFullPath($"../../../../Assets/Data{extension}");
+
+            var processor = WorkbookProcessorFactory.OpenOrCreate(source);
+            var values = processor.ReadRow(sheetName, "A1");
+
+            var expected = new[] { "a", "b", null, null, "e", "f", "g", null, "i" };
+
+            await Assert.That(values.Length).IsEqualTo(expected.Length);
+            await Assert.That(values).IsEquivalentTo(expected);
+
+            processor.DeleteColumns(sheetName, references);
+            values = processor.ReadRow(sheetName, "A1");
+
+            await Assert.That(values.Length).IsEqualTo(expectedResult.Length);
+            await Assert.That(values).IsEquivalentTo(expectedResult);
+        }
+
+        public static IEnumerable<(string, string, double?[] expectedResult)> GetDeleteRowsTestCase()
+        {
+            double? n = null;
+            foreach (var extension in new[] { ".xlsx", ".xls" })
+            {
+                yield return (extension, "3,7", new double?[] { 1, 2, n, 5, 6, n, 9 });
+                yield return (extension, "2,7:9", new double?[] { 1, n, n, 5, 6 });
+                yield return (extension, "3,4,8", new double?[] { 1, 2, 5, 6, 7, 9 });
+            }
+        }
+
+        public static IEnumerable<(string, string, string[] expectedResult)> GetDeleteColumnsTestCase()
+        {
+            foreach (var extension in new[] { ".xlsx", ".xls" })
+            {
+                yield return (extension, "C,G", new string[] { "a","b",null,"e","f",null,"i" });
+                yield return (extension, "B,G:I", new string[] { "a", null, null, "e", "f" });
+                yield return (extension, "C,D,H", new string[] { "a", "b", "e", "f", "g", "i" });
+            }
         }
     }
 }

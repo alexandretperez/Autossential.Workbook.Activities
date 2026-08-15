@@ -1,9 +1,12 @@
 ﻿using Autossential.Workbook.Activities.Extensions;
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using MathNet.Numerics.Distributions;
 using System.Data;
 using System.Globalization;
+using System.Runtime.Intrinsics.Arm;
 
 namespace Autossential.Workbook.Activities.Core.Processors
 {
@@ -674,8 +677,55 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             }
 
+            AdjustMergedCells(wsPart.Worksheet, columnsDesc, false);
             UpdateSheetDimension(wsPart.Worksheet, sheetData);
             wsPart.Worksheet.Save();
+        }
+
+        private static void AdjustMergedCells(Worksheet worksheet, List<int> deletedPositions, bool isRowAxis)
+        {
+            var mergeCells = worksheet.Elements<MergeCells>().FirstOrDefault()?.Elements<MergeCell>().ToList() ?? [];
+
+            if (mergeCells.Count == 0)
+                return;
+
+            int rowShift = isRowAxis ? 1 : 0;
+            int colShift = isRowAxis ? 0 : 1;
+
+            foreach (var pos in deletedPositions)
+            {
+                int i = 0;
+                while (i < mergeCells.Count)
+                {
+                    var mergeCell = mergeCells[i];
+                    var range = RangeRef.Parse(mergeCell.Reference);
+                    var start = range.Start;
+                    var end = range.End;
+
+                    if (isRowAxis ? pos < start.Row : pos < start.Col)
+                    {
+                        start = new CellRef(range.Start.Col - colShift, range.Start.Row - rowShift);
+                        end = new CellRef(range.End.Col - colShift, range.End.Row - rowShift);
+                    }
+                    else if (isRowAxis ? pos <= end.Row : pos <= end.Col)
+                    {
+                        end = new CellRef(range.End.Col - colShift, range.End.Row - rowShift);
+                    }
+
+                    if (start == end)
+                    {
+                        mergeCells.Remove(mergeCell);
+                        mergeCell.Remove();
+                        continue;
+                    }
+                    else
+                    {
+                        mergeCell.Reference = new RangeRef(start, end).GetAddress();
+                    }
+
+                    i++;
+                }
+            }
         }
 
         public override void DeleteRows(string sheetName, string references)
@@ -703,6 +753,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             var removed = false;
             var allRows = sheetData.BuildRowEnumerator();
+
             while (allRows.MoveNext())
             {
                 var (ri, row) = allRows.Current;
@@ -723,6 +774,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             int shift = 0;
             int dp = 0;
 
+            var deletedRow = 0;
+
             allRows = sheetData.BuildRowEnumerator();
             while (allRows.MoveNext())
             {
@@ -730,6 +783,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
                 while (dp < rowsAsc.Count && rowsAsc[dp] < ri)
                 {
+                    deletedRow = rowsAsc[dp];
                     dp++;
                     shift++;
                 }
@@ -751,9 +805,11 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             }
 
+            AdjustMergedCells(wsPart.Worksheet, rowsDesc, true);
             UpdateSheetDimension(wsPart.Worksheet, sheetData);
             wsPart.Worksheet.Save();
         }
+
 
         private static void UpdateSheetDimension(Worksheet worksheet, SheetData sheetData)
         {

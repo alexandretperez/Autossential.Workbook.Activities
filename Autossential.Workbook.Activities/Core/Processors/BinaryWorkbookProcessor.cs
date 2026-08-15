@@ -1,6 +1,7 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
+using NPOI.SS.Util;
 using System.Data;
 
 namespace Autossential.Workbook.Activities.Core.Processors
@@ -312,8 +313,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             if (positions.Count == 0)
                 return;
 
-            var columns = new List<int>(positions.Select(p => p - 1));
-            columns.Sort((a, b) => b.CompareTo(a));
+            var columnsDesc = new List<int>(positions.Select(p => p - 1));
+            columnsDesc.Sort((a, b) => b.CompareTo(a));
 
             static void CloneCell(ICell source, ICell target)
             {
@@ -354,6 +355,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             var wb = GetWorkbook();
             var sheet = wb.GetSheet(sheetName) ?? throw new InvalidOperationException($"No sheet with name '{sheetName}' was found.");
 
+            var mergedRegions = CaptureAndClearMergedRegions(sheet);
+
             var lastRow = sheet.LastRowNum;
             for (int ri = 0; ri <= lastRow; ri++)
             {
@@ -361,7 +364,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 if (row is null)
                     continue;
 
-                foreach (var col in columns)
+                foreach (var col in columnsDesc)
                 {
                     var cell = row.GetCell(col);
                     if (cell is not null)
@@ -382,6 +385,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             }
 
+            RestoreAdjustedMergedRegions(sheet, mergedRegions, columnsDesc, false);
+
             FlushWorkbook(wb);
         }
 
@@ -399,6 +404,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             var wb = GetWorkbook();
             var sheet = wb.GetSheet(sheetName) ?? throw new InvalidOperationException($"No sheet with name '{sheetName}' was found.");
 
+            var mergedRegions = CaptureAndClearMergedRegions(sheet);
+
             foreach (var row in rowsDesc)
             {
                 var sheetRow = sheet.GetRow(row);
@@ -410,7 +417,48 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     sheet.ShiftRows(row + 1, lastRow, -1);
             }
 
+            RestoreAdjustedMergedRegions(sheet, mergedRegions, rowsDesc, true);
+
             FlushWorkbook(wb);
+        }
+
+        private static List<CellRangeAddress> CaptureAndClearMergedRegions(ISheet sheet)
+        {
+            var regions = new List<CellRangeAddress>();
+            for (int i = sheet.NumMergedRegions - 1; i >= 0; i--)
+            {
+                regions.Add(sheet.GetMergedRegion(i));
+                sheet.RemoveMergedRegion(i);
+            }
+            return regions;
+        }
+
+        private static void RestoreAdjustedMergedRegions(ISheet sheet, List<CellRangeAddress> regions, List<int> deletedPositions, bool isRowAxis)
+        {
+            foreach (var region in regions)
+            {
+                int start = isRowAxis ? region.FirstRow : region.FirstColumn;
+                int end = isRowAxis ? region.LastRow : region.LastColumn;
+
+                int shiftStart = 0, shiftEnd = 0;
+                foreach (var pos in deletedPositions)
+                {
+                    if (pos < start) { shiftStart++; shiftEnd++; }
+                    else if (pos <= end) { shiftEnd++; }
+                }
+
+                var newStart = start - shiftStart;
+                var newEnd = end - shiftEnd;
+
+                if (newEnd <= newStart)
+                    continue; // colapsou pra <=1 linha/coluna: descarta o merge, célula sobrevivente vira dado normal
+
+                var newRegion = isRowAxis
+                    ? new CellRangeAddress(newStart, newEnd, region.FirstColumn, region.LastColumn)
+                    : new CellRangeAddress(region.FirstRow, region.LastRow, newStart, newEnd);
+
+                sheet.AddMergedRegion(newRegion);
+            }
         }
     }
 }

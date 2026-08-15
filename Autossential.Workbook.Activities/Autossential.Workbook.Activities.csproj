@@ -17,6 +17,8 @@
 	
 	<ItemGroup>
 		<None Remove="Resources\ActivitiesMetadata.json" />
+		<None Remove="Resources\Icons\DeleteColumns.svg" />
+		<None Remove="Resources\Icons\DeleteRows.svg" />
 		<None Remove="Resources\Icons\DeleteSheet.svg" />
 		<None Remove="Resources\Icons\FindValue.svg" />
 		<None Remove="Resources\Icons\FreezePanes.svg" />
@@ -35,6 +37,8 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\ActivitiesMetadata.json" />
+		<EmbeddedResource Include="Resources\Icons\DeleteColumns.svg" />
+		<EmbeddedResource Include="Resources\Icons\DeleteRows.svg" />
 		<EmbeddedResource Include="Resources\Icons\DeleteSheet.svg" />
 		<EmbeddedResource Include="Resources\Icons\FindValue.svg" />
 		<EmbeddedResource Include="Resources\Icons\FreezePanes.svg" />

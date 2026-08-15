@@ -705,4 +705,52 @@
   <value>Veri Tablosu</value>
   <comment>property name</comment>
 </data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>Satır dizinlerine veya aralıklarına göre belirtilen bir çalışma sayfasından bir veya daha fazla satırı siler.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>Satırları Sil</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>Silinecek satırları içeren çalışma sayfasının adı.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>Sayfa Adı</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>Silinecek satırları numaralarına göre belirtir. Birden fazla değer virgülle ayrılabilir ve aralıklar iki nokta üst üste kullanılarak belirtilebilir. Örnek: "1,3,5:7", 1, 3 ve 5'ten 7'ye kadar olan satırları siler.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>Satır Referansları</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>Sütun harflerine veya aralıklarına göre belirtilen bir çalışma sayfasından bir veya daha fazla sütunu siler.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>Sütunları Sil</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>Silinecek sütunları içeren çalışma sayfasının adı.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>Sayfa Adı</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>Silinecek sütun harflerini belirtir. Birden fazla değer virgülle ayrılabilir ve aralıklar iki nokta üst üste kullanılarak belirtilebilir. Örnek: "A,C,E:G", A, C ve E'den G'ye kadar olan sütunları siler.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>Sütun Referansları</value>
+  <comment>property name</comment>
+</data>
 </root>

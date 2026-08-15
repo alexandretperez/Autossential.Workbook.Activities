@@ -36,12 +36,13 @@
                 RangeInputType.AB1 => new RangeRef(new CellRef(Start.Col, 1), End),
                 RangeInputType.A1 => new RangeRef(Start, maxRef),
                 RangeInputType.AB => new RangeRef(new CellRef(Start.Col, 1), new CellRef(End.Col, maxRef.Row)),
-                RangeInputType.A => new RangeRef(new CellRef(Start.Col, 1), maxRef),              
+                RangeInputType.A => new RangeRef(new CellRef(Start.Col, 1), maxRef),
                 _ => this
             };
         }
 
         public static RangeRef MaxOpenXML() => new(new CellRef(1, 1), CellRef.MaxOpenXML());
         public static RangeRef MaxBIFF8() => new(new CellRef(1, 1), CellRef.MaxBIFF8());
+        public string GetAddress() => $"{Start.GetAddress()}:{End.GetAddress()}";
     }
 }

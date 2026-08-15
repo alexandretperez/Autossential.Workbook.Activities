@@ -259,6 +259,114 @@ namespace Autossential.Workbook.Activities.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifies the columns letters to delete. Multiple values can be separated by commas, and ranges can be specified using a colon. Examples: &quot;A,C,E:G&quot; deletes columns A, C, and E through G..
+        /// </summary>
+        public static string DeleteColumns_ColumnReferences_Description {
+            get {
+                return ResourceManager.GetString("DeleteColumns_ColumnReferences_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column References.
+        /// </summary>
+        public static string DeleteColumns_ColumnReferences_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteColumns_ColumnReferences_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deletes one or more columns from a specified worksheet based on column letters or ranges..
+        /// </summary>
+        public static string DeleteColumns_Description {
+            get {
+                return ResourceManager.GetString("DeleteColumns_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Columns.
+        /// </summary>
+        public static string DeleteColumns_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteColumns_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the worksheet containing the columns to delete..
+        /// </summary>
+        public static string DeleteColumns_SheetName_Description {
+            get {
+                return ResourceManager.GetString("DeleteColumns_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string DeleteColumns_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteColumns_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deletes one or more rows from a specified worksheet based on row indices or ranges..
+        /// </summary>
+        public static string DeleteRows_Description {
+            get {
+                return ResourceManager.GetString("DeleteRows_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Rows.
+        /// </summary>
+        public static string DeleteRows_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteRows_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifies the rows to delete by their numbers. Multiple values can be separated by commas, and ranges can be specified using a colon. Examples: &quot;1,3,5:7&quot; deletes rows 1, 3, and 5 through 7..
+        /// </summary>
+        public static string DeleteRows_RowReferences_Description {
+            get {
+                return ResourceManager.GetString("DeleteRows_RowReferences_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row References.
+        /// </summary>
+        public static string DeleteRows_RowReferences_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteRows_RowReferences_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the worksheet containing the rows to delete..
+        /// </summary>
+        public static string DeleteRows_SheetName_Description {
+            get {
+                return ResourceManager.GetString("DeleteRows_SheetName_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Name.
+        /// </summary>
+        public static string DeleteRows_SheetName_DisplayName {
+            get {
+                return ResourceManager.GetString("DeleteRows_SheetName_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deletes a specified worksheet from the workbook. Use this activity when you need to remove unwanted sheets from the workbook..
         /// </summary>
         public static string DeleteSheet_Description {
