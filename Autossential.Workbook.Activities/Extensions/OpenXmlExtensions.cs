@@ -1,4 +1,5 @@
 ﻿using Autossential.Workbook.Activities.Core;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 
@@ -82,6 +83,36 @@ namespace Autossential.Workbook.Activities.Extensions
                 }
                 list.Sort((a, b) => a.Key.CompareTo(b.Key));
                 return list.GetEnumerator();
+            }
+        }
+
+        extension(Worksheet worksheet)
+        {
+            public void SetActiveCellToA1()
+            {
+                var sheetView = worksheet.GetFirstChild<SheetViews>()?.GetFirstChild<SheetView>();
+                if (sheetView is null)
+                    return;
+
+                var pane = sheetView.GetFirstChild<Pane>();
+                if (pane is not null)
+                {
+                    var row = (pane.VerticalSplit?.Value ?? 0) + 1;
+                    var col = (pane.HorizontalSplit?.Value ?? 0) + 1;
+                    pane.TopLeftCell = new CellRef((int)col, (int)row).GetAddress();
+                }
+
+                const string A1 = "A1";
+                sheetView.RemoveAllChildren<Selection>();
+                sheetView.AppendChild(new Selection
+                {
+                    ActiveCell = A1,
+                    SequenceOfReferences = new ListValue<StringValue>
+                    {
+                        InnerText = A1
+                    }
+                });
+                sheetView.TopLeftCell = A1;
             }
         }
     }

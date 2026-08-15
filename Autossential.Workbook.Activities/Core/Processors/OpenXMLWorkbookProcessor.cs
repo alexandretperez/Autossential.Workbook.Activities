@@ -136,6 +136,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             sst.UniqueCount = (uint)sstIndex.Count;
             wbPart.SharedStringTablePart.SharedStringTable.Save();
+            wsPart.Worksheet.SetActiveCellToA1();
             wsPart.Worksheet.Save();
 
             RemoveDefaultSheetIfNeed(wbPart, sheetName);
@@ -201,6 +202,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             sst.UniqueCount = (uint)sstIndex.Count;
             wbPart.SharedStringTablePart.SharedStringTable.Save();
+            wsPart.Worksheet.SetActiveCellToA1();
             wsPart.Worksheet.Save();
 
             RemoveDefaultSheetIfNeed(wbPart, sheetName);
@@ -677,9 +679,13 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             }
 
-            AdjustMergedCells(wsPart.Worksheet, columnsDesc, false);
-            UpdateSheetDimension(wsPart.Worksheet, sheetData);
-            wsPart.Worksheet.Save();
+            var worksheet = wsPart.Worksheet;
+
+            AdjustMergedCells(worksheet, columnsDesc, false);
+            UpdateSheetDimension(worksheet, sheetData);
+
+            worksheet.SetActiveCellToA1();
+            worksheet.Save();
         }
 
         private static void AdjustMergedCells(Worksheet worksheet, List<int> deletedPositions, bool isRowAxis)
@@ -805,11 +811,14 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 }
             }
 
-            AdjustMergedCells(wsPart.Worksheet, rowsDesc, true);
-            UpdateSheetDimension(wsPart.Worksheet, sheetData);
-            wsPart.Worksheet.Save();
-        }
+            var worksheet = wsPart.Worksheet;
 
+            AdjustMergedCells(worksheet, rowsDesc, true);
+            UpdateSheetDimension(worksheet, sheetData);
+
+            worksheet.SetActiveCellToA1();
+            worksheet.Save();
+        }
 
         private static void UpdateSheetDimension(Worksheet worksheet, SheetData sheetData)
         {
