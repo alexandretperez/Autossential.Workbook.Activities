@@ -7,7 +7,9 @@ namespace Autossential.Workbook.Activities
 {
     public sealed class DeleteColumns : WorkbookCodeActivity
     {
+        [RequiredArgument]
         public InArgument<string> SheetName { get; set; }
+        [RequiredArgument]
         public InArgument<string> ColumnReferences { get; set; }
 
         protected override void Execute(CodeActivityContext context)
@@ -20,7 +22,7 @@ namespace Autossential.Workbook.Activities
             if (string.IsNullOrEmpty(columnReferences))
                 throw new InvalidOperationException(ResourcesFn.Common_ErrorMsg_ValueNotSuppliedFormat(Resources.DeleteColumns_ColumnReferences_DisplayName));
 
-            context.GetWorkbookProcessor().DeleteRows(sheetName, columnReferences);
+            context.GetWorkbookProcessor().DeleteColumns(sheetName, columnReferences);
         }
     }
 }

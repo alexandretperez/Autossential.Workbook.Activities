@@ -46,7 +46,7 @@
             "name": "Input"
           },
           "displayNameKey": "DeleteColumns_ColumnReferences_DisplayName",
-          "isRequired": false,
+          "isRequired": true,
           "isVisible": true,
           "name": "ColumnReferences",
           "tooltipKey": "DeleteColumns_ColumnReferences_Description"
@@ -57,7 +57,7 @@
             "name": "Input"
           },
           "displayNameKey": "DeleteColumns_SheetName_DisplayName",
-          "isRequired": false,
+          "isRequired": true,
           "isVisible": true,
           "name": "SheetName",
           "tooltipKey": "DeleteColumns_SheetName_Description"

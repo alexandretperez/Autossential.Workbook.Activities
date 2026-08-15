@@ -5,10 +5,8 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     public class ReadCellTests : BaseTests
     {
         [Test]
-
         [Arguments(".xls", "")]
         [Arguments(".xls", null)]
-
         [Arguments(".xlsx", "")]
         [Arguments(".xlsx", null)]
         public void ReadCell_Fails_WhenCellAddressIsMissing(string extension, string cell)
@@ -30,11 +28,9 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
-
         [Arguments(".xls", "B3")]
         [Arguments(".xls", "J14")]
         [Arguments(".xls", "A1")]
-
         [Arguments(".xlsx", "B3")]
         [Arguments(".xlsx", "J14")]
         [Arguments(".xlsx", "A1")]

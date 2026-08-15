@@ -6,7 +6,7 @@ namespace Autossential.Workbook.Activities.ViewModels
     internal class DeleteColumnsViewModel(IDesignServices services) : BaseViewModel(services)
     {
         public DesignInArgument<string> SheetName { get; set; }
-        public DesignInArgument<string> RowReferences { get; set; }
+        public DesignInArgument<string> ColumnReferences { get; set; }
         protected override void InitializeModel()
         {
             base.InitializeModel();
@@ -16,8 +16,8 @@ namespace Autossential.Workbook.Activities.ViewModels
             SheetName.IsPrincipal = true;
             SheetName.OrderIndex = orderIndex++;
 
-            RowReferences.IsPrincipal = true;
-            RowReferences.OrderIndex = orderIndex++;
+            ColumnReferences.IsPrincipal = true;
+            ColumnReferences.OrderIndex = orderIndex++;
         }
     }
 }

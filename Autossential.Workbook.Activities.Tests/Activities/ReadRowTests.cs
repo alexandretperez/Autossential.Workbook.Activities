@@ -3,10 +3,8 @@
     public class ReadRowTests : BaseTests
     {
         [Test]
-
         [Arguments(".xls", "")]
         [Arguments(".xls", null)]
-
         [Arguments(".xlsx", "")]
         [Arguments(".xlsx", null)]
         public void ReadRow_Fails_WhenMissingStartingCell(string extension, string startingCell)
@@ -28,12 +26,10 @@
         }
 
         [Test]
-
         [Arguments(".xls", "A1", 0, 10)]
         [Arguments(".xls", "A2", 0, 0)]
         [Arguments(".xls", "D6", 0, 6)]
         [Arguments(".xls", "C9", 5, 5)]
-
         [Arguments(".xlsx", "A1", 0, 10)]
         [Arguments(".xlsx", "A2", 0, 0)]
         [Arguments(".xlsx", "D6", 0, 6)]
