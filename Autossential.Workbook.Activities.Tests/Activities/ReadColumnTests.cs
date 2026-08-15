@@ -3,12 +3,10 @@
     public class ReadColumnTests : BaseTests
     {
         [Test]
-
         [Arguments(".xls", "A1", 0, 10)]
         [Arguments(".xls", "B1", 0, 0)]
         [Arguments(".xls", "F4", 0, 6)]
         [Arguments(".xls", "I3", 5, 5)]
-
         [Arguments(".xlsx", "A1", 0, 10)]
         [Arguments(".xlsx", "B1", 0, 0)]
         [Arguments(".xlsx", "F4", 0, 6)]
@@ -21,10 +19,8 @@
         }
 
         [Test]
-
         [Arguments(".xls", null)]
         [Arguments(".xls", "")]
-
         [Arguments(".xlsx", null)]
         [Arguments(".xlsx", "")]
         public void ReadColumn_Fails_WhenMissingStartingCell(string extension, string startingCell)

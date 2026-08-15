@@ -681,4 +681,76 @@
   <value>Linhas a congelar</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Acrescenta um DataTable ao final dos dados existentes em uma planilha especificada, começando na primeira linha vazia após a última célula utilizada.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Acrescentar intervalo</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>O nome da planilha onde os dados serão acrescentados.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da planilha</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>O DataTable que contém os dados a serem acrescentados à planilha.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Tabela de dados</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>Exclui uma ou mais linhas de uma planilha especificada com base em índices ou intervalos de linhas.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>Excluir linhas</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>O nome da planilha que contém as linhas a serem excluídas.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da planilha</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>Especifica as linhas a serem excluídas pelos seus números. Vários valores podem ser separados por vírgulas, e os intervalos podem ser especificados usando dois pontos. Exemplo: "1,3,5:7" exclui as linhas 1, 3 e 5 a 7.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>Referências de linhas</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>Exclui uma ou mais colunas de uma planilha especificada com base em letras ou intervalos de colunas.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>Excluir colunas</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>O nome da planilha que contém as colunas a serem excluídas.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da planilha</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>Especifica as letras das colunas a serem excluídas. Vários valores podem ser separados por vírgulas, e os intervalos podem ser especificados usando dois pontos. Exemplo: "A,C,E:G" exclui as colunas A, C e E a G.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>Referências de colunas</value>
+  <comment>property name</comment>
+</data>
 </root>

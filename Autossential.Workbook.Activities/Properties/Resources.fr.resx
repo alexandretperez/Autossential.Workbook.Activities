@@ -681,4 +681,76 @@
   <value>Lignes à figer</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Ajoute un DataTable à la fin des données existantes dans une feuille de calcul spécifiée, en commençant par la première ligne vide après la dernière cellule utilisée.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Ajouter la plage</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>Le nom de la feuille de calcul à laquelle les données seront ajoutées.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Nom de la feuille</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>Le DataTable contenant les données à ajouter à la feuille de calcul.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Table de données</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>Supprime une ou plusieurs lignes d'une feuille de calcul spécifiée en fonction d'index ou de plages de lignes.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>Supprimer les lignes</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>Le nom de la feuille de calcul contenant les lignes à supprimer.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>Nom de la feuille</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>Spécifie les lignes à supprimer par leurs numéros. Plusieurs valeurs peuvent être séparées par des virgules, et les plages peuvent être spécifiées à l'aide de deux-points. Exemple : "1,3,5:7" supprime les lignes 1, 3 et 5 à 7.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>Références de lignes</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>Supprime une ou plusieurs colonnes d'une feuille de calcul spécifiée en fonction de lettres de colonnes ou de plages.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>Supprimer les colonnes</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>Le nom de la feuille de calcul contenant les colonnes à supprimer.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>Nom de la feuille</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>Spécifie les lettres des colonnes à supprimer. Plusieurs valeurs peuvent être séparées par des virgules, et les plages peuvent être spécifiées à l'aide de deux-points. Exemple : "A,C,E:G" supprime les colonnes A, C et E à G.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>Références de colonnes</value>
+  <comment>property name</comment>
+</data>
 </root>

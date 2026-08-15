@@ -1,34 +1,43 @@
 ﻿using Autossential.Workbook.Activities.Extensions;
 using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using MathNet.Numerics.Distributions;
 using System.Data;
-using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.Intrinsics.Arm;
 
 namespace Autossential.Workbook.Activities.Core.Processors
 {
     internal class OpenXMLWorkbookProcessor(string filePath, string password) : WorkbookProcessorBase(filePath, password)
     {
+        public override bool IsOpenXML => true;
+
+        public override bool IsBIFF8 => false;
+
         private SpreadsheetDocument GetWorkbook()
         {
             WorkbookStream.Position = 0;
             return SpreadsheetDocument.Open(WorkbookStream, true);
         }
 
-        protected override CellReference ResolveCell(string address) => new OpenXmlCellReference(address);
+        protected override CellRef ResolveCell(string address) => CellRef.Parse(address.AsSpan());
 
-        protected override RangeReference ResolveRange(string range) => new OpenXmlRangeReference(range);
+        protected override RangeRef ResolveRange(string address) => RangeRef.Parse(address.AsSpan());
 
         public override void WriteRange(string sheetName, DataTable data, string startingCell, bool addHeaders)
         {
             ValidateSheetName(sheetName);
+
             using var doc = GetWorkbook();
             var wbPart = doc.WorkbookPart;
             var sheet = wbPart.GetOrCreateSheet(sheetName);
             var wsPart = (WorksheetPart)wbPart.GetPartById(sheet.Id.Value);
 
             var sheetData = wsPart.Worksheet.GetFirstChild<SheetData>();
+            sheetData.RemoveDefaultEmptyRows();
+
             var cellRef = ResolveCell(startingCell);
 
             int startRow = cellRef.Row;
@@ -47,7 +56,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
             // CellReference.GetColumnName + string concatenation per cell
             var columnNames = new string[data.Columns.Count];
             for (int i = 0; i < columnNames.Length; i++)
-                columnNames[i] = CellReference.GetColumnName(startCol + i);
+                columnNames[i] = CellRef.GetColumnName(startCol + i);
 
             static string BuildCellReference(string columnName, int rowIndex)
             {
@@ -76,7 +85,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 return newRow;
             }
 
-            void UpdateOrCreateCell(Row row, ref List<KeyValuePair<int, Cell>>.Enumerator remaining, ref KeyValuePair<int, Cell>? current, int colIndex, int rowIndex, object value)
+            void UpdateOrCreateCell(Row row, List<KeyValuePair<int, Cell>>.Enumerator remaining, ref KeyValuePair<int, Cell>? current, int colIndex, int rowIndex, object value)
             {
                 while (current.HasValue && current.Value.Key < colIndex)
                     current = remaining.MoveNext() ? remaining.Current : null;
@@ -105,7 +114,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 var cells = headerRow.BuildCellEnumerator();
                 KeyValuePair<int, Cell>? current = cells.MoveNext() ? cells.Current : null;
                 for (int i = 0; i < data.Columns.Count; i++)
-                    UpdateOrCreateCell(headerRow, ref cells, ref current, startCol + i, startRow, data.Columns[i].ColumnName);
+                    UpdateOrCreateCell(headerRow, cells, ref current, startCol + i, startRow, data.Columns[i].ColumnName);
 
                 startRow++;
             }
@@ -121,12 +130,13 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 for (int j = 0; j < data.Columns.Count; j++)
                 {
                     var colIndex = startCol + j;
-                    UpdateOrCreateCell(row, ref cells, ref current, colIndex, rowIndex, dr[j]);
+                    UpdateOrCreateCell(row, cells, ref current, colIndex, rowIndex, dr[j]);
                 }
             }
 
             sst.UniqueCount = (uint)sstIndex.Count;
             wbPart.SharedStringTablePart.SharedStringTable.Save();
+            wsPart.Worksheet.SetActiveCellToA1();
             wsPart.Worksheet.Save();
 
             RemoveDefaultSheetIfNeed(wbPart, sheetName);
@@ -190,9 +200,9 @@ namespace Autossential.Workbook.Activities.Core.Processors
 
             UpdateCell(cell, value, dateStyle, timeStyle, dateTimeStyle, sst, sstIndex);
 
-            sst.Count = (uint)sstIndex.Count;
             sst.UniqueCount = (uint)sstIndex.Count;
             wbPart.SharedStringTablePart.SharedStringTable.Save();
+            wsPart.Worksheet.SetActiveCellToA1();
             wsPart.Worksheet.Save();
 
             RemoveDefaultSheetIfNeed(wbPart, sheetName);
@@ -550,7 +560,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
                 return;
             }
 
-            var topLeftCell = new OpenXmlCellReference(colsToFreeze + 1, rowsToFreeze + 1).ToAddress();
+            var topLeftCell = new CellRef(colsToFreeze + 1, rowsToFreeze + 1).GetAddress();
 
             var activePane = (freezeCols, freezeRows) switch
             {
@@ -601,6 +611,250 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     sheet.State = state;
             }
             wbPart.Workbook.Save();
+        }
+
+        public override void DeleteColumns(string sheetName, string references)
+        {
+            ValidateSheetName(sheetName);
+            var positions = ResolveColumnsReferences(references);
+
+            if (positions.Count == 0)
+                return;
+
+            var columnsDesc = new List<int>(positions);
+            columnsDesc.Sort((a, b) => b.CompareTo(a));
+
+            using var doc = GetWorkbook();
+            var wbPart = doc.WorkbookPart;
+            var sheets = wbPart.Workbook.Sheets.Elements<Sheet>();
+            var sheet = sheets.FirstOrDefault(s => string.Equals(s.Name?.Value, sheetName, StringComparison.OrdinalIgnoreCase))
+                     ?? throw new InvalidOperationException($"No sheet with name '{sheetName}' was found.");
+
+            var wsPart = (WorksheetPart)wbPart.GetPartById(sheet.Id.Value);
+
+            var sheetData = wsPart.Worksheet.GetFirstChild<SheetData>();
+            if (sheetData is null)
+                return;
+
+            var columnsAsc = new List<int>(columnsDesc);
+            columnsAsc.Reverse();
+
+            var rows = sheetData.BuildRowEnumerator();
+            while (rows.MoveNext())
+            {
+                var (ri, row) = rows.Current;
+                var removed = false;
+
+                var cells = row.BuildCellEnumerator();
+                while (cells.MoveNext())
+                {
+                    var (ci, cell) = cells.Current;
+                    if (!columnsDesc.Contains(ci))
+                        continue;
+
+                    cell.Remove();
+                    removed = true;
+                }
+
+                if (!removed)
+                    continue;
+
+                int shift = 0;
+                int dp = 0;
+                cells = row.BuildCellEnumerator();
+                while (cells.MoveNext())
+                {
+                    var (ci, cell) = cells.Current;
+                    while (dp < columnsAsc.Count && columnsAsc[dp] < ci)
+                    {
+                        dp++;
+                        shift++;
+                    }
+                    if (shift == 0)
+                        continue;
+
+                    var newIndex = ci - shift;
+                    if (cell.CellReference?.HasValue == true)
+                        cell.CellReference = new CellRef(newIndex, ri).GetAddress();
+                }
+            }
+
+            var worksheet = wsPart.Worksheet;
+
+            AdjustMergedCells(worksheet, columnsDesc, false);
+            UpdateSheetDimension(worksheet, sheetData);
+
+            worksheet.SetActiveCellToA1();
+            worksheet.Save();
+        }
+
+        private static void AdjustMergedCells(Worksheet worksheet, List<int> deletedPositions, bool isRowAxis)
+        {
+            var mergeCells = worksheet.Elements<MergeCells>().FirstOrDefault()?.Elements<MergeCell>().ToList() ?? [];
+
+            if (mergeCells.Count == 0)
+                return;
+
+            int rowShift = isRowAxis ? 1 : 0;
+            int colShift = isRowAxis ? 0 : 1;
+
+            foreach (var pos in deletedPositions)
+            {
+                int i = 0;
+                while (i < mergeCells.Count)
+                {
+                    var mergeCell = mergeCells[i];
+                    var range = RangeRef.Parse(mergeCell.Reference);
+                    var start = range.Start;
+                    var end = range.End;
+
+                    if (isRowAxis ? pos < start.Row : pos < start.Col)
+                    {
+                        start = new CellRef(range.Start.Col - colShift, range.Start.Row - rowShift);
+                        end = new CellRef(range.End.Col - colShift, range.End.Row - rowShift);
+                    }
+                    else if (isRowAxis ? pos <= end.Row : pos <= end.Col)
+                    {
+                        end = new CellRef(range.End.Col - colShift, range.End.Row - rowShift);
+                    }
+
+                    if (start == end)
+                    {
+                        mergeCells.Remove(mergeCell);
+                        mergeCell.Remove();
+                        continue;
+                    }
+                    else
+                    {
+                        mergeCell.Reference = new RangeRef(start, end).GetAddress();
+                    }
+
+                    i++;
+                }
+            }
+        }
+
+        public override void DeleteRows(string sheetName, string references)
+        {
+            ValidateSheetName(sheetName);
+
+            var positions = ResolveRowsReferences(references);
+            if (positions.Count == 0)
+                return;
+
+            var rowsDesc = new List<int>(positions);
+            rowsDesc.Sort((a, b) => b.CompareTo(a));
+
+            using var doc = GetWorkbook();
+            var wbPart = doc.WorkbookPart;
+            var sheets = wbPart.Workbook.Sheets.Elements<Sheet>();
+            var sheet = sheets.FirstOrDefault(s => string.Equals(s.Name?.Value, sheetName, StringComparison.OrdinalIgnoreCase))
+                     ?? throw new InvalidOperationException($"No sheet with name '{sheetName}' was found.");
+
+            var wsPart = (WorksheetPart)wbPart.GetPartById(sheet.Id.Value);
+
+            var sheetData = wsPart.Worksheet.GetFirstChild<SheetData>();
+            if (sheetData is null)
+                return;
+
+            var removed = false;
+            var allRows = sheetData.BuildRowEnumerator();
+
+            while (allRows.MoveNext())
+            {
+                var (ri, row) = allRows.Current;
+                if (rowsDesc.Contains(ri))
+                {
+                    removed = true;
+                    row.Remove();
+                    continue;
+                }
+            }
+
+            if (!removed)
+                return;
+
+            var rowsAsc = new List<int>(rowsDesc);
+            rowsAsc.Reverse();
+
+            int shift = 0;
+            int dp = 0;
+
+            var deletedRow = 0;
+
+            allRows = sheetData.BuildRowEnumerator();
+            while (allRows.MoveNext())
+            {
+                var (ri, row) = allRows.Current;
+
+                while (dp < rowsAsc.Count && rowsAsc[dp] < ri)
+                {
+                    deletedRow = rowsAsc[dp];
+                    dp++;
+                    shift++;
+                }
+
+                if (shift == 0)
+                    continue;
+
+                var newIndex = ri - shift;
+
+                if (row.RowIndex?.HasValue == true)
+                    row.RowIndex = (uint)newIndex;
+
+                var cells = row.BuildCellEnumerator();
+                while (cells.MoveNext())
+                {
+                    var (ci, cell) = cells.Current;
+                    if (cell.CellReference?.HasValue == true)
+                        cell.CellReference = new CellRef(ci, newIndex).GetAddress();
+                }
+            }
+
+            var worksheet = wsPart.Worksheet;
+
+            AdjustMergedCells(worksheet, rowsDesc, true);
+            UpdateSheetDimension(worksheet, sheetData);
+
+            worksheet.SetActiveCellToA1();
+            worksheet.Save();
+        }
+
+        private static void UpdateSheetDimension(Worksheet worksheet, SheetData sheetData)
+        {
+            var rows = sheetData.BuildRowEnumerator();
+
+            int minRow = int.MaxValue, maxRow = int.MinValue;
+            int minCol = int.MaxValue, maxCol = int.MinValue;
+            var hasData = false;
+
+            while (rows.MoveNext())
+            {
+                var (ri, row) = rows.Current;
+                var cells = row.BuildCellEnumerator();
+                var rowHasCells = false;
+
+                while (cells.MoveNext())
+                {
+                    var (ci, _) = cells.Current;
+                    hasData = true;
+                    rowHasCells = true;
+                    if (ci < minCol) minCol = ci;
+                    if (ci > maxCol) maxCol = ci;
+                }
+
+                if (rowHasCells)
+                {
+                    if (ri < minRow) minRow = ri;
+                    if (ri > maxRow) maxRow = ri;
+                }
+            }
+
+            worksheet.SheetDimension ??= new SheetDimension();
+
+            worksheet.SheetDimension.Reference = hasData
+                ? $"{new CellRef(minCol, minRow).GetAddress()}:{new CellRef(maxCol, maxRow).GetAddress()}"
+                : "A1";
         }
     }
 }

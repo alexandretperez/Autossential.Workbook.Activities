@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml.Spreadsheet;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using System.IO.Compression;
 
 namespace Autossential.Workbook.Activities.Tests
 {
@@ -90,6 +91,20 @@ namespace Autossential.Workbook.Activities.Tests
                 ColsFrozen = pane.VerticalSplitPosition,
                 RowsFrozen = pane.HorizontalSplitPosition
             };
+        }
+
+
+        public static void ExtractSheetXml(string xlsxPath, string toFilePath)
+        {
+            using ZipArchive archive = ZipFile.OpenRead(xlsxPath);
+            ZipArchiveEntry sheet1Entry = archive.GetEntry("xl/worksheets/sheet1.xml");
+
+            if (sheet1Entry != null)
+            {
+                using Stream entryStream = sheet1Entry.Open();
+                using FileStream outputStream = new(toFilePath, FileMode.Create);
+                entryStream.CopyTo(outputStream);
+            }
         }
     }
 }

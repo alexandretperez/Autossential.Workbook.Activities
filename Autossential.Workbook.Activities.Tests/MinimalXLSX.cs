@@ -1,25 +1,20 @@
-﻿using System.IO.Compression;
+﻿using System.Data;
+using System.IO.Compression;
 using System.Text;
 
 namespace Autossential.Workbook.Activities.Tests
 {
     public static class MinimalXLSX
     {
-        public static string Create(int cols, int rows)
+        public static string Create(DataTable data, bool addHeaders)
         {
-            var headers = Enumerable.Range(0, cols).Select(i => $"Col{i + 1}").ToArray();
-            var data = new List<string[]>();
-            for (int i = 0; i < rows; i++)
-            {
-                data.Add(Enumerable.Range(0, cols).Select(j => $"C{j + 1}R{i + 1}").ToArray());
-            }
             var path = Path.ChangeExtension(Path.GetTempFileName(), ".xlsx");
             //path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", Path.GetFileName(path));
-            CreateMinimalXlsx(path, headers, data.ToArray());
+            CreateMinimalXlsx(path, data, addHeaders);
             return path;
         }
 
-        static void CreateMinimalXlsx(string path, string[] headers, string[][] rows)
+        static void CreateMinimalXlsx(string path, DataTable data, bool addHeaders)
         {
             File.Delete(path);
             using var archive = ZipFile.Open(path, ZipArchiveMode.Create);
@@ -29,28 +24,29 @@ namespace Autossential.Workbook.Activities.Tests
             WriteEntry(archive, "xl/workbook.xml", WorkbookXml);
             WriteEntry(archive, "xl/_rels/workbook.xml.rels", WorkbookRelsXml);
             WriteEntry(archive, "xl/styles.xml", StylesXml);
-            WriteEntry(archive, "xl/worksheets/sheet1.xml", BuildSheetXml(headers, rows));
+            WriteEntry(archive, "xl/worksheets/sheet1.xml", BuildSheetXml(data, addHeaders));
         }
 
-        static string BuildSheetXml(string[] headers, string[][] rows)
+        static string BuildSheetXml(DataTable data, bool addHeaders)
         {
             var sb = new StringBuilder();
             sb.Append("""<?xml version="1.0" encoding="utf-8"?>""");
             sb.Append("""<x:worksheet xmlns:x="http://schemas.openxmlformats.org/spreadsheetml/2006/main">""");
             sb.Append("<x:sheetData>");
 
-            // Header row - sem r em <row> nem em <c>
-            sb.Append("<x:row>");
-            foreach (var h in headers)
-                sb.Append($"""<x:c t="inlineStr"><x:is><x:t>{System.Security.SecurityElement.Escape(h)}</x:t></x:is></x:c>""");
-            sb.Append("</x:row>");
-
-            // Data rows
-            foreach (var row in rows)
+            if (addHeaders)
             {
                 sb.Append("<x:row>");
-                foreach (var val in row)
-                    sb.Append($"""<x:c t="inlineStr"><x:is><x:t>{System.Security.SecurityElement.Escape(val)}</x:t></x:is></x:c>""");
+                foreach (DataColumn h in data.Columns)
+                    sb.Append($"""<x:c t="inlineStr"><x:is><x:t>{System.Security.SecurityElement.Escape(h.ColumnName)}</x:t></x:is></x:c>""");
+                sb.Append("</x:row>");
+            }
+
+            foreach (DataRow row in data.Rows)
+            {
+                sb.Append("<x:row>");
+                foreach (var val in row.ItemArray)
+                    sb.Append($"""<x:c t="inlineStr"><x:is><x:t>{System.Security.SecurityElement.Escape(val?.ToString() ?? "")}</x:t></x:is></x:c>""");
                 sb.Append("</x:row>");
             }
 

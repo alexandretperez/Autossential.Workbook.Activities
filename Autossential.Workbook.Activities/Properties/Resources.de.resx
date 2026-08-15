@@ -681,4 +681,76 @@
   <value>Zu fixierende Zeilen</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Fügt eine DataTable am Ende der vorhandenen Daten in einem angegebenen Arbeitsblatt hinzu, beginnend mit der ersten leeren Zeile nach der letzten verwendeten Zelle.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Bereich anhängen</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>Der Name des Arbeitsblatts, an das die Daten angehängt werden sollen.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Blattname</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>Die DataTable, die die an das Arbeitsblatt anzuhängenden Daten enthält.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Datentabelle</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>Löscht eine oder mehrere Zeilen aus einem angegebenen Arbeitsblatt basierend auf Zeilenindizes oder Bereichen.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>Zeilen löschen</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>Der Name des Arbeitsblatts, das die zu löschenden Zeilen enthält.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>Blattname</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>Gibt die zu löschenden Zeilen durch ihre Nummern an. Mehrere Werte können durch Kommas getrennt werden, und Bereiche können mit einem Doppelpunkt angegeben werden. Beispiel: "1,3,5:7" löscht die Zeilen 1, 3 und 5 bis 7.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>Zeilenverweise</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>Löscht eine oder mehrere Spalten aus einem angegebenen Arbeitsblatt basierend auf Spaltenbuchstaben oder Bereichen.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>Spalten löschen</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>Der Name des Arbeitsblatts, das die zu löschenden Spalten enthält.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>Blattname</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>Gibt die zu löschenden Spaltenbuchstaben an. Mehrere Werte können durch Kommas getrennt werden, und Bereiche können mit einem Doppelpunkt angegeben werden. Beispiel: "A,C,E:G" löscht die Spalten A, C und E bis G.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>Spaltenverweise</value>
+  <comment>property name</comment>
+</data>
 </root>

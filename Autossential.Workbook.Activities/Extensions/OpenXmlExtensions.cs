@@ -1,4 +1,5 @@
 ﻿using Autossential.Workbook.Activities.Core;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 
@@ -30,6 +31,22 @@ namespace Autossential.Workbook.Activities.Extensions
 
         extension(SheetData sheetData)
         {
+            public void RemoveDefaultEmptyRows()
+            {
+                var emptyRows = sheetData.Elements<Row>()
+                    .Where(row =>
+                       !row.Elements<Cell>().Any() &&
+                        row.CustomHeight?.Value != true &&
+                        row.CustomFormat?.Value != true &&
+                        row.Hidden?.Value != true &&
+                        row.OutlineLevel?.Value == 0 &&
+                        row.Collapsed?.Value != true
+                    ).ToList();
+
+                foreach (var row in emptyRows)
+                    row.Remove();
+            }
+
             public List<KeyValuePair<int, Row>>.Enumerator BuildRowEnumerator()
             {
                 int previousRowIndex = 0;
@@ -58,7 +75,7 @@ namespace Autossential.Workbook.Activities.Extensions
                 foreach (var cell in row.Elements<Cell>())
                 {
                     int colIndex = cell.CellReference?.Value is string cellRef
-                        ? new OpenXmlCellReference(cellRef).Col
+                        ? CellRef.Parse(cellRef).Col
                         : previousColIndex + 1;
 
                     list.Add(new KeyValuePair<int, Cell>(colIndex, cell));
@@ -66,6 +83,36 @@ namespace Autossential.Workbook.Activities.Extensions
                 }
                 list.Sort((a, b) => a.Key.CompareTo(b.Key));
                 return list.GetEnumerator();
+            }
+        }
+
+        extension(Worksheet worksheet)
+        {
+            public void SetActiveCellToA1()
+            {
+                var sheetView = worksheet.GetFirstChild<SheetViews>()?.GetFirstChild<SheetView>();
+                if (sheetView is null)
+                    return;
+
+                var pane = sheetView.GetFirstChild<Pane>();
+                if (pane is not null)
+                {
+                    var row = (pane.VerticalSplit?.Value ?? 0) + 1;
+                    var col = (pane.HorizontalSplit?.Value ?? 0) + 1;
+                    pane.TopLeftCell = new CellRef((int)col, (int)row).GetAddress();
+                }
+
+                const string A1 = "A1";
+                sheetView.RemoveAllChildren<Selection>();
+                sheetView.AppendChild(new Selection
+                {
+                    ActiveCell = A1,
+                    SequenceOfReferences = new ListValue<StringValue>
+                    {
+                        InnerText = A1
+                    }
+                });
+                sheetView.TopLeftCell = A1;
             }
         }
     }

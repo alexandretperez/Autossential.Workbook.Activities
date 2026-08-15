@@ -25,7 +25,7 @@ namespace Autossential.Workbook.Activities
             if (string.IsNullOrEmpty(startingCell))
                 startingCell = "A1";
 
-            var data = DataTable.Get(context);
+            var data = DataTable.Get(context) ?? throw new InvalidOperationException(ResourcesFn.Common_ErrorMsg_ValueNotSuppliedFormat(Resources.WriteRange_DataTable_DisplayName));
             context.GetWorkbookProcessor().WriteRange(sheetName, data, startingCell, AddHeaders);
         }
     }

@@ -681,4 +681,76 @@
   <value>Filas a inmovilizar</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Anexa un DataTable al final de los datos existentes en una hoja de cálculo especificada, comenzando desde la primera fila vacía después de la última celda utilizada.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Anexar rango</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo donde se anexarán los datos.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>El DataTable que contiene los datos a anexar a la hoja de cálculo.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Tabla de datos</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>Elimina una o más filas de una hoja de cálculo especificada según índices o rangos de filas.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>Eliminar filas</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo que contiene las filas a eliminar.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>Especifica las filas a eliminar por sus números. Múltiples valores pueden separarse por comas, y los rangos pueden especificarse usando dos puntos. Ejemplo: "1,3,5:7" elimina las filas 1, 3 y 5 a 7.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>Referencias de filas</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>Elimina una o más columnas de una hoja de cálculo especificada según letras de columnas o rangos.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>Eliminar columnas</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>El nombre de la hoja de cálculo que contiene las columnas a eliminar.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>Nombre de hoja</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>Especifica las letras de las columnas a eliminar. Múltiples valores pueden separarse por comas, y los rangos pueden especificarse usando dos puntos. Ejemplo: "A,C,E:G" elimina las columnas A, C y E a G.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>Referencias de columnas</value>
+  <comment>property name</comment>
+</data>
 </root>

@@ -6,7 +6,11 @@ namespace Autossential.Workbook.Activities.Core.Processors
 {
     internal abstract class WorkbookProcessorBase : IWorkbookProcessor
     {
+        public abstract bool IsBIFF8 { get; }
+        public abstract bool IsOpenXML { get; }
         public MemoryStream WorkbookStream { get; }
+
+        public abstract void DeleteSheet(string sheetName);
 
         public void Dispose()
         {
@@ -17,10 +21,60 @@ namespace Autossential.Workbook.Activities.Core.Processors
             WorkbookStream?.Dispose();
         }
 
+        public (string, int, int) FindValue(string sheetName, string range, object value)
+        {
+            ValidateSheetName(sheetName);
+            var reader = GetReader();
+
+            do
+            {
+                if (!reader.Name.Equals(sheetName, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                var rangeRef = ResolveRange(range).Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
+
+                var startColIndex = rangeRef.Start.Col - 1;
+                var endCol = Math.Min(rangeRef.End.Col, reader.FieldCount);
+
+                while (reader.Read())
+                {
+                    if (reader.Depth + 1 < rangeRef.Start.Row)
+                        continue;
+
+                    for (int i = startColIndex; i < endCol; i++)
+                    {
+                        var cellValue = reader.GetValue(i);
+                        if (cellValue is null || string.IsNullOrEmpty(cellValue.ToString()))
+                        {
+                            if (value is null || string.IsNullOrEmpty(value.ToString()))
+                            {
+                                cellValue = null;
+                                value = null;
+                            }
+                        }
+
+                        if (cellValue == value || cellValue?.ToString() == value?.ToString())
+                        {
+                            int col = i + 1;
+                            int row = reader.Depth + 1;
+                            var address = $"{CellRef.GetColumnName(col)}{row}";
+                            return (address, col, row);
+                        }
+                    }
+                }
+
+                break;
+            } while (reader.NextResult());
+
+            return (string.Empty, -1, -1);
+        }
+
+        public abstract void FreezePanes(string sheetName, int colsToFreeze, int rowsToFreeze);
+
         public int GetColumnCount(string sheetName, string range)
         {
             ValidateSheetName(sheetName);
-            var rangeRef = ResolveRange(range);
+            var rangeRef = ResolveRange(range).Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
             var reader = GetReader();
             int count = 0;
 
@@ -69,7 +123,7 @@ namespace Autossential.Workbook.Activities.Core.Processors
         {
             ValidateSheetName(sheetName);
 
-            var rangeRef = ResolveRange(range);
+            var rangeRef = ResolveRange(range).Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
             var reader = GetReader();
 
             do
@@ -118,6 +172,10 @@ namespace Autossential.Workbook.Activities.Core.Processors
             } while (reader.NextResult());
             return sheetNames;
         }
+
+        public abstract void HideSheet(string sheetName);
+
+        public abstract void InsertSheet(string sheetName, int? position);
 
         public object ReadCell(string sheetName, string address)
         {
@@ -203,12 +261,13 @@ namespace Autossential.Workbook.Activities.Core.Processors
                     continue;
 
                 var rangeRef = ResolveRange(range);
+                var normRangeRef = rangeRef.Normalize(IsOpenXML ? CellRef.MaxOpenXML() : CellRef.MaxBIFF8());
 
-                var startRowIndex = rangeRef.Start.Row - 1;
-                var endRowIndex = rangeRef.End.Row - 1;
+                var startRowIndex = normRangeRef.Start.Row - 1;
+                var endRowIndex = normRangeRef.End.Row - 1;
 
-                var startColIndex = rangeRef.Start.Col - 1;
-                var endColIndex = rangeRef.End.Col - 1;
+                var startColIndex = normRangeRef.Start.Col - 1;
+                var endColIndex = normRangeRef.End.Col - 1;
 
                 endColIndex = Math.Min(endColIndex, reader.FieldCount - 1);
 
@@ -243,7 +302,11 @@ namespace Autossential.Workbook.Activities.Core.Processors
                                 continue;
                             }
 
-                            headers[i] = (name ?? $"{EMPTY_COLUMN_NAME_PREFIX}{colNameIndex++}").Trim();
+                            var autoName = $"{EMPTY_COLUMN_NAME_PREFIX}{colNameIndex}";
+                            headers[i] = (name ?? autoName).Trim();
+
+                            if (string.Equals(headers[i], autoName, StringComparison.OrdinalIgnoreCase))
+                                colNameIndex++;
                         }
                     }
 
@@ -365,6 +428,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             return [];
         }
 
+        public abstract void RenameSheet(string fromSheetName, string toSheetName);
+
         public void Save()
         {
             var computedHash = WorkbookStream.ComputeHash();
@@ -375,16 +440,8 @@ namespace Autossential.Workbook.Activities.Core.Processors
             _lastSaveHash = computedHash;
             WorkbookHash = computedHash;
         }
-        private void SaveInternal(string computedHash)
-        {
-            if (computedHash != WorkbookHash)
-            {
-                WorkbookStream.Position = 0;
-                using var fs = File.Create(FilePath);
-                WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
-                WorkbookHash = computedHash;
-            }
-        }
+
+        public abstract void UnhideSheet(string sheetName);
 
         public abstract void WriteCell(string sheetName, string address, object value);
 
@@ -412,12 +469,19 @@ namespace Autossential.Workbook.Activities.Core.Processors
         }
 
         protected string FilePath { get; }
+
         protected string Password { get; }
+
         protected string WorkbookHash { get; set; }
 
-        protected abstract void CreateNew();
+        protected string ConsumeDefaultSheetName()
+        {
+            string name = _defaultSheetName;
+            _defaultSheetName = null;
+            return name;
+        }
 
-        private string _readerStreamHash;
+        protected abstract void CreateNew();
 
         protected IExcelDataReader GetReader()
         {
@@ -442,9 +506,11 @@ namespace Autossential.Workbook.Activities.Core.Processors
             return _reader;
         }
 
-        protected abstract CellReference ResolveCell(string address);
+        protected abstract CellRef ResolveCell(string address);
 
-        protected abstract RangeReference ResolveRange(string range);
+        protected abstract RangeRef ResolveRange(string address);
+
+        protected string SetDefaultSheetName(string sheetName = "Sheet1") => (_defaultSheetName = sheetName);
 
         protected virtual void ValidateSheetName(string sheetName)
         {
@@ -453,75 +519,161 @@ namespace Autossential.Workbook.Activities.Core.Processors
         }
 
         private const string EMPTY_COLUMN_NAME_PREFIX = "Col";
-        private string _lastSaveHash = null;
-        private IExcelDataReader _reader;
 
         private string _defaultSheetName;
 
-        protected string SetDefaultSheetName(string sheetName = "Sheet1") => (_defaultSheetName = sheetName);
+        private string _lastSaveHash = null;
 
-        protected string ConsumeDefaultSheetName()
+        private IExcelDataReader _reader;
+
+        private string _readerStreamHash;
+
+        private void SaveInternal(string computedHash)
         {
-            string name = _defaultSheetName;
-            _defaultSheetName = null;
-            return name;
+            if (computedHash != WorkbookHash)
+            {
+                WorkbookStream.Position = 0;
+                using var fs = File.Create(FilePath);
+                WorkbookStream.CopyTo(fs, WorkbookStream.CalculateBufferSize());
+                WorkbookHash = computedHash;
+            }
         }
 
-        public (string, int, int) FindValue(string sheetName, string range, object value)
+        public void AppendRange(string sheetName, DataTable data)
         {
             ValidateSheetName(sheetName);
+
             var reader = GetReader();
+            int col = 0;
+            int row = 0;
 
             do
             {
                 if (!reader.Name.Equals(sheetName, StringComparison.OrdinalIgnoreCase))
                     continue;
 
-                var rangeRef = ResolveRange(range);
-
-                var startColIndex = rangeRef.Start.Col - 1;
-                var endCol = Math.Min(rangeRef.End.Col, reader.FieldCount);
-
+                var endCol = reader.FieldCount;
                 while (reader.Read())
                 {
-                    if (reader.Depth + 1 < rangeRef.Start.Row)
-                        continue;
-
-                    for (int i = startColIndex; i < endCol; i++)
+                    for (int i = 0; i < endCol; i++)
                     {
-                        var cellValue = reader.GetValue(i);
-                        if (cellValue is null || string.IsNullOrEmpty(cellValue.ToString()))
-                        {
-                            if (value is null || string.IsNullOrEmpty(value.ToString()))
-                            {
-                                cellValue = null;
-                                value = null;
-                            }
-                        }
+                        var value = reader.GetValue(i);
+                        if (value == null || string.IsNullOrEmpty(value.ToString()))
+                            continue;
 
-                        if (cellValue == value || cellValue?.ToString() == value?.ToString())
-                        {
-                            int col = i + 1;
-                            int row = reader.Depth + 1;
-                            var address = $"{CellReference.GetColumnName(col)}{row}";
-                            return (address, col, row);
-                        }
+                        row = reader.Depth + 1;
+
+                        if (col > 0)
+                            break;
+
+                        col = i + 1;
+                        break;
                     }
                 }
-
-                break;
             } while (reader.NextResult());
 
-            return (string.Empty, -1, -1);
+            col = Math.Max(col, 1);
+            row = Math.Max(row + 1, 1);
+
+            WriteRange(sheetName, data, new CellRef(col, row).GetAddress(), false);
         }
 
-        public abstract void DeleteSheet(string sheetName);
+        private static HashSet<int> ResolveRowsOrColumnsReferences(ReadOnlySpan<char> span, bool deletingRows)
+        {
+            var positions = new HashSet<int>();
 
-        public abstract void InsertSheet(string sheetName, int? position);
+            int i = 0;
+            int len = span.Length;
 
-        public abstract void RenameSheet(string fromSheetName, string toSheetName);
-        public abstract void FreezePanes(string sheetName, int colsToFreeze, int rowsToFreeze);
-        public abstract void HideSheet(string sheetName);
-        public abstract void UnhideSheet(string sheetName);
+            int start = -1;
+            int end = -1;
+            int init = -1;
+
+            while (i < len)
+            {
+                var c = span[i];
+                if (c == ' ')
+                {
+                    i++;
+                    continue;
+                }
+
+                if (start == -1)
+                    start = i;
+
+                if (c == ',' || c == ':')
+                    end = i;
+
+                if (i + 1 == len)
+                    end = len;
+
+                if (end > 0)
+                {
+                    var slice = span[start..end];
+                    int value;
+                    if (deletingRows)
+                    {
+                        if (!int.TryParse(slice, out value) || value < 1)
+                            throw new FormatException($"Invalid row number '{slice}' in '{span}'.");
+                    }
+                    else
+                    {
+                        value = CellRef.GetColumnIndex(slice.TrimEnd());
+                    }
+
+                    if (init > -1)
+                    {
+                        if (c == ':')
+                            throw new FormatException($"Invalid double range in '{span}'.");
+
+                        if (value < init)
+                        {
+                            if (deletingRows)
+                                throw new FormatException($"Invalid '{init}:{value}' range: end is less than start.");
+                            else
+                                throw new FormatException($"Invalid '{CellRef.GetColumnName(init)}:{CellRef.GetColumnName(value)}' range: end is less than start.");
+                        }
+
+                        while (++init <= value)
+                        {
+                            positions.Add(init);
+                        }
+                        init = -1;
+                    }
+                    else
+                    {
+                        if (c == ':')
+                            init = value;
+
+                        positions.Add(value);
+                    }
+
+                    start = -1;
+                    end = -1;
+                }
+
+                i++;
+            }
+
+            return positions;
+        }
+        protected static HashSet<int> ResolveRowsReferences(string references)
+        {
+            if (string.IsNullOrWhiteSpace(references))
+                throw new ArgumentException("Row references cannot be empty.");
+
+            return ResolveRowsOrColumnsReferences(references, true);
+        }
+
+        protected static HashSet<int> ResolveColumnsReferences(string references)
+        {
+            if (string.IsNullOrWhiteSpace(references))
+                throw new ArgumentException("Column references cannot be empty.");
+
+            return ResolveRowsOrColumnsReferences(references, false);
+        }
+
+        public abstract void DeleteColumns(string sheetName, string references);
+        public abstract void DeleteRows(string sheetName, string references);
     }
 }

@@ -681,4 +681,76 @@
   <value>固定する行数</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>指定されたワークシートの既存データの末尾に DataTable を追加します。最後に使用されたセルの後の最初の空行から開始します。</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>範囲を追加</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>データが追加されるワークシートの名前。</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>シート名</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>ワークシートに追加するデータを含む DataTable。</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>データテーブル</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>行インデックスまたは範囲に基づいて、指定されたワークシートから1つ以上の行を削除します。</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>行の削除</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>削除する行を含むワークシートの名前。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>シート名</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>番号で削除する行を指定します。複数の値はカンマで区切ることができ、範囲はコロンを使用して指定できます。例：「1,3,5:7」は行1、3、および5から7を削除します。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>行参照</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>列文字または範囲に基づいて、指定されたワークシートから1つ以上の列を削除します。</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>列の削除</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>削除する列を含むワークシートの名前。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>シート名</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>削除する列文字を指定します。複数の値はカンマで区切ることができ、範囲はコロンを使用して指定できます。例：「A,C,E:G」は列A、C、およびEからGを削除します。</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>列参照</value>
+  <comment>property name</comment>
+</data>
 </root>

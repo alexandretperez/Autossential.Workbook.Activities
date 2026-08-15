@@ -1,6 +1,105 @@
 {
   "activities": [
     {
+      "categoryKey": "ActivityCategories_Workbook_Range",
+      "descriptionKey": "AppendRange_Description",
+      "displayNameKey": "AppendRange_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.AppendRange",
+      "iconKey": "AppendRange.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "AppendRange_DataTable_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "DataTable",
+          "tooltipKey": "AppendRange_DataTable_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "AppendRange_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "AppendRange_SheetName_Description"
+        }
+      ],
+      "shortName": "AppendRange",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.AppendRangeViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook_Range",
+      "descriptionKey": "DeleteColumns_Description",
+      "displayNameKey": "DeleteColumns_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.DeleteColumns",
+      "iconKey": "DeleteColumns.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "DeleteColumns_ColumnReferences_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "ColumnReferences",
+          "tooltipKey": "DeleteColumns_ColumnReferences_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "DeleteColumns_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "DeleteColumns_SheetName_Description"
+        }
+      ],
+      "shortName": "DeleteColumns",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.DeleteColumnsViewModel"
+    },
+    {
+      "categoryKey": "ActivityCategories_Workbook_Range",
+      "descriptionKey": "DeleteRows_Description",
+      "displayNameKey": "DeleteRows_DisplayName",
+      "fullName": "Autossential.Workbook.Activities.DeleteRows",
+      "iconKey": "DeleteRows.svg",
+      "properties": [
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "DeleteRows_RowReferences_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "RowReferences",
+          "tooltipKey": "DeleteRows_RowReferences_Description"
+        },
+        {
+          "category": {
+            "displayNameKey": "Categories_Input",
+            "name": "Input"
+          },
+          "displayNameKey": "DeleteRows_SheetName_DisplayName",
+          "isRequired": true,
+          "isVisible": true,
+          "name": "SheetName",
+          "tooltipKey": "DeleteRows_SheetName_Description"
+        }
+      ],
+      "shortName": "DeleteRows",
+      "viewModelType": "Autossential.Workbook.Activities.ViewModels.DeleteRowsViewModel"
+    },
+    {
       "categoryKey": "ActivityCategories_Workbook_Sheet",
       "descriptionKey": "DeleteSheet_Description",
       "displayNameKey": "DeleteSheet_DisplayName",

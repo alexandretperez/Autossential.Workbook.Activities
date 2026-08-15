@@ -7,7 +7,7 @@ namespace Autossential.Workbook.Activities.Extensions
     {
         extension(DataTable table)
         {
-            public DataTable TrimOrAppend(RangeReference range, string colNamePrefix, int colNameIndex, bool hasHeaders, int headerRows, int rowsPerRecord)
+            public DataTable TrimOrAppend(RangeRef range, string colNamePrefix, int colNameIndex, bool hasHeaders, int headerRows, int rowsPerRecord)
             {
                 static bool HasValue(DataRow row, int columnIndex)
                 {
@@ -56,7 +56,8 @@ namespace Autossential.Workbook.Activities.Extensions
                         break;
                 }
 
-                if (range.InputType == RangeInputType.A1B1 || range.InputType == RangeInputType.AB1)
+                var inputType = range.GetInputType();
+                if (inputType == RangeInputType.A1B1 || inputType == RangeInputType.AB1)
                 {
                     int expectedRowCount = range.End.Row;
                     expectedRowCount -= (range.Start.Row - 1);

@@ -681,4 +681,76 @@
   <value>Закрепляемые строки</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Добавляет DataTable в конец существующих данных на указанном рабочем листе, начиная с первой пустой строки после последней использованной ячейки.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Добавить диапазон</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>Имя рабочего листа, к которому будут добавлены данные.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Имя листа</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>DataTable, содержащая данные для добавления на рабочий лист.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Таблица данных</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>Удаляет одну или несколько строк из указанного рабочего листа на основе индексов или диапазонов строк.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>Удалить строки</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>Имя рабочего листа, содержащего строки для удаления.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>Имя листа</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>Указывает строки для удаления по их номерам. Несколько значений можно разделять запятыми, а диапазоны можно указывать с помощью двоеточия. Пример: "1,3,5:7" удаляет строки 1, 3 и 5–7.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>Ссылки на строки</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>Удаляет один или несколько столбцов из указанного рабочего листа на основе букв или диапазонов столбцов.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>Удалить столбцы</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>Имя рабочего листа, содержащего столбцы для удаления.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>Имя листа</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>Указывает буквы столбцов для удаления. Несколько значений можно разделять запятыми, а диапазоны можно указывать с помощью двоеточия. Пример: "A,C,E:G" удаляет столбцы A, C и E–G.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>Ссылки на столбцы</value>
+  <comment>property name</comment>
+</data>
 </root>

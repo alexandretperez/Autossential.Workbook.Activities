@@ -25,10 +25,8 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
-
         [Arguments(".xls", "A1", "Hello")]
         [Arguments(".xls", "B2", 1)]
-
         [Arguments(".xlsx", "A1", "Hello")]
         [Arguments(".xlsx", "B2", 1)]
         public async Task WriteCell_CellIsUpdated_BasedOnArguments(string extension, string cell, object value)
@@ -39,10 +37,8 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
-
         [Arguments(".xls", null)]
         [Arguments(".xls", "")]
-
         [Arguments(".xlsx", null)]
         [Arguments(".xlsx", "")]
         public void WriteCell_Fails_WhenMissingCell(string extension, string cell)

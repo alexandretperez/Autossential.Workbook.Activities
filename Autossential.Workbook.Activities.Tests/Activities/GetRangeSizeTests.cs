@@ -6,10 +6,8 @@ namespace Autossential.Workbook.Activities.Tests.Activities
     public class GetRangeSizeTests : BaseTests
     {
         [Test]
-
         [Arguments(".xls", "", 10, 10)]
         [Arguments(".xls", null, 10, 10)]
-
         [Arguments(".xlsx", "", 10, 10)]
         [Arguments(".xlsx", null, 10, 10)]
         public async Task GetRangeSize_ReturnsBasedOnWholeSheet_WhenMissingRange(string extension, string range, int expectedCols, int expectedRows)
@@ -21,12 +19,10 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         }
 
         [Test]
-
         [Arguments(".xls", "A1", 10, 10)]
         [Arguments(".xls", "B1:G10", 5, 10)]
         [Arguments(".xls", "G6:H10", 0, 0)]
         [Arguments(".xls", "F7:G10", 1, 3)]
-
         [Arguments(".xlsx", "A1", 10, 10)]
         [Arguments(".xlsx", "B1:G10", 5, 10)]
         [Arguments(".xlsx", "G6:H10", 0, 0)]
@@ -44,7 +40,6 @@ namespace Autossential.Workbook.Activities.Tests.Activities
         [Arguments(".xlsx", "B:D5", 3, 4)]
         [Arguments(".xlsx", "E3:J", 6, 8)]
         [Arguments(".xlsx", "A:H", 8, 8)]
-
         [Arguments(".xls", "A1:C", 3, 3)]
         [Arguments(".xls", "B:D5", 3, 4)]
         [Arguments(".xls", "E3:J", 6, 8)]

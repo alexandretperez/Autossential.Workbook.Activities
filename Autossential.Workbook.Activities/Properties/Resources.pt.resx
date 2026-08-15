@@ -681,4 +681,76 @@
   <value>Linhas a fixar</value>
   <comment>property name</comment>
 </data>
+	<data name="AppendRange_Description" xml:space="preserve">
+  <value>Acrescenta um DataTable ao final dos dados existentes numa folha de cálculo especificada, começando na primeira linha vazia após a última célula utilizada.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="AppendRange_DisplayName" xml:space="preserve">
+  <value>Acrescentar intervalo</value>
+  <comment>activity name</comment>
+</data>
+	<data name="AppendRange_SheetName_Description" xml:space="preserve">
+  <value>O nome da folha de cálculo onde os dados serão acrescentados.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da folha</value>
+  <comment>property name</comment>
+</data>
+	<data name="AppendRange_DataTable_Description" xml:space="preserve">
+  <value>O DataTable que contém os dados a acrescentar à folha de cálculo.</value>
+  <comment>property description</comment>
+</data>
+	<data name="AppendRange_DataTable_DisplayName" xml:space="preserve">
+  <value>Tabela de dados</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_Description" xml:space="preserve">
+  <value>Elimina uma ou mais linhas de uma folha de cálculo especificada com base em índices ou intervalos de linhas.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteRows_DisplayName" xml:space="preserve">
+  <value>Eliminar linhas</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteRows_SheetName_Description" xml:space="preserve">
+  <value>O nome da folha de cálculo que contém as linhas a eliminar.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da folha</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteRows_RowReferences_Description" xml:space="preserve">
+  <value>Especifica as linhas a eliminar pelos seus números. Vários valores podem ser separados por vírgulas, e os intervalos podem ser especificados usando dois pontos. Exemplo: "1,3,5:7" elimina as linhas 1, 3 e 5 a 7.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteRows_RowReferences_DisplayName" xml:space="preserve">
+  <value>Referências de linhas</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_Description" xml:space="preserve">
+  <value>Elimina uma ou mais colunas de uma folha de cálculo especificada com base em letras ou intervalos de colunas.</value>
+  <comment>activity description</comment>
+</data>
+	<data name="DeleteColumns_DisplayName" xml:space="preserve">
+  <value>Eliminar colunas</value>
+  <comment>activity name</comment>
+</data>
+	<data name="DeleteColumns_SheetName_Description" xml:space="preserve">
+  <value>O nome da folha de cálculo que contém as colunas a eliminar.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_SheetName_DisplayName" xml:space="preserve">
+  <value>Nome da folha</value>
+  <comment>property name</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_Description" xml:space="preserve">
+  <value>Especifica as letras das colunas a eliminar. Vários valores podem ser separados por vírgulas, e os intervalos podem ser especificados usando dois pontos. Exemplo: "A,C,E:G" elimina as colunas A, C e E a G.</value>
+  <comment>property description</comment>
+</data>
+	<data name="DeleteColumns_ColumnReferences_DisplayName" xml:space="preserve">
+  <value>Referências de colunas</value>
+  <comment>property name</comment>
+</data>
 </root>
